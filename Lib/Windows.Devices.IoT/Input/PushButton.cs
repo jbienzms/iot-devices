@@ -13,15 +13,24 @@ namespace Windows.Devices.IoT.Input
 {
     public class PushButton : ScheduledDevice, IPushButton
     {
-        private SchedulingEvent<PushButton, EventArgs> clickEvent;
+        #region Member Variables
+        private SchedulingEvent<EventArgs> clickEvent;
         private GpioPinValue pressedValue = GpioPinValue.Low;
         private GpioPinValue releasedValue = GpioPinValue.High;
         private GpioPinValue lastValue;
         private GpioPin pin;
-        private SchedulingEvent<PushButton, EventArgs> pressedEvent;
-        private SchedulingEvent<PushButton, EventArgs> releasedEvent;
+        private SchedulingEvent<EventArgs> pressedEvent;
+        private SchedulingEvent<EventArgs> releasedEvent;
+        #endregion // Member Variables
 
-        public PushButton(GpioPin pin) : base(new ScheduleOptions(reportInterval:200))
+        #region Constructors
+        /// <summary>
+        /// Initializes a new <see cref="PushButton"/> instance.
+        /// </summary>
+        /// <param name="pin">
+        /// The pin that the device is connected to.
+        /// </param>
+        public PushButton(GpioPin pin) : base(new ScheduleOptions(reportInterval: 200))
         {
             // Validate
             if (pin == null) throw new ArgumentNullException("pin");
@@ -30,14 +39,17 @@ namespace Windows.Devices.IoT.Input
             this.pin = pin;
 
             // Create events
-            clickEvent = new SchedulingEvent<PushButton, EventArgs>(this);
-            pressedEvent = new SchedulingEvent<PushButton, EventArgs>(this);
-            releasedEvent = new SchedulingEvent<PushButton, EventArgs>(this);
+            clickEvent = new SchedulingEvent<EventArgs>(this);
+            pressedEvent = new SchedulingEvent<EventArgs>(this);
+            releasedEvent = new SchedulingEvent<EventArgs>(this);
 
             // Initialize IO
             InitIO();
         }
+        #endregion // Constructors
 
+
+        #region Internal Methods
         private void InitIO()
         {
             // Default to not pressed
@@ -52,10 +64,13 @@ namespace Windows.Devices.IoT.Input
             {
                 pin.SetDriveMode(GpioPinDriveMode.Input);
             }
- 
-             // Set a debounce timeout to filter out switch bounce noise from a button press 
-             pin.DebounceTimeout = TimeSpan.FromMilliseconds(50);
+
+            // Set a debounce timeout to filter out switch bounce noise from a button press 
+            pin.DebounceTimeout = TimeSpan.FromMilliseconds(50);
         }
+        #endregion // Internal Methods
+
+        #region Overrides / Event Handlers
 
         private void Pin_ValueChanged(GpioPin sender, GpioPinValueChangedEventArgs e)
         {
@@ -101,13 +116,19 @@ namespace Windows.Devices.IoT.Input
             base.Dispose();
             pin.Dispose();
         }
+        #endregion // Overrides / Event Handlers
 
+
+        #region Public Properties
         public ButtonClickMode ClickMode { get; set; }
+        #endregion // Public Properties
 
+
+        #region Public Events
         /// <summary>
         /// Occurs when the button is clicked.
         /// </summary>
-        public event TypedEventHandler<PushButton, EventArgs> Click
+        public event EventHandler<EventArgs> Click
         {
             add
             {
@@ -122,7 +143,7 @@ namespace Windows.Devices.IoT.Input
         /// <summary>
         /// Occurs when the button is pressed.
         /// </summary>
-        public event TypedEventHandler<PushButton, EventArgs> Pressed
+        public event EventHandler<EventArgs> Pressed
         {
             add
             {
@@ -137,7 +158,7 @@ namespace Windows.Devices.IoT.Input
         /// <summary>
         /// Occurs when the button is released.
         /// </summary>
-        public event TypedEventHandler<PushButton, EventArgs> Released
+        public event EventHandler<EventArgs> Released
         {
             add
             {
@@ -148,5 +169,6 @@ namespace Windows.Devices.IoT.Input
                 releasedEvent.Remove(value);
             }
         }
+        #endregion // Public Events
     }
 }

@@ -116,6 +116,8 @@
     <Compile Include="Extensions\DispatcherExtensions.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Input\IPushButton.cs" />
+    <Compile Include="Input\ISwitch.cs" />
+    <Compile Include="Input\Switch.cs" />
     <Compile Include="Input\PushButton.cs" />
     <Compile Include="Devices\ScheduledBase.cs" />
     <Compile Include="Devices\ScheduledDevice.cs" />
@@ -151,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\" />
+    <Folder Include="Sensors\" />
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="WindowsIoT, Version=10.0.10069.0">

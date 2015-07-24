@@ -15,13 +15,10 @@ namespace Windows.Devices.IoT
     /// <typeparam name="TSender">
     /// The sender type for the event.
     /// </typeparam>
-    /// <typeparam name="TResult">
-    /// The type of data sent to the event.
-    /// </typeparam>
-    public class MonitoredEvent<TSender, TResult>
+    public class MonitoredEvent<TResult>
     {
         #region Member Variables
-        private TypedEventHandler<TSender, TResult> innerEvent;
+        private EventHandler<TResult> innerEvent;
         #endregion // Member Variables
 
         #region Overridables / Event Triggers
@@ -42,7 +39,7 @@ namespace Windows.Devices.IoT
         /// <param name="added">
         /// The handler to add.
         /// </param>
-        public void Add(TypedEventHandler<TSender, TResult> added)
+        public void Add(EventHandler<TResult> added)
         {
             // Check if we currently have no subscribers
             bool wasNull = (innerEvent == null);
@@ -66,7 +63,7 @@ namespace Windows.Devices.IoT
         /// <param name="args">
         /// Data for the event.
         /// </param>
-        public void Raise(TSender sender, TResult args)
+        public void Raise(object sender, TResult args)
         {
             if (innerEvent != null)
             {
@@ -80,7 +77,7 @@ namespace Windows.Devices.IoT
         /// <param name="removed">
         /// The handler to remove.
         /// </param>
-        public void Remove(TypedEventHandler<TSender, TResult> removed)
+        public void Remove(EventHandler<TResult> removed)
         {
             // Check if we currently have no subscribers
             bool wasNull = (innerEvent == null);

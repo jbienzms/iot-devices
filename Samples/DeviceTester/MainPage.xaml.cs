@@ -31,6 +31,8 @@ namespace DeviceTester
         private bool isRunning;
         private string lastOutput;
         private PushButton pushButton;
+        private Switch swtch;
+        private Switch proximity;
 
         public MainPage()
         {
@@ -68,18 +70,8 @@ namespace DeviceTester
             StopButton.IsEnabled = true;
         }
 
-        private void StartDevice()
+        private void StartPushButton(GpioPin pin)
         {
-            gpioController = GpioController.GetDefault();
-            if (gpioController == null)
-            {
-                AddOutput("GPIO Controller not found!");
-                return;
-            }
-
-            // Open the pin
-            var pin = gpioController.OpenPin(5);
-
             // Create a pushbutton
             pushButton = new PushButton(pin);
 
@@ -92,43 +84,100 @@ namespace DeviceTester
             pushButton.Released += PushButton_Released;
         }
 
-        private void PushButton_Click(PushButton sender, EventArgs args)
+        private void StartSwitches(GpioPin switchPin, GpioPin proxPin)
         {
-            Dispatcher.Run(()=> AddOutput("Click"));
+            // Create switches
+            swtch = new Switch(pin: switchPin, onValue: GpioPinValue.Low);
+            proximity = new Switch(pin: proxPin, onValue: GpioPinValue.Low);
+
+            // Subscribe to events
+            swtch.Switched += Switch_Switched;
+            proximity.Switched += Proximity_Switched;
         }
 
-        private void PushButton_Pressed(PushButton sender, EventArgs args)
+        private void StartDevice()
         {
-            Dispatcher.Run(() => AddOutput("Pressed"));
-        }
+            gpioController = GpioController.GetDefault();
+            if (gpioController == null)
+            {
+                AddOutput("GPIO Controller not found!");
+                return;
+            }
 
-        private void PushButton_Released(PushButton sender, EventArgs args)
-        {
-            Dispatcher.Run(() => AddOutput("Released"));
-        }
+            // Open the pins
+            var switchPin = gpioController.OpenPin(5);
+            var proxPin = gpioController.OpenPin(6);
 
+            // StartPushButton(pin);
+            StartSwitches(switchPin, proxPin);
+        }
 
         private void Stop()
         {
             if (!isRunning) { return; }
             isRunning = false;
             StopButton.IsEnabled = false;
-            StopDevice();
+            StopDevices();
             StartButton.IsEnabled = true;
         }
 
-        private void StopDevice()
+        private void StopDevices()
         {
             if (pushButton != null)
             {
                 pushButton.Dispose();
                 pushButton = null;
             }
+
+            if (proximity != null)
+            {
+                proximity.Dispose();
+                proximity = null;
+            }
+
+            if (swtch != null)
+            {
+                swtch.Dispose();
+                swtch = null;
+            }
         }
+
+
+
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             OutputList.Items.Clear();
+        }
+
+        private void PushButton_Click(object sender, EventArgs args)
+        {
+            Dispatcher.Run(() => AddOutput("Click"));
+        }
+
+        private void PushButton_Pressed(object sender, EventArgs args)
+        {
+            Dispatcher.Run(() => AddOutput("Pressed"));
+        }
+
+        private void PushButton_Released(object sender, EventArgs args)
+        {
+            Dispatcher.Run(() => AddOutput("Released"));
+        }
+
+        private void Proximity_Switched(object sender, bool e)
+        {
+            Dispatcher.Run(() =>
+            {
+                if (e)
+                {
+                    AddOutput("Close");
+                }
+                else
+                {
+                    AddOutput("Far");
+                }
+            });
         }
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
@@ -139,6 +188,21 @@ namespace DeviceTester
         private void StopButton_Click(object sender, RoutedEventArgs e)
         {
             Stop();
+        }
+
+        private void Switch_Switched(object sender, bool e)
+        {
+            Dispatcher.Run(() =>
+            {
+                if (e)
+                {
+                    AddOutput("Switched On");
+                }
+                else
+                {
+                    AddOutput("Switched Off");
+                }
+            });
         }
     }
 }

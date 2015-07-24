@@ -11,13 +11,10 @@ namespace Windows.Devices.IoT
     /// <summary>
     /// An event that can schedule its owner based on subscriptions.
     /// </summary>
-    /// <typeparam name="TOwner">
-    /// The sender type for the event.
-    /// </typeparam>
     /// <typeparam name="TResult">
     /// The type of data sent to the event.
     /// </typeparam>
-    public class SchedulingEvent<TOwner, TResult> : MonitoredEvent<TOwner, TResult> where TOwner:ScheduledBase
+    public class SchedulingEvent<TResult> : MonitoredEvent<TResult>
     {
         #region Member Variables
         private ScheduledBase owner;
@@ -30,7 +27,7 @@ namespace Windows.Devices.IoT
         /// <param name="owner">
         /// The owner of the event.
         /// </param>
-        public SchedulingEvent(TOwner owner)
+        public SchedulingEvent(ScheduledBase owner)
         {
             // Validate
             if (owner == null) throw new ArgumentNullException("owner");

@@ -152,7 +152,7 @@ namespace Windows.Devices.IoT
         /// <summary>
         /// Called by the scheduler to update the device.
         /// </summary>
-        protected abstract Task UpdateAsync(CancellationToken token);
+        protected abstract Task UpdateAsync(CancellationToken cancellationToken);
         #endregion // Internal Methods
     }
 }
