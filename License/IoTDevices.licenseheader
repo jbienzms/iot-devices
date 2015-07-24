@@ -1,0 +1,14 @@
+extensions: designer.cs generated.cs
+extensions: .cs .cpp .h
+// Copyright (c) Microsoft. All rights reserved.
+//
+extensions: .aspx .ascx
+<%-- 
+Copyright (c) Microsoft. All rights reserved.
+--%>
+extensions: .vb
+'Sample license text.
+extensions:  .xml .config .xsd
+<!--
+Copyright (c) Microsoft. All rights reserved.
+-->
