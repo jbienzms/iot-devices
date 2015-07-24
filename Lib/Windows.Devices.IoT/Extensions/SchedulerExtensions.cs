@@ -5,15 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Foundation;
 
 namespace Windows.Devices.IoT
 {
     static internal class SchedulerExtensions
     {
-        static private void GetSubscriber(Delegate subscriber, out AsyncAction a, out Action s)
+        static private void GetSubscriber(Delegate subscriber, out IAsyncAction a, out ScheduledAction s)
         {
-            a = subscriber as AsyncAction;
-            s = subscriber as Action;
+            a = subscriber as IAsyncAction;
+            s = subscriber as ScheduledAction;
 
             if ((a == null) && (s == null))
             {
@@ -23,8 +24,8 @@ namespace Windows.Devices.IoT
 
         static public void Resume(this IScheduler scheduler, Delegate subscriber)
         {
-            AsyncAction a;
-            Action s;
+            IAsyncAction a;
+            ScheduledAction s;
             GetSubscriber(subscriber, out a, out s);
             if (a != null)
             {
@@ -38,8 +39,8 @@ namespace Windows.Devices.IoT
 
         static public void Schedule(this IScheduler scheduler, Delegate subscriber, ScheduleOptions options)
         {
-            AsyncAction a;
-            Action s;
+            IAsyncAction a;
+            ScheduledAction s;
             GetSubscriber(subscriber, out a, out s);
             if (a != null)
             {
@@ -53,8 +54,8 @@ namespace Windows.Devices.IoT
 
         static public void Suspend(this IScheduler scheduler, Delegate subscriber)
         {
-            AsyncAction a;
-            Action s;
+            IAsyncAction a;
+            ScheduledAction s;
             GetSubscriber(subscriber, out a, out s);
             if (a != null)
             {
@@ -68,8 +69,8 @@ namespace Windows.Devices.IoT
 
         static public void Unschedule(this IScheduler scheduler, Delegate subscriber)
         {
-            AsyncAction a;
-            Action s;
+            IAsyncAction a;
+            ScheduledAction s;
             GetSubscriber(subscriber, out a, out s);
             if (a != null)
             {
@@ -83,8 +84,8 @@ namespace Windows.Devices.IoT
 
         static public void UpdateSchedule(this IScheduler scheduler, Delegate subscriber, ScheduleOptions options)
         {
-            AsyncAction a;
-            Action s;
+            IAsyncAction a;
+            ScheduledAction s;
             GetSubscriber(subscriber, out a, out s);
             if (a != null)
             {

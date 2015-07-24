@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Windows.Devices.IoT
 {
-    public abstract class ScheduledBase : IDisposable
+    public abstract class ScheduledBase : IDisposable, IEventObserver
     {
         #region Member Variables
         private uint eventsSubscribed;
@@ -47,24 +47,6 @@ namespace Windows.Devices.IoT
 
 
         #region Internal Methods
-        internal void EventSubscribed()
-        {
-            eventsSubscribed++;
-            if ((eventsSubscribed == 1) && (StartUpdatesWithEvents))
-            {
-                StartUpdates();
-            }
-        }
-
-        internal void EventUnsubscribed()
-        {
-            eventsSubscribed--;
-            if ((eventsSubscribed == 0) && (StopUpdatesWithEvents))
-            {
-                StopUpdates();
-            }
-        }
-
         /// <summary>
         /// Sets the update action to be called by the scheduler.
         /// </summary>
@@ -147,6 +129,34 @@ namespace Windows.Devices.IoT
             }
 
             scheduler = null;
+        }
+
+        void IEventObserver.FirstHandlerAdded(object sender)
+        {
+            eventsSubscribed++;
+            if ((eventsSubscribed == 1) && (StartUpdatesWithEvents))
+            {
+                StartUpdates();
+            }
+        }
+
+        void IEventObserver.HandlerAdded(object sender)
+        {
+            
+        }
+
+        void IEventObserver.HandlerRemoved(object sender)
+        {
+            
+        }
+
+        void IEventObserver.LastHandlerRemoved(object sender)
+        {
+            eventsSubscribed--;
+            if ((eventsSubscribed == 0) && (StopUpdatesWithEvents))
+            {
+                StopUpdates();
+            }
         }
         #endregion // Public Methods
 

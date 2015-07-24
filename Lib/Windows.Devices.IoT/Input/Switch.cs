@@ -11,7 +11,7 @@ using Windows.Foundation;
 
 namespace Windows.Devices.IoT.Input
 {
-    public class Switch : ISwitch, IDisposable
+    public sealed class Switch : ISwitch, IDisposable
     {
         #region Member Variables
         private bool isOn = false;
@@ -26,7 +26,13 @@ namespace Windows.Devices.IoT.Input
         /// <param name="pin">
         /// The pin that the device is connected to.
         /// </param>
-        public Switch(GpioPin pin, GpioPinValue onValue = GpioPinValue.High, bool usePull = true, double debounceTime = 50)
+        /// <param name="onValue">
+        /// </param>
+        /// <param name="usePull">
+        /// </param>
+        /// <param name="debounceTime">
+        /// </param>
+        public Switch(GpioPin pin, GpioPinValue onValue, bool usePull, double debounceTime)
         {
             // Validate
             if (pin == null) throw new ArgumentNullException("pin");
@@ -38,6 +44,25 @@ namespace Windows.Devices.IoT.Input
             // Initialize IO
             InitIO(usePull, debounceTime);
         }
+
+        /// <summary>
+        /// Initializes a new <see cref="Switch"/> instance.
+        /// </summary>
+        /// <param name="pin">
+        /// The pin that the device is connected to.
+        /// </param>
+        /// <param name="onValue">
+        /// </param>
+        public Switch(GpioPin pin, GpioPinValue onValue) : this(pin, onValue, true, 50) { }
+
+        /// <summary>
+        /// Initializes a new <see cref="Switch"/> instance.
+        /// </summary>
+        /// <param name="pin">
+        /// The pin that the device is connected to.
+        /// </param>
+        public Switch(GpioPin pin) : this(pin, GpioPinValue.High, true, 50){}
+
         #endregion // Constructors
 
 

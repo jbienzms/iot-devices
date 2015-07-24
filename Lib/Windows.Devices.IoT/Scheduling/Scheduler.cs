@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.Foundation;
 
 namespace Windows.Devices.IoT
 {
@@ -53,10 +54,10 @@ namespace Windows.Devices.IoT
 
         #region Instance Version
         #region Member Variables
-        private Lookup<AsyncAction> asyncSubscriptions;
+        private Lookup<IAsyncAction> asyncSubscriptions;
         private CancellationTokenSource cancellationSource;
         private uint reportInterval = DefaultReportInterval;
-        private Lookup<Action> subscriptions;
+        private Lookup<ScheduledAction> subscriptions;
         private Task updateTask;
         #endregion // Member Variables
 
@@ -83,7 +84,7 @@ namespace Windows.Devices.IoT
             reportInterval = Math.Min(reportInterval, interval);
         }
 
-        private Subscription GetSubscription(AsyncAction subscriber, bool throwIfMissing = true)
+        private Subscription GetSubscription(IAsyncAction subscriber, bool throwIfMissing = true)
         {
             // Validate
             if (subscriber == null) throw new ArgumentNullException("subscriber");
@@ -100,7 +101,7 @@ namespace Windows.Devices.IoT
             return sub;
         }
 
-        private Subscription GetSubscription(Action subscriber, bool throwIfMissing = true)
+        private Subscription GetSubscription(ScheduledAction subscriber, bool throwIfMissing = true)
         {
             // Validate
             if (subscriber == null) throw new ArgumentNullException("subscriber");
@@ -203,28 +204,28 @@ namespace Windows.Devices.IoT
         #endregion // Internal Methods
 
         #region Public Methods
-        public void Resume(Action subscriber)
+        public void Resume(ScheduledAction subscriber)
         {
             var s = GetSubscription(subscriber);
             s.IsSuspended = false;
             EnsureMinReportInterval(s.Options.ReportInterval);
         }
 
-        public void Resume(AsyncAction subscriber)
+        public void Resume(IAsyncAction subscriber)
         {
             var s = GetSubscription(subscriber);
             s.IsSuspended = false;
             EnsureMinReportInterval(s.Options.ReportInterval);
         }
 
-        public void Schedule(Action subscriber, ScheduleOptions options)
+        public void Schedule(ScheduledAction subscriber, ScheduleOptions options)
         {
             // Check for existing subscription
             var sub = GetSubscription(subscriber, false);
             if (sub != null) { throw new InvalidOperationException(Strings.AlreadySubscribed); }
 
             // Make sure lookup exists
-            if (subscriptions == null) { subscriptions = new Lookup<Action>(); }
+            if (subscriptions == null) { subscriptions = new Lookup<ScheduledAction>(); }
 
             // Threadsafe
             lock (subscriptions)
@@ -240,14 +241,14 @@ namespace Windows.Devices.IoT
             QueryStart();
         }
 
-        public void Schedule(AsyncAction subscriber, ScheduleOptions options)
+        public void Schedule(IAsyncAction subscriber, ScheduleOptions options)
         {
             // Check for existing subscription
             var sub = GetSubscription(subscriber, false);
             if (sub != null) { throw new InvalidOperationException(Strings.AlreadySubscribed); }
 
             // Make sure lookup exists
-            if (asyncSubscriptions == null) { asyncSubscriptions = new Lookup<AsyncAction>(); }
+            if (asyncSubscriptions == null) { asyncSubscriptions = new Lookup<IAsyncAction>(); }
 
             // Threadsafe
             lock (asyncSubscriptions)
@@ -305,19 +306,19 @@ namespace Windows.Devices.IoT
             cancellationSource = null;
         }
 
-        public void Suspend(Action subscriber)
+        public void Suspend(ScheduledAction subscriber)
         {
             GetSubscription(subscriber).IsSuspended = true;
             RecalcReportInterval();
         }
 
-        public void Suspend(AsyncAction subscriber)
+        public void Suspend(IAsyncAction subscriber)
         {
             GetSubscription(subscriber).IsSuspended = true;
             RecalcReportInterval();
         }
 
-        public void Unschedule(Action subscriber)
+        public void Unschedule(ScheduledAction subscriber)
         {
             if (subscriptions != null)
             {
@@ -334,7 +335,7 @@ namespace Windows.Devices.IoT
             RecalcReportInterval();
         }
 
-        public void Unschedule(AsyncAction subscriber)
+        public void Unschedule(IAsyncAction subscriber)
         {
             if (asyncSubscriptions != null)
             {
@@ -351,7 +352,7 @@ namespace Windows.Devices.IoT
             RecalcReportInterval();
         }
 
-        public void UpdateSchedule(Action subscriber, ScheduleOptions options)
+        public void UpdateSchedule(ScheduledAction subscriber, ScheduleOptions options)
         {
             if (options == null) throw new ArgumentNullException("options");
             GetSubscription(subscriber).Options = options;
@@ -365,7 +366,7 @@ namespace Windows.Devices.IoT
             }
         }
 
-        public void UpdateSchedule(AsyncAction subscriber, ScheduleOptions options)
+        public void UpdateSchedule(IAsyncAction subscriber, ScheduleOptions options)
         {
             if (options == null) throw new ArgumentNullException("options");
             GetSubscription(subscriber).Options = options;

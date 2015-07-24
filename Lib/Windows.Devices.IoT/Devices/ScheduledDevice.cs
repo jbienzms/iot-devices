@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.Foundation;
 using IoTScheduler = Windows.Devices.IoT.Scheduler;
 
 namespace Windows.Devices.IoT
@@ -118,6 +119,7 @@ namespace Windows.Devices.IoT
         #endregion // Internal Methods
     }
 
+    /*
     /// <summary>
     /// A base class for a device that is asynchronously updated by a scheduler.
     /// </summary>
@@ -135,7 +137,7 @@ namespace Windows.Devices.IoT
         /// </param>
         public AsyncScheduledDevice(IScheduler scheduler, ScheduleOptions scheduleOptions) : base(scheduler, scheduleOptions)
         {
-            SetUpdateAction((AsyncAction)UpdateAsync);
+            SetUpdateAction((IAsyncAction)UpdateAsync.AsAsyncAction());
         }
 
         /// <summary>
@@ -155,4 +157,5 @@ namespace Windows.Devices.IoT
         protected abstract Task UpdateAsync(CancellationToken cancellationToken);
         #endregion // Internal Methods
     }
+        */
 }

@@ -43,17 +43,17 @@ namespace Windows.Devices.IoT.Input
         /// <summary>
         /// Occurs when the button is clicked.
         /// </summary>
-        event EventHandler<EventArgs> Click;
+        event TypedEventHandler<IPushButton,EmptyEventArgs> Click;
 
         /// <summary>
         /// Occurs when the button is pressed.
         /// </summary>
-        event EventHandler<EventArgs> Pressed;
+        event TypedEventHandler<IPushButton, EmptyEventArgs> Pressed;
 
         /// <summary>
         /// Occurs when the button is released.
         /// </summary>
-        event EventHandler<EventArgs> Released;
+        event TypedEventHandler<IPushButton, EmptyEventArgs> Released;
         #endregion // Public Events
     }
 }

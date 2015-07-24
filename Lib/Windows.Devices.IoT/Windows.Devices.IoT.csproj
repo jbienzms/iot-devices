@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0ACAE306-0C79-4258-8D52-2BB06626FA1D}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>winmdobj</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Windows.Devices.IoT</RootNamespace>
     <AssemblyName>Windows.Devices.IoT</AssemblyName>
@@ -111,8 +111,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Devices\ImmediateDevice.cs" />
-    <Compile Include="Events\MonitoredEvent.cs" />
-    <Compile Include="Events\SchedulingEvent.cs" />
+    <Compile Include="Events\EmptyEventArgs.cs" />
+    <Compile Include="Events\IEventObserver.cs" />
+    <Compile Include="Events\IObservableEvent.cs" />
+    <Compile Include="Events\ObservableEvent.cs" />
     <Compile Include="Extensions\DispatcherExtensions.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Input\IPushButton.cs" />

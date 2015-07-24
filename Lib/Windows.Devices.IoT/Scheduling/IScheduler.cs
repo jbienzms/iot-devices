@@ -6,20 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.Foundation;
 using Windows.Foundation.Metadata;
 
 namespace Windows.Devices.IoT
 {
     /// <summary>
-    /// A delegate for a cancellable asynchronous method. 
+    /// A delegate for scheduled action. 
     /// </summary>
-    /// <param name="token">
-    /// A <see cref="CancellationToken"/> that can be used to cancel the operation.
-    /// </param>
-    /// <returns>
-    /// A <see cref="Task"/> that represents the operation.
-    /// </returns>
-    public delegate Task AsyncAction(CancellationToken token);
+    public delegate void ScheduledAction();
 
     /// <summary>
     /// The interface for a class that can schedule updates for other entities.
@@ -32,7 +27,7 @@ namespace Windows.Devices.IoT
         /// <param name="subscriber">
         /// The asynchronous subscriber to resume.
         /// </param>
-        void Resume(AsyncAction subscriber);
+        void Resume(IAsyncAction subscriber);
 
         /// <summary>
         /// Resumes execution of a synchronous subscriber.
@@ -40,7 +35,8 @@ namespace Windows.Devices.IoT
         /// <param name="subscriber">
         /// The subscriber to resume.
         /// </param>
-        void Resume(Action subscriber);
+        [DefaultOverload]
+        void Resume(ScheduledAction subscriber);
 
         /// <summary>
         /// Schedules execution of an asynchronous subscriber.
@@ -51,7 +47,7 @@ namespace Windows.Devices.IoT
         /// <param name="options">
         /// A <see cref="ScheduleOptions"/> that provides options for the schedule.
         /// </param>
-        void Schedule(AsyncAction subscriber, ScheduleOptions options);
+        void Schedule(IAsyncAction subscriber, ScheduleOptions options);
 
         /// <summary>
         /// Schedules execution of a syncrhonous subscriber.
@@ -62,7 +58,8 @@ namespace Windows.Devices.IoT
         /// <param name="options">
         /// A <see cref="ScheduleOptions"/> that provides options for the schedule.
         /// </param>
-        void Schedule(Action subscriber, ScheduleOptions options);
+        [DefaultOverload]
+        void Schedule(ScheduledAction subscriber, ScheduleOptions options);
 
         /// <summary>
         /// Suspends execution of an asynchronous subscriber.
@@ -70,7 +67,7 @@ namespace Windows.Devices.IoT
         /// <param name="subscriber">
         /// The subscriber to suspend.
         /// </param>
-        void Suspend(AsyncAction subscriber);
+        void Suspend(IAsyncAction subscriber);
 
         /// <summary>
         /// Suspends execution of a synchronous subscriber.
@@ -78,7 +75,8 @@ namespace Windows.Devices.IoT
         /// <param name="subscriber">
         /// The subscriber to suspend.
         /// </param>
-        void Suspend(Action subscriber);
+        [DefaultOverload]
+        void Suspend(ScheduledAction subscriber);
 
         /// <summary>
         /// Unschedules execution of an asynchronous subscriber.
@@ -86,7 +84,7 @@ namespace Windows.Devices.IoT
         /// <param name="subscriber">
         /// The subscriber to unschedule.
         /// </param>
-        void Unschedule(AsyncAction subscriber);
+        void Unschedule(IAsyncAction subscriber);
 
         /// <summary>
         /// Unschedules execution of a synchronous subscriber.
@@ -94,7 +92,8 @@ namespace Windows.Devices.IoT
         /// <param name="subscriber">
         /// The subscriber to unschedule.
         /// </param>
-        void Unschedule(Action subscriber);
+        [DefaultOverload]
+        void Unschedule(ScheduledAction subscriber);
 
         /// <summary>
         /// Updates the schedule for an asynchronous subscriber.
@@ -105,7 +104,7 @@ namespace Windows.Devices.IoT
         /// <param name="options">
         /// A <see cref="ScheduleOptions"/> that provides the updated options.
         /// </param>
-        void UpdateSchedule(AsyncAction subscriber, ScheduleOptions options);
+        void UpdateSchedule(IAsyncAction subscriber, ScheduleOptions options);
 
         /// <summary>
         /// Updates the schedule for a synchronous subscriber.
@@ -116,6 +115,7 @@ namespace Windows.Devices.IoT
         /// <param name="options">
         /// A <see cref="ScheduleOptions"/> that provides the updated options.
         /// </param>
-        void UpdateSchedule(Action subscriber, ScheduleOptions options);
+        [DefaultOverload]
+        void UpdateSchedule(ScheduledAction subscriber, ScheduleOptions options);
     }
 }

@@ -14,13 +14,13 @@ namespace Windows.Devices.IoT.Input
     public class PushButton : ScheduledDevice, IPushButton
     {
         #region Member Variables
-        private SchedulingEvent<EventArgs> clickEvent;
+        private ObservableEvent<IPushButton,EmptyEventArgs> clickEvent;
         private GpioPinValue pressedValue = GpioPinValue.Low;
         private GpioPinValue releasedValue = GpioPinValue.High;
         private GpioPinValue lastValue;
         private GpioPin pin;
-        private SchedulingEvent<EventArgs> pressedEvent;
-        private SchedulingEvent<EventArgs> releasedEvent;
+        private ObservableEvent<IPushButton,EmptyEventArgs> pressedEvent;
+        private ObservableEvent<IPushButton,EmptyEventArgs> releasedEvent;
         #endregion // Member Variables
 
         #region Constructors
@@ -39,9 +39,9 @@ namespace Windows.Devices.IoT.Input
             this.pin = pin;
 
             // Create events
-            clickEvent = new SchedulingEvent<EventArgs>(this);
-            pressedEvent = new SchedulingEvent<EventArgs>(this);
-            releasedEvent = new SchedulingEvent<EventArgs>(this);
+            clickEvent = new ObservableEvent<IPushButton,EmptyEventArgs>(this);
+            pressedEvent = new ObservableEvent<IPushButton,EmptyEventArgs>(this);
+            releasedEvent = new ObservableEvent<IPushButton,EmptyEventArgs>(this);
 
             // Initialize IO
             InitIO();
@@ -94,18 +94,18 @@ namespace Windows.Devices.IoT.Input
 
                 if (currentValue == pressedValue)
                 {
-                    pressedEvent.Raise(this, EventArgs.Empty);
+                    pressedEvent.Raise(this, EmptyEventArgs.Instance);
                     if (ClickMode == ButtonClickMode.Press)
                     {
-                        clickEvent.Raise(this, EventArgs.Empty);
+                        clickEvent.Raise(this, EmptyEventArgs.Instance);
                     }
                 }
                 else
                 {
-                    releasedEvent.Raise(this, EventArgs.Empty);
+                    releasedEvent.Raise(this, EmptyEventArgs.Instance);
                     if (ClickMode == ButtonClickMode.Release)
                     {
-                        clickEvent.Raise(this, EventArgs.Empty);
+                        clickEvent.Raise(this, EmptyEventArgs.Instance);
                     }
                 }
             }
@@ -128,11 +128,11 @@ namespace Windows.Devices.IoT.Input
         /// <summary>
         /// Occurs when the button is clicked.
         /// </summary>
-        public event EventHandler<EventArgs> Click
+        public event TypedEventHandler<IPushButton,EmptyEventArgs> Click
         {
             add
             {
-                clickEvent.Add(value);
+                return clickEvent.Add(value);
             }
             remove
             {
@@ -143,11 +143,11 @@ namespace Windows.Devices.IoT.Input
         /// <summary>
         /// Occurs when the button is pressed.
         /// </summary>
-        public event EventHandler<EventArgs> Pressed
+        public event TypedEventHandler<IPushButton,EmptyEventArgs> Pressed
         {
             add
             {
-                pressedEvent.Add(value);
+                return pressedEvent.Add(value);
             }
             remove
             {
@@ -158,11 +158,11 @@ namespace Windows.Devices.IoT.Input
         /// <summary>
         /// Occurs when the button is released.
         /// </summary>
-        public event EventHandler<EventArgs> Released
+        public event TypedEventHandler<IPushButton,EmptyEventArgs> Released
         {
             add
             {
-                releasedEvent.Add(value);
+                return releasedEvent.Add(value);
             }
             remove
             {

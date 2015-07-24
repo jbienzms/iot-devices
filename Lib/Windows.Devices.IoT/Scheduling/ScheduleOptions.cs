@@ -27,7 +27,7 @@ namespace Windows.Devices.IoT
     /// <summary>
     /// Represents the options for a subscription with a scheduler.
     /// </summary>
-    public class ScheduleOptions
+    public sealed class ScheduleOptions
     {
         #region Constructors
         /// <summary>

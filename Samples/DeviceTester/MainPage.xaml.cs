@@ -150,17 +150,17 @@ namespace DeviceTester
             OutputList.Items.Clear();
         }
 
-        private void PushButton_Click(object sender, EventArgs args)
+        private void PushButton_Click(IPushButton sender, EmptyEventArgs args)
         {
             Dispatcher.Run(() => AddOutput("Click"));
         }
 
-        private void PushButton_Pressed(object sender, EventArgs args)
+        private void PushButton_Pressed(IPushButton sender, EmptyEventArgs args)
         {
             Dispatcher.Run(() => AddOutput("Pressed"));
         }
 
-        private void PushButton_Released(object sender, EventArgs args)
+        private void PushButton_Released(IPushButton sender, EmptyEventArgs args)
         {
             Dispatcher.Run(() => AddOutput("Released"));
         }
