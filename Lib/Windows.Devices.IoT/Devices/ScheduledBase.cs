@@ -11,6 +11,7 @@ namespace Windows.Devices.IoT
     public abstract class ScheduledBase : IDisposable
     {
         #region Member Variables
+        private uint eventsSubscribed;
         private bool scheduled;
         private IScheduler scheduler;
         private ScheduleOptions scheduleOptions;
@@ -37,11 +38,33 @@ namespace Windows.Devices.IoT
             // Store
             this.scheduler = scheduler;
             this.scheduleOptions = scheduleOptions;
+
+            // Defaults
+            StartUpdatesWithEvents = true;
+            StopUpdatesWithEvents = true;
         }
         #endregion // Constructors
 
 
         #region Internal Methods
+        internal void EventSubscribed()
+        {
+            eventsSubscribed++;
+            if ((eventsSubscribed == 1) && (StartUpdatesWithEvents))
+            {
+                StartUpdates();
+            }
+        }
+
+        internal void EventUnsubscribed()
+        {
+            eventsSubscribed--;
+            if ((eventsSubscribed == 0) && (StopUpdatesWithEvents))
+            {
+                StopUpdates();
+            }
+        }
+
         /// <summary>
         /// Sets the update action to be called by the scheduler.
         /// </summary>
@@ -128,6 +151,34 @@ namespace Windows.Devices.IoT
         #endregion // Public Methods
 
         #region Internal Properties
+        /// <summary>
+        /// Gets or sets a value that indicates if <see cref="StartUpdates"/> will 
+        /// get called when the first event is subscribed to.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if <see cref="StartUpdates"/> will get called when the 
+        /// first event is subscribed to; otherwise false. The default is <c>true</c>.
+        /// </value>
+        /// <remarks>
+        /// Only events that are internally implemented using <see cref="SchedulingEvent"/> 
+        /// participate in auto start and stop.
+        /// </remarks>
+        protected bool StartUpdatesWithEvents { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value that indicates if <see cref="StopUpdates"/> will 
+        /// get called when the last event is unsubscribed.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if <see cref="StopUpdates"/> will get called when the 
+        /// last event is unsubscribed; otherwise false. The default is <c>true</c>.
+        /// </value>
+        /// <remarks>
+        /// Only events that are internally implemented using <see cref="SchedulingEvent"/> 
+        /// participate in auto start and stop.
+        /// </remarks>
+        protected bool StopUpdatesWithEvents { get; set; }
+
         /// <summary>
         /// Gets the scheduler that is providing updates.
         /// </summary>

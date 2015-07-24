@@ -126,4 +126,7 @@
   <data name="SubscriptionNotFound" xml:space="preserve">
     <value>Subscription not found</value>
   </data>
+  <data name="TypeNotDelegate" xml:space="preserve">
+    <value>The specified type '{0}' is not a delegate</value>
+  </data>
 </root>

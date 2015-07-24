@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 07/23/2015 15:42:11
+// 	Generated: 07/23/2015 22:11:46
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Windows.Devices.IoT
@@ -82,6 +82,17 @@ namespace Windows.Devices.IoT
             get
             {
                 return resourceLoader.GetString("SubscriptionNotFound");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "The specified type '{0}' is not a delegate"
+        /// </summary>
+        public static string TypeNotDelegate
+        {
+            get
+            {
+                return resourceLoader.GetString("TypeNotDelegate");
             }
         }
     }

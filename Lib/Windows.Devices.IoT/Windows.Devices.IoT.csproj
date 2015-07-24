@@ -111,6 +111,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Devices\ImmediateDevice.cs" />
+    <Compile Include="Events\MonitoredEvent.cs" />
+    <Compile Include="Events\SchedulingEvent.cs" />
+    <Compile Include="Extensions\DispatcherExtensions.cs" />
+    <Compile Include="Extensions\TaskExtensions.cs" />
+    <Compile Include="Input\IPushButton.cs" />
     <Compile Include="Input\PushButton.cs" />
     <Compile Include="Devices\ScheduledBase.cs" />
     <Compile Include="Devices\ScheduledDevice.cs" />

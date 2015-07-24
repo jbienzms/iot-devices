@@ -280,7 +280,7 @@ namespace Windows.Devices.IoT
             cancellationSource = new CancellationTokenSource();
 
             // Start the loop
-            updateTask = Task.Factory.StartNew(UpdateLoop);
+            updateTask = Task.Factory.StartNew(UpdateLoop).FailFastOnException();
         }
 
         /// <summary>

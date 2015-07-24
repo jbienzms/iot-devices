@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Devices.Gpio;
 using Windows.Devices.IoT.Input;
+using Windows.Devices.IoT;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -38,6 +39,9 @@ namespace DeviceTester
 
         private void AddOutput(string output)
         {
+            // Prefix DT
+            output = DateTime.Now.ToString("HH:mm:ss") + " " + output;
+
             // Add to the list
             OutputList.Items.Add(output);
 
@@ -76,12 +80,33 @@ namespace DeviceTester
             // Open the pin
             var pin = gpioController.OpenPin(5);
 
-            // Create button
+            // Create a pushbutton
             pushButton = new PushButton(pin);
 
-            // Start button
-            pushButton.Start();
+            // Click on press
+            // pushButton.ClickMode = ButtonClickMode.Press;
+
+            // Subscribe to events
+            pushButton.Click += PushButton_Click;
+            pushButton.Pressed += PushButton_Pressed;
+            pushButton.Released += PushButton_Released;
         }
+
+        private void PushButton_Click(PushButton sender, EventArgs args)
+        {
+            Dispatcher.Run(()=> AddOutput("Click"));
+        }
+
+        private void PushButton_Pressed(PushButton sender, EventArgs args)
+        {
+            Dispatcher.Run(() => AddOutput("Pressed"));
+        }
+
+        private void PushButton_Released(PushButton sender, EventArgs args)
+        {
+            Dispatcher.Run(() => AddOutput("Released"));
+        }
+
 
         private void Stop()
         {
