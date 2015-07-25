@@ -7,8 +7,8 @@
     <ProjectGuid>{0ACAE306-0C79-4258-8D52-2BB06626FA1D}</ProjectGuid>
     <OutputType>winmdobj</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Windows.Devices.IoT</RootNamespace>
-    <AssemblyName>Windows.Devices.IoT</AssemblyName>
+    <RootNamespace>Microsoft.IoT.Devices</RootNamespace>
+    <AssemblyName>Microsoft.IoT.Devices</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10069.0</TargetPlatformVersion>
@@ -110,7 +110,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Devices\ImmediateDevice.cs" />
     <Compile Include="Events\EmptyEventArgs.cs" />
     <Compile Include="Events\IEventObserver.cs" />
     <Compile Include="Events\IObservableEvent.cs" />
@@ -121,8 +120,7 @@
     <Compile Include="Input\ISwitch.cs" />
     <Compile Include="Input\Switch.cs" />
     <Compile Include="Input\PushButton.cs" />
-    <Compile Include="Devices\ScheduledBase.cs" />
-    <Compile Include="Devices\ScheduledDevice.cs" />
+    <Compile Include="Devices\ScheduledUpdater.cs" />
     <Compile Include="Extensions\SchedulerExtensions.cs" />
     <Compile Include="Resources\Strings.cs">
       <AutoGen>True</AutoGen>
@@ -149,7 +147,7 @@
     <None Include="packages.config" />
     <PRIResource Include="Resources\Strings.resw">
       <Generator>ReswFileCodeGenerator</Generator>
-      <CustomToolNamespace>Windows.Devices.IoT</CustomToolNamespace>
+      <CustomToolNamespace>Microsoft.IoT.Devices</CustomToolNamespace>
       <LastGenOutput>Strings.cs</LastGenOutput>
     </PRIResource>
   </ItemGroup>

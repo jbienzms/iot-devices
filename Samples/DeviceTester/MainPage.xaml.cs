@@ -15,8 +15,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Devices.Gpio;
-using Windows.Devices.IoT.Input;
-using Windows.Devices.IoT;
+using Microsoft.IoT.Devices.Input;
+using Microsoft.IoT.Devices;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 

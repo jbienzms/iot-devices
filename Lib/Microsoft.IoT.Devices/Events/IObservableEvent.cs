@@ -7,10 +7,11 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation;
+using Windows.Foundation.Metadata;
 
-namespace Windows.Devices.IoT
+namespace Microsoft.IoT.Devices
 {
-    public interface IObservableEvent<TSender, TResult>
+    internal interface IObservableEvent<TSender, TResult>
     {
         /// <summary>
         /// Adds a handler to the observed event.
@@ -41,6 +42,7 @@ namespace Windows.Devices.IoT
         /// <param name="handler">
         /// The handler to remove.
         /// </param>
+        [DefaultOverload]
         void Remove(TypedEventHandler<TSender, TResult> handler);
 
         /// <summary>

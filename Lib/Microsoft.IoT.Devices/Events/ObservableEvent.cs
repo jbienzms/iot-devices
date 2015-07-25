@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation;
 
-namespace Windows.Devices.IoT
+namespace Microsoft.IoT.Devices
 {
     /// <summary>
     /// The base class for a monitor of subscribers to an event.
@@ -16,7 +16,7 @@ namespace Windows.Devices.IoT
     /// <typeparam name="TSender">
     /// The sender type for the event.
     /// </typeparam>
-    public class ObservableEvent<TSender, TResult> : IObservableEvent<TSender, TResult>
+    internal class ObservableEvent<TSender, TResult> : IObservableEvent<TSender, TResult>
     {
         #region Member Variables
         private EventRegistrationTokenTable<TypedEventHandler<TSender, TResult>> eventTable;

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Windows.Devices.Gpio;
 using Windows.Foundation;
 
-namespace Windows.Devices.IoT.Input
+namespace Microsoft.IoT.Devices.Input
 {
     public sealed class Switch : ISwitch, IDisposable
     {

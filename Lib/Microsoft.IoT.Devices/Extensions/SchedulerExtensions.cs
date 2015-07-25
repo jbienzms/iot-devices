@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation;
 
-namespace Windows.Devices.IoT
+namespace Microsoft.IoT.Devices
 {
     static internal class SchedulerExtensions
     {
@@ -20,6 +20,13 @@ namespace Windows.Devices.IoT
             {
                 throw new InvalidOperationException(Strings.InvalidSubscriberType);
             }
+        }
+
+        static internal void ValidateSubscriber(Delegate subscriber)
+        {
+            IAsyncAction a;
+            ScheduledAction s;
+            GetSubscriber(subscriber, out a, out s);
         }
 
         static public void Resume(this IScheduler scheduler, Delegate subscriber)

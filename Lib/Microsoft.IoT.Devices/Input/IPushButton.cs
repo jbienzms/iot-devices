@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation;
 
-namespace Windows.Devices.IoT.Input
+namespace Microsoft.IoT.Devices.Input
 {
     /// <summary>
     /// Specifies when the Click event should be raised for a button.

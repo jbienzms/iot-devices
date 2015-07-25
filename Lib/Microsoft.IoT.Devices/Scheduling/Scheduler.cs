@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Windows.Foundation;
 
-namespace Windows.Devices.IoT
+namespace Microsoft.IoT.Devices
 {
     /// <summary>
     /// A default implementation of the <see cref="IScheduler"/> interface.
@@ -149,7 +149,7 @@ namespace Windows.Devices.IoT
             {
                 lock (asyncSubscriptions)
                 {
-                    asyncMin = asyncSubscriptions.Values.Where((s) => !s.IsSuspended).Min((s) => s.Options.ReportInterval);
+                    asyncMin = asyncSubscriptions.Values.Where((s) => !s.IsSuspended).Min((s) => s.Options.UpdateInterval);
                 }
             }
 
@@ -157,7 +157,7 @@ namespace Windows.Devices.IoT
             {
                 lock (subscriptions)
                 {
-                    syncMin = subscriptions.Values.Where((s) => !s.IsSuspended).Min((s) => s.Options.ReportInterval);
+                    syncMin = subscriptions.Values.Where((s) => !s.IsSuspended).Min((s) => s.Options.UpdateInterval);
                 }
             }
 
@@ -208,14 +208,14 @@ namespace Windows.Devices.IoT
         {
             var s = GetSubscription(subscriber);
             s.IsSuspended = false;
-            EnsureMinReportInterval(s.Options.ReportInterval);
+            EnsureMinReportInterval(s.Options.UpdateInterval);
         }
 
         public void Resume(IAsyncAction subscriber)
         {
             var s = GetSubscription(subscriber);
             s.IsSuspended = false;
-            EnsureMinReportInterval(s.Options.ReportInterval);
+            EnsureMinReportInterval(s.Options.UpdateInterval);
         }
 
         public void Schedule(ScheduledAction subscriber, ScheduleOptions options)
@@ -235,7 +235,7 @@ namespace Windows.Devices.IoT
             }
 
             // Ensure interval
-            EnsureMinReportInterval(options.ReportInterval);
+            EnsureMinReportInterval(options.UpdateInterval);
 
             // Start?
             QueryStart();
@@ -258,7 +258,7 @@ namespace Windows.Devices.IoT
             }
 
             // Ensure interval
-            EnsureMinReportInterval(options.ReportInterval);
+            EnsureMinReportInterval(options.UpdateInterval);
 
             // Start?
             QueryStart();
@@ -356,9 +356,9 @@ namespace Windows.Devices.IoT
         {
             if (options == null) throw new ArgumentNullException("options");
             GetSubscription(subscriber).Options = options;
-            if (reportInterval < options.ReportInterval)
+            if (reportInterval < options.UpdateInterval)
             {
-                EnsureMinReportInterval(options.ReportInterval);
+                EnsureMinReportInterval(options.UpdateInterval);
             }
             else
             {
@@ -370,9 +370,9 @@ namespace Windows.Devices.IoT
         {
             if (options == null) throw new ArgumentNullException("options");
             GetSubscription(subscriber).Options = options;
-            if (reportInterval < options.ReportInterval)
+            if (reportInterval < options.UpdateInterval)
             {
-                EnsureMinReportInterval(options.ReportInterval);
+                EnsureMinReportInterval(options.UpdateInterval);
             }
             else
             {

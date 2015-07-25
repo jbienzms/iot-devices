@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation;
 
-namespace Windows.Devices.IoT.Input
+namespace Microsoft.IoT.Devices.Input
 {
     /// <summary>
     /// The interface for an input switch.

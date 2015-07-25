@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Windows.Devices.IoT
+namespace Microsoft.IoT.Devices
 {
     public interface IEmptyEventArgs { }
-    public class EmptyEventArgs : IEmptyEventArgs
+
+    public sealed class EmptyEventArgs : IEmptyEventArgs
     {
         static private EmptyEventArgs instance;
         static public EmptyEventArgs Instance

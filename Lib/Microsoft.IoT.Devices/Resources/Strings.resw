@@ -120,8 +120,14 @@
   <data name="AlreadySubscribed" xml:space="preserve">
     <value>Already subscribed</value>
   </data>
+  <data name="ExistingUpdateAction" xml:space="preserve">
+    <value>An existing update action has already been scheduled and cannot be changed</value>
+  </data>
   <data name="InvalidSubscriberType" xml:space="preserve">
     <value>Subscriber must be of type Action or Func&lt;Task&gt;</value>
+  </data>
+  <data name="NoUpdateAction" xml:space="preserve">
+    <value>The update action must first be specified by calling SetUpdateAction or SetAsyncUpdateAction</value>
   </data>
   <data name="SubscriptionNotFound" xml:space="preserve">
     <value>Subscription not found</value>

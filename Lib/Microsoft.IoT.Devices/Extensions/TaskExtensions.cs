@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Windows.Devices.IoT
+namespace Microsoft.IoT.Devices
 {
     static internal class TaskExtensions
     {

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation;
 
-namespace Windows.Devices.IoT
+namespace Microsoft.IoT.Devices
 {
     public interface IEventObserver
     {

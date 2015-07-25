@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using Windows.Devices.Gpio;
 using Windows.Foundation;
 
-namespace Windows.Devices.IoT.Input
+namespace Microsoft.IoT.Devices.Input
 {
-    public class PushButton : ScheduledDevice, IPushButton
+    public sealed class PushButton : IPushButton, IDisposable
     {
         #region Member Variables
         private ObservableEvent<IPushButton,EmptyEventArgs> clickEvent;
@@ -21,6 +21,7 @@ namespace Windows.Devices.IoT.Input
         private GpioPin pin;
         private ObservableEvent<IPushButton,EmptyEventArgs> pressedEvent;
         private ObservableEvent<IPushButton,EmptyEventArgs> releasedEvent;
+        private ScheduledUpdater updater;
         #endregion // Member Variables
 
         #region Constructors
@@ -30,7 +31,7 @@ namespace Windows.Devices.IoT.Input
         /// <param name="pin">
         /// The pin that the device is connected to.
         /// </param>
-        public PushButton(GpioPin pin) : base(new ScheduleOptions(reportInterval: 200))
+        public PushButton(GpioPin pin)
         {
             // Validate
             if (pin == null) throw new ArgumentNullException("pin");
@@ -38,13 +39,17 @@ namespace Windows.Devices.IoT.Input
             // Store
             this.pin = pin;
 
-            // Create events
-            clickEvent = new ObservableEvent<IPushButton,EmptyEventArgs>(this);
-            pressedEvent = new ObservableEvent<IPushButton,EmptyEventArgs>(this);
-            releasedEvent = new ObservableEvent<IPushButton,EmptyEventArgs>(this);
+            // Create updater
+            updater = new ScheduledUpdater(new ScheduleOptions(reportInterval: 200));
+            updater.SetUpdateAction(Update);
 
             // Initialize IO
             InitIO();
+
+            // Create events
+            clickEvent = new ObservableEvent<IPushButton,EmptyEventArgs>(updater);
+            pressedEvent = new ObservableEvent<IPushButton,EmptyEventArgs>(updater);
+            releasedEvent = new ObservableEvent<IPushButton,EmptyEventArgs>(updater);
         }
         #endregion // Constructors
 
@@ -84,7 +89,7 @@ namespace Windows.Devices.IoT.Input
             }
         }
 
-        protected override void Update()
+        private void Update()
         {
             var currentValue = pin.Read();
             if (lastValue != currentValue)
@@ -111,10 +116,15 @@ namespace Windows.Devices.IoT.Input
             }
         }
 
-        public override void Dispose()
+        public void Dispose()
         {
-            base.Dispose();
-            pin.Dispose();
+            if (pin != null)
+            {
+                updater.Dispose();
+                updater = null;
+                pin.Dispose();
+                pin = null;
+            }
         }
         #endregion // Overrides / Event Handlers
 

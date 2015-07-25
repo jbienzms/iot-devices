@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI.Core;
 
-namespace Windows.Devices.IoT
+namespace Microsoft.IoT.Devices
 {
     static public class DispatcherExtensions
     {
@@ -27,19 +27,19 @@ namespace Windows.Devices.IoT
             return dispatcher.RunAsync(CoreDispatcherPriority.Normal, handler);
         }
 
-        static public void RunIdle(this CoreDispatcher dispatcher, Action action)
+        static public void RunIdle(this CoreDispatcher dispatcher, DispatchedHandler handler)
         {
             // Run
-            var t = RunIdleAsync(dispatcher, action);
+            var t = RunIdleAsync(dispatcher, handler);
         }
 
-        static public IAsyncAction RunIdleAsync(this CoreDispatcher dispatcher, Action action)
+        static public IAsyncAction RunIdleAsync(this CoreDispatcher dispatcher, DispatchedHandler handler)
         {
             // Validate
             if (dispatcher == null) throw new ArgumentNullException("dispatcher");
 
             // Run
-            return dispatcher.RunIdleAsync((e) => { action(); });
+            return dispatcher.RunIdleAsync((e) => { handler(); });
         }
     }
 }

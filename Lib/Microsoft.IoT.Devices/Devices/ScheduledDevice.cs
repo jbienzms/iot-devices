@@ -14,7 +14,7 @@ namespace Windows.Devices.IoT
     /// <summary>
     /// The internal base class for a device that is updated by a scheduler.
     /// </summary>
-    public abstract class ScheduledDeviceBase : ScheduledBase
+    public abstract class ScheduledDeviceBase : ScheduledUpdater
     {
         #region Member Variables
         private ScheduleOptions defaultScheduleOptions;
@@ -44,32 +44,32 @@ namespace Windows.Devices.IoT
 
         #region Public Properties
         /// <summary>
-        /// Gets or sets the current report interval.
+        /// Gets or sets the update interval.
         /// </summary>
         /// <value>
-        /// The current report interval. 
+        /// The current update interval. 
         /// </value>
         /// <remarks>
-        /// The report interval will be set to a default value that will vary 
-        /// based on the sensor driver’s implementation. If your app does not 
-        /// want to use this default value, you should set the report interval 
+        /// The update interval will be set to a default value that will vary 
+        /// based on the devices implementation. If your app does not 
+        /// want to use this default value, you should set the update interval 
         /// to a non-zero value prior to registering any event handlers.
         /// </remarks>
-        public uint ReportInterval
+        public uint UpdateInterval
         {
             get
             {
-                return ScheduleOptions.ReportInterval;
+                return ScheduleOptions.UpdateInterval;
             }
             set
             {
                 // Changing?
-                if (value != ScheduleOptions.ReportInterval)
+                if (value != ScheduleOptions.UpdateInterval)
                 {
                     // New value or default?
                     if (value == 0)
                     {
-                        UpdateReportInterval(defaultScheduleOptions.ReportInterval);
+                        UpdateReportInterval(defaultScheduleOptions.UpdateInterval);
                     }
                     else
                     {

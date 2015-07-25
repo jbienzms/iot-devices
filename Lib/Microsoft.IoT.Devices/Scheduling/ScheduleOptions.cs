@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Windows.Devices.IoT
+namespace Microsoft.IoT.Devices
 {
     /// <summary>
     /// Indicates the requested priority level that a subscriber is scheduled.
@@ -33,7 +33,7 @@ namespace Windows.Devices.IoT
         /// <summary>
         /// Initializes a new <see cref="ScheduleOptions"/> instance.
         /// </summary>
-        /// <param name="reportInterval">
+        /// <param name="updateInterval">
         /// The requested update interval for the subscriber.
         /// </param>
         /// <param name="priority">
@@ -42,9 +42,9 @@ namespace Windows.Devices.IoT
         /// <remarks>
         /// The report interval is specified in milliseconds.
         /// </remarks>
-        public ScheduleOptions(uint reportInterval, SchedulerPriority priority)
+        public ScheduleOptions(uint updateInterval, SchedulerPriority priority)
         {
-            this.ReportInterval = reportInterval;
+            this.UpdateInterval = updateInterval;
             this.Priority = priority;
         }
 
@@ -62,27 +62,29 @@ namespace Windows.Devices.IoT
 
         #region Public Methods
         /// <summary>
-        /// Returns new schedule options with an updated report interval.
+        /// Returns a schedule options with a new update interval.
         /// </summary>
-        /// <param name="reportInterval"></param>
+        /// <param name="updateInterval"></param>
         /// <returns>
         /// The new options.
         /// </returns>
-        public ScheduleOptions WithNewReportInterval(uint reportInterval)
+        public ScheduleOptions WithNewUpdateInterval(uint updateInterval)
         {
-            return new ScheduleOptions(reportInterval, this.Priority);
+            return new ScheduleOptions(updateInterval, this.Priority);
         }
 
         /// <summary>
-        /// Returns new schedule options with an updated report interval.
+        /// Returns new schedule options with an updated priority.
         /// </summary>
-        /// <param name="reportInterval"></param>
+        /// <param name="priority">
+        /// The new priority.
+        /// </param>
         /// <returns>
         /// The new options.
         /// </returns>
         public ScheduleOptions WithNewPriority(SchedulerPriority priority)
         {
-            return new ScheduleOptions(this.ReportInterval, priority);
+            return new ScheduleOptions(this.UpdateInterval, priority);
         }
         #endregion // Public Methods
 
@@ -101,7 +103,7 @@ namespace Windows.Devices.IoT
         /// <remarks>
         /// The report interval is specified in milliseconds. 
         /// </remarks>
-        public uint ReportInterval { get; private set; }
+        public uint UpdateInterval { get; private set; }
         #endregion // Public Properties
     }
 }

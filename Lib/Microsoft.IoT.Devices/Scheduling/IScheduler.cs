@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Metadata;
 
-namespace Windows.Devices.IoT
+namespace Microsoft.IoT.Devices
 {
     /// <summary>
     /// A delegate for scheduled action. 

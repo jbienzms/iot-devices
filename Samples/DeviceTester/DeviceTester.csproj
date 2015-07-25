@@ -151,15 +151,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Lib\Windows.Devices.IoT\Windows.Devices.IoT.csproj">
-      <Project>{0acae306-0c79-4258-8d52-2bb06626fa1d}</Project>
-      <Name>Windows.Devices.IoT</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <SDKReference Include="WindowsIoT, Version=10.0.10069.0">
       <Name>Windows IoT Extension SDK</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Lib\Microsoft.IoT.Devices\Microsoft.IoT.Devices.csproj">
+      <Project>{0acae306-0c79-4258-8d52-2bb06626fa1d}</Project>
+      <Name>Microsoft.IoT.Devices</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

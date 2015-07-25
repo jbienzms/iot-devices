@@ -17,10 +17,10 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 07/23/2015 22:11:46
+// 	Generated: 07/25/2015 17:07:08
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
-namespace Windows.Devices.IoT
+namespace Microsoft.IoT.Devices
 {
     using Windows.ApplicationModel.Resources;
     
@@ -64,6 +64,17 @@ namespace Windows.Devices.IoT
         }
         
         /// <summary>
+        /// Localized resource similar to "An existing update action has already been scheduled and cannot be changed"
+        /// </summary>
+        public static string ExistingUpdateAction
+        {
+            get
+            {
+                return resourceLoader.GetString("ExistingUpdateAction");
+            }
+        }
+        
+        /// <summary>
         /// Localized resource similar to "Subscriber must be of type Action or Func<Task>"
         /// </summary>
         public static string InvalidSubscriberType
@@ -71,6 +82,17 @@ namespace Windows.Devices.IoT
             get
             {
                 return resourceLoader.GetString("InvalidSubscriberType");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "The update action must first be specified by calling SetUpdateAction or SetAsyncUpdateAction"
+        /// </summary>
+        public static string NoUpdateAction
+        {
+            get
+            {
+                return resourceLoader.GetString("NoUpdateAction");
             }
         }
         
