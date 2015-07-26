@@ -11,7 +11,7 @@ using Windows.Foundation;
 
 namespace Microsoft.IoT.Devices.Input
 {
-    public sealed class PushButton : IPushButton, IDisposable
+    public sealed class PushButton : IPushButton, IScheduledDevice, IDisposable
     {
         #region Member Variables
         private ObservableEvent<IPushButton,EmptyEventArgs> clickEvent;
@@ -28,23 +28,12 @@ namespace Microsoft.IoT.Devices.Input
         /// <summary>
         /// Initializes a new <see cref="PushButton"/> instance.
         /// </summary>
-        /// <param name="pin">
-        /// The pin that the device is connected to.
-        /// </param>
-        public PushButton(GpioPin pin)
+        public PushButton()
         {
-            // Validate
-            if (pin == null) throw new ArgumentNullException("pin");
-
-            // Store
-            this.pin = pin;
-
             // Create updater
             updater = new ScheduledUpdater(new ScheduleOptions(reportInterval: 200));
             updater.SetUpdateAction(Update);
-
-            // Initialize IO
-            InitIO();
+            updater.Starting += (s, e) => InitIO();
 
             // Create events
             clickEvent = new ObservableEvent<IPushButton,EmptyEventArgs>(updater);
@@ -57,6 +46,9 @@ namespace Microsoft.IoT.Devices.Input
         #region Internal Methods
         private void InitIO()
         {
+            // Validate that the pin has been set
+            if (pin == null) { throw new MissingIoException("Pin"); }
+
             // Default to not pressed
             lastValue = releasedValue;
 
@@ -118,10 +110,14 @@ namespace Microsoft.IoT.Devices.Input
 
         public void Dispose()
         {
-            if (pin != null)
+            if (updater != null)
             {
                 updater.Dispose();
                 updater = null;
+            }
+
+            if (pin != null)
+            {
                 pin.Dispose();
                 pin = null;
             }
@@ -130,7 +126,46 @@ namespace Microsoft.IoT.Devices.Input
 
 
         #region Public Properties
+        /// <summary>
+        /// Gets or sets a value that indicates when the Click event occurs. 
+        /// </summary>
         public ButtonClickMode ClickMode { get; set; }
+
+        /// <summary>
+        /// Gets or sets an optional name for the device.
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the pin that the button is connected to.
+        /// </summary>
+        public GpioPin Pin
+        {
+            get
+            {
+                return pin;
+            }
+            set
+            {
+                if (updater.IsUpdating) { throw new IoChangeException(); }
+                pin = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the update interval for the device.
+        /// </summary>
+        public uint UpdateInterval
+        {
+            get
+            {
+                return updater.UpdateInterval;
+            }
+            set
+            {
+                updater.UpdateInterval = value;
+            }
+        }
         #endregion // Public Properties
 
 

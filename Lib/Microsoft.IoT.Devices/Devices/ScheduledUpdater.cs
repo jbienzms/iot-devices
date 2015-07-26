@@ -16,10 +16,11 @@ namespace Microsoft.IoT.Devices
         private IAsyncAction asyncUpdateAction;
         private ScheduleOptions defaultScheduleOptions;
         private uint eventsSubscribed;
+        private bool isUpdating;
         private bool scheduled;
         private IScheduler scheduler;
         private ScheduleOptions scheduleOptions;
-        private Delegate updateAction;
+        private ScheduledAction updateAction;
         #endregion // Member Variables
 
 
@@ -45,8 +46,8 @@ namespace Microsoft.IoT.Devices
             this.defaultScheduleOptions = scheduleOptions;
 
             // Defaults
-            StartUpdatesWithEvents = true;
-            StopUpdatesWithEvents = true;
+            StartWithEvents = true;
+            StopWithEvents = true;
         }
 
         /// <summary>
@@ -169,9 +170,15 @@ namespace Microsoft.IoT.Devices
         /// <summary>
         /// Starts executing updates with the scheduler.
         /// </summary>
-        public void StartUpdates()
+        public void Start()
         {
+            // Validate
             ValidateUpdateAction();
+
+            // Notify starting
+            if (Starting != null) { Starting(this, EventArgs.Empty); }
+
+            // Actually start
             if (asyncUpdateAction != null)
             {
                 lock (asyncUpdateAction)
@@ -202,65 +209,85 @@ namespace Microsoft.IoT.Devices
                     }
                 }
             }
+
+            // Notify started
+            isUpdating = true;
+            if (Started != null) { Started(this, EventArgs.Empty); }
         }
 
         /// <summary>
         /// Stops updates from being executed by the scheduler.
         /// </summary>
-        public void StopUpdates()
+        public void Stop()
         {
-            if (scheduled)
+            // If not scheduled, ignore
+            if (!scheduled) { return; }
+
+            // Notify stopping
+            if (Stopping != null) { Stopping(this, EventArgs.Empty);  }
+
+            // Actually stop
+            if (asyncUpdateAction != null)
             {
-                if (asyncUpdateAction != null)
+                lock (asyncUpdateAction)
                 {
-                    lock (asyncUpdateAction)
-                    {
-                        // Suspend instead of unschedule to maintain registration sequence.
-                        // This is important in case the synchronous update order matters.
-                        scheduler.Suspend(asyncUpdateAction);
-                    }
-                }
-                else
-                {
-                    lock (updateAction)
-                    {
-                        // Suspend instead of unschedule to maintain registration sequence.
-                        // This is important in case the synchronous update order matters.
-                        scheduler.Suspend(updateAction);
-                    }
+                    // Suspend instead of unschedule to maintain registration sequence.
+                    // This is important in case the synchronous update order matters.
+                    scheduler.Suspend(asyncUpdateAction);
                 }
             }
+            else
+            {
+                lock (updateAction)
+                {
+                    // Suspend instead of unschedule to maintain registration sequence.
+                    // This is important in case the synchronous update order matters.
+                    scheduler.Suspend(updateAction);
+                }
+            }
+
+            // Notify stopped
+            isUpdating = false;
+            if (Stopped != null) { Stopped(this, EventArgs.Empty); }
         }
         #endregion // Public Methods
 
         #region Public Properties
         /// <summary>
-        /// Gets or sets a value that indicates if <see cref="StartUpdates"/> will 
+        /// Gets a value that indicates if the updater is currently providing updates.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if the updater is currently providing updates; otherwise false.
+        /// </value>
+        public bool IsUpdating { get { return isUpdating; } }
+
+        /// <summary>
+        /// Gets or sets a value that indicates if <see cref="Start"/> will 
         /// get called when the first event is subscribed to.
         /// </summary>
         /// <value>
-        /// <c>true</c> if <see cref="StartUpdates"/> will get called when the 
+        /// <c>true</c> if <see cref="Start"/> will get called when the 
         /// first event is subscribed to; otherwise false. The default is <c>true</c>.
         /// </value>
         /// <remarks>
         /// Only events that are internally implemented using <see cref="SchedulingEvent"/> 
         /// participate in auto start and stop.
         /// </remarks>
-        public bool StartUpdatesWithEvents { get; set; }
+        public bool StartWithEvents { get; set; }
 
         /// <summary>
-        /// Gets or sets a value that indicates if <see cref="StopUpdates"/> will 
+        /// Gets or sets a value that indicates if <see cref="Stop"/> will 
         /// get called when the last event is unsubscribed.
         /// </summary>
         /// <value>
-        /// <c>true</c> if <see cref="StopUpdates"/> will get called when the 
+        /// <c>true</c> if <see cref="Stop"/> will get called when the 
         /// last event is unsubscribed; otherwise false. The default is <c>true</c>.
         /// </value>
         /// <remarks>
         /// Only events that are internally implemented using <see cref="SchedulingEvent"/> 
         /// participate in auto start and stop.
         /// </remarks>
-        public bool StopUpdatesWithEvents { get; set; }
+        public bool StopWithEvents { get; set; }
 
         /// <summary>
         /// Gets the scheduler that is providing updates.
@@ -312,13 +339,36 @@ namespace Microsoft.IoT.Devices
         }
         #endregion // Public Properties
 
+
+        #region Public Events
+        /// <summary>
+        /// Occurs right before updates are started with the scheduler.
+        /// </summary>
+        public event EventHandler Starting;
+
+        /// <summary>
+        /// Occurs right after updates have been started with the scheduler.
+        /// </summary>
+        public event EventHandler Started;
+
+        /// <summary>
+        /// Occurs right before updates are stopped with the scheduler.
+        /// </summary>
+        public event EventHandler Stopping;
+
+        /// <summary>
+        /// Occurs right after updates are stopped with the scheduler.
+        /// </summary>
+        public event EventHandler Stopped;
+        #endregion // Public Events
+
         #region IEventObserver Interface
         void IEventObserver.FirstHandlerAdded(object sender)
         {
             eventsSubscribed++;
-            if ((eventsSubscribed == 1) && (StartUpdatesWithEvents))
+            if ((eventsSubscribed == 1) && (StartWithEvents))
             {
-                StartUpdates();
+                Start();
             }
         }
 
@@ -335,9 +385,9 @@ namespace Microsoft.IoT.Devices
         void IEventObserver.LastHandlerRemoved(object sender)
         {
             eventsSubscribed--;
-            if ((eventsSubscribed == 0) && (StopUpdatesWithEvents))
+            if ((eventsSubscribed == 0) && (StopWithEvents))
             {
-                StopUpdates();
+                Stop();
             }
         }
         #endregion // IEventObserver Interface

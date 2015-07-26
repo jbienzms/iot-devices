@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 07/25/2015 17:07:08
+// 	Generated: 07/26/2015 11:21:56
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Microsoft.IoT.Devices
@@ -82,6 +82,28 @@ namespace Microsoft.IoT.Devices
             get
             {
                 return resourceLoader.GetString("InvalidSubscriberType");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "The requested IO change is not supported in the current state"
+        /// </summary>
+        public static string IOChangeState
+        {
+            get
+            {
+                return resourceLoader.GetString("IOChangeState");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "The required IO device property '{0}' has not been assigned"
+        /// </summary>
+        public static string MissingRequiredIO
+        {
+            get
+            {
+                return resourceLoader.GetString("MissingRequiredIO");
             }
         }
         

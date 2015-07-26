@@ -12,7 +12,7 @@ namespace Microsoft.IoT.Devices.Input
     /// <summary>
     /// The interface for an input switch.
     /// </summary>
-    public interface ISwitch
+    public interface ISwitch : IDevice
     {
         #region Public Properties
         /// <summary>
@@ -28,7 +28,7 @@ namespace Microsoft.IoT.Devices.Input
         /// <summary>
         /// Occurs when the switch is switched.
         /// </summary>
-        event EventHandler<bool> Switched;
+        event TypedEventHandler<ISwitch,bool> Switched;
         #endregion // Public Events
     }
 }

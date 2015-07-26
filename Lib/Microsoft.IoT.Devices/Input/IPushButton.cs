@@ -30,7 +30,7 @@ namespace Microsoft.IoT.Devices.Input
     /// <summary>
     /// The interface for a basic push button.
     /// </summary>
-    public interface IPushButton
+    public interface IPushButton : IDevice
     {
         #region Public Properties
         /// <summary>

@@ -2,6 +2,7 @@
 //
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -11,67 +12,45 @@ using Windows.Foundation;
 
 namespace Microsoft.IoT.Devices.Input
 {
-    public sealed class Switch : ISwitch, IDisposable
+    public sealed class Switch : ISwitch, IEventObserver, IDisposable
     {
         #region Member Variables
+        private double debounceTimeout = 50;
+        private bool initialized;
         private bool isOn = false;
         private GpioPinValue onValue = GpioPinValue.High;
         private GpioPin pin;
+        private ObservableEvent<ISwitch, bool> switchedEvent;
+        private bool usePullResistors = true;
         #endregion // Member Variables
 
         #region Constructors
         /// <summary>
         /// Initializes a new <see cref="Switch"/> instance.
         /// </summary>
-        /// <param name="pin">
-        /// The pin that the device is connected to.
-        /// </param>
-        /// <param name="onValue">
-        /// </param>
-        /// <param name="usePull">
-        /// </param>
-        /// <param name="debounceTime">
-        /// </param>
-        public Switch(GpioPin pin, GpioPinValue onValue, bool usePull, double debounceTime)
+        public Switch()
         {
-            // Validate
-            if (pin == null) throw new ArgumentNullException("pin");
-
-            // Store
-            this.pin = pin;
-            this.onValue = onValue;
-
-            // Initialize IO
-            InitIO(usePull, debounceTime);
+            // Create events
+            switchedEvent = new ObservableEvent<ISwitch, bool>(this);
         }
-
-        /// <summary>
-        /// Initializes a new <see cref="Switch"/> instance.
-        /// </summary>
-        /// <param name="pin">
-        /// The pin that the device is connected to.
-        /// </param>
-        /// <param name="onValue">
-        /// </param>
-        public Switch(GpioPin pin, GpioPinValue onValue) : this(pin, onValue, true, 50) { }
-
-        /// <summary>
-        /// Initializes a new <see cref="Switch"/> instance.
-        /// </summary>
-        /// <param name="pin">
-        /// The pin that the device is connected to.
-        /// </param>
-        public Switch(GpioPin pin) : this(pin, GpioPinValue.High, true, 50){}
-
         #endregion // Constructors
 
 
         #region Internal Methods
-        private void InitIO(bool usePull, double debounceTime)
+        private void InitIO()
         {
+            // If we're already initialized, ignore
+            if (initialized) { return; }
+
+            // Validate that the pin has been set
+            if (pin == null) { throw new MissingIoException("Pin"); }
+
+            // Consider ourselves initialized now
+            initialized = true;
+
             bool driveSet = false;
             // Use pull resistors?
-            if (usePull)
+            if (usePullResistors)
             {
                 // Check if resistors are supported 
                 if (onValue == GpioPinValue.High)
@@ -98,9 +77,9 @@ namespace Microsoft.IoT.Devices.Input
             }
 
             // Set a debounce timeout to filter out switch bounce noise
-            if (debounceTime > 0)
+            if (debounceTimeout > 0)
             {
-                pin.DebounceTimeout = TimeSpan.FromMilliseconds(debounceTime);
+                pin.DebounceTimeout = TimeSpan.FromMilliseconds(debounceTimeout);
             }
 
             // Determine statate
@@ -132,6 +111,7 @@ namespace Microsoft.IoT.Devices.Input
 
         public void Dispose()
         {
+            initialized = false;
             if (pin != null)
             {
                 pin.ValueChanged -= Pin_ValueChanged;
@@ -142,6 +122,32 @@ namespace Microsoft.IoT.Devices.Input
         #endregion // Overrides / Event Handlers
 
         #region Public Properties
+        /// <summary>
+        /// Gets or sets the amount of time in milliseconds that will be used to debounce the switch.
+        /// </summary>
+        /// <value>
+        /// The amount of time in milliseconds that will be used to debounce the switch. The default 
+        /// is 50.
+        /// </value>
+        [DefaultValue(50)]
+        public double DebounceTimeout
+        {
+            get
+            {
+                return debounceTimeout;
+            }
+            set
+            {
+                if (value != debounceTimeout)
+                {
+                    debounceTimeout = value;
+                    if (pin != null)
+                    {
+                        pin.DebounceTimeout = TimeSpan.FromMilliseconds(debounceTimeout);
+                    }
+                }
+            }
+        }
         /// <summary>
         /// Gets a value that indicates if the switch is on.
         /// </summary>
@@ -154,7 +160,7 @@ namespace Microsoft.IoT.Devices.Input
             {
                 return isOn;
             }
-            set
+            private set
             {
                 // Ensure changing
                 if (value == isOn) { return; }
@@ -163,19 +169,95 @@ namespace Microsoft.IoT.Devices.Input
                 isOn = value;
 
                 // Notify
-                if (Switched != null)
-                {
-                    Switched(this, isOn);
-                }
+                switchedEvent.Raise(this, isOn);
             }
         }
+
+        /// <summary>
+        /// Gets or sets an optional name for the device.
+        /// </summary>
+        /// <value>
+        /// An optional name for the device.
+        /// </value>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the <see cref="GpioPinValue"/> that indicates the switch is on.
+        /// </summary>
+        /// <value>
+        /// The <see cref="GpioPinValue"/> that indicates the switch is on. 
+        /// The default is <see cref="GpioPinValue.High"/>.
+        /// </value>
+        [DefaultValue(GpioPinValue.High)]
+        public GpioPinValue OnValue { get { return onValue; } set { onValue = value; } }
+
+        /// <summary>
+        /// Gets or sets the pin that the switch is connected to.
+        /// </summary>
+        public GpioPin Pin
+        {
+            get
+            {
+                return pin;
+            }
+            set
+            {
+                if (initialized) { throw new IoChangeException(); }
+                pin = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value that indicates if integrated pull up or pull 
+        /// down resistors should be used to help maintain the state of the pin.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if integrated pull up or pull down resistors should; 
+        /// otherwise false. The default is <c>true</c>.
+        /// </value>
+        [DefaultValue(true)]
+        public bool UsePullResistors => usePullResistors;
         #endregion // Public Properties
 
         #region Public Events
         /// <summary>
         /// Occurs when the switch is switched.
         /// </summary>
-        public event EventHandler<bool> Switched;
+        public event TypedEventHandler<ISwitch, bool> Switched
+        {
+            add
+            {
+                return switchedEvent.Add(value);
+            }
+            remove
+            {
+                switchedEvent.Remove(value);
+            }
+        }
         #endregion // Public Events
+
+
+        #region IEventObserver Interface
+        void IEventObserver.FirstHandlerAdded(object sender)
+        {
+            InitIO();
+        }
+
+        void IEventObserver.HandlerAdded(object sender)
+        {
+
+        }
+
+        void IEventObserver.HandlerRemoved(object sender)
+        {
+
+        }
+
+        void IEventObserver.LastHandlerRemoved(object sender)
+        {
+
+        }
+        #endregion // IEventObserver Interface
+
     }
 }

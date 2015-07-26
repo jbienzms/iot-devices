@@ -110,10 +110,14 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Devices\IDevice.cs" />
+    <Compile Include="Devices\IScheduledDevice.cs" />
     <Compile Include="Events\EmptyEventArgs.cs" />
     <Compile Include="Events\IEventObserver.cs" />
     <Compile Include="Events\IObservableEvent.cs" />
     <Compile Include="Events\ObservableEvent.cs" />
+    <Compile Include="Exceptions\MissingIoException.cs" />
+    <Compile Include="Exceptions\IoChangeException.cs" />
     <Compile Include="Extensions\DispatcherExtensions.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Input\IPushButton.cs" />

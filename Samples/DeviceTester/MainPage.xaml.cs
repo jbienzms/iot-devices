@@ -73,7 +73,8 @@ namespace DeviceTester
         private void StartPushButton(GpioPin pin)
         {
             // Create a pushbutton
-            pushButton = new PushButton(pin);
+            pushButton = new PushButton();
+            pushButton.Pin = pin;
 
             // Click on press
             // pushButton.ClickMode = ButtonClickMode.Press;
@@ -87,8 +88,16 @@ namespace DeviceTester
         private void StartSwitches(GpioPin switchPin, GpioPin proxPin)
         {
             // Create switches
-            swtch = new Switch(pin: switchPin, onValue: GpioPinValue.Low);
-            proximity = new Switch(pin: proxPin, onValue: GpioPinValue.Low);
+            swtch = new Switch()
+            {
+                Pin = switchPin,
+                OnValue = GpioPinValue.Low
+            };
+            proximity = new Switch()
+            {
+                Pin = proxPin,
+                OnValue = GpioPinValue.Low
+            };
 
             // Subscribe to events
             swtch.Switched += Switch_Switched;

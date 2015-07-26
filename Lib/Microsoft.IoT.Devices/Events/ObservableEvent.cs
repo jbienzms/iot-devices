@@ -10,6 +10,7 @@ using Windows.Foundation;
 
 namespace Microsoft.IoT.Devices
 {
+    // TODO: Export
     /// <summary>
     /// The base class for a monitor of subscribers to an event.
     /// </summary>
