@@ -37,6 +37,14 @@ namespace Microsoft.IoT.Devices.Input
         /// Gets or sets a value that indicates when the Click event occurs. 
         /// </summary>
         ButtonClickMode ClickMode { get; set; }
+
+        /// <summary>
+        /// Gets a value that indicates if the button is pressed.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if the button is pressed; otherwise false.
+        /// </value>
+        bool IsPressed { get; }
         #endregion // Public Properties
 
         #region Public Events

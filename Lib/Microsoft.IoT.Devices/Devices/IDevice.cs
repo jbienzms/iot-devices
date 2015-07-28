@@ -11,8 +11,9 @@ namespace Microsoft.IoT.Devices
     /// <summary>
     /// The interface for an IoT device.
     /// </summary>
-    public interface IDevice
+    public interface IDevice : IDisposable
     {
+        /*
         /// <summary>
         /// Gets or sets an optional name for the device.
         /// </summary>
@@ -20,5 +21,6 @@ namespace Microsoft.IoT.Devices
         /// An optional name for the device.
         /// </value>
         string Name { get; set; }
+        */
     }
 }

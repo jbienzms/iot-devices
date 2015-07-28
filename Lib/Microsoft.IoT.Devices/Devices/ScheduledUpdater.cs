@@ -16,7 +16,7 @@ namespace Microsoft.IoT.Devices
         private IAsyncAction asyncUpdateAction;
         private ScheduleOptions defaultScheduleOptions;
         private uint eventsSubscribed;
-        private bool isUpdating;
+        private bool isStarted;
         private bool scheduled;
         private IScheduler scheduler;
         private ScheduleOptions scheduleOptions;
@@ -176,7 +176,7 @@ namespace Microsoft.IoT.Devices
             ValidateUpdateAction();
 
             // Notify starting
-            if (Starting != null) { Starting(this, EventArgs.Empty); }
+            if (Starting != null) { Starting(this, EmptyEventArgs.Instance); }
 
             // Actually start
             if (asyncUpdateAction != null)
@@ -211,8 +211,8 @@ namespace Microsoft.IoT.Devices
             }
 
             // Notify started
-            isUpdating = true;
-            if (Started != null) { Started(this, EventArgs.Empty); }
+            isStarted = true;
+            if (Started != null) { Started(this, EmptyEventArgs.Instance); }
         }
 
         /// <summary>
@@ -224,7 +224,7 @@ namespace Microsoft.IoT.Devices
             if (!scheduled) { return; }
 
             // Notify stopping
-            if (Stopping != null) { Stopping(this, EventArgs.Empty);  }
+            if (Stopping != null) { Stopping(this, EmptyEventArgs.Instance);  }
 
             // Actually stop
             if (asyncUpdateAction != null)
@@ -247,8 +247,8 @@ namespace Microsoft.IoT.Devices
             }
 
             // Notify stopped
-            isUpdating = false;
-            if (Stopped != null) { Stopped(this, EventArgs.Empty); }
+            isStarted = false;
+            if (Stopped != null) { Stopped(this, EmptyEventArgs.Instance); }
         }
         #endregion // Public Methods
 
@@ -259,7 +259,7 @@ namespace Microsoft.IoT.Devices
         /// <value>
         /// <c>true</c> if the updater is currently providing updates; otherwise false.
         /// </value>
-        public bool IsUpdating { get { return isUpdating; } }
+        public bool IsStarted { get { return isStarted; } }
 
         /// <summary>
         /// Gets or sets a value that indicates if <see cref="Start"/> will 
@@ -344,22 +344,22 @@ namespace Microsoft.IoT.Devices
         /// <summary>
         /// Occurs right before updates are started with the scheduler.
         /// </summary>
-        public event EventHandler Starting;
+        public event TypedEventHandler<ScheduledUpdater, EmptyEventArgs> Starting;
 
         /// <summary>
         /// Occurs right after updates have been started with the scheduler.
         /// </summary>
-        public event EventHandler Started;
+        public event TypedEventHandler<ScheduledUpdater, EmptyEventArgs> Started;
 
         /// <summary>
         /// Occurs right before updates are stopped with the scheduler.
         /// </summary>
-        public event EventHandler Stopping;
+        public event TypedEventHandler<ScheduledUpdater, EmptyEventArgs> Stopping;
 
         /// <summary>
         /// Occurs right after updates are stopped with the scheduler.
         /// </summary>
-        public event EventHandler Stopped;
+        public event TypedEventHandler<ScheduledUpdater, EmptyEventArgs> Stopped;
         #endregion // Public Events
 
         #region IEventObserver Interface

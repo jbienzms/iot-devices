@@ -22,7 +22,6 @@ namespace Microsoft.IoT.Devices
         #region Member Variables
         private EventRegistrationTokenTable<TypedEventHandler<TSender, TResult>> eventTable;
         private IEventObserver observer;
-        private int subsriberCount;
         #endregion // Member Variables
 
         #region Constants

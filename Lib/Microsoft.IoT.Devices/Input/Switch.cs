@@ -43,7 +43,7 @@ namespace Microsoft.IoT.Devices.Input
             if (initialized) { return; }
 
             // Validate that the pin has been set
-            if (pin == null) { throw new MissingIoException("Pin"); }
+            if (pin == null) { throw new MissingIoException(nameof(Pin)); }
 
             // Consider ourselves initialized now
             initialized = true;

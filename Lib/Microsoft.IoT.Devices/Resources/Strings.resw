@@ -120,6 +120,9 @@
   <data name="AlreadySubscribed" xml:space="preserve">
     <value>Already subscribed</value>
   </data>
+  <data name="DeviceNotFound" xml:space="preserve">
+    <value>The device '{0}' could not be found</value>
+  </data>
   <data name="ExistingUpdateAction" xml:space="preserve">
     <value>An existing update action has already been scheduled and cannot be changed</value>
   </data>

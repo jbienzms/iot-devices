@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 07/26/2015 11:21:56
+// 	Generated: 07/27/2015 11:06:22
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Microsoft.IoT.Devices
@@ -60,6 +60,17 @@ namespace Microsoft.IoT.Devices
             get
             {
                 return resourceLoader.GetString("AlreadySubscribed");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "The device '{0}' could not be found"
+        /// </summary>
+        public static string DeviceNotFound
+        {
+            get
+            {
+                return resourceLoader.GetString("DeviceNotFound");
             }
         }
         

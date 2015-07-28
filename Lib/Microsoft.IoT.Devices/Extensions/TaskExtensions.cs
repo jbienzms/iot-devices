@@ -10,6 +10,10 @@ namespace Microsoft.IoT.Devices
 {
     static internal class TaskExtensions
     {
+        #region Member Variables
+        static private Task completedTask;
+        #endregion // Member Variables
+
         /// <summary>
         /// Schedules a continuation that ignores any exceptions during execution.
         /// </summary>
@@ -19,7 +23,7 @@ namespace Microsoft.IoT.Devices
         /// <returns>
         /// The continuation task.
         /// </returns>
-        public static Task IgnoreExceptions(this Task task)
+        static public Task IgnoreExceptions(this Task task)
         {
             // Validate
             if (task == null) throw new ArgumentNullException("task");
@@ -40,7 +44,7 @@ namespace Microsoft.IoT.Devices
         /// <returns>
         /// The continuation task.
         /// </returns>
-        public static Task FailFastOnException(this Task task)
+        static public Task FailFastOnException(this Task task)
         {
             // Validate
             if (task == null) throw new ArgumentNullException("task");
@@ -50,6 +54,21 @@ namespace Microsoft.IoT.Devices
                 TaskContinuationOptions.OnlyOnFaulted |
                 TaskContinuationOptions.ExecuteSynchronously);
             return task;
+        }
+
+        /// <summary>
+        /// Gets a <see cref="Task"/> that has already completed.
+        /// </summary>
+        static public Task CompletedTask
+        {
+            get
+            {
+                if (completedTask == null)
+                {
+                    completedTask = Task.FromResult<bool>(true);
+                }
+                return completedTask;
+            }
         }
     }
 }

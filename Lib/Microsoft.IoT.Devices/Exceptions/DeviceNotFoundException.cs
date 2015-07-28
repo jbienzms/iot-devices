@@ -10,13 +10,13 @@ namespace Microsoft.IoT.Devices
 {
     // TODO: Export
     /// <summary>
-    /// Thrown when a required IO setting has not been supplied.
+    /// Thrown when a required device cannot be found.
     /// </summary>
-    internal class MissingIoException : Exception
+    internal class DeviceNotFoundException : Exception
     {
         /// <summary>
-        /// Initializes a new <see cref="IoChangeException"/> with a property name.
+        /// Initializes a new <see cref="DeviceNotFoundException"/> with a device name.
         /// </summary>
-        public MissingIoException(string property) : base(string.Format(Strings.MissingRequiredIO, property)) { }
+        public DeviceNotFoundException(string deviceName) : base(string.Format(Strings.DeviceNotFound, deviceName)) { }
     }
 }

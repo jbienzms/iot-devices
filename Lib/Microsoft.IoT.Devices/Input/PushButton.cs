@@ -15,10 +15,11 @@ namespace Microsoft.IoT.Devices.Input
     {
         #region Member Variables
         private ObservableEvent<IPushButton,EmptyEventArgs> clickEvent;
-        private GpioPinValue pressedValue = GpioPinValue.Low;
-        private GpioPinValue releasedValue = GpioPinValue.High;
+        private bool isPressed;
         private GpioPinValue lastValue;
         private GpioPin pin;
+        private GpioPinValue pressedValue = GpioPinValue.Low;
+        private GpioPinValue releasedValue = GpioPinValue.High;
         private ObservableEvent<IPushButton,EmptyEventArgs> pressedEvent;
         private ObservableEvent<IPushButton,EmptyEventArgs> releasedEvent;
         private ScheduledUpdater updater;
@@ -36,9 +37,9 @@ namespace Microsoft.IoT.Devices.Input
             updater.Starting += (s, e) => InitIO();
 
             // Create events
-            clickEvent = new ObservableEvent<IPushButton,EmptyEventArgs>(updater);
-            pressedEvent = new ObservableEvent<IPushButton,EmptyEventArgs>(updater);
-            releasedEvent = new ObservableEvent<IPushButton,EmptyEventArgs>(updater);
+            clickEvent = new ObservableEvent<IPushButton, EmptyEventArgs>(updater);
+            pressedEvent = new ObservableEvent<IPushButton, EmptyEventArgs>(updater);
+            releasedEvent = new ObservableEvent<IPushButton, EmptyEventArgs>(updater);
         }
         #endregion // Constructors
 
@@ -47,7 +48,7 @@ namespace Microsoft.IoT.Devices.Input
         private void InitIO()
         {
             // Validate that the pin has been set
-            if (pin == null) { throw new MissingIoException("Pin"); }
+            if (pin == null) { throw new MissingIoException(nameof(Pin)); }
 
             // Default to not pressed
             lastValue = releasedValue;
@@ -91,6 +92,7 @@ namespace Microsoft.IoT.Devices.Input
 
                 if (currentValue == pressedValue)
                 {
+                    isPressed = true;
                     pressedEvent.Raise(this, EmptyEventArgs.Instance);
                     if (ClickMode == ButtonClickMode.Press)
                     {
@@ -99,6 +101,7 @@ namespace Microsoft.IoT.Devices.Input
                 }
                 else
                 {
+                    isPressed = false;
                     releasedEvent.Raise(this, EmptyEventArgs.Instance);
                     if (ClickMode == ButtonClickMode.Release)
                     {
@@ -132,6 +135,14 @@ namespace Microsoft.IoT.Devices.Input
         public ButtonClickMode ClickMode { get; set; }
 
         /// <summary>
+        /// Gets a value that indicates if the button is pressed.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if the button is pressed; otherwise false.
+        /// </value>
+        public bool IsPressed { get { return isPressed; } }
+
+        /// <summary>
         /// Gets or sets an optional name for the device.
         /// </summary>
         public string Name { get; set; }
@@ -147,7 +158,7 @@ namespace Microsoft.IoT.Devices.Input
             }
             set
             {
-                if (updater.IsUpdating) { throw new IoChangeException(); }
+                if (updater.IsStarted) { throw new IoChangeException(); }
                 pin = value;
             }
         }

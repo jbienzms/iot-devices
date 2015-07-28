@@ -17,6 +17,8 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Devices.Gpio;
 using Microsoft.IoT.Devices.Input;
 using Microsoft.IoT.Devices;
+using Microsoft.IoT.Devices.Adc;
+using System.Diagnostics;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -27,12 +29,14 @@ namespace DeviceTester
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private IAdcController adcController;
         private GpioController gpioController;
         private bool isRunning;
         private string lastOutput;
-        private PushButton pushButton;
-        private Switch swtch;
-        private Switch proximity;
+        private ISwitch proximity;
+        private IPushButton pushButton;
+        private ISwitch swtch;
+        private IThumbstick thumbstick;
 
         public MainPage()
         {
@@ -66,15 +70,17 @@ namespace DeviceTester
             if (isRunning) { return; }
             isRunning = true;
             StartButton.IsEnabled = false;
-            StartDevice();
+            StartDevices();
             StopButton.IsEnabled = true;
         }
 
-        private void StartPushButton(GpioPin pin)
+        private void StartPushButton()
         {
             // Create a pushbutton
-            pushButton = new PushButton();
-            pushButton.Pin = pin;
+            pushButton = new PushButton()
+            {
+                Pin = gpioController.OpenPin(5)
+            };
 
             // Click on press
             // pushButton.ClickMode = ButtonClickMode.Press;
@@ -85,17 +91,17 @@ namespace DeviceTester
             pushButton.Released += PushButton_Released;
         }
 
-        private void StartSwitches(GpioPin switchPin, GpioPin proxPin)
+        private void StartSwitches()
         {
             // Create switches
             swtch = new Switch()
             {
-                Pin = switchPin,
+                Pin = gpioController.OpenPin(5),
                 OnValue = GpioPinValue.Low
             };
             proximity = new Switch()
             {
-                Pin = proxPin,
+                Pin = gpioController.OpenPin(6),
                 OnValue = GpioPinValue.Low
             };
 
@@ -104,8 +110,21 @@ namespace DeviceTester
             proximity.Switched += Proximity_Switched;
         }
 
-        private void StartDevice()
+        private void StartThumbstick()
         {
+            thumbstick = new SS944()
+            {
+                XChannel = adcController.OpenChannel(0),
+                YChannel = adcController.OpenChannel(1),
+                ButtonPin = gpioController.OpenPin(25),
+            };
+
+            thumbstick.ReadingChanged += Thumbstick_ReadingChanged;
+        }
+
+        private void StartDevices()
+        {
+            // Start GPIO
             gpioController = GpioController.GetDefault();
             if (gpioController == null)
             {
@@ -113,12 +132,16 @@ namespace DeviceTester
                 return;
             }
 
-            // Open the pins
-            var switchPin = gpioController.OpenPin(5);
-            var proxPin = gpioController.OpenPin(6);
+            // Start ADC
+            var adc = new ADC0832();
+            adc.ChipSelectPin = gpioController.OpenPin(18);
+            adc.ClockPin = gpioController.OpenPin(23);
+            adc.DataPin = gpioController.OpenPin(24);
+            adcController = adc;
 
-            // StartPushButton(pin);
-            StartSwitches(switchPin, proxPin);
+            StartPushButton();
+            // StartSwitches();
+            StartThumbstick();
         }
 
         private void Stop()
@@ -148,6 +171,11 @@ namespace DeviceTester
             {
                 swtch.Dispose();
                 swtch = null;
+            }
+            if (thumbstick != null)
+            {
+                thumbstick.Dispose();
+                thumbstick = null;
             }
         }
 
@@ -212,6 +240,14 @@ namespace DeviceTester
                     AddOutput("Switched Off");
                 }
             });
+        }
+
+        private void Thumbstick_ReadingChanged(IThumbstick sender, ThumbstickReadingChangedEventArgs args)
+        {
+            // Get reading
+            var r = args.Reading;
+
+            Debug.WriteLine(string.Format("X: {0}  Y: {1}  Button: {2}", r.XAxis, r.YAxis, r.IsPressed));
         }
     }
 }
