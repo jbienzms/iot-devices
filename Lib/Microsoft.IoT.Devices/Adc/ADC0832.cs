@@ -40,7 +40,7 @@ namespace Microsoft.IoT.Devices.Adc
             EnsureInitialized();
             if (channels[channelNumber] == null)
             {
-                channels[channelNumber] = new ADC0832Channel(this, channelNumber);
+                channels[channelNumber] = new ADC0832Channel(channelNumber, this);
             }
             return channels[channelNumber];
         }

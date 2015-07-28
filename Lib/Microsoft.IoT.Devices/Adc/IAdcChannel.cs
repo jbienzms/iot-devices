@@ -10,6 +10,7 @@ namespace Microsoft.IoT.Devices.Adc
 {
     public interface IAdcChannel : IClosable
     {
-            int ReadValue();
+        double ReadRatio();
+        int ReadValue();
     }
 }

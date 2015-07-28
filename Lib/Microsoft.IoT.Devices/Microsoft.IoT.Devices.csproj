@@ -110,6 +110,8 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Adc\MCP3208Channel.cs" />
+    <Compile Include="Adc\MCP3208.cs" />
     <Compile Include="Adc\ADC0832Channel.cs" />
     <Compile Include="Adc\IAdcChannel.cs" />
     <Compile Include="Adc\IAdcController.cs" />
@@ -152,6 +154,7 @@
     <Compile Include="Scheduling\ScheduleOptions.cs" />
     <Compile Include="Scheduling\IScheduler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spi\ISpiBasedDevice.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Numerics.Vectors, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">

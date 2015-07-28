@@ -15,6 +15,10 @@ namespace Microsoft.IoT.Devices.Adc
     /// </summary>
     public sealed class ADC0832Channel : IAdcChannel
     {
+        #region Constants
+        private const int HALF_VALUE = 127;
+        #endregion // Constants
+
         #region Member Variables
         private int channel;
         private GpioPin chipSelectPin;
@@ -23,7 +27,7 @@ namespace Microsoft.IoT.Devices.Adc
         #endregion // Member Variables
 
         #region Constructors
-        internal ADC0832Channel(ADC0832 controller, int channel)
+        internal ADC0832Channel(int channel, ADC0832 controller)
         {
             chipSelectPin = controller.ChipSelectPin;
             clockPin = controller.ClockPin;
@@ -34,26 +38,39 @@ namespace Microsoft.IoT.Devices.Adc
 
         public void Close() { }
 
+        public double ReadRatio()
+        {
+            // Read
+            var val = (double)ReadValue();
+
+            // Scale
+            val -= HALF_VALUE;
+            val /= HALF_VALUE;
+
+            // Done
+            return val;
+        }
+
         public int ReadValue()
         {
             byte i;
             int dat1 = 0, dat2 = 0;
 
-            var task = Task.Run<int>(() =>
-            {
+            //var task = Task.Run<int>(async () =>
+            //{
                 chipSelectPin.Write(GpioPinValue.Low);
 
                 clockPin.Write(GpioPinValue.Low);
                 dataPin.Write(GpioPinValue.High);
-                Task.Delay(1); // 2 microseconds
+                // await Task.Delay(1); // 2 microseconds
                 clockPin.Write(GpioPinValue.High);
-                Task.Delay(1); // 2 microseconds
+                // await Task.Delay(1); // 2 microseconds
                 clockPin.Write(GpioPinValue.Low);
 
                 dataPin.Write(GpioPinValue.High); // CH0 10
-                Task.Delay(1); // 2 microseconds
+                // await Task.Delay(1); // 2 microseconds
                 clockPin.Write(GpioPinValue.High);
-                Task.Delay(1); // 2 microseconds
+                // await Task.Delay(1); // 2 microseconds
                 clockPin.Write(GpioPinValue.Low);
 
                 if (channel == 0)
@@ -64,14 +81,14 @@ namespace Microsoft.IoT.Devices.Adc
                 {
                     dataPin.Write(GpioPinValue.High); //CH1 1
                 }
-                Task.Delay(1); // 2 microseconds
+                // await Task.Delay(1); // 2 microseconds
 
                 clockPin.Write(GpioPinValue.High);
                 dataPin.Write(GpioPinValue.High);
-                Task.Delay(1); // 2 microseconds
+                // await Task.Delay(1); // 2 microseconds
                 clockPin.Write(GpioPinValue.Low);
                 dataPin.Write(GpioPinValue.High);
-                Task.Delay(1); // 2 microseconds
+                // await Task.Delay(1); // 2 microseconds
 
                 // Start reading input
                 dataPin.SetDriveMode(GpioPinDriveMode.Input);
@@ -80,9 +97,9 @@ namespace Microsoft.IoT.Devices.Adc
                 for (i = 0; i < 8; i++)
                 {
                     clockPin.Write(GpioPinValue.High);
-                    Task.Delay(1); // 2 microseconds
+                    // await Task.Delay(1); // 2 microseconds
                     clockPin.Write(GpioPinValue.Low);
-                    Task.Delay(1); // 2 microseconds
+                    // await Task.Delay(1); // 2 microseconds
 
                     dat1 = (dat1 << 1) | (dataPin.Read() == GpioPinValue.High ? 1 : 0);
                 }
@@ -91,9 +108,9 @@ namespace Microsoft.IoT.Devices.Adc
                 {
                     dat2 = dat2 | ((dataPin.Read() == GpioPinValue.High ? 1 : 0) << i);
                     clockPin.Write(GpioPinValue.High);
-                    Task.Delay(1); // 2 microseconds
+                    // await Task.Delay(1); // 2 microseconds
                     clockPin.Write(GpioPinValue.Low);
-                    Task.Delay(1); // 2 microseconds
+                    // await Task.Delay(1); // 2 microseconds
                 }
 
                 chipSelectPin.Write(GpioPinValue.High);
@@ -102,13 +119,13 @@ namespace Microsoft.IoT.Devices.Adc
                 dataPin.SetDriveMode(GpioPinDriveMode.Output);
 
                 return (dat1 == dat2) ? dat1 : 0;
-            });
+            //});
 
-            // Wait for task to complete
-            task.Wait();
+            //// Wait for task to complete
+            //task.Wait();
 
-            // Return the result
-            return task.Result;
+            //// Return the result
+            //return task.Result;
         }
     }
 }

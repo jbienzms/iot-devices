@@ -78,7 +78,7 @@ namespace DeviceTester
             // Create a pushbutton
             pushButton = new PushButton()
             {
-                Pin = gpioController.OpenPin(5)
+                Pin = gpioController.OpenPin(5),
             };
 
             // Click on press
@@ -126,11 +126,12 @@ namespace DeviceTester
             }
 
             // Start ADC
-            var adc = new ADC0832();
-            adc.ChipSelectPin = gpioController.OpenPin(18);
-            adc.ClockPin = gpioController.OpenPin(23);
-            adc.DataPin = gpioController.OpenPin(24);
-            adcController = adc;
+            adcController = new ADC0832()
+            {
+                ChipSelectPin = gpioController.OpenPin(18),
+                ClockPin = gpioController.OpenPin(23),
+                DataPin = gpioController.OpenPin(24),
+            };
 
             StartPushButton();
             StartSwitches();
@@ -148,6 +149,11 @@ namespace DeviceTester
 
         private void StopDevices()
         {
+            if (adcController != null)
+            {
+                adcController.Dispose();
+                adcController = null;
+            }
             if (pushButton != null)
             {
                 pushButton.Dispose();

@@ -25,7 +25,7 @@ namespace Microsoft.IoT.Devices.Input
         /// <param name="isPressed">
         /// A value that indicates if the button is pressed
         /// </param>
-        public ThumbstickReading(float xAxis, float yAxis, bool isPressed)
+        public ThumbstickReading(double xAxis, double yAxis, bool isPressed)
         {
             this.IsPressed = isPressed;
             this.XAxis = xAxis;
@@ -46,7 +46,7 @@ namespace Microsoft.IoT.Devices.Input
         /// <value>
         /// The current value of the X axis.
         /// </value>
-        public float XAxis { get; }
+        public double XAxis { get; }
 
         /// <summary>
         /// Gets the current value of the X axis where the range is -1.0 to 1.0.
@@ -54,6 +54,6 @@ namespace Microsoft.IoT.Devices.Input
         /// <value>
         /// The current value of the X axis.
         /// </value>
-        public float YAxis { get; }
+        public double YAxis { get; }
     }
 }

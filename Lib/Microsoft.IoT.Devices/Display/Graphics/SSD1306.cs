@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.IoT.Devices.Spi;
 using Windows.Devices.Enumeration;
 using Windows.Devices.Gpio;
 using Windows.Devices.Spi;
@@ -28,7 +29,7 @@ namespace Microsoft.IoT.Devices.Display
     /// A driver for the <see href="http://www.adafruit.com/datasheets/SSD1306.pdf">SSD1306</see> 
     /// SPI display controller.
     /// </summary>
-    public sealed class SSD1306 : IDisposable
+    public sealed class SSD1306 : IDisposable, ISpiBasedDevice
     {
         #region Constants
         private static readonly byte[] CMD_DISPLAY_OFF = { 0xAE };              // Turns the display off

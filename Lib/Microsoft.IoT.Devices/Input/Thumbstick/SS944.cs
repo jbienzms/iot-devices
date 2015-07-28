@@ -20,10 +20,7 @@ namespace Microsoft.IoT.Devices.Input
         #region Member Variables
         private GpioPin buttonPin;
         private ThumbstickReading currentReading;
-        private int halfValue = 128;
         private bool isInitialized;
-        private int minValue;
-        private int maxValue = 255;
         private ObservableEvent<IThumbstick, ThumbstickReadingChangedEventArgs> readingChangedEvent;
         private ScheduledUpdater updater;
         private IAdcChannel xChannel;
@@ -78,15 +75,11 @@ namespace Microsoft.IoT.Devices.Input
         private void Update()
         {
             // Read X and Y values
-            float x = xChannel.ReadValue();
-            float y = yChannel.ReadValue();
+            var x = xChannel.ReadRatio();
+            var y = yChannel.ReadRatio();
 
-            // Scale
-            x -= halfValue;
-            y -= halfValue;
-            x /= halfValue;
-            y /= halfValue;
-            y *= -1; // Y needs to be inverted
+            // Y needs to be inverted
+            y *= -1; 
 
             // Button
             bool pressed = false;
@@ -168,46 +161,6 @@ namespace Microsoft.IoT.Devices.Input
             {
                 if (isInitialized) { throw new IoChangeException(); }
                 buttonPin = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the maximum value that can be read by the ADC channels.
-        /// </summary>
-        /// <value>
-        /// The maximum value that can be read by the ADC channels. The default is 0.
-        /// </value>
-        [DefaultValue(255)]
-        public int MaxValue
-        {
-            get
-            {
-                return maxValue;
-            }
-            set
-            {
-                maxValue = value;
-                halfValue = maxValue - (maxValue - minValue) / 2;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the minimum value that can be read by the ADC channels.
-        /// </summary>
-        /// <value>
-        /// The minimum value that can be read by the ADC channels. The default is 0.
-        /// </value>
-        [DefaultValue(0)]
-        public int MinValue
-        {
-            get
-            {
-                return minValue;
-            }
-            set
-            {
-                minValue = value;
-                halfValue = maxValue - (maxValue - minValue) / 2;
             }
         }
 
