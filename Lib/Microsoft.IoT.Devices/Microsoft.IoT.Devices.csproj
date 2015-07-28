@@ -117,11 +117,11 @@
     <Compile Include="Devices\IClosable.cs" />
     <Compile Include="Devices\IDevice.cs" />
     <Compile Include="Devices\IScheduledDevice.cs" />
-    <Compile Include="Display\ADA938.cs" />
-    <Compile Include="Display\DisplayPixelFormat.cs" />
-    <Compile Include="Display\IGraphicsDisplay.cs" />
-    <Compile Include="Display\SSD1306.cs" />
-    <Compile Include="Display\ST7735R.cs" />
+    <Compile Include="Display\Graphics\ADA938.cs" />
+    <Compile Include="Display\Graphics\DisplayPixelFormat.cs" />
+    <Compile Include="Display\Graphics\IGraphicsDisplay.cs" />
+    <Compile Include="Display\Graphics\SSD1306.cs" />
+    <Compile Include="Display\Graphics\ST7735R.cs" />
     <Compile Include="Events\EmptyEventArgs.cs" />
     <Compile Include="Events\IEventObserver.cs" />
     <Compile Include="Events\IObservableEvent.cs" />
@@ -172,6 +172,7 @@
     </PRIResource>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Display\Text\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Sensors\" />
   </ItemGroup>

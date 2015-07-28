@@ -10,6 +10,7 @@ using Windows.Devices.Enumeration;
 using Windows.Devices.Gpio;
 using Windows.Devices.Spi;
 using Windows.Foundation;
+using Windows.UI;
 
 namespace Microsoft.IoT.Devices.Display
 {
@@ -42,6 +43,7 @@ namespace Microsoft.IoT.Devices.Display
 
         #region Member Variables
         private SSD1306AddressMode addressMode; // The address mode of the display
+        private int bitsPerPixel = 1;           // The number of bits per pixel
         private byte[,] buffer;                 // A local buffer we use to store graphics data for the display
         private int chipSelectLine = 0;         // The chip select line used on the SPI controller
         private string controllerName = "SPI0"; // The name of the SPI controller to use
@@ -49,6 +51,7 @@ namespace Microsoft.IoT.Devices.Display
         private UInt32 height = 64;             // Number of horizontal pixels on the display
         private bool isInitialized;             // If IO has been initialized
         private UInt32 pages;                   // Number of pages on the display
+        private DisplayPixelFormat pixelForamt; // The format of the pixels on the display
         private UInt32 pixelsPerPage = 8;       // Number of pixels in each page on the display
         private GpioPin resetPin;               // Pin for reset
         private byte[] serializedBuffer;        // A temporary buffer used to prepare graphics data for sending over SPI
@@ -108,12 +111,25 @@ namespace Microsoft.IoT.Devices.Display
             if (height < 1) { throw new MissingIoException(nameof(Height)); }
             if (pixelsPerPage < 1) { throw new MissingIoException(nameof(PixelsPerPage)); }
 
+            // Calculate bits per pixel
+            switch (pixelForamt)
+            {
+                case DisplayPixelFormat.OneBit:
+                    bitsPerPixel = 1;
+                    break;
+                case DisplayPixelFormat.Rgb16:
+                    bitsPerPixel = 16;
+                    break;
+                default:
+                    throw new NotSupportedException("Unknown pixel format");
+            }
+
             // Calculate pages
             pages = height / pixelsPerPage;
 
             // Create buffers
-            buffer = new byte[width, pages];
-            serializedBuffer = new byte[width * pages];
+            buffer = new byte[width, pages]; // * bitsPerPixel]; // TODO: How do we handle more than 1 bit
+            serializedBuffer = new byte[width * pages]; // * bitsPerPixel]; // TODO: How do we handle more than 1 bit
         }
 
         /// <summary>
@@ -233,7 +249,10 @@ namespace Microsoft.IoT.Devices.Display
                 {
                     for (int pixelX = 0; pixelX < width; pixelX++)
                     {
+                        // TODO: How do we copy more than one bit per pixel?
                         serializedBuffer[index] = buffer[pixelX, pageY];
+
+                        // TODO: How do we move more than one bit per pixel?
                         index++;
                     }
                 }
@@ -390,6 +409,41 @@ namespace Microsoft.IoT.Devices.Display
                 dataPin.Dispose();
                 dataPin = null;
             }
+        }
+
+        public IAsyncAction DrawPixelAsync(uint x, uint y, Color color)
+        {
+            return Task.Run(async () =>
+            {
+                await EnsureInitializedAsync();
+
+                // Calculate page and remainder
+                uint page = (y / pixelsPerPage);
+                uint pix = y % pixelsPerPage;
+
+                // TODO: Doing 1-bit pixel
+                bool white = (color != Colors.Black);
+
+                // Which bit mask?
+                byte bits = (byte) (1 << (int)pix);
+
+                // Get current pixel
+                byte cur = buffer[x, page];
+
+                // Toggle
+                if (white)
+                {
+                    cur |= bits;
+                }
+                else
+                {
+                    cur |= (byte)~bits;
+                }
+
+                // Update buffer
+                buffer[x, page] = cur;
+
+            }).AsAsyncAction();
         }
 
         /// <summary>
@@ -591,6 +645,27 @@ namespace Microsoft.IoT.Devices.Display
                 height = value;
             }
         }
+
+        /// <summary>
+        /// Gets or sets the format of the pixels on the display.
+        /// </summary>
+        /// <value>
+        /// The format of the pixels on the display.
+        /// </value>
+        [DefaultValue(DisplayPixelFormat.OneBit)]
+        public DisplayPixelFormat PixelFormat
+        {
+            get
+            {
+                return pixelForamt;
+            }
+            set
+            {
+                if (isInitialized) { throw new IoChangeException(); }
+                pixelForamt = value;
+            }
+        }
+
 
         /// <summary>
         /// Gets or sets the number of pixels per page on the display.
