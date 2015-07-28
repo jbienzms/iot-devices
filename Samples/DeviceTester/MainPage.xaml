@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:input="using:Microsoft.IoT.Devices.Input"
+    xmlns:controls="using:Microsoft.IoT.Devices.Controls"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -14,6 +15,13 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <ListView x:Name="OutputList" Margin="5" />
+        <Border BorderBrush="Black" BorderThickness="1" Padding="2" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <controls:GraphicsDisplayPanel x:Name="GraphicsPanel" Width="512" Height="256" DisplayWidth="128" DisplayHeight="64" Background="Blue" >
+                <Grid Width="128" Height="64">
+                    <Ellipse Width="64" Height="64" Stroke="Blue" Fill="Yellow" />
+                </Grid>
+            </controls:GraphicsDisplayPanel>
+        </Border>
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right">
             <Button x:Name="StartButton" Content="Start" Margin="5" Click="StartButton_Click"/>
             <Button x:Name="StopButton" Content="Stop" Margin="5" IsEnabled="False" Click="StopButton_Click" />

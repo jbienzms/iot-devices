@@ -1,0 +1,22 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Microsoft.IoT.Devices"
+    xmlns:controls="using:Microsoft.IoT.Devices.Controls"
+    >
+
+    <Style TargetType="controls:GraphicsDisplayPanel">
+        <Setter Property="DataContext" Value="{Binding RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:GraphicsDisplayPanel">
+                    <Viewbox>
+                        <Grid Background="{TemplateBinding Background}" Width="{TemplateBinding DisplayWidth}" Height="{TemplateBinding DisplayHeight}">
+                            <ContentPresenter x:Name="ContentPanel" Content="{TemplateBinding Content}" />
+                        </Grid>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

@@ -114,6 +114,7 @@
     <Compile Include="Adc\IAdcChannel.cs" />
     <Compile Include="Adc\IAdcController.cs" />
     <Compile Include="Adc\ADC0832.cs" />
+    <Compile Include="Controls\GraphicsDisplayPanel.cs" />
     <Compile Include="Devices\IClosable.cs" />
     <Compile Include="Devices\IDevice.cs" />
     <Compile Include="Devices\IScheduledDevice.cs" />
@@ -180,6 +181,12 @@
     <SDKReference Include="WindowsIoT, Version=10.0.10069.0">
       <Name>Windows IoT Extension SDK</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

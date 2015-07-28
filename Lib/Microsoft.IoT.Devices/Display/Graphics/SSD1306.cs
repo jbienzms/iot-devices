@@ -48,15 +48,15 @@ namespace Microsoft.IoT.Devices.Display
         private int chipSelectLine = 0;         // The chip select line used on the SPI controller
         private string controllerName = "SPI0"; // The name of the SPI controller to use
         private GpioPin dataPin;                // Pin for data
-        private UInt32 height = 64;             // Number of horizontal pixels on the display
+        private int height = 64;             // Number of horizontal pixels on the display
         private bool isInitialized;             // If IO has been initialized
-        private UInt32 pages;                   // Number of pages on the display
+        private int pages;                   // Number of pages on the display
         private DisplayPixelFormat pixelForamt; // The format of the pixels on the display
-        private UInt32 pixelsPerPage = 8;       // Number of pixels in each page on the display
+        private int pixelsPerPage = 8;       // Number of pixels in each page on the display
         private GpioPin resetPin;               // Pin for reset
         private byte[] serializedBuffer;        // A temporary buffer used to prepare graphics data for sending over SPI
         private SpiDevice spiDevice;            // The SPI device the display is connected to
-        private UInt32 width = 128;             // Number of horizontal pixels on the display
+        private int width = 128;             // Number of horizontal pixels on the display
         #endregion // Member Variables
 
         #region Internal Methods
@@ -411,15 +411,15 @@ namespace Microsoft.IoT.Devices.Display
             }
         }
 
-        public IAsyncAction DrawPixelAsync(uint x, uint y, Color color)
+        public IAsyncAction WritePixelAsync(int x, int y, Color color)
         {
             return Task.Run(async () =>
             {
                 await EnsureInitializedAsync();
 
                 // Calculate page and remainder
-                uint page = (y / pixelsPerPage);
-                uint pix = y % pixelsPerPage;
+                int page = (y / pixelsPerPage);
+                int pix = y % pixelsPerPage;
 
                 // TODO: Doing 1-bit pixel
                 bool white = (color != Colors.Black);
@@ -504,6 +504,11 @@ namespace Microsoft.IoT.Devices.Display
                 resetPin.Write(GpioPinValue.High);  // Bring display out of reset
                 await Task.Delay(100);              // Wait at least 100mS before sending commands
             }).AsAsyncAction();
+        }
+
+        public IAsyncAction UpdateAsync()
+        {
+            return WriteBufferAsync().AsAsyncAction();
         }
         #endregion // Public Methods
 
@@ -612,8 +617,8 @@ namespace Microsoft.IoT.Devices.Display
         /// <value>
         /// The width of the display in pixels. The default is 128.
         /// </value>
-        [DefaultValue((UInt32)128)]
-        public UInt32 Width
+        [DefaultValue(128)]
+        public int Width
         {
             get
             {
@@ -632,8 +637,8 @@ namespace Microsoft.IoT.Devices.Display
         /// <value>
         /// The height of the display in pixels. The default is 64.
         /// </value>
-        [DefaultValue((UInt32)64)]
-        public UInt32 Height
+        [DefaultValue(64)]
+        public int Height
         {
             get
             {
@@ -673,8 +678,8 @@ namespace Microsoft.IoT.Devices.Display
         /// <value>
         /// The number of pixels per page on the display. The default is 8.
         /// </value>
-        [DefaultValue((UInt32)8)]
-        public UInt32 PixelsPerPage
+        [DefaultValue(8)]
+        public int PixelsPerPage
         {
             get
             {
