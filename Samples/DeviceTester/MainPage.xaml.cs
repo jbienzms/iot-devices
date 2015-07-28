@@ -35,7 +35,6 @@ namespace DeviceTester
         private string lastOutput;
         private ISwitch proximity;
         private IPushButton pushButton;
-        private ISwitch swtch;
         private IThumbstick thumbstick;
 
         public MainPage()
@@ -94,19 +93,12 @@ namespace DeviceTester
         private void StartSwitches()
         {
             // Create switches
-            swtch = new Switch()
-            {
-                Pin = gpioController.OpenPin(5),
-                OnValue = GpioPinValue.Low
-            };
             proximity = new Switch()
             {
                 Pin = gpioController.OpenPin(6),
-                OnValue = GpioPinValue.Low
             };
 
             // Subscribe to events
-            swtch.Switched += Switch_Switched;
             proximity.Switched += Proximity_Switched;
         }
 
@@ -114,9 +106,10 @@ namespace DeviceTester
         {
             thumbstick = new SS944()
             {
+                ButtonPin = gpioController.OpenPin(25),
+                ReportInterval = 250, // This demo doesn't need fast reports and it helps with responsiveness
                 XChannel = adcController.OpenChannel(0),
                 YChannel = adcController.OpenChannel(1),
-                ButtonPin = gpioController.OpenPin(25),
             };
 
             thumbstick.ReadingChanged += Thumbstick_ReadingChanged;
@@ -140,7 +133,7 @@ namespace DeviceTester
             adcController = adc;
 
             StartPushButton();
-            // StartSwitches();
+            StartSwitches();
             StartThumbstick();
         }
 
@@ -167,11 +160,6 @@ namespace DeviceTester
                 proximity = null;
             }
 
-            if (swtch != null)
-            {
-                swtch.Dispose();
-                swtch = null;
-            }
             if (thumbstick != null)
             {
                 thumbstick.Dispose();
@@ -225,21 +213,6 @@ namespace DeviceTester
         private void StopButton_Click(object sender, RoutedEventArgs e)
         {
             Stop();
-        }
-
-        private void Switch_Switched(object sender, bool e)
-        {
-            Dispatcher.Run(() =>
-            {
-                if (e)
-                {
-                    AddOutput("Switched On");
-                }
-                else
-                {
-                    AddOutput("Switched Off");
-                }
-            });
         }
 
         private void Thumbstick_ReadingChanged(IThumbstick sender, ThumbstickReadingChangedEventArgs args)

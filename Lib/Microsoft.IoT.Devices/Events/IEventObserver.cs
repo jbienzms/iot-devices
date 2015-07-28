@@ -11,9 +11,9 @@ namespace Microsoft.IoT.Devices
 {
     public interface IEventObserver
     {
-        void FirstHandlerAdded(object sender);
-        void HandlerAdded(object sender);
-        void HandlerRemoved(object sender);
-        void LastHandlerRemoved(object sender);
+        void Added(object sender);
+        void FirstAdded(object sender);
+        void LastRemoved(object sender);
+        void Removed(object sender);
     }
 }

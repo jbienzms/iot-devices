@@ -24,13 +24,6 @@ namespace Microsoft.IoT.Devices.Input
         ThumbstickReading GetCurrentReading();
         #endregion // Public Methods
 
-        #region Public Properties
-        /// <summary>
-        /// Gets or sets the current report interval for the thumbstick.
-        /// </summary>
-        uint ReportInterval { get; set; }
-        #endregion // Public Properties
-
         #region Public Events
         /// <summary>
         /// Occurs each time the thumbstick reports a new reading. 

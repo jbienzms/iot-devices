@@ -21,23 +21,45 @@ namespace Microsoft.IoT.Devices
     {
         #region Member Variables
         private EventRegistrationTokenTable<TypedEventHandler<TSender, TResult>> eventTable;
+        private ScheduledAction firstAdded;
         private IEventObserver observer;
         #endregion // Member Variables
 
         #region Constants
+        private ObservableEvent()
+        {
+            // Create
+            eventTable = new EventRegistrationTokenTable<TypedEventHandler<TSender, TResult>>();
+        }
+
         /// <summary>
         /// Initializes a new <see cref="ObservableEvent"/>.
         /// </summary>
-        public ObservableEvent(IEventObserver observer)
+        /// <param name="observer">
+        /// An <see cref="IEventObserver"/> that monitors the event.
+        /// </param>
+        public ObservableEvent(IEventObserver observer) : this()
         {
             // Validate
             if (observer == null) throw new ArgumentNullException("observer");
 
             // Store
             this.observer = observer;
+        }
 
-            // Create
-            eventTable = new EventRegistrationTokenTable<TypedEventHandler<TSender, TResult>>();
+        /// <summary>
+        /// Initializes a new <see cref="ObservableEvent"/>.
+        /// </summary>
+        /// <param name="observer">
+        /// An <see cref="IEventObserver"/> that monitors the event.
+        /// </param>
+        public ObservableEvent(ScheduledAction firstAdded) : this()
+        {
+            // Validate
+            if (firstAdded == null) throw new ArgumentNullException("firstAddedAction");
+
+            // Store
+            this.firstAdded = firstAdded;
         }
         #endregion // Constants
 
@@ -57,12 +79,12 @@ namespace Microsoft.IoT.Devices
             }
 
             // Notify of remove
-            observer.HandlerRemoved(this);
+            if (observer != null) { observer.Removed(this); }
 
             // If last handler, notify
             if ((!wasNull) && (eventTable.InvocationList == null))
             {
-                observer.LastHandlerRemoved(this);
+                if (observer != null) { observer.LastRemoved(this); }
             }
         }
 
@@ -86,12 +108,13 @@ namespace Microsoft.IoT.Devices
             var reg = eventTable.AddEventHandler(handler);
 
             // Notify of add
-            observer.HandlerAdded(this);
+            if (observer != null) { observer.Added(this); }
 
             // If first handler, notify
             if ((wasNull) && (eventTable.InvocationList != null))
             {
-                observer.FirstHandlerAdded(this);
+                if (firstAdded != null) { firstAdded(); }
+                if (observer != null) { observer.FirstAdded(this); }
             }
 
             // Return the registration

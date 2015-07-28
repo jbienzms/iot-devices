@@ -300,7 +300,7 @@ namespace Microsoft.IoT.Devices
         /// <summary>
         /// Gets the schedule options currently being used by the scheduler.
         /// </summary>
-        public ScheduleOptions ScheduleOptions { get; }
+        public ScheduleOptions ScheduleOptions { get { return scheduleOptions; } }
 
         /// <summary>
         /// Gets or sets the update interval.
@@ -318,12 +318,12 @@ namespace Microsoft.IoT.Devices
         {
             get
             {
-                return ScheduleOptions.UpdateInterval;
+                return scheduleOptions.UpdateInterval;
             }
             set
             {
                 // Changing?
-                if (value != ScheduleOptions.UpdateInterval)
+                if (value != scheduleOptions.UpdateInterval)
                 {
                     // New value or default?
                     if (value == 0)
@@ -363,7 +363,7 @@ namespace Microsoft.IoT.Devices
         #endregion // Public Events
 
         #region IEventObserver Interface
-        void IEventObserver.FirstHandlerAdded(object sender)
+        void IEventObserver.FirstAdded(object sender)
         {
             eventsSubscribed++;
             if ((eventsSubscribed == 1) && (StartWithEvents))
@@ -372,17 +372,17 @@ namespace Microsoft.IoT.Devices
             }
         }
 
-        void IEventObserver.HandlerAdded(object sender)
+        void IEventObserver.Added(object sender)
         {
 
         }
 
-        void IEventObserver.HandlerRemoved(object sender)
+        void IEventObserver.Removed(object sender)
         {
 
         }
 
-        void IEventObserver.LastHandlerRemoved(object sender)
+        void IEventObserver.LastRemoved(object sender)
         {
             eventsSubscribed--;
             if ((eventsSubscribed == 0) && (StopWithEvents))

@@ -133,14 +133,14 @@
     <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Input\IPushButton.cs" />
     <Compile Include="Input\ISwitch.cs" />
-    <Compile Include="Input\IThumbstick.cs" />
-    <Compile Include="Input\SS944.cs" />
+    <Compile Include="Input\Thumbstick\IThumbstick.cs" />
+    <Compile Include="Input\Thumbstick\SS944.cs" />
     <Compile Include="Input\Switch.cs" />
     <Compile Include="Input\PushButton.cs" />
     <Compile Include="Devices\ScheduledUpdater.cs" />
     <Compile Include="Extensions\SchedulerExtensions.cs" />
-    <Compile Include="Input\ThumbstickReading.cs" />
-    <Compile Include="Input\ThumbstickReadingChangedEventArgs.cs" />
+    <Compile Include="Input\Thumbstick\ThumbstickReading.cs" />
+    <Compile Include="Input\Thumbstick\ThumbstickReadingChangedEventArgs.cs" />
     <Compile Include="Lights\ILight.cs" />
     <Compile Include="Resources\Strings.cs">
       <AutoGen>True</AutoGen>

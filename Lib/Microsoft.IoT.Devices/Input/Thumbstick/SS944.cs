@@ -15,11 +15,12 @@ namespace Microsoft.IoT.Devices.Input
     /// <summary>
     /// Driver for the <see href="http://www.sainsmart.com/sainsmart-joystick-module-free-10-cables-for-arduino.html">SainSmart SS944 joystick</see>
     /// </summary>
-    public sealed class SS944 : IThumbstick
+    public sealed class SS944 : IThumbstick, IScheduledDevice
     {
         #region Member Variables
         private GpioPin buttonPin;
         private ThumbstickReading currentReading;
+        private int halfValue = 128;
         private bool isInitialized;
         private int minValue;
         private int maxValue = 255;
@@ -81,11 +82,11 @@ namespace Microsoft.IoT.Devices.Input
             float y = yChannel.ReadValue();
 
             // Scale
-            var halfValue = maxValue - (maxValue - minValue) / 2;
             x -= halfValue;
             y -= halfValue;
             x /= halfValue;
             y /= halfValue;
+            y *= -1; // Y needs to be inverted
 
             // Button
             bool pressed = false;
@@ -108,6 +109,11 @@ namespace Microsoft.IoT.Devices.Input
         #region Public Methods
         public void Dispose()
         {
+            if (updater != null)
+            {
+                updater.Dispose();
+                updater = null;
+            }
             if (buttonPin != null)
             {
                 buttonPin.Dispose();
@@ -181,6 +187,7 @@ namespace Microsoft.IoT.Devices.Input
             set
             {
                 maxValue = value;
+                halfValue = maxValue - (maxValue - minValue) / 2;
             }
         }
 
@@ -200,6 +207,7 @@ namespace Microsoft.IoT.Devices.Input
             set
             {
                 minValue = value;
+                halfValue = maxValue - (maxValue - minValue) / 2;
             }
         }
 

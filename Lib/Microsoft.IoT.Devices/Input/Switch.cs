@@ -12,13 +12,13 @@ using Windows.Foundation;
 
 namespace Microsoft.IoT.Devices.Input
 {
-    public sealed class Switch : ISwitch, IEventObserver, IDisposable
+    public sealed class Switch : ISwitch, IDisposable
     {
         #region Member Variables
         private double debounceTimeout = 50;
-        private bool initialized;
+        private bool isInitialized;
         private bool isOn = false;
-        private GpioPinValue onValue = GpioPinValue.High;
+        private GpioPinValue onValue = GpioPinValue.Low;
         private GpioPin pin;
         private ObservableEvent<ISwitch, bool> switchedEvent;
         private bool usePullResistors = true;
@@ -31,22 +31,19 @@ namespace Microsoft.IoT.Devices.Input
         public Switch()
         {
             // Create events
-            switchedEvent = new ObservableEvent<ISwitch, bool>(this);
+            switchedEvent = new ObservableEvent<ISwitch, bool>(firstAdded: EnsureInitialized);
         }
         #endregion // Constructors
 
 
         #region Internal Methods
-        private void InitIO()
+        private void EnsureInitialized()
         {
             // If we're already initialized, ignore
-            if (initialized) { return; }
+            if (isInitialized) { return; }
 
             // Validate that the pin has been set
             if (pin == null) { throw new MissingIoException(nameof(Pin)); }
-
-            // Consider ourselves initialized now
-            initialized = true;
 
             bool driveSet = false;
             // Use pull resistors?
@@ -87,6 +84,9 @@ namespace Microsoft.IoT.Devices.Input
 
             // Subscribe to pin events
             pin.ValueChanged += Pin_ValueChanged;
+
+            // Consider ourselves initialized now
+            isInitialized = true;
         }
         #endregion // Internal Methods
 
@@ -111,7 +111,7 @@ namespace Microsoft.IoT.Devices.Input
 
         public void Dispose()
         {
-            initialized = false;
+            isInitialized = false;
             if (pin != null)
             {
                 pin.ValueChanged -= Pin_ValueChanged;
@@ -148,6 +148,7 @@ namespace Microsoft.IoT.Devices.Input
                 }
             }
         }
+
         /// <summary>
         /// Gets a value that indicates if the switch is on.
         /// </summary>
@@ -174,21 +175,13 @@ namespace Microsoft.IoT.Devices.Input
         }
 
         /// <summary>
-        /// Gets or sets an optional name for the device.
-        /// </summary>
-        /// <value>
-        /// An optional name for the device.
-        /// </value>
-        public string Name { get; set; }
-
-        /// <summary>
         /// Gets or sets the <see cref="GpioPinValue"/> that indicates the switch is on.
         /// </summary>
         /// <value>
         /// The <see cref="GpioPinValue"/> that indicates the switch is on. 
-        /// The default is <see cref="GpioPinValue.High"/>.
+        /// The default is <see cref="GpioPinValue.Low"/>.
         /// </value>
-        [DefaultValue(GpioPinValue.High)]
+        [DefaultValue(GpioPinValue.Low)]
         public GpioPinValue OnValue { get { return onValue; } set { onValue = value; } }
 
         /// <summary>
@@ -202,7 +195,7 @@ namespace Microsoft.IoT.Devices.Input
             }
             set
             {
-                if (initialized) { throw new IoChangeException(); }
+                if (isInitialized) { throw new IoChangeException(); }
                 pin = value;
             }
         }
@@ -216,7 +209,18 @@ namespace Microsoft.IoT.Devices.Input
         /// otherwise false. The default is <c>true</c>.
         /// </value>
         [DefaultValue(true)]
-        public bool UsePullResistors => usePullResistors;
+        public bool UsePullResistors
+        {
+            get
+            {
+                return usePullResistors;
+            }
+            set
+            {
+                if (isInitialized) { throw new IoChangeException(); }
+                usePullResistors = value;
+            }
+        }
         #endregion // Public Properties
 
         #region Public Events
@@ -235,29 +239,5 @@ namespace Microsoft.IoT.Devices.Input
             }
         }
         #endregion // Public Events
-
-
-        #region IEventObserver Interface
-        void IEventObserver.FirstHandlerAdded(object sender)
-        {
-            InitIO();
-        }
-
-        void IEventObserver.HandlerAdded(object sender)
-        {
-
-        }
-
-        void IEventObserver.HandlerRemoved(object sender)
-        {
-
-        }
-
-        void IEventObserver.LastHandlerRemoved(object sender)
-        {
-
-        }
-        #endregion // IEventObserver Interface
-
     }
 }

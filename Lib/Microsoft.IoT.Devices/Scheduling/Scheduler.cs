@@ -81,7 +81,19 @@ namespace Microsoft.IoT.Devices
         /// </param>
         private void EnsureMinReportInterval(uint interval)
         {
-            reportInterval = Math.Min(reportInterval, interval);
+            // Get count
+            int acount = (asyncSubscriptions?.Count ?? 0);
+            int scount = (subscriptions?.Count ?? 0);
+
+            // If only one subscriber, just use it. Otherwise make sure minimum
+            if ((acount + scount) == 1)
+            {
+                reportInterval = interval;
+            }
+            else
+            {
+                reportInterval = Math.Min(reportInterval, interval);
+            }
         }
 
         private Subscription GetSubscription(IAsyncAction subscriber, bool throwIfMissing = true)
@@ -164,42 +176,45 @@ namespace Microsoft.IoT.Devices
             reportInterval = Math.Min(asyncMin, syncMin);
         }
 
-        private void UpdateLoop()
+        private Task StartUpdateLoopAsync()
         {
-            // TODO: Find a higher resolution way of tracking time
-            while (!cancellationSource.IsCancellationRequested)
+            return Task.Run(async () =>
             {
-                // Capture start time
-                var loopStart = DateTime.Now;
-
-                // TODO: Start all asynchronous subscribers
-
-                // Run all synchronous subscribers
-                if (subscriptions != null)
+                // TODO: Find a higher resolution way of tracking time
+                while (!cancellationSource.IsCancellationRequested)
                 {
-                    lock (subscriptions)
+                    // Capture start time
+                    var loopStart = DateTime.Now;
+
+                    // TODO: Start all asynchronous subscribers
+
+                    // Run all synchronous subscribers
+                    if (subscriptions != null)
                     {
-                        foreach (var sub in subscriptions)
+                        lock (subscriptions)
                         {
-                            if (!sub.Value.IsSuspended)
+                            foreach (var sub in subscriptions)
                             {
-                                sub.Key();
+                                if (!sub.Value.IsSuspended)
+                                {
+                                    sub.Key();
+                                }
                             }
                         }
                     }
+
+                    // TODO: Wait for asynchronous subscribers to finish
+
+                    // How much time did the loop take?
+                    var loopTime = (DateTime.Now - loopStart).TotalMilliseconds;
+
+                    // If there's any time left, give CPU back
+                    if (loopTime < reportInterval)
+                    {
+                        await Task.Delay((int)(reportInterval - loopTime));
+                    }
                 }
-
-                // TODO: Wait for asynchronous subscribers to finish
-
-                // How much time did the loop take?
-                var loopTime = (DateTime.Now - loopStart).TotalMilliseconds;
-
-                // If there's any time left, give CPU back
-                if (loopTime < reportInterval)
-                {
-                    Task.Delay((int)(reportInterval - loopTime));
-                }
-            }
+            });
         }
         #endregion // Internal Methods
 
@@ -281,7 +296,7 @@ namespace Microsoft.IoT.Devices
             cancellationSource = new CancellationTokenSource();
 
             // Start the loop
-            updateTask = Task.Factory.StartNew(UpdateLoop).FailFastOnException();
+            updateTask = StartUpdateLoopAsync().FailFastOnException();
         }
 
         /// <summary>

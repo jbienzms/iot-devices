@@ -2,6 +2,7 @@
 //
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -11,18 +12,18 @@ using Windows.Foundation;
 
 namespace Microsoft.IoT.Devices.Input
 {
-    public sealed class PushButton : IPushButton, IScheduledDevice, IDisposable
+    public sealed class PushButton : IPushButton, IDisposable
     {
         #region Member Variables
         private ObservableEvent<IPushButton,EmptyEventArgs> clickEvent;
+        private double debounceTimeout = 50;
+        private bool isInitialized;
         private bool isPressed;
-        private GpioPinValue lastValue;
         private GpioPin pin;
         private GpioPinValue pressedValue = GpioPinValue.Low;
-        private GpioPinValue releasedValue = GpioPinValue.High;
         private ObservableEvent<IPushButton,EmptyEventArgs> pressedEvent;
         private ObservableEvent<IPushButton,EmptyEventArgs> releasedEvent;
-        private ScheduledUpdater updater;
+        private bool usePullResistors = true;
         #endregion // Member Variables
 
         #region Constructors
@@ -31,27 +32,21 @@ namespace Microsoft.IoT.Devices.Input
         /// </summary>
         public PushButton()
         {
-            // Create updater
-            updater = new ScheduledUpdater(new ScheduleOptions(reportInterval: 200));
-            updater.SetUpdateAction(Update);
-            updater.Starting += (s, e) => InitIO();
-
             // Create events
-            clickEvent = new ObservableEvent<IPushButton, EmptyEventArgs>(updater);
-            pressedEvent = new ObservableEvent<IPushButton, EmptyEventArgs>(updater);
-            releasedEvent = new ObservableEvent<IPushButton, EmptyEventArgs>(updater);
+            clickEvent = new ObservableEvent<IPushButton, EmptyEventArgs>(firstAdded: EnsureInitialized);
+            pressedEvent = new ObservableEvent<IPushButton, EmptyEventArgs>(firstAdded: EnsureInitialized);
+            releasedEvent = new ObservableEvent<IPushButton, EmptyEventArgs>(firstAdded: EnsureInitialized);
         }
         #endregion // Constructors
 
 
         #region Internal Methods
-        private void InitIO()
+        private void EnsureInitialized()
         {
+            if (isInitialized) { return; }
+
             // Validate that the pin has been set
             if (pin == null) { throw new MissingIoException(nameof(Pin)); }
-
-            // Default to not pressed
-            lastValue = releasedValue;
 
             // Check if input pull-up resistors are supported 
             if (pin.IsDriveModeSupported(GpioPinDriveMode.InputPullUp))
@@ -64,7 +59,13 @@ namespace Microsoft.IoT.Devices.Input
             }
 
             // Set a debounce timeout to filter out switch bounce noise from a button press 
-            pin.DebounceTimeout = TimeSpan.FromMilliseconds(50);
+            pin.DebounceTimeout = TimeSpan.FromMilliseconds(debounceTimeout);
+
+            // Subscribe to pin events
+            pin.ValueChanged += Pin_ValueChanged;
+
+            // Consider ourselves initialized now
+            isInitialized = true;
         }
         #endregion // Internal Methods
 
@@ -72,53 +73,41 @@ namespace Microsoft.IoT.Devices.Input
 
         private void Pin_ValueChanged(GpioPin sender, GpioPinValueChangedEventArgs e)
         {
-            if (e.Edge == GpioPinEdge.RisingEdge)
+            var edge = e.Edge;
+            if ((pressedValue == GpioPinValue.High) && (edge == GpioPinEdge.RisingEdge))
             {
-                Debug.WriteLine("Rising");
+                isPressed = true;
+            }
+            else if ((pressedValue == GpioPinValue.Low) && (edge == GpioPinEdge.FallingEdge))
+            {
+                isPressed = true;
             }
             else
             {
-                Debug.WriteLine("Falling");
+                isPressed = false;
             }
-        }
 
-        private void Update()
-        {
-            var currentValue = pin.Read();
-            if (lastValue != currentValue)
+            // Notify
+            if (isPressed)
             {
-                // Update last
-                lastValue = currentValue;
-
-                if (currentValue == pressedValue)
+                pressedEvent.Raise(this, EmptyEventArgs.Instance);
+                if (ClickMode == ButtonClickMode.Press)
                 {
-                    isPressed = true;
-                    pressedEvent.Raise(this, EmptyEventArgs.Instance);
-                    if (ClickMode == ButtonClickMode.Press)
-                    {
-                        clickEvent.Raise(this, EmptyEventArgs.Instance);
-                    }
+                    clickEvent.Raise(this, EmptyEventArgs.Instance);
                 }
-                else
+            }
+            else
+            {
+                releasedEvent.Raise(this, EmptyEventArgs.Instance);
+                if (ClickMode == ButtonClickMode.Release)
                 {
-                    isPressed = false;
-                    releasedEvent.Raise(this, EmptyEventArgs.Instance);
-                    if (ClickMode == ButtonClickMode.Release)
-                    {
-                        clickEvent.Raise(this, EmptyEventArgs.Instance);
-                    }
+                    clickEvent.Raise(this, EmptyEventArgs.Instance);
                 }
             }
         }
 
         public void Dispose()
         {
-            if (updater != null)
-            {
-                updater.Dispose();
-                updater = null;
-            }
-
             if (pin != null)
             {
                 pin.Dispose();
@@ -135,17 +124,39 @@ namespace Microsoft.IoT.Devices.Input
         public ButtonClickMode ClickMode { get; set; }
 
         /// <summary>
+        /// Gets or sets the amount of time in milliseconds that will be used to debounce the pushbutton.
+        /// </summary>
+        /// <value>
+        /// The amount of time in milliseconds that will be used to debounce the pushbutton. The default 
+        /// is 50.
+        /// </value>
+        [DefaultValue(50)]
+        public double DebounceTimeout
+        {
+            get
+            {
+                return debounceTimeout;
+            }
+            set
+            {
+                if (value != debounceTimeout)
+                {
+                    debounceTimeout = value;
+                    if (pin != null)
+                    {
+                        pin.DebounceTimeout = TimeSpan.FromMilliseconds(debounceTimeout);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets a value that indicates if the button is pressed.
         /// </summary>
         /// <value>
         /// <c>true</c> if the button is pressed; otherwise false.
         /// </value>
         public bool IsPressed { get { return isPressed; } }
-
-        /// <summary>
-        /// Gets or sets an optional name for the device.
-        /// </summary>
-        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the pin that the button is connected to.
@@ -158,23 +169,40 @@ namespace Microsoft.IoT.Devices.Input
             }
             set
             {
-                if (updater.IsStarted) { throw new IoChangeException(); }
+                if (isInitialized) { throw new IoChangeException(); }
                 pin = value;
             }
         }
 
         /// <summary>
-        /// Gets or sets the update interval for the device.
+        /// Gets or sets the <see cref="GpioPinValue"/> that indicates the button is pressed.
         /// </summary>
-        public uint UpdateInterval
+        /// <value>
+        /// The <see cref="GpioPinValue"/> that indicates the button is pressed. 
+        /// The default is <see cref="GpioPinValue.Low"/>.
+        /// </value>
+        [DefaultValue(GpioPinValue.Low)]
+        public GpioPinValue PressedValue { get { return pressedValue; } set { pressedValue = value; } }
+
+        /// <summary>
+        /// Gets or sets a value that indicates if integrated pull up or pull 
+        /// down resistors should be used to help maintain the state of the pin.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if integrated pull up or pull down resistors should; 
+        /// otherwise false. The default is <c>true</c>.
+        /// </value>
+        [DefaultValue(true)]
+        public bool UsePullResistors
         {
             get
             {
-                return updater.UpdateInterval;
+                return usePullResistors;
             }
             set
             {
-                updater.UpdateInterval = value;
+                if (isInitialized) { throw new IoChangeException(); }
+                usePullResistors = value;
             }
         }
         #endregion // Public Properties
