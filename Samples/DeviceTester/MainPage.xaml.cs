@@ -19,6 +19,8 @@ using Microsoft.IoT.Devices.Input;
 using Microsoft.IoT.Devices;
 using Microsoft.IoT.Devices.Adc;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
+using Microsoft.IoT.Devices.Sensors;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -29,13 +31,15 @@ namespace DeviceTester
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private IAdcController adcController;
+        private IAdcController adcController1;
+        private IAdcController adcController2;
         private GpioController gpioController;
         private bool isRunning;
         private string lastOutput;
-        private ISwitch proximity;
-        private IPushButton pushButton;
-        private IThumbstick thumbstick;
+        //private ISwitch proximity;
+        //private IPushButton pushButton;
+        //private IThumbstick thumbstick;
+        private Collection<IDevice> devices = new Collection<IDevice>();
 
         public MainPage()
         {
@@ -73,10 +77,26 @@ namespace DeviceTester
             StopButton.IsEnabled = true;
         }
 
+        private void StartAlcohol()
+        {
+            // Create alcohol sensor
+            var alcoholSensor = new AnalogSensor()
+            {
+                AdcChannel = adcController2.OpenChannel(0)
+                //AdcChannel = adcController1.OpenChannel(1)
+            };
+
+            // Subscribe to events
+            alcoholSensor.ReadingChanged += AlcoholSensor_ReadingChanged;
+
+            // Add to device list
+            devices.Add(alcoholSensor);
+        }
+
         private void StartPushButton()
         {
             // Create a pushbutton
-            pushButton = new PushButton()
+            var pushButton = new PushButton()
             {
                 Pin = gpioController.OpenPin(5),
             };
@@ -88,31 +108,41 @@ namespace DeviceTester
             pushButton.Click += PushButton_Click;
             pushButton.Pressed += PushButton_Pressed;
             pushButton.Released += PushButton_Released;
+
+            // Add to device list
+            devices.Add(pushButton);
         }
 
         private void StartSwitches()
         {
             // Create switches
-            proximity = new Switch()
+            var proximity = new Switch()
             {
                 Pin = gpioController.OpenPin(6),
             };
 
             // Subscribe to events
             proximity.Switched += Proximity_Switched;
+
+            // Add to device list
+            devices.Add(proximity);
         }
 
         private void StartThumbstick()
         {
-            thumbstick = new SS944()
+            var thumbstick = new SS944()
             {
                 ButtonPin = gpioController.OpenPin(25),
                 ReportInterval = 250, // This demo doesn't need fast reports and it helps with responsiveness
-                XChannel = adcController.OpenChannel(0),
-                YChannel = adcController.OpenChannel(1),
+                XChannel = adcController1.OpenChannel(0),
+                YChannel = adcController1.OpenChannel(1),
             };
 
+            // Subscribe to events
             thumbstick.ReadingChanged += Thumbstick_ReadingChanged;
+
+            // Add to device list
+            devices.Add(thumbstick);
         }
 
         private void StartDevices()
@@ -126,16 +156,19 @@ namespace DeviceTester
             }
 
             // Start ADC
-            adcController = new ADC0832()
+            adcController1 = new ADC0832()
             {
                 ChipSelectPin = gpioController.OpenPin(18),
                 ClockPin = gpioController.OpenPin(23),
                 DataPin = gpioController.OpenPin(24),
             };
 
+            adcController2 = new MCP3208(); // Defaults to SPI0 and ChipSelect 0
+
+            StartAlcohol();
             StartPushButton();
             StartSwitches();
-            StartThumbstick();
+            // StartThumbstick();
         }
 
         private void Stop()
@@ -149,31 +182,32 @@ namespace DeviceTester
 
         private void StopDevices()
         {
-            if (adcController != null)
+            if (adcController1 != null)
             {
-                adcController.Dispose();
-                adcController = null;
-            }
-            if (pushButton != null)
-            {
-                pushButton.Dispose();
-                pushButton = null;
+                adcController1.Dispose();
+                adcController1 = null;
             }
 
-            if (proximity != null)
+            if (adcController2 != null)
             {
-                proximity.Dispose();
-                proximity = null;
+                adcController2.Dispose();
+                adcController2 = null;
             }
 
-            if (thumbstick != null)
+            for (int i = devices.Count -1; i >= 0; i--)
             {
-                thumbstick.Dispose();
-                thumbstick = null;
+                devices[i].Dispose();
+                devices.RemoveAt(i);
             }
         }
 
+        private void AlcoholSensor_ReadingChanged(IAnalogSensor sender, AnalogSensorReadingChangedEventArgs args)
+        {
+            // Get reading
+            var r = args.Reading;
 
+            Debug.WriteLine(string.Format("Value: {0}  Ratio: {1}", r.Value, r.Ratio));
+        }
 
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)

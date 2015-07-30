@@ -4,15 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0ACAE306-0C79-4258-8D52-2BB06626FA1D}</ProjectGuid>
+    <ProjectGuid>{1ED1007A-7708-4721-B16B-4283A66A4290}</ProjectGuid>
     <OutputType>winmdobj</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Microsoft.IoT.Devices</RootNamespace>
     <AssemblyName>Microsoft.IoT.Devices</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.10069.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10069.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -24,7 +24,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -33,7 +33,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -41,7 +41,7 @@
     <PlatformTarget>ARM</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\ARM\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <NoWarn>;2008</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>ARM</PlatformTarget>
@@ -52,7 +52,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
     <PlatformTarget>ARM</PlatformTarget>
     <OutputPath>bin\ARM\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <Optimize>true</Optimize>
     <NoWarn>;2008</NoWarn>
     <DebugType>pdbonly</DebugType>
@@ -65,7 +65,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <NoWarn>;2008</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
@@ -76,7 +76,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <PlatformTarget>x64</PlatformTarget>
     <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <Optimize>true</Optimize>
     <NoWarn>;2008</NoWarn>
     <DebugType>pdbonly</DebugType>
@@ -89,7 +89,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <NoWarn>;2008</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
@@ -100,7 +100,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <PlatformTarget>x86</PlatformTarget>
     <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UAP</DefineConstants>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
     <Optimize>true</Optimize>
     <NoWarn>;2008</NoWarn>
     <DebugType>pdbonly</DebugType>
@@ -110,16 +110,29 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Adc\MCP3208Channel.cs" />
-    <Compile Include="Adc\MCP3208.cs" />
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="..\..\License\IoTDevices.licenseheader">
+      <Link>IoTDevices.licenseheader</Link>
+    </None>
+    <None Include="project.json" />
+    <PRIResource Include="Resources\Strings.resw">
+      <CustomToolNamespace>Microsoft.IoT.Devices</CustomToolNamespace>
+      <Generator>ReswFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.cs</LastGenOutput>
+    </PRIResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Adc\ADC0832.cs" />
     <Compile Include="Adc\ADC0832Channel.cs" />
     <Compile Include="Adc\IAdcChannel.cs" />
     <Compile Include="Adc\IAdcController.cs" />
-    <Compile Include="Adc\ADC0832.cs" />
+    <Compile Include="Adc\MCP3208.cs" />
+    <Compile Include="Adc\MCP3208Channel.cs" />
     <Compile Include="Controls\GraphicsDisplayPanel.cs" />
     <Compile Include="Devices\IClosable.cs" />
     <Compile Include="Devices\IDevice.cs" />
     <Compile Include="Devices\IScheduledDevice.cs" />
+    <Compile Include="Devices\ScheduledUpdater.cs" />
     <Compile Include="Display\Graphics\ADA938.cs" />
     <Compile Include="Display\Graphics\DisplayPixelFormat.cs" />
     <Compile Include="Display\Graphics\IGraphicsDisplay.cs" />
@@ -130,60 +143,34 @@
     <Compile Include="Events\IObservableEvent.cs" />
     <Compile Include="Events\ObservableEvent.cs" />
     <Compile Include="Exceptions\DeviceNotFoundException.cs" />
-    <Compile Include="Exceptions\MissingIoException.cs" />
     <Compile Include="Exceptions\IoChangeException.cs" />
+    <Compile Include="Exceptions\MissingIoException.cs" />
     <Compile Include="Extensions\DispatcherExtensions.cs" />
+    <Compile Include="Extensions\SchedulerExtensions.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Input\IPushButton.cs" />
     <Compile Include="Input\ISwitch.cs" />
-    <Compile Include="Input\Thumbstick\IThumbstick.cs" />
-    <Compile Include="Input\Thumbstick\SS944.cs" />
-    <Compile Include="Input\Switch.cs" />
     <Compile Include="Input\PushButton.cs" />
-    <Compile Include="Devices\ScheduledUpdater.cs" />
-    <Compile Include="Extensions\SchedulerExtensions.cs" />
+    <Compile Include="Input\Switch.cs" />
+    <Compile Include="Input\Thumbstick\IThumbStick.cs" />
+    <Compile Include="Input\Thumbstick\SS944.cs" />
     <Compile Include="Input\Thumbstick\ThumbstickReading.cs" />
     <Compile Include="Input\Thumbstick\ThumbstickReadingChangedEventArgs.cs" />
     <Compile Include="Lights\ILight.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Strings.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resw</DependentUpon>
     </Compile>
-    <Compile Include="Scheduling\Scheduler.cs" />
-    <Compile Include="Scheduling\ScheduleOptions.cs" />
     <Compile Include="Scheduling\IScheduler.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scheduling\ScheduleOptions.cs" />
+    <Compile Include="Scheduling\Scheduler.cs" />
+    <Compile Include="Sensors\AnalogSensor.cs" />
+    <Compile Include="Sensors\AnalogSensorReading.cs" />
+    <Compile Include="Sensors\AnalogSensorReadingEventArgs.cs" />
+    <Compile Include="Sensors\IAnalogSensor.cs" />
     <Compile Include="Spi\ISpiBasedDevice.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System.Numerics.Vectors, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Numerics.Vectors.4.0.0\lib\win8\System.Numerics.Vectors.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Numerics.Vectors.WindowsRuntime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Numerics.Vectors.4.0.0\lib\win8\System.Numerics.Vectors.WindowsRuntime.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\License\IoTDevices.licenseheader" />
-    <None Include="packages.config" />
-    <PRIResource Include="Resources\Strings.resw">
-      <Generator>ReswFileCodeGenerator</Generator>
-      <CustomToolNamespace>Microsoft.IoT.Devices</CustomToolNamespace>
-      <LastGenOutput>Strings.cs</LastGenOutput>
-    </PRIResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Display\Text\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Sensors\" />
-  </ItemGroup>
-  <ItemGroup>
-    <SDKReference Include="WindowsIoT, Version=10.0.10069.0">
-      <Name>Windows IoT Extension SDK</Name>
-    </SDKReference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Themes\Generic.xaml">
@@ -191,11 +178,16 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Display\Text\" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="WindowsIoT, Version=10.0.10240.0">
+      <Name>Windows IoT Extensions for the UWP</Name>
+    </SDKReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
