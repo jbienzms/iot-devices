@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.IoT.Devices.Adc;
+using Windows.Devices.Adc;
 using Windows.Devices.Gpio;
 using Windows.Foundation;
 
@@ -19,7 +20,7 @@ namespace Microsoft.IoT.Devices.Sensors
     public sealed class AnalogSensor : IAnalogSensor, IScheduledDevice
     {
         #region Member Variables
-        private IAdcChannel adcChannel;
+        private AdcChannel adcChannel;
         private AnalogSensorReading currentReading;
         private bool isInitialized;
         private ObservableEvent<IAnalogSensor, AnalogSensorReadingChangedEventArgs> readingChangedEvent;
@@ -85,7 +86,7 @@ namespace Microsoft.IoT.Devices.Sensors
 
             if (adcChannel != null)
             {
-                adcChannel.Close();
+                adcChannel.Dispose();
                 adcChannel = null;
             }
 
@@ -118,7 +119,7 @@ namespace Microsoft.IoT.Devices.Sensors
         /// <value>
         /// The ADC channel for the sensor.
         /// </value>
-        public IAdcChannel AdcChannel
+        public AdcChannel AdcChannel
         {
             get
             {

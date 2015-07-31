@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.IoT.Devices.Adc;
+using Windows.Devices.Adc;
 using Windows.Devices.Gpio;
 using Windows.Foundation;
 
@@ -23,8 +24,8 @@ namespace Microsoft.IoT.Devices.Input
         private bool isInitialized;
         private ObservableEvent<IThumbstick, ThumbstickReadingChangedEventArgs> readingChangedEvent;
         private ScheduledUpdater updater;
-        private IAdcChannel xChannel;
-        private IAdcChannel yChannel;
+        private AdcChannel xChannel;
+        private AdcChannel yChannel;
         #endregion // Member Variables
 
         #region Constructors
@@ -78,8 +79,9 @@ namespace Microsoft.IoT.Devices.Input
             var x = xChannel.ReadRatio();
             var y = yChannel.ReadRatio();
 
-            // Y needs to be inverted
-            y *= -1; 
+            // Scale to -1 to 1, and Y needs to be inverted
+            x = (x * 2) - 1;
+            y = (-y * 2) + 1;
 
             // Button
             bool pressed = false;
@@ -114,12 +116,12 @@ namespace Microsoft.IoT.Devices.Input
             }
             if (xChannel != null)
             {
-                xChannel.Close();
+                xChannel.Dispose();
                 xChannel = null;
             }
             if (yChannel != null)
             {
-                yChannel.Close();
+                yChannel.Dispose();
                 yChannel = null;
             }
             isInitialized = false;
@@ -186,7 +188,7 @@ namespace Microsoft.IoT.Devices.Input
         /// <value>
         /// The ADC channel for the X axis.
         /// </value>
-        public IAdcChannel XChannel
+        public AdcChannel XChannel
         {
             get
             {
@@ -205,7 +207,7 @@ namespace Microsoft.IoT.Devices.Input
         /// <value>
         /// The ADC channel for the Y axis.
         /// </value>
-        public IAdcChannel YChannel
+        public AdcChannel YChannel
         {
             get
             {

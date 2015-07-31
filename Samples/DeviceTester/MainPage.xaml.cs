@@ -21,6 +21,8 @@ using Microsoft.IoT.Devices.Adc;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
 using Microsoft.IoT.Devices.Sensors;
+using Windows.Devices.Adc;
+using System.Threading.Tasks;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -31,14 +33,11 @@ namespace DeviceTester
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private IAdcController adcController1;
-        private IAdcController adcController2;
+        private AdcProviderManager adcManager;
+        private IReadOnlyList<AdcController> adcControllers;
         private GpioController gpioController;
         private bool isRunning;
         private string lastOutput;
-        //private ISwitch proximity;
-        //private IPushButton pushButton;
-        //private IThumbstick thumbstick;
         private Collection<IDevice> devices = new Collection<IDevice>();
 
         public MainPage()
@@ -68,22 +67,24 @@ namespace DeviceTester
             lastOutput = output;
         }
 
-        private void Start()
+        private async Task StartAsync()
         {
             if (isRunning) { return; }
             isRunning = true;
             StartButton.IsEnabled = false;
-            StartDevices();
+            await StartDevicesAsync();
             StopButton.IsEnabled = true;
         }
 
         private void StartAlcohol()
         {
+            // Alcohol sensor is on controller 1 for this sample
+            var controller = adcControllers[1];
+
             // Create alcohol sensor
             var alcoholSensor = new AnalogSensor()
             {
-                AdcChannel = adcController2.OpenChannel(0)
-                //AdcChannel = adcController1.OpenChannel(1)
+                AdcChannel = controller.OpenChannel(0)
             };
 
             // Subscribe to events
@@ -130,12 +131,16 @@ namespace DeviceTester
 
         private void StartThumbstick()
         {
+            // Thumbstick is on controller 0 for this sample
+            var controller = adcControllers[0];
+
+            // Create
             var thumbstick = new SS944()
             {
                 ButtonPin = gpioController.OpenPin(25),
                 ReportInterval = 250, // This demo doesn't need fast reports and it helps with responsiveness
-                XChannel = adcController1.OpenChannel(0),
-                YChannel = adcController1.OpenChannel(1),
+                XChannel = controller.OpenChannel(0),
+                YChannel = controller.OpenChannel(1),
             };
 
             // Subscribe to events
@@ -145,7 +150,7 @@ namespace DeviceTester
             devices.Add(thumbstick);
         }
 
-        private void StartDevices()
+        private async Task StartDevicesAsync()
         {
             // Start GPIO
             gpioController = GpioController.GetDefault();
@@ -156,19 +161,23 @@ namespace DeviceTester
             }
 
             // Start ADC
-            adcController1 = new ADC0832()
-            {
-                ChipSelectPin = gpioController.OpenPin(18),
-                ClockPin = gpioController.OpenPin(23),
-                DataPin = gpioController.OpenPin(24),
-            };
+            adcManager = new AdcProviderManager();
+            adcManager.ControllerProviders.Add(
+                new ADC0832()
+                {
+                    ChipSelectPin = gpioController.OpenPin(18),
+                    ClockPin = gpioController.OpenPin(23),
+                    DataPin = gpioController.OpenPin(24),
+                });
+            
+            // AdcController2 = new MCP3208(); // Defaults to SPI0 and ChipSelect 0
 
-            adcController2 = new MCP3208(); // Defaults to SPI0 and ChipSelect 0
+            adcControllers = await adcManager.GetControllersAsync();
 
-            StartAlcohol();
+            // StartAlcohol();
             StartPushButton();
             StartSwitches();
-            // StartThumbstick();
+            StartThumbstick();
         }
 
         private void Stop()
@@ -182,16 +191,11 @@ namespace DeviceTester
 
         private void StopDevices()
         {
-            if (adcController1 != null)
+            if (adcManager != null)
             {
-                adcController1.Dispose();
-                adcController1 = null;
-            }
-
-            if (adcController2 != null)
-            {
-                adcController2.Dispose();
-                adcController2 = null;
+                adcManager.Dispose();
+                adcManager = null;
+                adcControllers = null;
             }
 
             for (int i = devices.Count -1; i >= 0; i--)
@@ -245,9 +249,9 @@ namespace DeviceTester
             });
         }
 
-        private void StartButton_Click(object sender, RoutedEventArgs e)
+        private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            Start();
+            await StartAsync();
         }
 
         private void StopButton_Click(object sender, RoutedEventArgs e)
