@@ -17,13 +17,13 @@ namespace Microsoft.IoT.Devices.Adc
     /// controllers to be registered as a simple collection.
     /// </summary>
     /// <remarks>
-    /// All controllers should be added to the <see cref="ControllerProviders"/> collection 
+    /// All controllers should be added to the <see cref="Providers"/> collection 
     /// before calling <see cref="AdcController.GetControllersAsync"/>.
     /// </remarks>
     public sealed class AdcProviderManager : IAdcProvider, IDisposable
     {
         #region Member Variables
-        private Collection<IAdcControllerProvider> controllerProviders;
+        private Collection<IAdcControllerProvider> providers;
         #endregion // Member Variables
 
         #region Constructors
@@ -32,7 +32,7 @@ namespace Microsoft.IoT.Devices.Adc
         /// </summary>
         public AdcProviderManager()
         {
-            controllerProviders = new Collection<IAdcControllerProvider>();
+            providers = new Collection<IAdcControllerProvider>();
         }
         #endregion // Constructors
 
@@ -40,11 +40,11 @@ namespace Microsoft.IoT.Devices.Adc
         public void Dispose()
         {
             // Dispose and remove each provider
-            for (int i = ControllerProviders.Count - 1; i > 0; i--)
+            for (int i = Providers.Count - 1; i >= 0; i--)
             {
-                var provider = ControllerProviders[i] as IDisposable;
+                var provider = providers[i] as IDisposable;
                 if (provider != null) { provider.Dispose(); }
-                ControllerProviders.RemoveAt(i);
+                Providers.RemoveAt(i);
             }
         }
 
@@ -62,16 +62,16 @@ namespace Microsoft.IoT.Devices.Adc
 
         #region Public Properties
         /// <summary>
-        /// Gets the collection of controller providers stored in the manager.
+        /// Gets the collection of providers stored in the manager.
         /// </summary>
         /// <value>
-        /// The collection of controller providers stored in the manager.
+        /// The collection of providers stored in the manager.
         /// </value>
-        public IList<IAdcControllerProvider> ControllerProviders
+        public IList<IAdcControllerProvider> Providers
         {
             get
             {
-                return controllerProviders;
+                return providers;
             }
         }
         #endregion // Public Properties
@@ -79,7 +79,7 @@ namespace Microsoft.IoT.Devices.Adc
         #region IAdcProvider Interface
         IReadOnlyList<IAdcControllerProvider> IAdcProvider.GetControllers()
         {
-            return controllerProviders;
+            return providers;
         }
         #endregion // IAdcProvider Interface
     }

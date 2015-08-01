@@ -53,47 +53,6 @@ namespace Microsoft.IoT.Devices.Adc
             // This devices does not operate in exclusive mode, so we'll just ignore
         }
 
-        public void ReleaseChannel(int channel)
-        {
-            // Validate
-            if ((channel < 0) || (channel > ChannelCount)) throw new ArgumentOutOfRangeException("channel");
-
-            // This devices does not operate in exclusive mode, so we'll just ignore
-        }
-
-        public void Dispose()
-        {
-            if (chipSelectPin != null)
-            {
-                chipSelectPin.Dispose();
-                chipSelectPin = null;
-            }
-            if (clockPin != null)
-            {
-                clockPin.Dispose();
-                clockPin = null;
-            }
-            if (dataPin != null)
-            {
-                dataPin.Dispose();
-                dataPin = null;
-            }
-            isInitialized = false;
-        }
-
-        public bool IsChannelModeSupported(ProviderAdcChannelMode channelMode)
-        {
-            // All modes currently supported, but in case another mode is added later.
-            switch (channelMode)
-            {
-                case ProviderAdcChannelMode.Differential:
-                case ProviderAdcChannelMode.SingleEnded:
-                    return true;
-                default:
-                    return false;
-            }
-        }
-
         public int ReadValue(int channelNumber)
         {
             // Validate
@@ -183,6 +142,47 @@ namespace Microsoft.IoT.Devices.Adc
 
             // Verify and return
             return (dat1 == dat2) ? dat1 : 0;
+        }
+
+        public void ReleaseChannel(int channel)
+        {
+            // Validate
+            if ((channel < 0) || (channel > ChannelCount)) throw new ArgumentOutOfRangeException("channel");
+
+            // This devices does not operate in exclusive mode, so we'll just ignore
+        }
+
+        public void Dispose()
+        {
+            if (chipSelectPin != null)
+            {
+                chipSelectPin.Dispose();
+                chipSelectPin = null;
+            }
+            if (clockPin != null)
+            {
+                clockPin.Dispose();
+                clockPin = null;
+            }
+            if (dataPin != null)
+            {
+                dataPin.Dispose();
+                dataPin = null;
+            }
+            isInitialized = false;
+        }
+
+        public bool IsChannelModeSupported(ProviderAdcChannelMode channelMode)
+        {
+            // All modes currently supported, but in case another mode is added later.
+            switch (channelMode)
+            {
+                case ProviderAdcChannelMode.Differential:
+                case ProviderAdcChannelMode.SingleEnded:
+                    return true;
+                default:
+                    return false;
+            }
         }
         #endregion // Public Methods
 

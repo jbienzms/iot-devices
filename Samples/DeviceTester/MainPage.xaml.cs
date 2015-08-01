@@ -76,22 +76,22 @@ namespace DeviceTester
             StopButton.IsEnabled = true;
         }
 
-        private void StartAlcohol()
+        private void StartAnalog()
         {
-            // Alcohol sensor is on controller 1 for this sample
+            // Analog sensor is on controller 1 for this sample
             var controller = adcControllers[1];
 
-            // Create alcohol sensor
-            var alcoholSensor = new AnalogSensor()
+            // Create analog sensor
+            var analogSensor = new AnalogSensor()
             {
                 AdcChannel = controller.OpenChannel(0)
             };
 
             // Subscribe to events
-            alcoholSensor.ReadingChanged += AlcoholSensor_ReadingChanged;
+            analogSensor.ReadingChanged += AnalogSensor_ReadingChanged;
 
             // Add to device list
-            devices.Add(alcoholSensor);
+            devices.Add(analogSensor);
         }
 
         private void StartPushButton()
@@ -160,24 +160,33 @@ namespace DeviceTester
                 return;
             }
 
-            // Start ADC
+            // ADC
+            // Create the manager
             adcManager = new AdcProviderManager();
-            adcManager.ControllerProviders.Add(
+
+            // Add providers
+            adcManager.Providers.Add(
                 new ADC0832()
                 {
                     ChipSelectPin = gpioController.OpenPin(18),
                     ClockPin = gpioController.OpenPin(23),
                     DataPin = gpioController.OpenPin(24),
                 });
-            
-            // AdcController2 = new MCP3208(); // Defaults to SPI0 and ChipSelect 0
 
+            adcManager.Providers.Add(
+                new MCP3208()
+                {
+                    ChipSelectLine = 0,
+                    ControllerName = "SPI0",
+                });
+
+            // Get the well-known controller collection back
             adcControllers = await adcManager.GetControllersAsync();
 
-            // StartAlcohol();
+            StartAnalog();
             StartPushButton();
             StartSwitches();
-            StartThumbstick();
+            // StartThumbstick();
         }
 
         private void Stop()
@@ -191,21 +200,21 @@ namespace DeviceTester
 
         private void StopDevices()
         {
+            for (int i = devices.Count -1; i >= 0; i--)
+            {
+                devices[i].Dispose();
+                devices.RemoveAt(i);
+            }
+
             if (adcManager != null)
             {
                 adcManager.Dispose();
                 adcManager = null;
                 adcControllers = null;
             }
-
-            for (int i = devices.Count -1; i >= 0; i--)
-            {
-                devices[i].Dispose();
-                devices.RemoveAt(i);
-            }
         }
 
-        private void AlcoholSensor_ReadingChanged(IAnalogSensor sender, AnalogSensorReadingChangedEventArgs args)
+        private void AnalogSensor_ReadingChanged(IAnalogSensor sender, AnalogSensorReadingChangedEventArgs args)
         {
             // Get reading
             var r = args.Reading;

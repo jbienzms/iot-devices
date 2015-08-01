@@ -124,6 +124,7 @@
   <ItemGroup>
     <Compile Include="Adc\ADC0832.cs" />
     <Compile Include="Adc\AdcProviderManager.cs" />
+    <Compile Include="Adc\MCP3208.cs" />
     <Compile Include="Controls\GraphicsDisplayPanel.cs" />
     <Compile Include="Devices\IClosable.cs" />
     <Compile Include="Devices\IDevice.cs" />
