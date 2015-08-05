@@ -28,8 +28,19 @@ namespace Microsoft.IoT.Devices.Display
         OneBit = 1,
 
         /// <summary>
-        /// The pixel format is R5G6B5 unsigned integer.
+        /// A 12-bit pixel format with 4 Red, 4 Green and 4 Blue bits.
         /// </summary>
-        Rgb16 = 2,
+        Rgb444 = 2,
+
+        /// <summary>
+        /// A 16-bit pixel format with 5 Red, 6 Green and 5 Blue bits.
+        /// </summary>
+        Rgb565 = 5,
+
+        /// <summary>
+        /// An 18-bit pixel format with 6 Red, 6 Green and 6 Blue bits.
+        /// </summary>
+        Rgb666 = 6,
+
     }
 }

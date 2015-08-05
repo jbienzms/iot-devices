@@ -76,7 +76,7 @@ namespace Microsoft.IoT.Devices.Controls
                 byte[] pixel = new byte[3];
 
                 // Clear the display
-                await display.ClearAsync();
+                display.Clear();
 
                 using (pixelBuffer)
                 {
@@ -91,13 +91,13 @@ namespace Microsoft.IoT.Devices.Controls
                             var color = Color.FromArgb(0xFF, pixel[0], pixel[1], pixel[2]);
 
                             // Write out pixels
-                            await display.WritePixelAsync(x, y, color);
+                            display.DrawPixel(x, y, color);
                         }
                     }
                 }
 
                 // Update the display
-                await display.UpdateAsync();
+                display.Update();
 
             }).AsAsyncAction();
         }

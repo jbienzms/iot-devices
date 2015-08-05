@@ -13,13 +13,13 @@ namespace Microsoft.IoT.Devices.Display
     /// <summary>
     /// The interface for a graphical display.
     /// </summary>
-    public interface IGraphicsDisplay
+    public interface IGraphicsDisplay : IDevice
     {
         #region Public Methods
         /// <summary>
         /// Clears the display.
         /// </summary>
-        IAsyncAction ClearAsync();
+        void Clear();
 
         /// <summary>
         /// Writes a pixel to display memory.
@@ -27,21 +27,15 @@ namespace Microsoft.IoT.Devices.Display
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="color"></param>
-        /// <returns>
-        /// An <see cref="IAsyncAction"/> that represents the operation.
-        /// </returns>
         /// <remarks>
         /// The pixel is not displayed until <see cref="UpdateAsync"/> is called.
         /// </remarks>
-        IAsyncAction WritePixelAsync(int x, int y, Color color);
+        void DrawPixel(int x, int y, Color color);
 
         /// <summary>
         /// Updates the display by writing any uncomitted operations.
         /// </summary>
-        /// <returns>
-        /// An <see cref="IAsyncAction"/> that represents the operation.
-        /// </returns>
-        IAsyncAction UpdateAsync();
+        void Update();
         #endregion // Public Methods
 
 

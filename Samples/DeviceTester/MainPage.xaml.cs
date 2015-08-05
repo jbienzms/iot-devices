@@ -23,6 +23,8 @@ using System.Collections.ObjectModel;
 using Microsoft.IoT.Devices.Sensors;
 using Windows.Devices.Adc;
 using System.Threading.Tasks;
+using Microsoft.IoT.Devices.Display;
+using Windows.UI;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -33,22 +35,33 @@ namespace DeviceTester
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        #region Member Variables
         private AdcProviderManager adcManager;
         private IReadOnlyList<AdcController> adcControllers;
+        private DispatcherTimer displayTimer;
         private GpioController gpioController;
+        private IGraphicsDisplay display;
         private bool isRunning;
         private string lastOutput;
+        private Random rand;
         private Collection<IDevice> devices = new Collection<IDevice>();
+        #endregion // Member Variables
 
+        #region Constructors
         public MainPage()
         {
             this.InitializeComponent();
+            rand = new Random();
         }
+        #endregion // Constructors
 
         private void AddOutput(string output)
         {
             // Prefix DT
             output = DateTime.Now.ToString("HH:mm:ss") + " " + output;
+
+            // Debug it
+            Debug.WriteLine(output);
 
             // Add to the list
             OutputList.Items.Add(output);
@@ -84,7 +97,8 @@ namespace DeviceTester
             // Create analog sensor
             var analogSensor = new AnalogSensor()
             {
-                AdcChannel = controller.OpenChannel(0)
+                AdcChannel = controller.OpenChannel(0),
+                ReportInterval = 500, // This demo doesn't need fast reports and it helps with responsiveness
             };
 
             // Subscribe to events
@@ -92,6 +106,27 @@ namespace DeviceTester
 
             // Add to device list
             devices.Add(analogSensor);
+        }
+
+        private void StartDisplay()
+        {
+            // Create the display
+            display = new ST7735R()
+            {
+                ChipSelectLine = 0,
+                ControllerName = "SPI1",
+                ModePin = gpioController.OpenPin(12),
+                ResetPin = gpioController.OpenPin(16),
+            };
+
+            // Add to device list
+            devices.Add(display);
+
+            // Start timer
+            displayTimer = new DispatcherTimer();
+            displayTimer.Interval = TimeSpan.FromSeconds(1);
+            displayTimer.Tick += DisplayTimer_Tick;
+            displayTimer.Start();
         }
 
         private void StartPushButton()
@@ -138,7 +173,7 @@ namespace DeviceTester
             var thumbstick = new SS944()
             {
                 ButtonPin = gpioController.OpenPin(25),
-                ReportInterval = 250, // This demo doesn't need fast reports and it helps with responsiveness
+                ReportInterval = 500, // This demo doesn't need fast reports and it helps with responsiveness
                 XChannel = controller.OpenChannel(0),
                 YChannel = controller.OpenChannel(1),
             };
@@ -183,10 +218,11 @@ namespace DeviceTester
             // Get the well-known controller collection back
             adcControllers = await adcManager.GetControllersAsync();
 
-            StartAnalog();
-            StartPushButton();
-            StartSwitches();
-            // StartThumbstick();
+            StartDisplay();
+            //StartPushButton();
+            //StartSwitches();
+            //StartAnalog();
+            //StartThumbstick();
         }
 
         private void Stop()
@@ -200,6 +236,14 @@ namespace DeviceTester
 
         private void StopDevices()
         {
+            if (displayTimer != null)
+            {
+                displayTimer.Stop();
+                displayTimer.Tick -= DisplayTimer_Tick;
+                displayTimer = null;
+                display = null;
+            }
+
             for (int i = devices.Count -1; i >= 0; i--)
             {
                 devices[i].Dispose();
@@ -226,6 +270,21 @@ namespace DeviceTester
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             OutputList.Items.Clear();
+        }
+
+        private void DisplayTimer_Tick(object sender, object e)
+        {
+            if (display == null) { return; }
+
+            var r = (byte)rand.Next(255);
+            var g = (byte)rand.Next(255);
+            var b = (byte)rand.Next(255);
+            var color = Color.FromArgb(255, r, g, b);
+
+            var x = rand.Next(display.Width);
+            var y = rand.Next(display.Height);
+
+            display.DrawPixel(x, y, color);
         }
 
         private void PushButton_Click(IPushButton sender, EmptyEventArgs args)

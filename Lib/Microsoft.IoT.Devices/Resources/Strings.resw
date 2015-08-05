@@ -144,4 +144,7 @@
   <data name="TypeNotDelegate" xml:space="preserve">
     <value>The specified type '{0}' is not a delegate</value>
   </data>
+  <data name="UnknownPixelFormat" xml:space="preserve">
+    <value>Unknown pixel format '{0}'</value>
+  </data>
 </root>

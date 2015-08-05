@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 07/27/2015 11:06:22
+// 	Generated: 08/05/2015 14:30:56
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Microsoft.IoT.Devices
@@ -148,6 +148,17 @@ namespace Microsoft.IoT.Devices
             get
             {
                 return resourceLoader.GetString("TypeNotDelegate");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Unknown pixel format '{0}'"
+        /// </summary>
+        public static string UnknownPixelFormat
+        {
+            get
+            {
+                return resourceLoader.GetString("UnknownPixelFormat");
             }
         }
     }

@@ -118,7 +118,7 @@ namespace Microsoft.IoT.Devices.Display
                 case DisplayPixelFormat.OneBit:
                     bitsPerPixel = 1;
                     break;
-                case DisplayPixelFormat.Rgb16:
+                case DisplayPixelFormat.Rgb565:
                     bitsPerPixel = 16;
                     break;
                 default:
