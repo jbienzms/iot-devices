@@ -79,7 +79,7 @@ namespace Microsoft.IoT.Devices.Input
                 pin.DebounceTimeout = TimeSpan.FromMilliseconds(debounceTimeout);
             }
 
-            // Determine statate
+            // Determine state
             IsOn = (pin.Read() == onValue);
 
             // Subscribe to pin events

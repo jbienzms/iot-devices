@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 08/05/2015 14:30:56
+// 	Generated: 08/07/2015 17:43:15
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Microsoft.IoT.Devices
@@ -159,6 +159,28 @@ namespace Microsoft.IoT.Devices
             get
             {
                 return resourceLoader.GetString("UnknownPixelFormat");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "Unknwon display type '{0}'"
+        /// </summary>
+        public static string UnknownDisplayType
+        {
+            get
+            {
+                return resourceLoader.GetString("UnknownDisplayType");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "The element {'0'} is missing from the '{1}' template"
+        /// </summary>
+        public static string MissingTemplateElement
+        {
+            get
+            {
+                return resourceLoader.GetString("MissingTemplateElement");
             }
         }
     }

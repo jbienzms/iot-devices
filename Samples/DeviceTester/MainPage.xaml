@@ -16,8 +16,8 @@
         </Grid.RowDefinitions>
         <ListView x:Name="OutputList" Margin="5" />
         <Border BorderBrush="Black" BorderThickness="1" Padding="2" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-            <controls:GraphicsDisplayPanel x:Name="GraphicsPanel" Width="512" Height="256" DisplayWidth="128" DisplayHeight="64" Background="Blue" >
-                <Grid Width="128" Height="64">
+            <controls:GraphicsDisplayPanel x:Name="GraphicsPanel" Width="512" Height="256" DisplayWidth="128" DisplayHeight="160" Background="Blue" >
+                <Grid Width="128" Height="160">
                     <Ellipse Width="64" Height="64" Stroke="Blue" Fill="Yellow" />
                 </Grid>
             </controls:GraphicsDisplayPanel>

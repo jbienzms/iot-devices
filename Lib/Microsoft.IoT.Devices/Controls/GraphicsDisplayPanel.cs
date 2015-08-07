@@ -24,6 +24,12 @@ namespace Microsoft.IoT.Devices.Controls
 {
     public sealed class GraphicsDisplayPanel : ContentControl
     {
+        #region Static Version
+        #region Constants
+        private const string ContentPanelName = "ContentPanel";
+        #endregion // Constants
+
+        #region Dependency Property Definitions
         /// <summary>
         /// Identifies the <see cref="DisplayHeight"/> dependency property.
         /// </summary>
@@ -48,36 +54,85 @@ namespace Microsoft.IoT.Devices.Controls
                 return displayWidthPropertyField;
             }
         }
+        #endregion // Dependency Property Definitions
+        #endregion // Static Version
 
+        #region Instance Version
+        #region Member Variables
+        private bool autoUpdate;
         private Panel contentPanel;
+        private IGraphicsDisplay display;
+        private TimeSpan updateInterval;
+        private DispatcherTimer updateTimer;
+        #endregion // Member Variables
 
+        #region Constructors
         public GraphicsDisplayPanel()
         {
+            // Theme
             this.DefaultStyleKey = typeof(GraphicsDisplayPanel);
-        }
 
+            // Defaults
+            updateInterval = TimeSpan.FromSeconds(1);
+        }
+        #endregion // Constructors
+
+        #region Overrides / Event Handlers
         protected override void OnApplyTemplate()
         {
+            // Apply the template
             base.OnApplyTemplate();
-            contentPanel = FindName("ContentPanel") as Panel;
+
+            // Find the container for our display content
+            contentPanel = GetTemplateChild(ContentPanelName) as Panel;
+
+            // If it's missing, major error
+            if (contentPanel == null) { throw new MissingTemplateElementException(ContentPanelName, nameof(GraphicsDisplayPanel)); }
         }
 
-        public IAsyncAction RenderToAsync(IGraphicsDisplay display)
+        private async void UpdateTimer_Tick(object sender, object e)
         {
-            // Validate
-            if (display == null) throw new ArgumentNullException("display");
-
-            return Task.Run(async () =>
+            if (display != null)
             {
-                RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap();
-                await renderTargetBitmap.RenderAsync(contentPanel);
-                var pixelBuffer = (await renderTargetBitmap.GetPixelsAsync()).AsStream();
+                await RenderAsync();
+            }
+        }
+        #endregion // Overrides / Event Handlers
 
+        #region Internal Methods
+        private async Task RenderAsync()
+        {
+            // Make sure we have a display
+            if (display == null) {return;}
+
+            // Create render target
+            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap();
+
+            // Capture content panel (should be at display scale)
+            await renderTargetBitmap.RenderAsync(contentPanel);
+
+            // Get pixels
+            var pixelBuffer = (await renderTargetBitmap.GetPixelsAsync()).AsStream();
+
+            // Make sure we still have a display
+            if (display == null) { return; }
+
+            // Make sure nobody else is attempting to use the display at the same time
+            lock (display)
+            {
+                // Placeholder
                 byte[] pixel = new byte[3];
+
+                // Was display auto updating?
+                bool wasDisplayAutoUpdating = display.AutoUpdate;
+
+                // Stop display auto updates
+                display.AutoUpdate = false;
 
                 // Clear the display
                 display.Clear();
 
+                // Write out pixels
                 using (pixelBuffer)
                 {
                     for (int x = 0; x < renderTargetBitmap.PixelWidth; x++)
@@ -87,11 +142,8 @@ namespace Microsoft.IoT.Devices.Controls
                             // Read three bytes
                             pixelBuffer.Read(pixel, 0, 3);
 
-                            // Convert to color
-                            var color = Color.FromArgb(0xFF, pixel[0], pixel[1], pixel[2]);
-
                             // Write out pixels
-                            display.DrawPixel(x, y, color);
+                            display.DrawPixel(x, y, pixel[0], pixel[1], pixel[2]);
                         }
                     }
                 }
@@ -99,7 +151,113 @@ namespace Microsoft.IoT.Devices.Controls
                 // Update the display
                 display.Update();
 
-            }).AsAsyncAction();
+                // Resume display auto updates if previously running
+                display.AutoUpdate = wasDisplayAutoUpdating;
+            }
+        }
+
+        private void TryStartUpdates()
+        {
+            // If we don't have a display or auto updates are false, ignore
+            if ((display == null) || (autoUpdate == false)) { return; }
+
+            // If timer hasn't been created yet, create it
+            if (updateTimer == null)
+            {
+                updateTimer = new DispatcherTimer();
+                updateTimer.Interval = updateInterval;
+                updateTimer.Tick += UpdateTimer_Tick;
+            }
+
+            // Start timer if not already running
+            if (!updateTimer.IsEnabled) { updateTimer.Start(); }
+        }
+
+        private void StopUpdates()
+        {
+            // If no timer, ignore
+            if (updateTimer == null) { return; }
+
+            // Stop timer if running
+            if (updateTimer.IsEnabled) { updateTimer.Stop(); }
+        }
+        #endregion // Internal Methods
+
+        #region Public Properties
+        /// <summary>
+        /// Gets a value that indicates if the panel should automatically update the display.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if the panel should automatically update the display; otherwise <c>false</c>. The default is <c>false</c>.
+        /// </value>
+        /// <remarks>
+        /// The display will be updated as as frequently as <see cref="UpdateInterval"/>
+        /// </remarks>
+        [DefaultValue(false)]
+        public bool AutoUpdate
+        {
+            get
+            {
+                return autoUpdate;
+            }
+            set
+            {
+                if (value != autoUpdate)
+                {
+                    autoUpdate = value;
+                    if (autoUpdate)
+                    {
+                        TryStartUpdates();
+                    }
+                    else
+                    {
+                        StopUpdates();
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the display that the panel will render to.
+        /// </summary>
+        /// <value>
+        /// The display that the panel will render to.
+        /// </value>
+        public IGraphicsDisplay Display
+        {
+            get
+            {
+                return display;
+            }
+            set
+            {
+                // Make sure changing
+                if (value != display)
+                {
+                    // Change in thread safe way
+                    if (display != null)
+                    {
+                        lock(display)
+                        {
+                            display = value;
+                        }
+                    }
+                    else
+                    {
+                        display = value;
+                    }
+
+                    // Start or stop?
+                    if (display != null)
+                    {
+                        TryStartUpdates();
+                    }
+                    else
+                    {
+                        StopUpdates();
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -139,5 +297,32 @@ namespace Microsoft.IoT.Devices.Controls
                 SetValue(DisplayWidthProperty, value);
             }
         }
+
+        /// <summary>
+        /// Gets or sets a value that indicates how often the display will be updated.
+        /// </summary>
+        /// <value>
+        /// A value that indicates how often the display will be updated. The default is 1 second.
+        /// </value>
+        public TimeSpan UpdateInterval
+        {
+            get
+            {
+                return updateInterval;
+            }
+            set
+            {
+                if (value != updateInterval)
+                {
+                    // Store
+                    updateInterval = value;
+
+                    // If timer running, update timer
+                    if (updateTimer != null) { updateTimer.Interval = value; }
+                }
+            }
+        }
+        #endregion // Public Properties
+        #endregion // Instance Version
     }
 }

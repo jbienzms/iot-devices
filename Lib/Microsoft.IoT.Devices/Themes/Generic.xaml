@@ -10,9 +10,9 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:GraphicsDisplayPanel">
-                    <Viewbox>
-                        <Grid Background="{TemplateBinding Background}" Width="{TemplateBinding DisplayWidth}" Height="{TemplateBinding DisplayHeight}">
-                            <ContentPresenter x:Name="ContentPanel" Content="{TemplateBinding Content}" />
+                    <Viewbox Stretch="Uniform">
+                        <Grid x:Name="ContentPanel" Background="{TemplateBinding Background}" Width="{TemplateBinding DisplayWidth}" Height="{TemplateBinding DisplayHeight}">
+                            <ContentPresenter Content="{TemplateBinding Content}" />
                         </Grid>
                     </Viewbox>
                 </ControlTemplate>

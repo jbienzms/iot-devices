@@ -2,6 +2,7 @@
 //
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,9 +29,22 @@ namespace Microsoft.IoT.Devices.Display
         /// <param name="y"></param>
         /// <param name="color"></param>
         /// <remarks>
-        /// The pixel is not displayed until <see cref="UpdateAsync"/> is called.
+        /// The pixel is not displayed until <see cref="Update"/> is called.
         /// </remarks>
         void DrawPixel(int x, int y, Color color);
+
+        /// <summary>
+        /// Writes a pixel to display memory.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="red"></param>
+        /// <param name="green"></param>
+        /// <param name="blue"></param>
+        /// <remarks>
+        /// The pixel is not displayed until <see cref="Update"/> is called.
+        /// </remarks>
+        void DrawPixel(int x, int y, byte red, byte green, byte blue);
 
         /// <summary>
         /// Updates the display by writing any uncomitted operations.
@@ -40,6 +54,21 @@ namespace Microsoft.IoT.Devices.Display
 
 
         #region Public Properties
+        /// <summary>
+        /// Gets or sets a value that indicates if <see cref="Update"/> should automatically be called 
+        /// after drawing operations.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if <see cref="Update"/> should automatically be called 
+        /// after drawing operations; otherwise false. The default is <c>true</c>.
+        /// </value>
+        /// <remarks>
+        /// This property can be set to <c>false</c> to have more fine grained control over 
+        /// how many drawing operations are batched before they are sent to the display.
+        /// </remarks>
+        [DefaultValue(true)]
+        bool AutoUpdate { get; set; }
+
         /// <summary>
         /// Gets the height of the display in pixels.
         /// </summary>

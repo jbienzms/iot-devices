@@ -38,7 +38,6 @@ namespace DeviceTester
         #region Member Variables
         private AdcProviderManager adcManager;
         private IReadOnlyList<AdcController> adcControllers;
-        private DispatcherTimer displayTimer;
         private GpioController gpioController;
         private IGraphicsDisplay display;
         private bool isRunning;
@@ -108,25 +107,32 @@ namespace DeviceTester
             devices.Add(analogSensor);
         }
 
-        private void StartDisplay()
+        private async Task StartDisplayAsync()
         {
             // Create the display
-            display = new ST7735R()
+            var disp = new ST7735()
             {
                 ChipSelectLine = 0,
-                ControllerName = "SPI1",
+                ControllerName = "SPI0",
+                DisplayType = ST7735DisplayType.RBlack,
                 ModePin = gpioController.OpenPin(12),
                 ResetPin = gpioController.OpenPin(16),
             };
 
+            await disp.InitializeAsync();
+            disp.ClearScreen(Colors.Black);
+
+            // Store for future using generic interface
+            display = disp;
+
             // Add to device list
             devices.Add(display);
 
-            // Start timer
-            displayTimer = new DispatcherTimer();
-            displayTimer.Interval = TimeSpan.FromSeconds(1);
-            displayTimer.Tick += DisplayTimer_Tick;
-            displayTimer.Start();
+            // Associate with display panel
+            GraphicsPanel.Display = display;
+
+            // Start updates
+            GraphicsPanel.AutoUpdate = true;
         }
 
         private void StartPushButton()
@@ -212,16 +218,16 @@ namespace DeviceTester
                 new MCP3208()
                 {
                     ChipSelectLine = 0,
-                    ControllerName = "SPI0",
+                    ControllerName = "SPI1",
                 });
 
             // Get the well-known controller collection back
             adcControllers = await adcManager.GetControllersAsync();
 
-            StartDisplay();
+            await StartDisplayAsync();
             //StartPushButton();
             //StartSwitches();
-            //StartAnalog();
+            StartAnalog();
             //StartThumbstick();
         }
 
@@ -236,12 +242,11 @@ namespace DeviceTester
 
         private void StopDevices()
         {
-            if (displayTimer != null)
+            // Stop display rendering
+            if (display != null)
             {
-                displayTimer.Stop();
-                displayTimer.Tick -= DisplayTimer_Tick;
-                displayTimer = null;
-                display = null;
+                GraphicsPanel.AutoUpdate = false;
+                GraphicsPanel.Display = null;
             }
 
             for (int i = devices.Count -1; i >= 0; i--)
@@ -270,21 +275,6 @@ namespace DeviceTester
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             OutputList.Items.Clear();
-        }
-
-        private void DisplayTimer_Tick(object sender, object e)
-        {
-            if (display == null) { return; }
-
-            var r = (byte)rand.Next(255);
-            var g = (byte)rand.Next(255);
-            var b = (byte)rand.Next(255);
-            var color = Color.FromArgb(255, r, g, b);
-
-            var x = rand.Next(display.Width);
-            var y = rand.Next(display.Height);
-
-            display.DrawPixel(x, y, color);
         }
 
         private void PushButton_Click(IPushButton sender, EmptyEventArgs args)
