@@ -117,9 +117,10 @@ namespace DeviceTester
             var disp = new ST7735()
             {
                 ChipSelectLine = 0,
+                ClockFrequency = 40000000, // Attempt to run at 40 MHz
                 ControllerName = "SPI0",
+                DataCommandPin = gpioController.OpenPin(12),
                 DisplayType = ST7735DisplayType.RRed,
-                ModePin = gpioController.OpenPin(12),
                 ResetPin = gpioController.OpenPin(16),
 
                 Orientation = DisplayOrientations.Landscape,
@@ -127,8 +128,8 @@ namespace DeviceTester
                 Height = 128,
             };
 
+            // Initialize the display
             await disp.InitializeAsync();
-            disp.ClearScreen(Colors.Black);
 
             // Store for future using generic interface
             display = disp;
@@ -136,8 +137,8 @@ namespace DeviceTester
             // Add to device list
             devices.Add(display);
 
-            // Run faster than the default 1 second
-            GraphicsPanel.UpdateInterval = TimeSpan.FromMilliseconds(500);
+            // Update the display faster than the default of 1 second
+            GraphicsPanel.UpdateInterval = 500;
 
             // Associate with display panel
             GraphicsPanel.Display = display;

@@ -13,7 +13,7 @@ namespace Microsoft.IoT.Devices
     public sealed class ScheduledUpdater : IDisposable, IEventObserver
     {
         #region Member Variables
-        private IAsyncAction asyncUpdateAction;
+        private ScheduledAsyncAction asyncUpdateAction;
         private ScheduleOptions defaultScheduleOptions;
         private uint eventsSubscribed;
         private bool isStarted;
@@ -139,7 +139,7 @@ namespace Microsoft.IoT.Devices
         /// <param name="asyncUpdateAction">
         /// The asynchronous update action.
         /// </param>
-        public void SetAsyncUpdateAction(IAsyncAction asyncUpdateAction)
+        public void SetAsyncUpdateAction(ScheduledAsyncAction asyncUpdateAction)
         {
             // Validate
             if (asyncUpdateAction == null) throw new ArgumentNullException("asyncUpdateAction");

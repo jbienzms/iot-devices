@@ -11,6 +11,7 @@ using Microsoft.IoT.Devices.Display;
 using Windows.Foundation;
 using Windows.Storage.Streams;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
@@ -35,9 +36,7 @@ namespace Microsoft.IoT.Devices.Controls
         private bool autoUpdate;
         private Panel contentPanel;
         private IGraphicsDisplay display;
-        private Random rand;
-        private TimeSpan updateInterval;
-        private DispatcherTimer updateTimer;
+        private ScheduledUpdater updater;
         #endregion // Member Variables
 
         #region Constructors
@@ -46,9 +45,12 @@ namespace Microsoft.IoT.Devices.Controls
             // Theme
             this.DefaultStyleKey = typeof(GraphicsDisplayPanel);
 
-            // Defaults
-            rand = new Random();
-            updateInterval = TimeSpan.FromSeconds(1);
+            // Create the updater. Default to 1 second between updates.
+            // IMPORTANT: Do not use Scheduler.Default, create a new Scheduler.
+            // This puts us in parallel priority with other sensors and allows 
+            // us to run on a separate core if available.
+            updater = new ScheduledUpdater(scheduleOptions: new ScheduleOptions(1000), scheduler: new Scheduler());
+            updater.SetAsyncUpdateAction(RenderAsyncAction);
         }
         #endregion // Constructors
 
@@ -64,44 +66,65 @@ namespace Microsoft.IoT.Devices.Controls
             // If it's missing, major error
             if (contentPanel == null) { throw new MissingTemplateElementException(ContentPanelName, nameof(GraphicsDisplayPanel)); }
         }
-
-        private async void UpdateTimer_Tick(object sender, object e)
-        {
-            if (display != null)
-            {
-                await RenderAsync();
-            }
-        }
         #endregion // Overrides / Event Handlers
 
         #region Internal Methods
         // public Image PreviewImage { get; set; }
+        private IAsyncAction RenderAsyncAction()
+        {
+            return RenderAsync().AsAsyncAction();
+        }
         private async Task RenderAsync()
         {
             // Make sure we have a display
             if (display == null) { return; }
 
-            // Make sure we have a content panel and we're visible
-            if ((contentPanel == null) || (Visibility == Visibility.Collapsed))
+            // Placeholders
+            RenderTargetBitmap renderTargetBitmap = null;
+            DataReader reader = null;
+            int rHeight=0;
+            int rWidth=0;
+
+            // Task to wait for COMPLETION of the UI action
+            var uiComplete = new TaskCompletionSource<object>();
+
+            // The following steps must be done on the UI thread
+            // The task returned here completes when it the work 
+            // is SCHEDULED, not complete.
+            var t = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
-                // Warn developer
-                var msg = string.Format(Strings.ElementNotRendered, nameof(GraphicsDisplayPanel), Name);
-                Debug.WriteLine(msg);
+                // Make sure we have a content panel and we're visible
+                if ((contentPanel == null) || (Visibility == Visibility.Collapsed))
+                {
+                    // Warn developer
+                    var msg = string.Format(Strings.ElementNotRendered, nameof(GraphicsDisplayPanel), Name);
+                    Debug.WriteLine(msg);
 
-                // Bail
-                return;
-            }
-            
-            // Create render target
-            RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap();
+                    // Bail
+                    return;
+                }
 
-            // Capture content panel (should be at display scale)
-            await renderTargetBitmap.RenderAsync(contentPanel);
+                // Create render target
+                renderTargetBitmap = new RenderTargetBitmap();
 
-            // if (PreviewImage != null) { PreviewImage.Source = renderTargetBitmap; }
+                // Capture content panel (should be at display scale)
+                await renderTargetBitmap.RenderAsync(contentPanel);
 
-            // Get pixel reader
-            var reader = DataReader.FromBuffer(await renderTargetBitmap.GetPixelsAsync());
+                // if (PreviewImage != null) { PreviewImage.Source = renderTargetBitmap; }
+
+                // Get dimensions of bitmap
+                rHeight = renderTargetBitmap.PixelHeight;
+                rWidth = renderTargetBitmap.PixelWidth;
+
+                // Get pixel reader
+                reader = DataReader.FromBuffer(await renderTargetBitmap.GetPixelsAsync());
+
+                // Signal completion
+                uiComplete.SetResult(null);
+            });
+
+            // Wait for UI actions to complete
+            await uiComplete.Task;
 
             // Make sure we still have a display
             if (display == null) { return; }
@@ -126,10 +149,6 @@ namespace Microsoft.IoT.Devices.Controls
 
                 // Clear the display
                 display.Clear();
-
-                // Get dimensions of bitmap
-                var rHeight = renderTargetBitmap.PixelHeight;
-                var rWidth = renderTargetBitmap.PixelWidth;
 
                 // Placeholder for reading pixels
                 byte[] pixel = new byte[4]; // RGBA8
@@ -170,25 +189,14 @@ namespace Microsoft.IoT.Devices.Controls
             // If we don't have a display or auto updates are false, ignore
             if ((display == null) || (autoUpdate == false)) { return; }
 
-            // If timer hasn't been created yet, create it
-            if (updateTimer == null)
-            {
-                updateTimer = new DispatcherTimer();
-                updateTimer.Interval = updateInterval;
-                updateTimer.Tick += UpdateTimer_Tick;
-            }
-
-            // Start timer if not already running
-            if (!updateTimer.IsEnabled) { updateTimer.Start(); }
+            // Start the updater if not already started
+            if (!updater.IsStarted) { updater.Start(); }
         }
 
         private void StopUpdates()
         {
-            // If no timer, ignore
-            if (updateTimer == null) { return; }
-
-            // Stop timer if running
-            if (updateTimer.IsEnabled) { updateTimer.Stop(); }
+            // Stop updater if started
+            if (updater.IsStarted) { updater.Stop(); }
         }
         #endregion // Internal Methods
 
@@ -270,27 +278,25 @@ namespace Microsoft.IoT.Devices.Controls
         }
 
         /// <summary>
-        /// Gets or sets a value that indicates how often the display will be updated.
+        /// Gets or sets a value that indicates how often the display will be updated in milliseconds.
         /// </summary>
         /// <value>
-        /// A value that indicates how often the display will be updated. The default is 1 second.
+        /// A value that indicates how often the display will be updated in milliseconds. The default is 1000.
         /// </value>
-        public TimeSpan UpdateInterval
+        /// <remarks>
+        /// <see cref="GraphicsDisplayPanel"/> will attempt to achieve the target rate but 
+        /// the highest possible rate is bound to the CPU and transfer speed of the display. 
+        /// </remarks>
+        [DefaultValue(1000)]
+        public uint UpdateInterval
         {
             get
             {
-                return updateInterval;
+                return updater.UpdateInterval;
             }
             set
             {
-                if (value != updateInterval)
-                {
-                    // Store
-                    updateInterval = value;
-
-                    // If timer running, update timer
-                    if (updateTimer != null) { updateTimer.Interval = value; }
-                }
+                updater.UpdateInterval = value;
             }
         }
         #endregion // Public Properties

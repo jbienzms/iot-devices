@@ -135,7 +135,7 @@ namespace Microsoft.IoT.Devices.Display
         private ST7735DisplayType displayType = ST7735DisplayType.R; // Display type (version and color tab)
         private int height = 160;
         private bool isInitialized;
-        private GpioPin modePin;                // Switches between command and data
+        private GpioPin dataCommandPin;                // Switches between command and data
         private DisplayOrientations orientation = DisplayOrientations.Portrait;
         private DisplayPixelFormat pixelFormat = DisplayPixelFormat.Rgb565;
         private GpioPin resetPin;               // Resets the display
@@ -157,7 +157,7 @@ namespace Microsoft.IoT.Devices.Display
 
             // Validate
             if (string.IsNullOrWhiteSpace(controllerName)) { throw new MissingIoException(nameof(ControllerName)); }
-            if (modePin == null) { throw new MissingIoException(nameof(ModePin)); }
+            if (dataCommandPin == null) { throw new MissingIoException(nameof(DataCommandPin)); }
             if (resetPin == null) { throw new MissingIoException(nameof(ResetPin)); }
 
             // GPIO
@@ -224,89 +224,89 @@ namespace Microsoft.IoT.Devices.Display
         private async Task InitDisplayBAsync()
         {
             // 1: Software reset
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.SWRESET);
             await Task.Delay(50);
 
             // 2: Out of sleep mode
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.SLPOUT);
             await Task.Delay(500);
 
             // 3: Color mode
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.COLMOD);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x05); // TODO: This is 16-bit color. Support additional display types.
             await Task.Delay(10);
 
             // 4: Frame rate control
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.FRMCTR1);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x00); // Fastest Refresh
             Write(0x06); // 6 lines front porch
             Write(0x03); // 3 lines back porch
 
             // 5: Memory access control (directions)
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.MADCTL);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x08); // Row address, column address, bottom to top refresh
 
             // 6: Display settings #5
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.DISSET5);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x15); // 1 clock cycle no overlap, 2 cycle gate
             Write(0x02); // Fix on VTL
 
             // 7: Display inversion control
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.INVCTR);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x00); // Line inversion
 
             // 8: Power control 1
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.PWCTR1);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x02); // 4.7v // TODO: What other options???
             Write(0x70); // 1.0uA
             await Task.Delay(10);
 
             // 9: Power control 2
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.PWCTR2);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x05); // VGH = 14.7v, VTL = -7.35v // TODO: What other options???
 
             // 10: Power control 3
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.PWCTR3);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x01); // Op amp current small
             Write(0x02); // Boost frequency
 
             // 11: Voltage control
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.VMCTR1);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x01); // VCOMH = 4v // TODO: What other options???
             Write(0x02); // VCOML = -1.1v // TODO: What other options???
             await Task.Delay(10);
 
             // 12: Power control 6
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.PWCTR6);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x11); // ?
             Write(0x15); // ?
 
             // 13: Unknown 1
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.GMCTRP1);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x09);
             Write(0x16);
             Write(0x09);
@@ -325,9 +325,9 @@ namespace Microsoft.IoT.Devices.Display
             Write(0x0E);
 
             // 14: Unknown 2
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.GMCTRN1);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x0B);
             Write(0x14);
             Write(0x08);
@@ -347,30 +347,30 @@ namespace Microsoft.IoT.Devices.Display
             await Task.Delay(10);
 
             // 15: Column address set
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.CASET);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x00);
             Write(0x02); // XSTART = 2
             Write(0x00);
             Write(0x81); // XEND = 129
 
             // 16: Row address set
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.RASET);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x00);
             Write(0x02); // YSTART = 2
             Write(0x00);
             Write(0x81); // YEND = 129 // TODO: Doesn't look right
 
             // 17: Normal display on
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.NORON);
             await Task.Delay(10);
 
             // 18: Main screen turn on
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.DISPON);
             await Task.Delay(500);
         }
@@ -383,36 +383,36 @@ namespace Microsoft.IoT.Devices.Display
              *****************************************/
 
             // 1: Software reset
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.SWRESET);
             await Task.Delay(150);
 
             // 2: Out of sleep mode
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.SLPOUT);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             await Task.Delay(500);
 
             // 3: Frame rate control - normal mode
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.FRMCTR1);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x01); // ***********************************
             Write(0x2C); // Rate = fosc/(1x2+40) * (LINE+2C+2D)
             Write(0x2D); // ***********************************
 
             // 4: Frame rate control - idle mode
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.FRMCTR2);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x01); // ***********************************
             Write(0x2C); // Rate = fosc/(1x2+40) * (LINE+2C+2D)
             Write(0x2D); // ***********************************
 
             // 5: Frame rate control - partial mode
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.FRMCTR3);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x01); // ***********************************
             Write(0x2C); // Dot inversion mode
             Write(0x2D); // ***********************************
@@ -421,66 +421,66 @@ namespace Microsoft.IoT.Devices.Display
             Write(0x2D); // ***********************************
 
             // 6: Display inversion control
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.INVCTR);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x07); // No inversion
 
             // 7: Power control 1
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.PWCTR1);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0xA2);
             Write(0x02); // -4.6V
             Write(0x84); // Auto mode
 
             // 8: Power control 2
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.PWCTR2);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0xC5); // VGH25 = 2.4C VGSEL = -10 VGH = 3 * AVDD
 
             // 9: Power control 3
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.PWCTR3);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x0A); // Op amp current small
             Write(0x00); // Boost frequency
 
             // 10: Power control 4
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.PWCTR4);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x8A); // BCLK/2, Op amp current small & Medium low
             Write(0x20);
 
             // 11: Power control 5
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.PWCTR5);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x8A);
             Write(0xEE);
 
             // 12: VM control
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.VMCTR1);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x0E);
 
             // 13: Inversion control
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.INVOFF); // Inversion off
 
             // 14: Memory access
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.MADCTL);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0xC8); // Row address, column Address, bottom to top refresh
 
             // 15: Color mode
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.COLMOD);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x05); // TODO: Hard coded to 16-bit color
 
             /*****************************************
@@ -518,9 +518,9 @@ namespace Microsoft.IoT.Devices.Display
              *****************************************/
 
             // 1: Unknown 1
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.GMCTRP1);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x02);
             Write(0x1C);
             Write(0x07);
@@ -539,9 +539,9 @@ namespace Microsoft.IoT.Devices.Display
             Write(0x10);
 
             // 2: Unknown 2
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.GMCTRN1);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x03);
             Write(0x1D);
             Write(0x07);
@@ -561,12 +561,12 @@ namespace Microsoft.IoT.Devices.Display
 
 
             // 3: Normal display on
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.NORON);
             await Task.Delay(10);
 
             // 4: Main screen turn on
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.DISPON);
             await Task.Delay(100);
 
@@ -577,9 +577,9 @@ namespace Microsoft.IoT.Devices.Display
             if (displayType == ST7735DisplayType.RBlack)
             {
                 // If Black, change MADCTL color filter
-                modePin.Write(CommandMode);
+                dataCommandPin.Write(CommandMode);
                 Write((byte)LcdCommand.MADCTL);
-                modePin.Write(DataMode);
+                dataCommandPin.Write(DataMode);
                 Write(0xC0);
 
             }
@@ -587,7 +587,7 @@ namespace Microsoft.IoT.Devices.Display
 
         private void InitGpio()
         {
-            modePin.SetDriveMode(GpioPinDriveMode.Output);
+            dataCommandPin.SetDriveMode(GpioPinDriveMode.Output);
             resetPin.SetDriveMode(GpioPinDriveMode.Output);
         }
 
@@ -632,18 +632,18 @@ namespace Microsoft.IoT.Devices.Display
             }
 
             // 1: Column address set
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.CASET);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x00);
             Write(x0); // XSTART
             Write(0x00);
             Write(x1); // XEND
 
             // 2: Row address set
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.RASET);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
             Write(0x00);
             Write(y0); // YSTART
             Write(0x00);
@@ -686,7 +686,7 @@ namespace Microsoft.IoT.Devices.Display
             }
 
             // Send command
-            ModePin.Write(CommandMode);
+            DataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.MADCTL);
 
             // Compute data
@@ -696,7 +696,7 @@ namespace Microsoft.IoT.Devices.Display
             if (mv) { data |= (byte)MirrorCommand.MADCTL_MV; }
 
             // Send data
-            ModePin.Write(DataMode);
+            DataCommandPin.Write(DataMode);
             Write(data);
 
             // Flip?
@@ -731,9 +731,9 @@ namespace Microsoft.IoT.Devices.Display
         private void SetRamMode()
         {
             // Set to RAM write mode
-            modePin.Write(CommandMode);
+            dataCommandPin.Write(CommandMode);
             Write((byte)LcdCommand.RAMWR);
-            modePin.Write(DataMode);
+            dataCommandPin.Write(DataMode);
         }
 
         private void Write(byte command)
@@ -804,10 +804,10 @@ namespace Microsoft.IoT.Devices.Display
 
         public void Dispose()
         {
-            if (modePin != null)
+            if (dataCommandPin != null)
             {
-                modePin.Dispose();
-                modePin = null;
+                dataCommandPin.Dispose();
+                dataCommandPin = null;
             }
             if (resetPin != null)
             {
@@ -934,6 +934,28 @@ namespace Microsoft.IoT.Devices.Display
         }
 
         /// <summary>
+        /// Gets or sets the pin used to change between sending data and commands.
+        /// </summary>
+        /// <value>
+        /// The pin used to change between sending data and commands.
+        /// </value>
+        /// <remarks>
+        /// This pin is usually marked 'DC' or 'RS'.
+        /// </remarks>
+        public GpioPin DataCommandPin
+        {
+            get
+            {
+                return dataCommandPin;
+            }
+            set
+            {
+                if (isInitialized) { throw new IoChangeException(); }
+                dataCommandPin = value;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the type of display connected to the controller.
         /// </summary>
         /// <value>
@@ -972,28 +994,6 @@ namespace Microsoft.IoT.Devices.Display
                 if (value < 1) throw new ArgumentOutOfRangeException("value");
                 if (isInitialized) { throw new IoChangeException(); }
                 height = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the pin used to change the mode of the display between data and command.
-        /// </summary>
-        /// <value>
-        /// The pin used to change the mode of the display between data and command.
-        /// </value>
-        /// <remarks>
-        /// On some displays this pin is marked 'DC' or even 'RS'.
-        /// </remarks>
-        public GpioPin ModePin
-        {
-            get
-            {
-                return modePin;
-            }
-            set
-            {
-                if (isInitialized) { throw new IoChangeException(); }
-                modePin = value;
             }
         }
 

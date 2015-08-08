@@ -17,6 +17,11 @@ namespace Microsoft.IoT.Devices
     public delegate void ScheduledAction();
 
     /// <summary>
+    /// A delegate for scheduled asynchronous action. 
+    /// </summary>
+    public delegate IAsyncAction ScheduledAsyncAction();
+
+    /// <summary>
     /// The interface for a class that can schedule updates for other entities.
     /// </summary>
     public interface IScheduler
@@ -27,7 +32,7 @@ namespace Microsoft.IoT.Devices
         /// <param name="subscriber">
         /// The asynchronous subscriber to resume.
         /// </param>
-        void Resume(IAsyncAction subscriber);
+        void Resume(ScheduledAsyncAction subscriber);
 
         /// <summary>
         /// Resumes execution of a synchronous subscriber.
@@ -47,7 +52,7 @@ namespace Microsoft.IoT.Devices
         /// <param name="options">
         /// A <see cref="ScheduleOptions"/> that provides options for the schedule.
         /// </param>
-        void Schedule(IAsyncAction subscriber, ScheduleOptions options);
+        void Schedule(ScheduledAsyncAction subscriber, ScheduleOptions options);
 
         /// <summary>
         /// Schedules execution of a syncrhonous subscriber.
@@ -67,7 +72,7 @@ namespace Microsoft.IoT.Devices
         /// <param name="subscriber">
         /// The subscriber to suspend.
         /// </param>
-        void Suspend(IAsyncAction subscriber);
+        void Suspend(ScheduledAsyncAction subscriber);
 
         /// <summary>
         /// Suspends execution of a synchronous subscriber.
@@ -84,7 +89,7 @@ namespace Microsoft.IoT.Devices
         /// <param name="subscriber">
         /// The subscriber to unschedule.
         /// </param>
-        void Unschedule(IAsyncAction subscriber);
+        void Unschedule(ScheduledAsyncAction subscriber);
 
         /// <summary>
         /// Unschedules execution of a synchronous subscriber.
@@ -104,7 +109,7 @@ namespace Microsoft.IoT.Devices
         /// <param name="options">
         /// A <see cref="ScheduleOptions"/> that provides the updated options.
         /// </param>
-        void UpdateSchedule(IAsyncAction subscriber, ScheduleOptions options);
+        void UpdateSchedule(ScheduledAsyncAction subscriber, ScheduleOptions options);
 
         /// <summary>
         /// Updates the schedule for a synchronous subscriber.

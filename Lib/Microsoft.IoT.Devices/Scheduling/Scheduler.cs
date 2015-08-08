@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -54,7 +55,7 @@ namespace Microsoft.IoT.Devices
 
         #region Instance Version
         #region Member Variables
-        private Lookup<IAsyncAction> asyncSubscriptions;
+        private Lookup<ScheduledAsyncAction> asyncSubscriptions;
         private CancellationTokenSource cancellationSource;
         private uint reportInterval = DefaultReportInterval;
         private Lookup<ScheduledAction> subscriptions;
@@ -96,7 +97,7 @@ namespace Microsoft.IoT.Devices
             }
         }
 
-        private Subscription GetSubscription(IAsyncAction subscriber, bool throwIfMissing = true)
+        private Subscription GetSubscription(ScheduledAsyncAction subscriber, bool throwIfMissing = true)
         {
             // Validate
             if (subscriber == null) throw new ArgumentNullException("subscriber");
@@ -161,7 +162,8 @@ namespace Microsoft.IoT.Devices
             {
                 lock (asyncSubscriptions)
                 {
-                    asyncMin = asyncSubscriptions.Values.Where((s) => !s.IsSuspended).Min((s) => s.Options.UpdateInterval);
+                    uint? newMin = asyncSubscriptions.Values.Where((s) => !s.IsSuspended).Min((s) => (uint?)s.Options.UpdateInterval);
+                    if (newMin.HasValue) { asyncMin = newMin.Value; }
                 }
             }
 
@@ -169,7 +171,8 @@ namespace Microsoft.IoT.Devices
             {
                 lock (subscriptions)
                 {
-                    syncMin = subscriptions.Values.Where((s) => !s.IsSuspended).Min((s) => s.Options.UpdateInterval);
+                    uint? newMin = subscriptions.Values.Where((s) => !s.IsSuspended).Min((s) => (uint?)s.Options.UpdateInterval);
+                    if (newMin.HasValue) { syncMin = newMin.Value; }
                 }
             }
 
@@ -180,33 +183,74 @@ namespace Microsoft.IoT.Devices
         {
             return Task.Run(async () =>
             {
+                // int logCount=0;
+
                 // TODO: Find a higher resolution way of tracking time
                 while (!cancellationSource.IsCancellationRequested)
                 {
                     // Capture start time
                     var loopStart = DateTime.Now;
 
-                    // TODO: Start all asynchronous subscribers
+                    // Placeholder for task that represents all async tasks
+                    Task asyncWhenAll = null;
 
-                    // Run all synchronous subscribers
-                    if (subscriptions != null)
+                    // PHASE 1: START all asynchronous subscribers running
+                    if ((asyncSubscriptions != null) && (asyncSubscriptions.Count > 0))
                     {
-                        lock (subscriptions)
+                        // What to schedule
+                        var actions = new Collection<Task>();
+
+                        // Thread safe
+                        lock (asyncSubscriptions)
                         {
-                            foreach (var sub in subscriptions)
+                            // Look at each subscription
+                            foreach (var sub in asyncSubscriptions)
                             {
+                                // If not suspended
                                 if (!sub.Value.IsSuspended)
                                 {
+                                    // Add to list of things to schedule (as a task)
+                                    actions.Add(sub.Key().AsTask());
+                                }
+                            }
+                        }
+
+                        // Actually schedule
+                        asyncWhenAll = Task.WhenAll(actions);
+                    }
+
+                    // PHASE 2: RUN all synchronous subscribers
+                    if (subscriptions != null)
+                    {
+                        // Thread safe
+                        lock (subscriptions)
+                        {
+                            // Look at each subscription
+                            foreach (var sub in subscriptions)
+                            {
+                                // If not suspended
+                                if (!sub.Value.IsSuspended)
+                                {
+                                    // Execute synchronously
                                     sub.Key();
                                 }
                             }
                         }
                     }
 
-                    // TODO: Wait for asynchronous subscribers to finish
+                    // PHASE 3: WAIT for asynchronous subscribers to finish
+                    if (asyncWhenAll != null)
+                    {
+                        await asyncWhenAll;
+                    }
 
                     // How much time did the loop take?
                     var loopTime = (DateTime.Now - loopStart).TotalMilliseconds;
+
+                    //if (logCount++ % 20 == 0)
+                    //{
+                    //    Debug.WriteLine(string.Format("Loop Time: {0}", loopTime));
+                    //}
 
                     // If there's any time left, give CPU back
                     if (loopTime < reportInterval)
@@ -226,7 +270,7 @@ namespace Microsoft.IoT.Devices
             EnsureMinReportInterval(s.Options.UpdateInterval);
         }
 
-        public void Resume(IAsyncAction subscriber)
+        public void Resume(ScheduledAsyncAction subscriber)
         {
             var s = GetSubscription(subscriber);
             s.IsSuspended = false;
@@ -256,14 +300,14 @@ namespace Microsoft.IoT.Devices
             QueryStart();
         }
 
-        public void Schedule(IAsyncAction subscriber, ScheduleOptions options)
+        public void Schedule(ScheduledAsyncAction subscriber, ScheduleOptions options)
         {
             // Check for existing subscription
             var sub = GetSubscription(subscriber, false);
             if (sub != null) { throw new InvalidOperationException(Strings.AlreadySubscribed); }
 
             // Make sure lookup exists
-            if (asyncSubscriptions == null) { asyncSubscriptions = new Lookup<IAsyncAction>(); }
+            if (asyncSubscriptions == null) { asyncSubscriptions = new Lookup<ScheduledAsyncAction>(); }
 
             // Threadsafe
             lock (asyncSubscriptions)
@@ -327,7 +371,7 @@ namespace Microsoft.IoT.Devices
             RecalcReportInterval();
         }
 
-        public void Suspend(IAsyncAction subscriber)
+        public void Suspend(ScheduledAsyncAction subscriber)
         {
             GetSubscription(subscriber).IsSuspended = true;
             RecalcReportInterval();
@@ -350,7 +394,7 @@ namespace Microsoft.IoT.Devices
             RecalcReportInterval();
         }
 
-        public void Unschedule(IAsyncAction subscriber)
+        public void Unschedule(ScheduledAsyncAction subscriber)
         {
             if (asyncSubscriptions != null)
             {
@@ -381,7 +425,7 @@ namespace Microsoft.IoT.Devices
             }
         }
 
-        public void UpdateSchedule(IAsyncAction subscriber, ScheduleOptions options)
+        public void UpdateSchedule(ScheduledAsyncAction subscriber, ScheduleOptions options)
         {
             if (options == null) throw new ArgumentNullException("options");
             GetSubscription(subscriber).Options = options;
