@@ -38,11 +38,11 @@ namespace DeviceTester
         #region Member Variables
         private AdcProviderManager adcManager;
         private IReadOnlyList<AdcController> adcControllers;
+        private DispatcherTimer clockTimer;
         private GpioController gpioController;
         private IGraphicsDisplay display;
         private bool isRunning;
         private string lastOutput;
-        private Random rand;
         private Collection<IDevice> devices = new Collection<IDevice>();
         #endregion // Member Variables
 
@@ -50,7 +50,10 @@ namespace DeviceTester
         public MainPage()
         {
             this.InitializeComponent();
-            rand = new Random();
+            clockTimer = new DispatcherTimer();
+            clockTimer.Interval = TimeSpan.FromSeconds(1);
+            clockTimer.Tick += ClockTimer_Tick;
+            clockTimer.Start();
         }
         #endregion // Constructors
 
@@ -114,7 +117,7 @@ namespace DeviceTester
             {
                 ChipSelectLine = 0,
                 ControllerName = "SPI0",
-                DisplayType = ST7735DisplayType.RBlack,
+                DisplayType = ST7735DisplayType.RRed,
                 ModePin = gpioController.OpenPin(12),
                 ResetPin = gpioController.OpenPin(16),
             };
@@ -275,6 +278,11 @@ namespace DeviceTester
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             OutputList.Items.Clear();
+        }
+
+        private void ClockTimer_Tick(object sender, object e)
+        {
+            TimeBlock.Text = DateTime.Now.ToString("T");
         }
 
         private void PushButton_Click(IPushButton sender, EmptyEventArgs args)

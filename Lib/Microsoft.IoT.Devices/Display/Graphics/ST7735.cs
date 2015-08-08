@@ -107,14 +107,15 @@ namespace Microsoft.IoT.Devices.Display
             GMCTRP1 = 0xE0,
             GMCTRN1 = 0xE1
         }
-
         static private readonly GpioPinValue CommandMode = GpioPinValue.Low;
         static private readonly GpioPinValue DataMode = GpioPinValue.High;
+        private const int DefaultClockFrequency = 9500000;
         #endregion // Constants
 
         #region Member Variables
         private bool autoUpdate = true;         // Does the display automatically update after various drawing functions
         private int chipSelectLine = 0;         // The chip select line used on the SPI controller
+        private int clockFrequency = DefaultClockFrequency;   // The clock speed SPI will run at
         private int colStart;
         private string controllerName = "SPI0"; // The name of the SPI controller to use
         private byte[] displayBuffer;           // In memory allocation for display
@@ -360,8 +361,9 @@ namespace Microsoft.IoT.Devices.Display
             // Breathe
             await Task.Delay(10);
 
-            // Set addressable memory space and enter memory write mode
-            SetAddressWindow(0, 0, Width - 1, Height - 1);
+            // Set memory address space to full size of the display
+            // Note, this also goes to RAM mode
+            SetAddressWindow(0, 0, (byte)(Width - 1), (byte)(Height - 1));
         }
 
         private async Task InitDisplayBAsync()
@@ -631,24 +633,6 @@ namespace Microsoft.IoT.Devices.Display
              *****************************************/
             if (displayType == ST7735DisplayType.RGreen)
             {
-                // 1: Column address set
-                modePin.Write(CommandMode);
-                Write((byte)LcdCommand.CASET);
-                modePin.Write(DataMode);
-                Write(0x00); 
-                Write(0x02); // XSTART = 0
-                Write(0x00);
-                Write(0x7F + 0x02); // XEND = 127
-
-                // 2: Row address set
-                modePin.Write(CommandMode);
-                Write((byte)LcdCommand.RASET);
-                modePin.Write(DataMode);
-                Write(0x00);
-                Write(0x01); // XSTART = 0
-                Write(0x00);
-                Write(0x9F + 0x01); // XEND = 159
-
                 // Mem address
                 colStart = 2;
                 rowStart = 1;
@@ -659,24 +643,6 @@ namespace Microsoft.IoT.Devices.Display
              *****************************************/
             else if (displayType == ST7735DisplayType.RGreen144)
             {
-                // 1: Column address set
-                modePin.Write(CommandMode);
-                Write((byte)LcdCommand.CASET);
-                modePin.Write(DataMode);
-                Write(0x00);
-                Write(0x00); // XSTART = 0
-                Write(0x00);
-                Write(0x7F); // XEND = 127
-
-                // 2: Row address set
-                modePin.Write(CommandMode);
-                Write((byte)LcdCommand.RASET);
-                modePin.Write(DataMode);
-                Write(0x00);
-                Write(0x00); // XSTART = 0
-                Write(0x00);
-                Write(0x7F); // XEND = 127
-
                 // Mem Address
                 colStart = 2;
                 rowStart = 3;
@@ -687,24 +653,6 @@ namespace Microsoft.IoT.Devices.Display
              *****************************************/
             else
             {
-                // 1: Column address set
-                modePin.Write(CommandMode);
-                Write((byte)LcdCommand.CASET);
-                modePin.Write(DataMode);
-                Write(0x00);
-                Write(0x00); // XSTART = 0
-                Write(0x00);
-                Write(0x7F); // XEND = 127
-
-                // 2: Row address set
-                modePin.Write(CommandMode);
-                Write((byte)LcdCommand.RASET);
-                modePin.Write(DataMode);
-                Write(0x00);
-                Write(0x00); // XSTART = 0
-                Write(0x00);
-                Write(0x9F); // XEND = 159
-
                 // Mem set
                 colStart = rowStart = 0;
             }
@@ -793,8 +741,8 @@ namespace Microsoft.IoT.Devices.Display
             // Create SPI initialization settings
             var settings = new SpiConnectionSettings(chipSelectLine);
 
-            // Ported code specifies clock frequency of 4MHz
-            settings.ClockFrequency = 4000000;
+            // Use configured clock speed
+            settings.ClockFrequency = clockFrequency;
 
             // The port says idle is low and polarity is not specified. Using Mode0.
             settings.Mode = SpiMode.Mode0;
@@ -815,37 +763,42 @@ namespace Microsoft.IoT.Devices.Display
             spiDevice = await SpiDevice.FromIdAsync(deviceInfo.Id, settings);
         }
 
-        private void SetAddressWindow(int x0, int y0, int x1, int y1)
+        private void SetAddressWindow(byte x0, byte y0, byte x1, byte y1)
         {
-            // Convert to byte
-            byte bx0 = (byte)x0;
-            byte by0 = (byte)y0;
-            byte bx1 = (byte)x1;
-            byte by1 = (byte)y1;
+            if (displayType == ST7735DisplayType.RGreen)
+            {
+                // Green tab needs x incremented by 0x02
+                x0 += 0x02;
+                x1 += 0x02;
 
+                // Green tab needs y incremented by 0x01
+                y0 += 0x01;
+                y1 += 0x01;
+            }
+
+            // 1: Column address set
             modePin.Write(CommandMode);
-            Write((byte)LcdCommand.CASET);  // column addr set
+            Write((byte)LcdCommand.CASET);
             modePin.Write(DataMode);
             Write(0x00);
-            Write((byte)(bx0 + 1));   // XSTART 
+            Write(x0); // XSTART
             Write(0x00);
-            Write((byte)(bx1 + 1));   // XEND
+            Write(x1); // XEND
 
+            // 2: Row address set
             modePin.Write(CommandMode);
-            Write((byte)LcdCommand.RASET);  // row addr set
+            Write((byte)LcdCommand.RASET);
             modePin.Write(DataMode);
             Write(0x00);
-            Write((byte)(by0 + 2));    // YSTART
+            Write(y0); // YSTART
             Write(0x00);
-            Write((byte)(by1 + 2));    // YEND
+            Write(y1); // YEND
 
             // Return to RAM write mode
-            modePin.Write(CommandMode);
-            Write((byte)LcdCommand.RAMWR);  // write to RAM
-            modePin.Write(DataMode);
+            SetRamMode();
         }
 
-        public void SetPixel(int x, int y, uint nativeColor) 
+        private void SetPixel(int x, int y, uint nativeColor) 
         {
             // TODO: Should not be ushort
             ushort uscolor = (ushort)nativeColor;
@@ -854,6 +807,14 @@ namespace Microsoft.IoT.Devices.Display
             var index = ((y * width) + x) * sizeof(ushort);
             Write(index, (byte)(uscolor >> 8));
             Write(++index, (byte)(uscolor));
+        }
+
+        private void SetRamMode()
+        {
+            // Set to RAM write mode
+            modePin.Write(CommandMode);
+            Write((byte)LcdCommand.RAMWR);
+            modePin.Write(DataMode);
         }
 
         private void Write(byte command)
@@ -1004,6 +965,27 @@ namespace Microsoft.IoT.Devices.Display
             {
                 if (isInitialized) { throw new IoChangeException(); }
                 chipSelectLine = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the clock frequency that SPI will run at in MHz.
+        /// </summary>
+        /// <value>
+        /// The clock frequency in that SPI will run at in MHz. The default is 9500000.
+        /// </value>
+        [DefaultValue(DefaultClockFrequency)]
+        public int ClockFrequency
+        {
+            get
+            {
+                return clockFrequency;
+            }
+            set
+            {
+                if (value < 1) throw new ArgumentOutOfRangeException("value");
+                if (isInitialized) { throw new IoChangeException(); }
+                clockFrequency = value;
             }
         }
 

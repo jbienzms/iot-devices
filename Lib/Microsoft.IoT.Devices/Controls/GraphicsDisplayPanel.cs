@@ -8,6 +8,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Microsoft.IoT.Devices.Display;
 using Windows.Foundation;
+using Windows.Storage.Streams;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -62,6 +63,7 @@ namespace Microsoft.IoT.Devices.Controls
         private bool autoUpdate;
         private Panel contentPanel;
         private IGraphicsDisplay display;
+        private Random rand;
         private TimeSpan updateInterval;
         private DispatcherTimer updateTimer;
         #endregion // Member Variables
@@ -73,6 +75,7 @@ namespace Microsoft.IoT.Devices.Controls
             this.DefaultStyleKey = typeof(GraphicsDisplayPanel);
 
             // Defaults
+            rand = new Random();
             updateInterval = TimeSpan.FromSeconds(1);
         }
         #endregion // Constructors
@@ -111,8 +114,8 @@ namespace Microsoft.IoT.Devices.Controls
             // Capture content panel (should be at display scale)
             await renderTargetBitmap.RenderAsync(contentPanel);
 
-            // Get pixels
-            var pixelBuffer = (await renderTargetBitmap.GetPixelsAsync()).AsStream();
+            // Get pixel reader
+            var reader = DataReader.FromBuffer(await renderTargetBitmap.GetPixelsAsync());
 
             // Make sure we still have a display
             if (display == null) { return; }
@@ -120,27 +123,40 @@ namespace Microsoft.IoT.Devices.Controls
             // Make sure nobody else is attempting to use the display at the same time
             lock (display)
             {
-                // Placeholder
-                byte[] pixel = new byte[3];
-
                 // Was display auto updating?
                 bool wasDisplayAutoUpdating = display.AutoUpdate;
 
                 // Stop display auto updates
                 display.AutoUpdate = false;
 
+                /*
+                var x = rand.Next(display.Width);
+                var y = rand.Next(display.Height);
+                var r = (byte)rand.Next(255);
+                var g = (byte)rand.Next(255);
+                var b = (byte)rand.Next(255);
+                display.DrawPixel(x, y, r, g, b);
+                */
+
                 // Clear the display
                 display.Clear();
 
+                // Get dimensions of bitmap
+                var rHeight = renderTargetBitmap.PixelHeight;
+                var rWidth = renderTargetBitmap.PixelWidth;
+
+                // Placeholder for reading pixels
+                byte[] pixel = new byte[4]; // RGBA8
+
                 // Write out pixels
-                using (pixelBuffer)
+                using (reader)
                 {
-                    for (int x = 0; x < renderTargetBitmap.PixelWidth; x++)
+                    for (int y = 0; y < rHeight; y++)
                     {
-                        for (int y = 0; y < renderTargetBitmap.PixelHeight; y++)
+                        for (int x = 0; x < rWidth; x++)
                         {
                             // Read three bytes
-                            pixelBuffer.Read(pixel, 0, 3);
+                            reader.ReadBytes(pixel);
 
                             // Write out pixels
                             display.DrawPixel(x, y, pixel[0], pixel[1], pixel[2]);
