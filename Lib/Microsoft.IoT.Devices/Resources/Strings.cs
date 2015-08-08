@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 08/07/2015 17:43:15
+// 	Generated: 08/07/2015 23:22:13
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Microsoft.IoT.Devices
@@ -181,6 +181,17 @@ namespace Microsoft.IoT.Devices
             get
             {
                 return resourceLoader.GetString("MissingTemplateElement");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "WARNING: {0} with name '{1}' is collapsed or not loaded and cannot be rendered. Instead of collapsing the element try setting Opacity to 0."
+        /// </summary>
+        public static string ElementNotRendered
+        {
+            get
+            {
+                return resourceLoader.GetString("ElementNotRendered");
             }
         }
     }

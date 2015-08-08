@@ -7,13 +7,11 @@
 
 
     <Style TargetType="controls:GraphicsDisplayPanel">
-        <Setter Property="DataContext" Value="{Binding RelativeSource={RelativeSource Self}}" />
-        <Setter Property="Background" Value="Purple"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:GraphicsDisplayPanel">
                     <Viewbox Stretch="Uniform">
-                        <Grid x:Name="ContentPanel" Background="{Binding Background}" Width="{Binding DisplayWidth}" Height="{Binding DisplayHeight}">
+                        <Grid x:Name="ContentPanel">
                             <ContentPresenter Content="{TemplateBinding Content}" />
                         </Grid>
                     </Viewbox>

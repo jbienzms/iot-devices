@@ -40,7 +40,7 @@ namespace Microsoft.IoT.Devices.Display
             }
         }
 
-        static public uint GetNativeColor(DisplayPixelFormat format, byte red, byte green, byte blue)
+        static public ushort GetNativeColor(DisplayPixelFormat format, byte red, byte green, byte blue)
         {
             int redBits, greenBits, blueBits; // bits per color
             byte redMask, greenMask, blueMask; // mask for shifting
@@ -61,10 +61,10 @@ namespace Microsoft.IoT.Devices.Display
                     redMask = greenMask = blueMask = 0x0F;
                     break;
                 case DisplayPixelFormat.Rgb565:
-                    redBits = blueBits = 5;
-                    greenBits = 6;
-                    redMask = blueMask = 0x1F;
-                    greenMask = 0x3F;
+                    redBits = blueBits = 5;                 // Red and Blue have 5 bits
+                    greenBits = 6;                          // Green has 6 bits
+                    redMask = blueMask = 0x1F;              // 0001:1111
+                    greenMask = 0x3F;                       // 0011:1111
                     break;
                 case DisplayPixelFormat.Rgb666:
                     redBits = greenBits = blueBits = 6;
@@ -74,22 +74,27 @@ namespace Microsoft.IoT.Devices.Display
                     throw new InvalidOperationException(string.Format(Strings.UnknownPixelFormat, format));
             }
 
+            int x = 0;
+            if ((red > 0) && (green > 0) && (blue > 0))
+            {
+                x++;
+            }
 
-            // Apply mask
-            red &= redMask; // 0x1F
-            uint color = red;
+            // Apply mask // TODO: Faster algorithm?
+            red >>= (8 - redBits);
+            green >>= (8 - greenBits);
+            blue >>= (8 - blueBits);
 
-            color <<= greenBits; // 6
-            green &= greenMask; // 0x3F
+            // Shift and build
+            ushort color = blue;
+            color <<= greenBits;
             color |= green;
-
-            color <<= blueBits;
-            blue &= blueMask;
-            color |= blue;
+            color <<= redBits;
+            color |= red;
             return color;
         }
 
-        static public uint GetNativeColor(DisplayPixelFormat format, Color color)
+        static public ushort GetNativeColor(DisplayPixelFormat format, Color color)
         {
             return GetNativeColor(format, color.R, color.G, color.B);
         }

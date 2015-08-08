@@ -153,4 +153,7 @@
   <data name="MissingTemplateElement" xml:space="preserve">
     <value>The element {'0'} is missing from the '{1}' template</value>
   </data>
+  <data name="ElementNotRendered" xml:space="preserve">
+    <value>WARNING: {0} with name '{1}' is collapsed or not loaded and cannot be rendered. Instead of collapsing the element try setting Opacity to 0.</value>
+  </data>
 </root>

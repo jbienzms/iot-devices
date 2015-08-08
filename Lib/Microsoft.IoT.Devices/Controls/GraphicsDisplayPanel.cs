@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
@@ -19,8 +20,6 @@ using Windows.UI.Xaml.Markup;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
-// The Templated Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234235
-
 namespace Microsoft.IoT.Devices.Controls
 {
     public sealed class GraphicsDisplayPanel : ContentControl
@@ -29,33 +28,6 @@ namespace Microsoft.IoT.Devices.Controls
         #region Constants
         private const string ContentPanelName = "ContentPanel";
         #endregion // Constants
-
-        #region Dependency Property Definitions
-        /// <summary>
-        /// Identifies the <see cref="DisplayHeight"/> dependency property.
-        /// </summary>
-        static private readonly DependencyProperty displayHeightPropertyField = DependencyProperty.Register("DisplayHeight", typeof(double), typeof(GraphicsDisplayPanel), new PropertyMetadata(64d));
-        static internal DependencyProperty DisplayHeightProperty
-        {
-            get
-            {
-                return displayHeightPropertyField;
-            }
-        }
-
-        /// <summary>
-        /// Identifies the <see cref="DisplayWidth"/> dependency property.
-        /// </summary>
-        static private readonly DependencyProperty displayWidthPropertyField = DependencyProperty.Register("DisplayWidth", typeof(double), typeof(GraphicsDisplayPanel), new PropertyMetadata(128d));
-
-        static internal DependencyProperty DisplayWidthProperty
-        {
-            get
-            {
-                return displayWidthPropertyField;
-            }
-        }
-        #endregion // Dependency Property Definitions
         #endregion // Static Version
 
         #region Instance Version
@@ -103,16 +75,30 @@ namespace Microsoft.IoT.Devices.Controls
         #endregion // Overrides / Event Handlers
 
         #region Internal Methods
+        // public Image PreviewImage { get; set; }
         private async Task RenderAsync()
         {
             // Make sure we have a display
-            if (display == null) {return;}
+            if (display == null) { return; }
 
+            // Make sure we have a content panel and we're visible
+            if ((contentPanel == null) || (Visibility == Visibility.Collapsed))
+            {
+                // Warn developer
+                var msg = string.Format(Strings.ElementNotRendered, nameof(GraphicsDisplayPanel), Name);
+                Debug.WriteLine(msg);
+
+                // Bail
+                return;
+            }
+            
             // Create render target
             RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap();
 
             // Capture content panel (should be at display scale)
             await renderTargetBitmap.RenderAsync(contentPanel);
+
+            // if (PreviewImage != null) { PreviewImage.Source = renderTargetBitmap; }
 
             // Get pixel reader
             var reader = DataReader.FromBuffer(await renderTargetBitmap.GetPixelsAsync());
@@ -155,11 +141,18 @@ namespace Microsoft.IoT.Devices.Controls
                     {
                         for (int x = 0; x < rWidth; x++)
                         {
-                            // Read three bytes
+                            // Read raw pixel bytes
                             reader.ReadBytes(pixel);
 
+                            /*
+                            [0] = B
+                            [1] = G
+                            [2] = R
+                            [3] = A
+                            */
+
                             // Write out pixels
-                            display.DrawPixel(x, y, pixel[0], pixel[1], pixel[2]);
+                            display.DrawPixel(x, y, pixel[2], pixel[1], pixel[0]);
                         }
                     }
                 }
@@ -207,7 +200,7 @@ namespace Microsoft.IoT.Devices.Controls
         /// <c>true</c> if the panel should automatically update the display; otherwise <c>false</c>. The default is <c>false</c>.
         /// </value>
         /// <remarks>
-        /// The display will be updated as as frequently as <see cref="UpdateInterval"/>
+        /// The display will be updated as frequently as <see cref="UpdateInterval"/>
         /// </remarks>
         [DefaultValue(false)]
         public bool AutoUpdate
@@ -273,44 +266,6 @@ namespace Microsoft.IoT.Devices.Controls
                         StopUpdates();
                     }
                 }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the DisplayHeight of the <see cref="GraphicsDisplayPanel"/>. This is a dependency property.
-        /// </summary>
-        /// <value>
-        /// The DisplayHeight of the <see cref="GraphicsDisplayPanel"/>. The default is 64.
-        /// </value>
-        [DefaultValue(64d)]
-        public double DisplayHeight
-        {
-            get
-            {
-                return (double)GetValue(DisplayHeightProperty);
-            }
-            set
-            {
-                SetValue(DisplayHeightProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the DisplayWidth of the <see cref="GraphicsDisplayPanel"/>. This is a dependency property.
-        /// </summary>
-        /// <value>
-        /// The DisplayWidth of the <see cref="GraphicsDisplayPanel"/>. The default is 128.
-        /// </value>
-        [DefaultValue(128d)]
-        public double DisplayWidth
-        {
-            get
-            {
-                return (double)GetValue(DisplayWidthProperty);
-            }
-            set
-            {
-                SetValue(DisplayWidthProperty, value);
             }
         }
 
