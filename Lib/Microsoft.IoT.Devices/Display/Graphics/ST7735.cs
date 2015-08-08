@@ -10,6 +10,7 @@ using Windows.Devices.Enumeration;
 using Windows.Devices.Gpio;
 using Windows.Devices.Spi;
 using Windows.Foundation;
+using Windows.Graphics.Display;
 using Windows.UI;
 
 namespace Microsoft.IoT.Devices.Display
@@ -107,6 +108,18 @@ namespace Microsoft.IoT.Devices.Display
             GMCTRP1 = 0xE0,
             GMCTRN1 = 0xE1
         }
+
+        private enum MirrorCommand
+        {
+            MADCTL_MY = 0x80,
+            MADCTL_MX = 0x40,
+            MADCTL_MV = 0x20,
+            MADCTL_ML = 0x10,
+            MADCTL_RGB = 0x00,
+            MADCTL_BGR = 0x08,
+            MADCTL_MH = 0x04,
+        }
+
         static private readonly GpioPinValue CommandMode = GpioPinValue.Low;
         static private readonly GpioPinValue DataMode = GpioPinValue.High;
         private const int DefaultClockFrequency = 9500000;
@@ -123,6 +136,7 @@ namespace Microsoft.IoT.Devices.Display
         private int height = 160;
         private bool isInitialized;
         private GpioPin modePin;                // Switches between command and data
+        private DisplayOrientations orientation = DisplayOrientations.Portrait;
         private DisplayPixelFormat pixelFormat = DisplayPixelFormat.Rgb565;
         private GpioPin resetPin;               // Resets the display
         int rowStart;
@@ -154,176 +168,9 @@ namespace Microsoft.IoT.Devices.Display
 
             // Display
             await InitDisplayAsync();
-            // await OldInitDisplayAsync();
 
             // Done initializing
             isInitialized = true;
-        }
-
-        private async Task OldInitDisplayAsync()
-        {
-            // Allocate buffers
-            var bytesPerPixel = GraphicsTools.GetBitsPerPixel(pixelFormat) / 8;
-            displayBuffer = new byte[Width * Height * bytesPerPixel];
-            
-            resetPin.Write(GpioPinValue.High);
-            await Task.Delay(50);
-            resetPin.Write(GpioPinValue.Low);
-            await Task.Delay(50);
-            resetPin.Write(GpioPinValue.High);
-            await Task.Delay(50);
-
-            modePin.Write(CommandMode);
-            Write((byte)LcdCommand.SWRESET); // software reset
-            await Task.Delay(150);
-
-            modePin.Write(CommandMode);
-            Write((byte)LcdCommand.SLPOUT);  // out of sleep mode
-            await Task.Delay(150);
-
-            modePin.Write(CommandMode);
-            Write((byte)LcdCommand.FRMCTR1);  // frame rate control - normal mode
-            modePin.Write(DataMode);
-            Write(0x01);  // frame rate = fosc / (1 x 2 + 40) * (LINE + 2C + 2D)
-            Write(0x2C);
-            Write(0x2D);
-
-            modePin.Write(CommandMode);
-            Write((byte)LcdCommand.FRMCTR2);  // frame rate control - idle mode
-            modePin.Write(DataMode);
-            Write(0x01);  // frame rate = fosc / (1 x 2 + 40) * (LINE + 2C + 2D)
-            Write(0x2C);
-            Write(0x2D);
-
-            modePin.Write(CommandMode);
-            Write((byte)LcdCommand.FRMCTR3);  // frame rate control - partial mode
-            modePin.Write(DataMode);
-            Write(0x01); // dot inversion mode
-            Write(0x2C);
-            Write(0x2D);
-            Write(0x01); // line inversion mode
-            Write(0x2C);
-            Write(0x2D);
-
-            modePin.Write(CommandMode);
-            Write((byte)LcdCommand.INVCTR);  // display inversion control
-            modePin.Write(DataMode);
-            Write(0x07);  // no inversion
-
-            modePin.Write(CommandMode);
-            Write((byte)LcdCommand.PWCTR1);  // power control
-            modePin.Write(DataMode);
-            Write(0xA2);
-            Write(0x02);      // -4.6V
-            Write(0x84);      // AUTO mode
-
-            modePin.Write(CommandMode);
-            Write((byte)LcdCommand.PWCTR2);  // power control
-            modePin.Write(DataMode);
-            Write(0xC5);      // VGH25 = 2.4C VGSEL = -10 VGH = 3 * AVDD
-
-            modePin.Write(CommandMode);
-            Write((byte)LcdCommand.PWCTR3);  // power control
-            modePin.Write(DataMode);
-            Write(0x0A);      // Opamp current small 
-            Write(0x00);      // Boost frequency
-
-            modePin.Write(CommandMode);
-            Write((byte)LcdCommand.PWCTR4);  // power control
-            modePin.Write(DataMode);
-            Write(0x8A);      // BCLK/2, Opamp current small & Medium low
-            Write(0x2A);
-
-            Write((byte)LcdCommand.PWCTR5);  // power control
-            modePin.Write(DataMode);
-            Write(0x8A);
-            Write(0xEE);
-
-            modePin.Write(CommandMode);
-            Write((byte)LcdCommand.VMCTR1);  // power control
-            modePin.Write(DataMode);
-            Write(0x0E);
-
-            modePin.Write(CommandMode);
-            Write((byte)LcdCommand.INVOFF);    // don't invert display
-
-            modePin.Write(CommandMode);
-            Write((byte)LcdCommand.MADCTL);  // memory access control (directions)
-            modePin.Write(DataMode);
-            Write(0xC8);  // row address/col address, bottom to top refresh
-
-            modePin.Write(CommandMode);
-            Write((byte)LcdCommand.COLMOD);  // set color mode
-            modePin.Write(DataMode);
-            Write(0x05);        // 16-bit color
-
-            modePin.Write(CommandMode);
-            Write((byte)LcdCommand.CASET);  // column addr set
-            modePin.Write(DataMode);
-            Write(0x00);
-            Write(0x00);   // XSTART = 0
-            Write(0x00);
-            Write(0x7F);   // XEND = 127
-
-            modePin.Write(CommandMode);
-            Write((byte)LcdCommand.RASET);  // row addr set
-            modePin.Write(DataMode);
-            Write(0x00);
-            Write(0x00);    // XSTART = 0
-            Write(0x00);
-            Write(0x9F);    // XEND = 159
-
-            modePin.Write(CommandMode);
-            Write((byte)LcdCommand.GMCTRP1);
-            modePin.Write(DataMode);
-            Write(0x02);
-            Write(0x1c);
-            Write(0x07);
-            Write(0x12);
-            Write(0x37);
-            Write(0x32);
-            Write(0x29);
-            Write(0x2d);
-            Write(0x29);
-            Write(0x25);
-            Write(0x2B);
-            Write(0x39);
-            Write(0x00);
-            Write(0x01);
-            Write(0x03);
-            Write(0x10);
-
-            modePin.Write(CommandMode);
-            Write((byte)LcdCommand.GMCTRN1);
-            modePin.Write(DataMode);
-            Write(0x03);
-            Write(0x1d);
-            Write(0x07);
-            Write(0x06);
-            Write(0x2E);
-            Write(0x2C);
-            Write(0x29);
-            Write(0x2D);
-            Write(0x2E);
-            Write(0x2E);
-            Write(0x37);
-            Write(0x3F);
-            Write(0x00);
-            Write(0x00);
-            Write(0x02);
-            Write(0x10);
-
-            modePin.Write(CommandMode);
-            Write((byte)LcdCommand.DISPON);
-            await Task.Delay(50);
-
-            modePin.Write(CommandMode);
-            Write((byte)LcdCommand.NORON);  // normal display on
-            await Task.Delay(10);
-
-            modePin.Write(DataMode);
-
-
         }
 
         private async Task InitDisplayAsync()
@@ -361,9 +208,17 @@ namespace Microsoft.IoT.Devices.Display
             // Breathe
             await Task.Delay(10);
 
-            // Set memory address space to full size of the display
-            // Note, this also goes to RAM mode
-            SetAddressWindow(0, 0, (byte)(Width - 1), (byte)(Height - 1));
+            // If the orientation is not portrait we need to update orientation
+            if (orientation != DisplayOrientations.Portrait)
+            {
+                // Set orientation, do not flip
+                // Note, this also reverts to RAM mode when done
+                SetOrientation(false);
+            }
+
+            // Set address window to full size of the display
+            // Note, this also reverts to RAM mode when done
+            SetAddressWindow(0, 0, (byte)(width - 1), (byte)(height - 1));
         }
 
         private async Task InitDisplayBAsync()
@@ -526,7 +381,7 @@ namespace Microsoft.IoT.Devices.Display
             /*****************************************
              * Common
              *****************************************/
-            
+
             // 1: Software reset
             modePin.Write(CommandMode);
             Write((byte)LcdCommand.SWRESET);
@@ -661,7 +516,7 @@ namespace Microsoft.IoT.Devices.Display
             /*****************************************
              * Resume Common
              *****************************************/
-            
+
             // 1: Unknown 1
             modePin.Write(CommandMode);
             Write((byte)LcdCommand.GMCTRP1);
@@ -719,7 +574,7 @@ namespace Microsoft.IoT.Devices.Display
             /*****************************************
              * Black
              *****************************************/
-             if (displayType == ST7735DisplayType.RBlack)
+            if (displayType == ST7735DisplayType.RBlack)
             {
                 // If Black, change MADCTL color filter
                 modePin.Write(CommandMode);
@@ -798,7 +653,71 @@ namespace Microsoft.IoT.Devices.Display
             SetRamMode();
         }
 
-        private void SetPixel(int x, int y, uint nativeColor) 
+        private void SetOrientation(bool flipWidthAndHeight)
+        {
+            // MV - Vertical Addressing Mode
+            // MX - Mirror X
+            // MY - Mirror Y
+            bool mv = false;
+            bool mx = false;
+            bool my = false;
+
+            switch (orientation)
+            {
+                case DisplayOrientations.Landscape: // -90 degrees for this display
+                    // 1 = Mirror Y and Vertical Addressing
+                    my = true;
+                    mv = true;
+                    break;
+                case DisplayOrientations.LandscapeFlipped: // +90 degrees for this display
+                    // 3 = Mirror X and Vertical Addressing
+                    mx = true;
+                    mv = true;
+                    break;
+                case DisplayOrientations.Portrait: // 0 degrees for this display
+                    // 2 = No Mirror
+                    // Default - all false from above
+                    break;
+                case DisplayOrientations.PortraitFlipped: // +180 degrees for this display
+                    // 0 = Mirror X and Mirror Y
+                    mx = true; // TODO: Why does PortraitFlipped not work when the rest do...
+                    my = true;
+                    break;
+            }
+
+            // Send command
+            ModePin.Write(CommandMode);
+            Write((byte)LcdCommand.MADCTL);
+
+            // Compute data
+            byte data = (byte)(displayType == ST7735DisplayType.RBlack ? MirrorCommand.MADCTL_RGB : MirrorCommand.MADCTL_BGR);
+            if (mx) { data |= (byte)MirrorCommand.MADCTL_MX; }
+            if (my) { data |= (byte)MirrorCommand.MADCTL_MY; }
+            if (mv) { data |= (byte)MirrorCommand.MADCTL_MV; }
+
+            // Send data
+            ModePin.Write(DataMode);
+            Write(data);
+
+            // Flip?
+            if (flipWidthAndHeight)
+            {
+                // Flip
+                var ow = width;
+                width = height;
+                height = ow;
+
+                // Set address mode which also goes back to RAM when done
+                SetAddressWindow(0, 0, (byte)(width - 1), (byte)(height - 1));
+            }
+            else
+            {
+                // No flip, just go back to RAM mode
+                SetRamMode();
+            }
+        }
+
+        private void SetPixel(int x, int y, uint nativeColor)
         {
             // TODO: Should not be ushort
             ushort uscolor = (ushort)nativeColor;
@@ -916,6 +835,11 @@ namespace Microsoft.IoT.Devices.Display
             if (autoUpdate) { Update(); }
         }
 
+        public bool IsOrientationSupported(DisplayOrientations orientation)
+        {
+            return true;
+        }
+
         public void Update()
         {
             spiDevice.Write(displayBuffer);
@@ -947,7 +871,7 @@ namespace Microsoft.IoT.Devices.Display
                 autoUpdate = value;
             }
         }
-        
+
         /// <summary>
         /// Gets or sets the chip select line to use on the SPIO controller.
         /// </summary>
@@ -1070,6 +994,45 @@ namespace Microsoft.IoT.Devices.Display
             {
                 if (isInitialized) { throw new IoChangeException(); }
                 modePin = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the orientation of the display.
+        /// </summary>
+        /// <value>
+        /// A <see cref="DisplayOrientations"/> that specifies the orientation. 
+        /// The default is <see cref="DisplayOrientations.Portrait"/>.
+        /// </value>
+        [DefaultValue(DisplayOrientations.Portrait)]
+        public DisplayOrientations Orientation
+        {
+            get
+            {
+                return orientation;
+            }
+            set
+            {
+                // Make sure changing
+                if (value != orientation)
+                {
+                    // Validate
+                    if (value == DisplayOrientations.None) { throw new ArgumentOutOfRangeException("value"); }
+
+                    // Hold onto old
+                    var oldOrientation = orientation;
+
+                    // Update
+                    orientation = value;
+
+                    // If already initialized, update actual display
+                    if (isInitialized)
+                    {
+                        // Need to flip?
+                        bool flip = GraphicsTools.IsAspectChanging(oldOrientation: oldOrientation, newOrientation: value);
+                        SetOrientation(flipWidthAndHeight: flip);
+                    }
+                }
             }
         }
 

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Graphics.Display;
 using Windows.UI;
 
 namespace Microsoft.IoT.Devices.Display
@@ -97,6 +98,46 @@ namespace Microsoft.IoT.Devices.Display
         static public ushort GetNativeColor(DisplayPixelFormat format, Color color)
         {
             return GetNativeColor(format, color.R, color.G, color.B);
+        }
+
+        /// <summary>
+        /// Gets a value that indicates if the aspect ratio is changing as part of the orientation change.
+        /// </summary>
+        /// <param name="oldOrientation">
+        /// The old orientation.
+        /// </param>
+        /// <param name="newOrientation">
+        /// The new orientation.
+        /// </param>
+        /// <returns>
+        /// <c>true</c> if the aspect ratio is changing as part of the orientation change; otherwise <c>false</c>.
+        /// </returns>
+        static public bool IsAspectChanging(DisplayOrientations oldOrientation, DisplayOrientations newOrientation)
+        {
+            // Going from landscape to portrait?
+            if ((oldOrientation == DisplayOrientations.Landscape) ||
+                (oldOrientation == DisplayOrientations.LandscapeFlipped))
+            {
+                if ((newOrientation == DisplayOrientations.Portrait) ||
+                    (newOrientation == DisplayOrientations.PortraitFlipped))
+                {
+                    return true;
+                }
+            }
+
+            // Going from portrait to landscape?
+            if ((oldOrientation == DisplayOrientations.Portrait) ||
+                (oldOrientation == DisplayOrientations.PortraitFlipped))
+            {
+                if ((newOrientation == DisplayOrientations.Landscape) ||
+                    (newOrientation == DisplayOrientations.LandscapeFlipped))
+                {
+                    return true;
+                }
+            }
+
+            // Nope
+            return false;
         }
     }
 }

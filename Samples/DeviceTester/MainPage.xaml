@@ -17,8 +17,8 @@
         <ListView x:Name="OutputList" Margin="5" />
         <Border BorderBrush="Black" BorderThickness="1" Padding="2" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <controls:GraphicsDisplayPanel x:Name="GraphicsPanel" Width="512" Height="256">
-                <Grid Width="128" Height="160" Background="Blue" >
-                    <Ellipse Width="64" Height="64" Stroke="Blue" Fill="Yellow" />
+                <Grid Width="160" Height="128" Background="Blue" >
+                    <Ellipse x:Name="ColorDot" Width="64" Height="64" Stroke="Blue" Fill="Yellow" />
                     <TextBlock Visibility="Collapsed" Text="{Binding ElementName=TimeBlock, Path=Text}" FontFamily="{Binding ElementName=TimeBlock, Path=FontFamily}" FontSize="{Binding ElementName=TimeBlock, Path=FontSize}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" Margin="2,3,0,0" />
                     <TextBlock x:Name="TimeBlock" Text="00:00:00" FontFamily="Assets/Fonts/lcddot_tr.ttf#LCDDot TR" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" />
                     <TextBlock Text="44" FontFamily="Assets/Fonts/LCD2N___.TTF#LCD2" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Bottom">

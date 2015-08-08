@@ -25,6 +25,7 @@ using Windows.Devices.Adc;
 using System.Threading.Tasks;
 using Microsoft.IoT.Devices.Display;
 using Windows.UI;
+using Windows.Graphics.Display;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -120,6 +121,10 @@ namespace DeviceTester
                 DisplayType = ST7735DisplayType.RRed,
                 ModePin = gpioController.OpenPin(12),
                 ResetPin = gpioController.OpenPin(16),
+
+                Orientation = DisplayOrientations.Landscape,
+                Width = 160,
+                Height = 128,
             };
 
             await disp.InitializeAsync();
@@ -130,6 +135,9 @@ namespace DeviceTester
 
             // Add to device list
             devices.Add(display);
+
+            // Run faster than the default 1 second
+            GraphicsPanel.UpdateInterval = TimeSpan.FromMilliseconds(500);
 
             // Associate with display panel
             GraphicsPanel.Display = display;
@@ -228,10 +236,10 @@ namespace DeviceTester
             adcControllers = await adcManager.GetControllersAsync();
 
             await StartDisplayAsync();
-            //StartPushButton();
-            //StartSwitches();
-            StartAnalog();
-            //StartThumbstick();
+            StartPushButton();
+            StartSwitches();
+            // StartAnalog();
+            // StartThumbstick();
         }
 
         private void Stop()
@@ -292,12 +300,20 @@ namespace DeviceTester
 
         private void PushButton_Pressed(IPushButton sender, EmptyEventArgs args)
         {
-            Dispatcher.Run(() => AddOutput("Pressed"));
+            Dispatcher.Run(() =>
+            {
+                AddOutput("Pressed");
+                ColorDot.Fill = new SolidColorBrush(Colors.Red);
+            });
         }
 
         private void PushButton_Released(IPushButton sender, EmptyEventArgs args)
         {
-            Dispatcher.Run(() => AddOutput("Released"));
+            Dispatcher.Run(() =>
+            {
+                AddOutput("Released");
+                ColorDot.Fill = new SolidColorBrush(Colors.Yellow);
+            });
         }
 
         private void Proximity_Switched(object sender, bool e)

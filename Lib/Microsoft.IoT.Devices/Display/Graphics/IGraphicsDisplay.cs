@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation;
+using Windows.Graphics.Display;
 using Windows.UI;
 
 namespace Microsoft.IoT.Devices.Display
@@ -47,7 +48,18 @@ namespace Microsoft.IoT.Devices.Display
         void DrawPixel(int x, int y, byte red, byte green, byte blue);
 
         /// <summary>
-        /// Updates the display by writing any uncomitted operations.
+        /// Gets a value that indicates if the specified orientation is supported by the display.
+        /// </summary>
+        /// <param name="orientation">
+        /// The orientation to test.
+        /// </param>
+        /// <returns>
+        /// <c>true</c> if the specified orientation is supported by the display; otherwise <c>false</c>.
+        /// </returns>
+        bool IsOrientationSupported(DisplayOrientations orientation);
+
+        /// <summary>
+        /// Updates the display by writing any uncommitted operations.
         /// </summary>
         void Update();
         #endregion // Public Methods
@@ -68,6 +80,14 @@ namespace Microsoft.IoT.Devices.Display
         /// </remarks>
         [DefaultValue(true)]
         bool AutoUpdate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the orientation of the display.
+        /// </summary>
+        /// <value>
+        /// A <see cref="DisplayOrientations"/> that specifies the orientation.
+        /// </value>
+        DisplayOrientations Orientation { get; set; }
 
         /// <summary>
         /// Gets the height of the display in pixels.
