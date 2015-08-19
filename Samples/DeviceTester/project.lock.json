@@ -3,6 +3,27 @@
   "version": 1,
   "targets": {
     "UAP,Version=v10.0": {
+      "AMQPNetLite/1.1.0": {
+        "compile": {
+          "lib/windows8/Amqp.Store.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/Amqp.Store.dll": {}
+        }
+      },
+      "AzureSBLite/1.1.0": {
+        "dependencies": {
+          "AMQPNetLite": "[1.1.0, )"
+        },
+        "compile": {
+          "lib/windows81/Amqp.Store.dll": {},
+          "lib/windows81/AzureSBLite.WinRT.dll": {}
+        },
+        "runtime": {
+          "lib/windows81/Amqp.Store.dll": {},
+          "lib/windows81/AzureSBLite.WinRT.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -27,6 +48,13 @@
         },
         "runtime": {
           "lib/netcore50/Microsoft.CSharp.dll": {}
+        }
+      },
+      "Microsoft.IoT.Connections.Azure/0.7.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "[7.0.1, )",
+          "AMQPNetLite": "[1.1.0, )",
+          "AzureSBLite": "[1.1.0, )"
         }
       },
       "Microsoft.NETCore/5.0.0": {
@@ -199,6 +227,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -1538,6 +1574,27 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
+      "AMQPNetLite/1.1.0": {
+        "compile": {
+          "lib/windows8/Amqp.Store.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/Amqp.Store.dll": {}
+        }
+      },
+      "AzureSBLite/1.1.0": {
+        "dependencies": {
+          "AMQPNetLite": "[1.1.0, )"
+        },
+        "compile": {
+          "lib/windows81/Amqp.Store.dll": {},
+          "lib/windows81/AzureSBLite.WinRT.dll": {}
+        },
+        "runtime": {
+          "lib/windows81/Amqp.Store.dll": {},
+          "lib/windows81/AzureSBLite.WinRT.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -1562,6 +1619,13 @@
         },
         "runtime": {
           "lib/netcore50/Microsoft.CSharp.dll": {}
+        }
+      },
+      "Microsoft.IoT.Connections.Azure/0.7.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "[7.0.1, )",
+          "AMQPNetLite": "[1.1.0, )",
+          "AzureSBLite": "[1.1.0, )"
         }
       },
       "Microsoft.NETCore/5.0.0": {
@@ -1777,6 +1841,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -3163,6 +3235,27 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
+      "AMQPNetLite/1.1.0": {
+        "compile": {
+          "lib/windows8/Amqp.Store.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/Amqp.Store.dll": {}
+        }
+      },
+      "AzureSBLite/1.1.0": {
+        "dependencies": {
+          "AMQPNetLite": "[1.1.0, )"
+        },
+        "compile": {
+          "lib/windows81/Amqp.Store.dll": {},
+          "lib/windows81/AzureSBLite.WinRT.dll": {}
+        },
+        "runtime": {
+          "lib/windows81/Amqp.Store.dll": {},
+          "lib/windows81/AzureSBLite.WinRT.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -3187,6 +3280,13 @@
         },
         "runtime": {
           "lib/netcore50/Microsoft.CSharp.dll": {}
+        }
+      },
+      "Microsoft.IoT.Connections.Azure/0.7.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "[7.0.1, )",
+          "AMQPNetLite": "[1.1.0, )",
+          "AzureSBLite": "[1.1.0, )"
         }
       },
       "Microsoft.NETCore/5.0.0": {
@@ -3388,6 +3488,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -4760,6 +4868,27 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
+      "AMQPNetLite/1.1.0": {
+        "compile": {
+          "lib/windows8/Amqp.Store.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/Amqp.Store.dll": {}
+        }
+      },
+      "AzureSBLite/1.1.0": {
+        "dependencies": {
+          "AMQPNetLite": "[1.1.0, )"
+        },
+        "compile": {
+          "lib/windows81/Amqp.Store.dll": {},
+          "lib/windows81/AzureSBLite.WinRT.dll": {}
+        },
+        "runtime": {
+          "lib/windows81/Amqp.Store.dll": {},
+          "lib/windows81/AzureSBLite.WinRT.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -4784,6 +4913,13 @@
         },
         "runtime": {
           "lib/netcore50/Microsoft.CSharp.dll": {}
+        }
+      },
+      "Microsoft.IoT.Connections.Azure/0.7.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "[7.0.1, )",
+          "AMQPNetLite": "[1.1.0, )",
+          "AzureSBLite": "[1.1.0, )"
         }
       },
       "Microsoft.NETCore/5.0.0": {
@@ -5004,6 +5140,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -6390,6 +6534,27 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
+      "AMQPNetLite/1.1.0": {
+        "compile": {
+          "lib/windows8/Amqp.Store.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/Amqp.Store.dll": {}
+        }
+      },
+      "AzureSBLite/1.1.0": {
+        "dependencies": {
+          "AMQPNetLite": "[1.1.0, )"
+        },
+        "compile": {
+          "lib/windows81/Amqp.Store.dll": {},
+          "lib/windows81/AzureSBLite.WinRT.dll": {}
+        },
+        "runtime": {
+          "lib/windows81/Amqp.Store.dll": {},
+          "lib/windows81/AzureSBLite.WinRT.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -6414,6 +6579,13 @@
         },
         "runtime": {
           "lib/netcore50/Microsoft.CSharp.dll": {}
+        }
+      },
+      "Microsoft.IoT.Connections.Azure/0.7.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "[7.0.1, )",
+          "AMQPNetLite": "[1.1.0, )",
+          "AzureSBLite": "[1.1.0, )"
         }
       },
       "Microsoft.NETCore/5.0.0": {
@@ -6615,6 +6787,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -7987,6 +8167,27 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
+      "AMQPNetLite/1.1.0": {
+        "compile": {
+          "lib/windows8/Amqp.Store.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/Amqp.Store.dll": {}
+        }
+      },
+      "AzureSBLite/1.1.0": {
+        "dependencies": {
+          "AMQPNetLite": "[1.1.0, )"
+        },
+        "compile": {
+          "lib/windows81/Amqp.Store.dll": {},
+          "lib/windows81/AzureSBLite.WinRT.dll": {}
+        },
+        "runtime": {
+          "lib/windows81/Amqp.Store.dll": {},
+          "lib/windows81/AzureSBLite.WinRT.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -8011,6 +8212,13 @@
         },
         "runtime": {
           "lib/netcore50/Microsoft.CSharp.dll": {}
+        }
+      },
+      "Microsoft.IoT.Connections.Azure/0.7.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "[7.0.1, )",
+          "AMQPNetLite": "[1.1.0, )",
+          "AzureSBLite": "[1.1.0, )"
         }
       },
       "Microsoft.NETCore/5.0.0": {
@@ -8231,6 +8439,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -9617,6 +9833,27 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
+      "AMQPNetLite/1.1.0": {
+        "compile": {
+          "lib/windows8/Amqp.Store.dll": {}
+        },
+        "runtime": {
+          "lib/windows8/Amqp.Store.dll": {}
+        }
+      },
+      "AzureSBLite/1.1.0": {
+        "dependencies": {
+          "AMQPNetLite": "[1.1.0, )"
+        },
+        "compile": {
+          "lib/windows81/Amqp.Store.dll": {},
+          "lib/windows81/AzureSBLite.WinRT.dll": {}
+        },
+        "runtime": {
+          "lib/windows81/Amqp.Store.dll": {},
+          "lib/windows81/AzureSBLite.WinRT.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -9641,6 +9878,13 @@
         },
         "runtime": {
           "lib/netcore50/Microsoft.CSharp.dll": {}
+        }
+      },
+      "Microsoft.IoT.Connections.Azure/0.7.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "[7.0.1, )",
+          "AMQPNetLite": "[1.1.0, )",
+          "AzureSBLite": "[1.1.0, )"
         }
       },
       "Microsoft.NETCore/5.0.0": {
@@ -9842,6 +10086,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Newtonsoft.Json/7.0.1": {
+        "compile": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -11215,6 +11467,86 @@
     }
   },
   "libraries": {
+    "AMQPNetLite/1.1.0": {
+      "sha512": "HMFRLvaC1HtE1MYDX5dg9ng8clFPoUwTVwKhQEydk6i2+/u9/2zZ9nQRbITjfxYrlRBgAGGBVCP7EYALHe6QxA==",
+      "type": "Package",
+      "files": [
+        "_rels/.rels",
+        "AMQPNetLite.nuspec",
+        "lib/net45/Amqp.Net.dll",
+        "lib/net45/Amqp.Net.pdb",
+        "lib/net35/Amqp.Net35.dll",
+        "lib/net35/Amqp.Net35.pdb",
+        "lib/netcf39/Amqp.NetCF39.dll",
+        "lib/netcf39/Amqp.NetCF39.pdb",
+        "lib/netcf39/DeployFileList.txt",
+        "lib/netmf42/Amqp.NetMF.dll",
+        "lib/netmf42/Amqp.NetMF.pdb",
+        "lib/netmf42/le/Amqp.NetMF.pdb",
+        "lib/netmf42/le/Amqp.NetMF.pdbx",
+        "lib/netmf42/le/Amqp.NetMF.pe",
+        "lib/netmf42/be/Amqp.NetMF.pdb",
+        "lib/netmf42/be/Amqp.NetMF.pdbx",
+        "lib/netmf42/be/Amqp.NetMF.pe",
+        "lib/netmf43/Amqp.NetMF.dll",
+        "lib/netmf43/Amqp.NetMF.pdb",
+        "lib/netmf43/le/Amqp.NetMF.pdb",
+        "lib/netmf43/le/Amqp.NetMF.pdbx",
+        "lib/netmf43/le/Amqp.NetMF.pe",
+        "lib/netmf43/be/Amqp.NetMF.pdb",
+        "lib/netmf43/be/Amqp.NetMF.pdbx",
+        "lib/netmf43/be/Amqp.NetMF.pe",
+        "lib/windows8/Amqp.Store.dll",
+        "lib/windows8/Amqp.Store.pdb",
+        "lib/windows8/Amqp.Store.pri",
+        "lib/windowsphone8/Amqp.WP.dll",
+        "lib/windowsphone8/Amqp.WP.pdb",
+        "lib/portable-netcore451+wpa81/Amqp.NetCore.dll",
+        "lib/portable-netcore451+wpa81/Amqp.NetCore.pdb",
+        "lib/portable-netcore451+wpa81/Amqp.NetCore.pri",
+        "package/services/metadata/core-properties/d850cf41b1f24143a0f675f8b1d5b605.psmdcp",
+        "[Content_Types].xml"
+      ]
+    },
+    "AzureSBLite/1.1.0": {
+      "sha512": "EPKHpCRVBj7tGyVWlqOnY1ZJwjoYAtRsCpAgIoF/D4bRvRZsKGVaM+0HUTZqoUlyo2KK5ofORqc2589bDNfWrA==",
+      "type": "Package",
+      "files": [
+        "_rels/.rels",
+        "AzureSBLite.nuspec",
+        "lib/net45/Amqp.Net.dll",
+        "lib/net45/Amqp.Net.pdb",
+        "lib/net45/AzureSBLite.Net.dll",
+        "lib/net45/AzureSBLite.Net.pdb",
+        "lib/netcf39/Amqp.NetCF39.dll",
+        "lib/netcf39/Amqp.NetCF39.pdb",
+        "lib/netcf39/AzureSBLite.NetCf39.dll",
+        "lib/netcf39/AzureSBLite.NetCf39.pdb",
+        "lib/netcf39/DeployFileList.txt",
+        "lib/netmf43/be/Amqp.NetMF.pdbx",
+        "lib/netmf43/be/Amqp.NetMF.pe",
+        "lib/netmf43/be/AzureSBLite.NetMf.pdb",
+        "lib/netmf43/be/AzureSBLite.NetMf.pdbx",
+        "lib/netmf43/be/AzureSBLite.NetMf.pe",
+        "lib/netmf43/le/Amqp.NetMF.pdbx",
+        "lib/netmf43/le/Amqp.NetMF.pe",
+        "lib/netmf43/le/AzureSBLite.NetMf.pdb",
+        "lib/netmf43/le/AzureSBLite.NetMf.pdbx",
+        "lib/netmf43/le/AzureSBLite.NetMf.pe",
+        "lib/netmf43/Amqp.NetMF.dll",
+        "lib/netmf43/Amqp.NetMF.pdb",
+        "lib/netmf43/AzureSBLite.NetMf.dll",
+        "lib/netmf43/AzureSBLite.NetMf.pdb",
+        "lib/windows81/Amqp.Store.dll",
+        "lib/windows81/Amqp.Store.pdb",
+        "lib/windows81/Amqp.Store.pri",
+        "lib/windows81/AzureSBLite.WinRT.dll",
+        "lib/windows81/AzureSBLite.WinRT.pdb",
+        "lib/windows81/AzureSBLite.WinRT.pri",
+        "package/services/metadata/core-properties/b7da332093b1423c8ab891db2b638e51.psmdcp",
+        "[Content_Types].xml"
+      ]
+    },
     "Microsoft.CSharp/4.0.0": {
       "sha512": "oWqeKUxHXdK6dL2CFjgMcaBISbkk+AqEg+yvJHE4DElNzS4QaTsCflgkkqZwVlWby1Dg9zo9n+iCAMFefFdJ/A==",
       "type": "Package",
@@ -11253,6 +11585,27 @@
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
         "package/services/metadata/core-properties/a8a7171824ab4656b3141cda0591ff66.psmdcp",
+        "[Content_Types].xml"
+      ]
+    },
+    "Microsoft.IoT.Connections.Azure/0.7.0": {
+      "sha512": "UeyyRvwW36jHIg3I/t1wjHxmhay8AHKCSXaPzmLDI3og+bVnNaHhyGhwxNFdviu2AE7yYj3BjVtk0vZqYDQbTw==",
+      "type": "Package",
+      "files": [
+        "_rels/.rels",
+        "Microsoft.IoT.Connections.Azure.nuspec",
+        "package.bat",
+        "build/uap10.0/Microsoft.IoT.Connections.Azure.targets",
+        "build/uap10.0/ARM/Microsoft.IoT.Connections.Azure.dll",
+        "build/uap10.0/ARM/Microsoft.IoT.Connections.Azure.pri",
+        "build/uap10.0/ARM/Microsoft.IoT.Connections.Azure/Properties/Azure.rd.xml",
+        "build/uap10.0/x64/Microsoft.IoT.Connections.Azure.dll",
+        "build/uap10.0/x64/Microsoft.IoT.Connections.Azure.pri",
+        "build/uap10.0/x64/Microsoft.IoT.Connections.Azure/Properties/Azure.rd.xml",
+        "build/uap10.0/x86/Microsoft.IoT.Connections.Azure.dll",
+        "build/uap10.0/x86/Microsoft.IoT.Connections.Azure.pri",
+        "build/uap10.0/x86/Microsoft.IoT.Connections.Azure/Properties/Azure.rd.xml",
+        "package/services/metadata/core-properties/0015dba4013a41599579ac41c10bbf9b.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -11865,6 +12218,29 @@
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
         "package/services/metadata/core-properties/1d4eb9d0228b48b88d2df3822fba2d86.psmdcp",
+        "[Content_Types].xml"
+      ]
+    },
+    "Newtonsoft.Json/7.0.1": {
+      "sha512": "q3V4KLetMLnt1gpAVWgtXnHjKs0UG/RalBc29u2ZKxd5t5Ze4JBL5WiiYIklJyK/5CRiIiNwigVQUo0FgbsuWA==",
+      "type": "Package",
+      "files": [
+        "_rels/.rels",
+        "Newtonsoft.Json.nuspec",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.dll",
+        "lib/portable-net45+wp80+win8+wpa81+dnxcore50/Newtonsoft.Json.xml",
+        "tools/install.ps1",
+        "package/services/metadata/core-properties/49e907fc018c4c7ab632e6d4ad4766f8.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -14566,6 +14942,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "Microsoft.IoT.Connections.Azure >= 0.7.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0"
     ],
     "UAP,Version=v10.0": []

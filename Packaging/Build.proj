@@ -1,0 +1,82 @@
+<Project DefaultTargets="BuildAll" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Target Name="Setup">
+    <!-- Default to Release if not Specified -->
+    <PropertyGroup>
+      <BuildConfiguration Condition="'$(BuildConfiguration)' == ''" >Release</BuildConfiguration>
+      <BuildTargets Condition="'$(BuildTargets)' == ''" >Clean;Build</BuildTargets>
+    </PropertyGroup>
+  
+    <!-- Setup Environment Variables -->
+    <PropertyGroup>
+      <LibsDir>$(MSBuildProjectDirectory)\lib\uap10.0</LibsDir>
+      <RuntimesDir>$(MSBuildProjectDirectory)\runtimes</RuntimesDir>
+    </PropertyGroup>
+
+    <!-- Clean output folders -->
+    <Message Text="Cleaning output folders" Importance="high"/>
+    <ItemGroup>
+      <LibFiles Include="$(LibsDir)\**\*.*" />
+      <RuntimeFiles Include="$(RuntimesDir)\**\*.*" />
+    </ItemGroup>
+    <Delete Files="@(LibFiles)" />
+    <Delete Files="@(RuntimeFiles)" />
+
+    <!-- Define Architectures -->
+    <ItemGroup>
+      <Architecture Include="AnyCPU">
+        <BuildDir></BuildDir>
+        <OutDir>$(LibsDir)</OutDir>
+      </Architecture>
+      <!--<Architecture Include="ARM">
+        <BuildDir>ARM</BuildDir>
+        <OutDir>$(RuntimesDir)\win10-arm\lib</OutDir>
+      </Architecture>
+      <Architecture Include="x86">
+        <BuildDir>x86</BuildDir>
+        <OutDir>$(RuntimesDir)\win10-x86\lib</OutDir>
+      </Architecture>
+      <Architecture Include="x64">
+        <BuildDir>x64</BuildDir>
+        <OutDir>$(RuntimesDir)\win10-x64\lib</OutDir>
+      </Architecture>-->
+    </ItemGroup>
+
+    <!-- Define Projects to Build -->
+    <ItemGroup>
+      <ProjectToBuild Include="Microsoft.IoT.Devices.csproj">
+        <Path>..\Lib\Microsoft.IoT.Devices</Path>
+      </ProjectToBuild>
+    </ItemGroup>
+
+    <!-- Create a Merge of Each Project + Architecture Combination -->
+    <CreateItem Include="@(ProjectToBuild)" AdditionalMetadata="Architecture=%(Architecture.Identity);BuildDir=%(Architecture.BuildDir);OutDir=%(Architecture.OutDir)">
+      <Output ItemName="ProjectArchitectureToBuild" TaskParameter="Include"/>
+    </CreateItem>
+  </Target>
+
+  <!-- Build Each Project for Each Architecture -->
+  <Target Name="BuildAll" DependsOnTargets="Setup" Inputs="@(ProjectArchitectureToBuild)" Outputs="%(Architecture)">
+    <PropertyGroup>
+      <BuildDir>%(ProjectArchitectureToBuild.Path)\bin\%(ProjectArchitectureToBuild.BuildDir)\$(BuildConfiguration)</BuildDir>
+      <OutDir>%(ProjectArchitectureToBuild.OutDir)</OutDir>
+    </PropertyGroup>
+    <Message Text="Building %(ProjectArchitectureToBuild.Identity) - %(ProjectArchitectureToBuild.Architecture) to %(ProjectArchitectureToBuild.OutDir)" Importance="high" />
+    <MSBuild Projects="%(ProjectArchitectureToBuild.Path)\%(ProjectArchitectureToBuild.Identity)"
+             Targets="$(BuildTargets)"
+             Properties="Configuration=$(BuildConfiguration);Platform=%(ProjectArchitectureToBuild.Architecture)"
+             ContinueOnError="false"/>
+
+    <!-- Get output files for current build -->
+    <ItemGroup>
+      <OutputFiles Include="$(BuildDir)\**\*.*" />
+    </ItemGroup>
+
+    <!-- Making sure output dir exists -->
+    <MakeDir Directories="%(ProjectArchitectureToBuild.OutDir)" />
+    
+    <!-- Copy to Nuget package folder -->
+    <Message Text="Copying output files to $(OutDir)"  Importance="high"/>
+    <Copy SourceFiles="@(OutputFiles)" DestinationFolder="$(OutDir)\%(RecursiveDir)" />
+  </Target>
+</Project>

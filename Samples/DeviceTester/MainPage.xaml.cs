@@ -40,9 +40,11 @@ namespace DeviceTester
         private AdcProviderManager adcManager;
         private IReadOnlyList<AdcController> adcControllers;
         private DispatcherTimer clockTimer;
+        private DispatcherTimer cloudTimer;
         private GpioController gpioController;
         private IGraphicsDisplay display;
         private bool isRunning;
+        private double lastAnalog;
         private string lastOutput;
         private Collection<IDevice> devices = new Collection<IDevice>();
         #endregion // Member Variables
@@ -109,6 +111,17 @@ namespace DeviceTester
 
             // Add to device list
             devices.Add(analogSensor);
+        }
+
+        private void StartCloudReporting()
+        {
+            if (cloudTimer == null)
+            {
+                cloudTimer = new DispatcherTimer();
+                cloudTimer.Interval = TimeSpan.FromMinutes(5);
+                cloudTimer.Tick += CloudTimer_Tick;
+            }
+            cloudTimer.Start();
         }
 
         private async Task StartDisplayAsync()
@@ -236,11 +249,13 @@ namespace DeviceTester
             // Get the well-known controller collection back
             adcControllers = await adcManager.GetControllersAsync();
 
-            await StartDisplayAsync();
+            // await StartDisplayAsync();
             StartPushButton();
             StartSwitches();
-            // StartAnalog();
+            StartAnalog();
             // StartThumbstick();
+
+            StartCloudReporting();
         }
 
         private void Stop()
@@ -252,8 +267,16 @@ namespace DeviceTester
             StartButton.IsEnabled = true;
         }
 
+        private void StopCloudReporting()
+        {
+            if ((cloudTimer != null) && (cloudTimer.IsEnabled)) { cloudTimer.Stop(); }
+        }
+
         private void StopDevices()
         {
+            // Stop cloud reporting if running
+            StopCloudReporting();
+
             // Stop display rendering
             if (display != null)
             {
@@ -280,6 +303,10 @@ namespace DeviceTester
             // Get reading
             var r = args.Reading;
 
+            // Store for reporting
+            lastAnalog = r.Ratio;
+
+            // Print
             Debug.WriteLine(string.Format("Value: {0}  Ratio: {1}", r.Value, r.Ratio));
         }
 
@@ -292,6 +319,12 @@ namespace DeviceTester
         private void ClockTimer_Tick(object sender, object e)
         {
             TimeBlock.Text = DateTime.Now.ToString("T");
+        }
+
+        private void CloudTimer_Tick(object sender, object e)
+        {
+            var result = CloudReporter.ReportAnalog(lastAnalog);
+            AddOutput(string.Format("Report Analog to Cloud: {0} - Result: {1}", lastAnalog, result));
         }
 
         private void PushButton_Click(IPushButton sender, EmptyEventArgs args)
