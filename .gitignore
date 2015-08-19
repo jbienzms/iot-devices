@@ -22,10 +22,12 @@ bld/
 [Bb]in/
 [Oo]bj/
 
-# Packaging lbraries
+# Packaging libraries
 [Pp]ackaging/Builds/*
 [Pp]ackaging/Packages/*
 
+# Packaging content OK
+![Pp]ackaging/Content/**
 
 # Visual Studo 2015 cache/options directory
 .vs/
