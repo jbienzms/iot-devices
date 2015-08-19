@@ -23,8 +23,8 @@ bld/
 [Oo]bj/
 
 # Packaging lbraries
-[Pp]ackaging/lib/*
-[Pp]ackaging/runtime/*
+[Pp]ackaging/Builds/*
+[Pp]ackaging/Packages/*
 
 
 # Visual Studo 2015 cache/options directory

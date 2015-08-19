@@ -7,44 +7,29 @@
       <BuildTargets Condition="'$(BuildTargets)' == ''" >Clean;Build</BuildTargets>
     </PropertyGroup>
   
-    <!-- Setup Environment Variables -->
-    <PropertyGroup>
-      <LibsDir>$(MSBuildProjectDirectory)\lib\uap10.0</LibsDir>
-      <RuntimesDir>$(MSBuildProjectDirectory)\runtimes</RuntimesDir>
-    </PropertyGroup>
-
-    <!-- Clean output folders -->
-    <Message Text="Cleaning output folders" Importance="high"/>
-    <ItemGroup>
-      <LibFiles Include="$(LibsDir)\**\*.*" />
-      <RuntimeFiles Include="$(RuntimesDir)\**\*.*" />
-    </ItemGroup>
-    <Delete Files="@(LibFiles)" />
-    <Delete Files="@(RuntimeFiles)" />
-
     <!-- Define Architectures -->
     <ItemGroup>
       <Architecture Include="AnyCPU">
         <BuildDir></BuildDir>
-        <OutDir>$(LibsDir)</OutDir>
+        <OutDir>lib\uap10.0</OutDir>
       </Architecture>
       <!--<Architecture Include="ARM">
         <BuildDir>ARM</BuildDir>
-        <OutDir>$(RuntimesDir)\win10-arm\lib</OutDir>
+        <OutDir>runtime\win10-arm\lib</OutDir>
       </Architecture>
       <Architecture Include="x86">
         <BuildDir>x86</BuildDir>
-        <OutDir>$(RuntimesDir)\win10-x86\lib</OutDir>
+        <OutDir>runtime\win10-x86\lib</OutDir>
       </Architecture>
       <Architecture Include="x64">
         <BuildDir>x64</BuildDir>
-        <OutDir>$(RuntimesDir)\win10-x64\lib</OutDir>
+        <OutDir>runtime\win10-x64\lib</OutDir>
       </Architecture>-->
     </ItemGroup>
 
     <!-- Define Projects to Build -->
     <ItemGroup>
-      <ProjectToBuild Include="Microsoft.IoT.Devices.csproj">
+      <ProjectToBuild Include="Microsoft.IoT.Devices">
         <Path>..\Lib\Microsoft.IoT.Devices</Path>
       </ProjectToBuild>
     </ItemGroup>
@@ -59,10 +44,19 @@
   <Target Name="BuildAll" DependsOnTargets="Setup" Inputs="@(ProjectArchitectureToBuild)" Outputs="%(Architecture)">
     <PropertyGroup>
       <BuildDir>%(ProjectArchitectureToBuild.Path)\bin\%(ProjectArchitectureToBuild.BuildDir)\$(BuildConfiguration)</BuildDir>
-      <OutDir>%(ProjectArchitectureToBuild.OutDir)</OutDir>
+      <OutDir>$(MSBuildProjectDirectory)\Builds\%(ProjectArchitectureToBuild.Identity)\%(ProjectArchitectureToBuild.OutDir)</OutDir>
     </PropertyGroup>
-    <Message Text="Building %(ProjectArchitectureToBuild.Identity) - %(ProjectArchitectureToBuild.Architecture) to %(ProjectArchitectureToBuild.OutDir)" Importance="high" />
-    <MSBuild Projects="%(ProjectArchitectureToBuild.Path)\%(ProjectArchitectureToBuild.Identity)"
+
+    <!-- Clean output folder -->
+    <Message Text="Cleaning output folders" Importance="high"/>
+    <ItemGroup>
+      <CleanFiles Include="$(OutDir)\**\*.*" />
+    </ItemGroup>
+    <Delete Files="@(CleanFiles)" />
+
+    <!-- Build -->
+    <Message Text="Building %(ProjectArchitectureToBuild.Identity) - %(ProjectArchitectureToBuild.Architecture) to $(OutDir)" Importance="high" />
+    <MSBuild Projects="%(ProjectArchitectureToBuild.Path)\%(ProjectArchitectureToBuild.Identity).csproj"
              Targets="$(BuildTargets)"
              Properties="Configuration=$(BuildConfiguration);Platform=%(ProjectArchitectureToBuild.Architecture)"
              ContinueOnError="false"/>
@@ -73,7 +67,7 @@
     </ItemGroup>
 
     <!-- Making sure output dir exists -->
-    <MakeDir Directories="%(ProjectArchitectureToBuild.OutDir)" />
+    <MakeDir Directories="$(OutDir)" />
     
     <!-- Copy to Nuget package folder -->
     <Message Text="Copying output files to $(OutDir)"  Importance="high"/>
