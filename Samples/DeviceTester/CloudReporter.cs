@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Copyright (c) Microsoft. All rights reserved.
+//
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +16,6 @@ namespace DeviceTester
     static public class CloudReporter
     {
         #region Member Variables
-        static private ConnectionParameters connectionParams;
         static private HttpSender sender;
         #endregion // Member Variables
 

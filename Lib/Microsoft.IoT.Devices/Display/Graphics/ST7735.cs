@@ -129,7 +129,7 @@ namespace Microsoft.IoT.Devices.Display
         private bool autoUpdate = true;         // Does the display automatically update after various drawing functions
         private int chipSelectLine = 0;         // The chip select line used on the SPI controller
         private int clockFrequency = DefaultClockFrequency;   // The clock speed SPI will run at
-        private int colStart;
+        // private int colStart;
         private string controllerName = "SPI0"; // The name of the SPI controller to use
         private byte[] displayBuffer;           // In memory allocation for display
         private ST7735DisplayType displayType = ST7735DisplayType.R; // Display type (version and color tab)
@@ -139,7 +139,7 @@ namespace Microsoft.IoT.Devices.Display
         private DisplayOrientations orientation = DisplayOrientations.Portrait;
         private DisplayPixelFormat pixelFormat = DisplayPixelFormat.Rgb565;
         private GpioPin resetPin;               // Resets the display
-        int rowStart;
+        // int rowStart;
         private SpiDevice spiDevice;            // The SPI device the display is connected to
         private readonly byte[] spiByte = new byte[1]; // The allocated memory for a single byte command
         private int width = 128;
@@ -483,9 +483,10 @@ namespace Microsoft.IoT.Devices.Display
             dataCommandPin.Write(DataMode);
             Write(0x05); // TODO: Hard coded to 16-bit color
 
-            /*****************************************
-             * Green Tab
-             *****************************************/
+            /*
+            ///////////////////////////////////////////
+            // Green Tab
+            ///////////////////////////////////////////
             if (displayType == ST7735DisplayType.RGreen)
             {
                 // Mem address
@@ -493,9 +494,9 @@ namespace Microsoft.IoT.Devices.Display
                 rowStart = 1;
             }
 
-            /*****************************************
-             * Green Tab Version 1.44
-             *****************************************/
+            ///////////////////////////////////////////
+            // Green Tab Version 1.44
+            ///////////////////////////////////////////
             else if (displayType == ST7735DisplayType.RGreen144)
             {
                 // Mem Address
@@ -503,19 +504,19 @@ namespace Microsoft.IoT.Devices.Display
                 rowStart = 3;
             }
 
-            /*****************************************
-             * Red Tab or other
-             *****************************************/
+            ///////////////////////////////////////////
+            // Red Tab or other
+            ///////////////////////////////////////////
             else
             {
                 // Mem set
                 colStart = rowStart = 0;
             }
+            */
 
-
-            /*****************************************
-             * Resume Common
-             *****************************************/
+            ///////////////////////////////////////////
+            // Resume Common
+            ///////////////////////////////////////////
 
             // 1: Unknown 1
             dataCommandPin.Write(CommandMode);
@@ -571,9 +572,9 @@ namespace Microsoft.IoT.Devices.Display
             await Task.Delay(100);
 
 
-            /*****************************************
-             * Black
-             *****************************************/
+            ///////////////////////////////////////////
+            // Black
+            ///////////////////////////////////////////
             if (displayType == ST7735DisplayType.RBlack)
             {
                 // If Black, change MADCTL color filter

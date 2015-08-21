@@ -129,8 +129,8 @@ namespace Microsoft.IoT.Devices.Display
             pages = height / pixelsPerPage;
 
             // Create buffers
-            buffer = new byte[width, pages]; // * bitsPerPixel]; // TODO: How do we handle more than 1 bit
-            serializedBuffer = new byte[width * pages]; // * bitsPerPixel]; // TODO: How do we handle more than 1 bit
+            buffer = new byte[width, pages * bitsPerPixel]; // TODO: Is this the right way to handle more than 1 bit?
+            serializedBuffer = new byte[width * pages * bitsPerPixel]; // TODO: Is this the right way to handle more than 1 bit?
         }
 
         /// <summary>

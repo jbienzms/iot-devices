@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{5DDDBDE6-2A72-4012-9251-BA0A1087D117}</ProjectGuid>
+    <ProjectGuid>{CD0FDF48-E06A-4A49-9226-2CB0620C8F1A}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DeviceTester</RootNamespace>
-    <AssemblyName>DeviceTester</AssemblyName>
+    <RootNamespace>AvoidanceSample</RootNamespace>
+    <AssemblyName>AvoidanceSample</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
@@ -17,7 +17,7 @@
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>DeviceTester_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>AvoidanceSample_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -90,8 +90,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <Content Include="Assets\Fonts\lcddot_tr.ttf" />
-    <Content Include="Assets\Fonts\LCD2N___.TTF" />
     <None Include="..\..\License\IoTDevices.licenseheader">
       <Link>IoTDevices.licenseheader</Link>
     </None>
@@ -105,13 +103,12 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CloudReporter.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="DeviceTester_TemporaryKey.pfx" />
+    <None Include="AvoidanceSample_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Default.rd.xml" />
@@ -132,12 +129,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Lib\Microsoft.IoT.Devices\Microsoft.IoT.Devices.csproj">
-      <Project>{1ed1007a-7708-4721-b16b-4283a66a4290}</Project>
-      <Name>Microsoft.IoT.Devices</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="WindowsIoT, Version=10.0.10240.0">

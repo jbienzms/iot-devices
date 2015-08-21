@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(NuGetPackageRoot)' == ''">
+    <NuGetPackageRoot>C:\Users\jbienz\.nuget\packages\</NuGetPackageRoot>
+  </PropertyGroup>
+  <ImportGroup>
+    <Import Project="$(NuGetPackageRoot)\Microsoft.IoT.Devices\1.0.0-beta2\build\uap10.0\Microsoft.IoT.Devices.targets" Condition="Exists('$(NuGetPackageRoot)\Microsoft.IoT.Devices\1.0.0-beta2\build\uap10.0\Microsoft.IoT.Devices.targets')" />
+  </ImportGroup>
+</Project>

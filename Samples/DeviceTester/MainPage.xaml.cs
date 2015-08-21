@@ -249,7 +249,7 @@ namespace DeviceTester
             // Get the well-known controller collection back
             adcControllers = await adcManager.GetControllersAsync();
 
-            // await StartDisplayAsync();
+            await StartDisplayAsync();
             StartPushButton();
             StartSwitches();
             StartAnalog();

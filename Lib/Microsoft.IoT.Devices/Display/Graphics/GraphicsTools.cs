@@ -44,7 +44,6 @@ namespace Microsoft.IoT.Devices.Display
         static public ushort GetNativeColor(DisplayPixelFormat format, byte red, byte green, byte blue)
         {
             int redBits, greenBits, blueBits; // bits per color
-            byte redMask, greenMask, blueMask; // mask for shifting
             switch (format)
             {
                 case DisplayPixelFormat.OneBit:
@@ -59,17 +58,13 @@ namespace Microsoft.IoT.Devices.Display
                     }
                 case DisplayPixelFormat.Rgb444:
                     redBits = greenBits = blueBits = 4;
-                    redMask = greenMask = blueMask = 0x0F;
                     break;
                 case DisplayPixelFormat.Rgb565:
                     redBits = blueBits = 5;                 // Red and Blue have 5 bits
                     greenBits = 6;                          // Green has 6 bits
-                    redMask = blueMask = 0x1F;              // 0001:1111
-                    greenMask = 0x3F;                       // 0011:1111
                     break;
                 case DisplayPixelFormat.Rgb666:
                     redBits = greenBits = blueBits = 6;
-                    redMask = greenMask = blueMask = 0x3F;
                     break;
                 default:
                     throw new InvalidOperationException(string.Format(Strings.UnknownPixelFormat, format));
