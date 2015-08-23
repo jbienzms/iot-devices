@@ -6,33 +6,33 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.Devices.Adc;
-using Windows.Devices.Adc.Provider;
+using Windows.Devices.Pwm;
+using Windows.Devices.Pwm.Provider;
 using Windows.Foundation;
 
-namespace Microsoft.IoT.Devices.Adc
+namespace Microsoft.IoT.Devices.Pwm
 {
     /// <summary>
-    /// An implementation of <see cref="IAdcProvider"/> that allows multiple ADC 
+    /// An implementation of <see cref="IPwmProvider"/> that allows multiple PWM 
     /// controllers to be registered as a simple collection.
     /// </summary>
     /// <remarks>
     /// All controllers should be added to the <see cref="Providers"/> collection 
-    /// before calling <see cref="AdcProviderManager.GetControllersAsync"/>.
+    /// before calling <see cref="PwmProviderManager.GetControllersAsync"/>.
     /// </remarks>
-    public sealed class AdcProviderManager : IAdcProvider, IDisposable
+    public sealed class PwmProviderManager : IPwmProvider, IDisposable
     {
         #region Member Variables
-        private Collection<IAdcControllerProvider> providers;
+        private Collection<IPwmControllerProvider> providers;
         #endregion // Member Variables
 
         #region Constructors
         /// <summary>
-        /// Initializes a new <see cref="AdcProviderManager"/>.
+        /// Initializes a new <see cref="PwmProviderManager"/>.
         /// </summary>
-        public AdcProviderManager()
+        public PwmProviderManager()
         {
-            providers = new Collection<IAdcControllerProvider>();
+            providers = new Collection<IPwmControllerProvider>();
         }
         #endregion // Constructors
 
@@ -49,14 +49,14 @@ namespace Microsoft.IoT.Devices.Adc
         }
 
         /// <summary>
-        /// Gets the <see cref="AdcController"/> instances for each controller provider.
+        /// Gets the <see cref="PwmController"/> instances for each controller provider.
         /// </summary>
         /// <returns>
         /// An <see cref="IAsyncOperation"/> that yields the list of controllers.
         /// </returns>
-        public IAsyncOperation<IReadOnlyList<AdcController>> GetControllersAsync()
+        public IAsyncOperation<IReadOnlyList<PwmController>> GetControllersAsync()
         {
-            return AdcController.GetControllersAsync(this);
+            return PwmController.GetControllersAsync(this);
         }
         #endregion // Public Methods
 
@@ -67,7 +67,7 @@ namespace Microsoft.IoT.Devices.Adc
         /// <value>
         /// The collection of providers stored in the manager.
         /// </value>
-        public IList<IAdcControllerProvider> Providers
+        public IList<IPwmControllerProvider> Providers
         {
             get
             {
@@ -76,11 +76,11 @@ namespace Microsoft.IoT.Devices.Adc
         }
         #endregion // Public Properties
 
-        #region IAdcProvider Interface
-        IReadOnlyList<IAdcControllerProvider> IAdcProvider.GetControllers()
+        #region IPwmProvider Interface
+        IReadOnlyList<IPwmControllerProvider> IPwmProvider.GetControllers()
         {
             return providers;
         }
-        #endregion // IAdcProvider Interface
+        #endregion // IPwmProvider Interface
     }
 }

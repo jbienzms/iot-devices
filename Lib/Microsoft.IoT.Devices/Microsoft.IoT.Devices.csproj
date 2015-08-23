@@ -157,6 +157,7 @@
     <Compile Include="Input\Thumbstick\ThumbstickReadingChangedEventArgs.cs" />
     <Compile Include="Lights\ILight.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Pwm\PwmProviderManager.cs" />
     <Compile Include="Resources\Strings.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
