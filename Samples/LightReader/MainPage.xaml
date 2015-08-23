@@ -7,14 +7,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="White">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ProgressBar x:Name="LightProgress" 
                      VerticalAlignment="Center" 
                      Height="150" 
                      Margin="80"
+                     Minimum="0"
                      Maximum="1"
-                     Value=".75"
-                     Foreground="Green"
                      />
     </Grid>
 </Page>
