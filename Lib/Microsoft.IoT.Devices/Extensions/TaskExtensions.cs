@@ -57,18 +57,54 @@ namespace Microsoft.IoT.Devices
         }
 
         /// <summary>
-        /// Gets a <see cref="Task"/> that has already completed.
+        /// Blocks and waits for a task to complete in a way that will not deadlock the UI thread.
         /// </summary>
-        static public Task CompletedTask
+        /// <param name="taskFunction">
+        /// A function that returns the task to wait on.
+        /// </param>
+        static public void UISafeWait(Func<Task> taskFunction)
         {
-            get
+            Task.Run(async () =>
             {
-                if (completedTask == null)
-                {
-                    completedTask = Task.FromResult<bool>(true);
-                }
-                return completedTask;
-            }
+                await taskFunction().ConfigureAwait(continueOnCapturedContext: false);
+            }).Wait();
+        }
+
+        /// <summary>
+        /// Blocks and waits for a task to complete in a way that will not deadlock the UI thread.
+        /// </summary>
+        /// <typeparam name="TParam">
+        /// The type of parameter passed to the task.
+        /// </typeparam>
+        /// <param name="taskFunction">
+        /// A function that returns the task to wait on.
+        /// </param>
+        /// <param name="param">
+        /// The parameter to pass to the function.
+        /// </param>
+        static public void UISafeWait<TParam>(Func<TParam, Task> taskFunction, TParam param)
+        {
+            Task.Run(async () =>
+            {
+                await taskFunction(param).ConfigureAwait(continueOnCapturedContext: false);
+            }).Wait();
+        }
+
+        /// <summary>
+        /// Blocks and waits for a task to complete in a way that will not deadlock the UI thread.
+        /// </summary>
+        /// <typeparam name="T">
+        /// The type of value returned by the task.
+        /// </typeparam>
+        /// <param name="taskFunction">
+        /// A function that returns the task to wait on.
+        /// </param>
+        static public T UISafeWait<T>(Func<Task<T>> taskFunction)
+        {
+            return Task.Run<T>(async () =>
+            {
+                return await taskFunction().ConfigureAwait(continueOnCapturedContext: false);
+            }).Result;
         }
     }
 }

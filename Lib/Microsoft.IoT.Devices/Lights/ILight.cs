@@ -2,6 +2,7 @@
 //
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +21,9 @@ namespace Microsoft.IoT.Devices.Lights
         /// brightness.
         /// </summary>
         /// <value>
-        /// A value indicating the current brightness level of the lamp.
+        /// A value indicating the current brightness level of the lamp. The default is <c>1.0</c>.
         /// </value>
+        [DefaultValue(1.0f)]
         float BrightnessLevel { get; set; }
 
         /// <summary>

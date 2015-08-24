@@ -389,7 +389,7 @@ namespace Microsoft.IoT.Devices.Display
             }
             else
             {
-                return TaskExtensions.CompletedTask.AsAsyncAction();
+                return Task.CompletedTask.AsAsyncAction();
             }
         }
 
