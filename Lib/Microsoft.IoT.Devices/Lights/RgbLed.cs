@@ -39,6 +39,9 @@ namespace Microsoft.IoT.Devices.Lights
 
             // Consider ourselves initialized now
             isInitialized = true;
+
+            // Go to default color
+            UpdateLed();
         }
 
         private void UpdateLed()

@@ -23,6 +23,14 @@ using Windows.UI.Xaml.Navigation;
 
 namespace PwmLed
 {
+    /******************************************************
+    * Note, this sample uses the ColorPicker control created 
+    * by Tareq Ateik. You can read more about it here:
+    * http://www.tareqateik.com/colorpicker-control-for-universal-apps 
+    *
+    * Very nice work Tareq!
+    *******************************************************/
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -62,14 +70,33 @@ namespace PwmLed
             controller.SetDesiredFrequency(50);
 
             // Create light sensor
-            var led = new RgbLed()
+            led = new RgbLed()
             {
                 RedPin = controller.OpenPin(0),
                 GreenPin = controller.OpenPin(1),
                 BluePin = controller.OpenPin(2),
             };
+        }
 
-            led.Color = Colors.Orange;
+        private void ColorPick_PointerMoved(object sender, PointerRoutedEventArgs e)
+        {
+            if (e.Pointer.IsInContact)
+            {
+                var selCol = ColorPick.SelectedColor;
+                if (selCol != null)
+                {
+                    led.Color = ColorPick.SelectedColor.Color;
+                }
+            }
+        }
+
+        private void ColorPick_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            var selCol = ColorPick.SelectedColor;
+            if (selCol != null)
+            {
+                led.Color = ColorPick.SelectedColor.Color;
+            }
         }
     }
 }

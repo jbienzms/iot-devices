@@ -3,6 +3,14 @@
   "version": 1,
   "targets": {
     "UAP,Version=v10.0": {
+      "ColorPicker/1.0.1": {
+        "compile": {
+          "lib/portable-win81+wpa81/ColorPicker.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win81+wpa81/ColorPicker.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -1538,6 +1546,14 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
+      "ColorPicker/1.0.1": {
+        "compile": {
+          "lib/portable-win81+wpa81/ColorPicker.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win81+wpa81/ColorPicker.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -3163,6 +3179,14 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
+      "ColorPicker/1.0.1": {
+        "compile": {
+          "lib/portable-win81+wpa81/ColorPicker.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win81+wpa81/ColorPicker.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -4760,6 +4784,14 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
+      "ColorPicker/1.0.1": {
+        "compile": {
+          "lib/portable-win81+wpa81/ColorPicker.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win81+wpa81/ColorPicker.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -6390,6 +6422,14 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
+      "ColorPicker/1.0.1": {
+        "compile": {
+          "lib/portable-win81+wpa81/ColorPicker.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win81+wpa81/ColorPicker.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -7987,6 +8027,14 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
+      "ColorPicker/1.0.1": {
+        "compile": {
+          "lib/portable-win81+wpa81/ColorPicker.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win81+wpa81/ColorPicker.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -9617,6 +9665,14 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
+      "ColorPicker/1.0.1": {
+        "compile": {
+          "lib/portable-win81+wpa81/ColorPicker.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win81+wpa81/ColorPicker.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -11215,6 +11271,21 @@
     }
   },
   "libraries": {
+    "ColorPicker/1.0.1": {
+      "sha512": "Pvn5W+jDGUkV6h6ujA8h4f8BKXVE0DXxkH9tfUj8r4snI0ddLM/i22PcYvlmnTp+AqdYeJ2n1AtBSM38pJuUgw==",
+      "type": "Package",
+      "files": [
+        "_rels/.rels",
+        "ColorPicker.nuspec",
+        "lib/portable-win81+wpa81/ColorPicker/Themes/Generic.xbf",
+        "lib/portable-win81+wpa81/ColorPicker/ColorPicker.xr.xml",
+        "lib/portable-win81+wpa81/ColorPicker/colors.jpg",
+        "lib/portable-win81+wpa81/ColorPicker.dll",
+        "lib/portable-win81+wpa81/ColorPicker.pri",
+        "package/services/metadata/core-properties/d569ddf4a98b4731bb8136c78389e255.psmdcp",
+        "[Content_Types].xml"
+      ]
+    },
     "Microsoft.CSharp/4.0.0": {
       "sha512": "oWqeKUxHXdK6dL2CFjgMcaBISbkk+AqEg+yvJHE4DElNzS4QaTsCflgkkqZwVlWby1Dg9zo9n+iCAMFefFdJ/A==",
       "type": "Package",
@@ -14566,6 +14637,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "ColorPicker >= 1.0.1",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0"
     ],
     "UAP,Version=v10.0": []
