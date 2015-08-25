@@ -23,7 +23,7 @@ namespace Microsoft.IoT.Devices.Adc
     public sealed class AdcProviderManager : IAdcProvider, IDisposable
     {
         #region Member Variables
-        private Collection<IAdcControllerProvider> providers;
+        private List<IAdcControllerProvider> providers;
         #endregion // Member Variables
 
         #region Constructors
@@ -32,7 +32,7 @@ namespace Microsoft.IoT.Devices.Adc
         /// </summary>
         public AdcProviderManager()
         {
-            providers = new Collection<IAdcControllerProvider>();
+            providers = new List<IAdcControllerProvider>();
         }
         #endregion // Constructors
 

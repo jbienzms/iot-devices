@@ -54,11 +54,9 @@ namespace PwmLed
             // Create PWM manager
             var pwmManager = new PwmProviderManager();
 
-            //var p = new PCA9685();
-            //await p.EnsureInitializedAsync();
-            // Add PWM chips
-            // pwmManager.Providers.Add(p);
+            // Add providers
             pwmManager.Providers.Add(new PCA9685());
+            // pwmManager.Providers.Add(new SoftPwm());
 
             // Get the well-known controller collection back
             var pwmControllers = await pwmManager.GetControllersAsync();

@@ -28,14 +28,17 @@ namespace Microsoft.IoT.Devices.Lights
             if (isInitialized) { return; }
 
             // Validate that the pin has been set
+            if ((bluePin == null) && (greenPin == null) && (redPin == null)) { throw new MissingIoException(string.Format("{0}, {1} or {2}", nameof(BluePin), nameof(GreenPin), nameof(RedPin))); }
+            /*
             if (bluePin == null) { throw new MissingIoException(nameof(BluePin)); }
             if (greenPin == null) { throw new MissingIoException(nameof(GreenPin)); }
             if (redPin == null) { throw new MissingIoException(nameof(RedPin)); }
+            */
 
             // Make sure all pins are started
-            if (!bluePin.IsStarted) { bluePin.Start(); }
-            if (!greenPin.IsStarted) { greenPin.Start(); }
-            if (!redPin.IsStarted) { redPin.Start(); }
+            if ((bluePin != null) && (!bluePin.IsStarted)) { bluePin.Start(); }
+            if ((greenPin != null) && (!greenPin.IsStarted)) { greenPin.Start(); }
+            if ((redPin != null) && (!redPin.IsStarted)) { redPin.Start(); }
 
             // Consider ourselves initialized now
             isInitialized = true;
@@ -55,9 +58,9 @@ namespace Microsoft.IoT.Devices.Lights
             double bluePercent = (((double)color.B) / 255d) * brightnessLevel;
 
             // Update pins
-            redPin.SetActiveDutyCyclePercentage(redPercent);
-            greenPin.SetActiveDutyCyclePercentage(greenPercent);
-            bluePin.SetActiveDutyCyclePercentage(bluePercent);
+            if (redPin != null) { redPin.SetActiveDutyCyclePercentage(redPercent); }
+            if (greenPin != null) { greenPin.SetActiveDutyCyclePercentage(greenPercent); }
+            if (bluePin != null) { bluePin.SetActiveDutyCyclePercentage(bluePercent); }
         }
         #endregion // Internal Methods
 

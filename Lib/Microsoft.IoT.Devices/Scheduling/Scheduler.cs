@@ -198,7 +198,7 @@ namespace Microsoft.IoT.Devices
                     if ((asyncSubscriptions != null) && (asyncSubscriptions.Count > 0))
                     {
                         // What to schedule
-                        var actions = new Collection<Task>();
+                        var actions = new List<Task>();
 
                         // Thread safe
                         lock (asyncSubscriptions)

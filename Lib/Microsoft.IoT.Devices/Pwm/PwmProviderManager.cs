@@ -23,7 +23,7 @@ namespace Microsoft.IoT.Devices.Pwm
     public sealed class PwmProviderManager : IPwmProvider, IDisposable
     {
         #region Member Variables
-        private Collection<IPwmControllerProvider> providers;
+        private List<IPwmControllerProvider> providers;
         #endregion // Member Variables
 
         #region Constructors
@@ -32,7 +32,7 @@ namespace Microsoft.IoT.Devices.Pwm
         /// </summary>
         public PwmProviderManager()
         {
-            providers = new Collection<IPwmControllerProvider>();
+            providers = new List<IPwmControllerProvider>();
         }
         #endregion // Constructors
 

@@ -10,10 +10,6 @@ namespace Microsoft.IoT.Devices
 {
     static internal class TaskExtensions
     {
-        #region Member Variables
-        static private Task completedTask;
-        #endregion // Member Variables
-
         /// <summary>
         /// Schedules a continuation that ignores any exceptions during execution.
         /// </summary>

@@ -160,6 +160,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pwm\PCA9685.cs" />
     <Compile Include="Pwm\PwmProviderManager.cs" />
+    <Compile Include="Pwm\SoftPwm.cs" />
     <Compile Include="Resources\Strings.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -183,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Display\Text\" />
+    <Folder Include="Timing\" />
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="WindowsIoT, Version=10.0.10240.0">

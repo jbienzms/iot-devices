@@ -273,9 +273,11 @@ namespace Microsoft.IoT.Devices.Pwm
         }
         #endregion // Internal Methods
 
+
+        #region Public Methods
         public void AcquirePin(int pin)
         {
-            if ((pin < 0) || (pin > (PIN_COUNT-1))) throw new ArgumentOutOfRangeException("pin");
+            if ((pin < 0) || (pin > (PIN_COUNT - 1))) throw new ArgumentOutOfRangeException("pin");
 
             // Make sure we're initialized
             TaskExtensions.UISafeWait(EnsureInitializedAsync);
@@ -401,7 +403,7 @@ namespace Microsoft.IoT.Devices.Pwm
             }
             primaryDevice.Write(buffer);
         }
-
+        #endregion // Public Methods
 
         #region Public Properties
         public double ActualFrequency

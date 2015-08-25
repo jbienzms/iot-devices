@@ -46,7 +46,7 @@ namespace DeviceTester
         private bool isRunning;
         private double lastAnalog;
         private string lastOutput;
-        private Collection<IDevice> devices = new Collection<IDevice>();
+        private List<IDevice> devices = new List<IDevice>();
         #endregion // Member Variables
 
         #region Constructors
