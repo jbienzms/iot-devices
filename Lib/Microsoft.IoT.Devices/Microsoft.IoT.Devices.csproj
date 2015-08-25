@@ -125,6 +125,7 @@
     <Compile Include="Adc\ADC0832.cs" />
     <Compile Include="Adc\AdcProviderManager.cs" />
     <Compile Include="Adc\MCP3208.cs" />
+    <Compile Include="CommonEnums.cs" />
     <Compile Include="Controls\GraphicsDisplayPanel.cs" />
     <Compile Include="Devices\IClosable.cs" />
     <Compile Include="Devices\IDevice.cs" />
@@ -145,11 +146,15 @@
     <Compile Include="Exceptions\IoChangeException.cs" />
     <Compile Include="Exceptions\MissingIoException.cs" />
     <Compile Include="Extensions\DispatcherExtensions.cs" />
+    <Compile Include="Extensions\GpioExtensions.cs" />
     <Compile Include="Extensions\SchedulerExtensions.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="Input\IPushButton.cs" />
     <Compile Include="Input\ISwitch.cs" />
+    <Compile Include="Input\PushButtonHelper.cs" />
     <Compile Include="Input\PushButton.cs" />
+    <Compile Include="Input\RotaryEncoder\RotaryEncoder.cs" />
+    <Compile Include="Input\RotaryEncoder\RotaryEncoderRotatedEventArgs.cs" />
     <Compile Include="Input\Switch.cs" />
     <Compile Include="Input\Thumbstick\IThumbStick.cs" />
     <Compile Include="Input\Thumbstick\SS944.cs" />
@@ -184,7 +189,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Display\Text\" />
-    <Folder Include="Timing\" />
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="WindowsIoT, Version=10.0.10240.0">

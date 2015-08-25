@@ -180,6 +180,24 @@ namespace DeviceTester
             devices.Add(pushButton);
         }
 
+        private void StartRotary()
+        {
+            // Create rotary
+            var rotary = new RotaryEncoder()
+            {
+                ButtonPin = gpioController.OpenPin(26),
+                ClockPin = gpioController.OpenPin(22),
+                DirectionPin = gpioController.OpenPin(13),
+            };
+
+            // Subscribe to events
+            rotary.Click += Rotary_Click;
+            rotary.Rotated += Rotary_Rotated;
+
+            // Add to device list
+            devices.Add(rotary);
+        }
+
         private void StartSwitches()
         {
             // Create switches
@@ -251,8 +269,9 @@ namespace DeviceTester
 
             await StartDisplayAsync();
             StartPushButton();
+            StartRotary();
             StartSwitches();
-            StartAnalog();
+            // StartAnalog();
             // StartThumbstick();
 
             StartCloudReporting();
@@ -362,6 +381,22 @@ namespace DeviceTester
                 {
                     AddOutput("Far");
                 }
+            });
+        }
+
+        private void Rotary_Click(IPushButton sender, EmptyEventArgs args)
+        {
+            Dispatcher.Run(() =>
+            {
+                AddOutput("Rotary clicked");
+            });
+        }
+
+        private void Rotary_Rotated(RotaryEncoder sender, RotaryEncoderRotatedEventArgs args)
+        {
+            Dispatcher.Run(() =>
+            {
+                AddOutput(string.Format("Rotary rotated {0}", args.Direction));
             });
         }
 

@@ -52,19 +52,13 @@ namespace Microsoft.IoT.Devices.Input
                 // Check if resistors are supported 
                 if (onValue == GpioPinValue.High)
                 {
-                    if (pin.IsDriveModeSupported(GpioPinDriveMode.InputPullDown))
-                    {
-                        pin.SetDriveMode(GpioPinDriveMode.InputPullDown);
-                        driveSet = true;
-                    }
+                    pin.SetDriveModeWithFallback(GpioPinDriveMode.InputPullDown);
+                    driveSet = true;
                 }
                 else
                 {
-                    if (pin.IsDriveModeSupported(GpioPinDriveMode.InputPullUp))
-                    {
-                        pin.SetDriveMode(GpioPinDriveMode.InputPullUp);
-                        driveSet = true;
-                    }
+                    pin.SetDriveModeWithFallback(GpioPinDriveMode.InputPullUp);
+                    driveSet = true;
                 }
             }
 
