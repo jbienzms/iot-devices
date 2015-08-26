@@ -10,6 +10,7 @@ using Windows.Devices.Adc.Provider;
 using Windows.Devices.Enumeration;
 using Windows.Devices.Gpio;
 using Windows.Devices.Spi;
+using Microsoft.IoT.DeviceHelpers;
 
 namespace Microsoft.IoT.Devices.Adc
 {

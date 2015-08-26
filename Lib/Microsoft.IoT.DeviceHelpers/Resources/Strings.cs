@@ -17,10 +17,10 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 08/26/2015 16:25:15
+// 	Generated: 08/26/2015 16:23:09
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
-namespace Microsoft.IoT.Devices
+namespace Microsoft.IoT.DeviceHelpers
 {
     using Windows.ApplicationModel.Resources;
     
@@ -53,13 +53,46 @@ namespace Microsoft.IoT.Devices
         }
         
         /// <summary>
-        /// Localized resource similar to "Unknown display type '{0}'"
+        /// Localized resource similar to "The device '{0}' could not be found"
         /// </summary>
-        public static string UnknownDisplayType
+        public static string DeviceNotFound
         {
             get
             {
-                return resourceLoader.GetString("UnknownDisplayType");
+                return resourceLoader.GetString("DeviceNotFound");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "The requested IO change is not supported in the current state"
+        /// </summary>
+        public static string IOChangeState
+        {
+            get
+            {
+                return resourceLoader.GetString("IOChangeState");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "The required IO device property '{0}' has not been assigned"
+        /// </summary>
+        public static string MissingRequiredIO
+        {
+            get
+            {
+                return resourceLoader.GetString("MissingRequiredIO");
+            }
+        }
+        
+        /// <summary>
+        /// Localized resource similar to "The element {'0'} is missing from the '{1}' template"
+        /// </summary>
+        public static string MissingTemplateElement
+        {
+            get
+            {
+                return resourceLoader.GetString("MissingTemplateElement");
             }
         }
     }

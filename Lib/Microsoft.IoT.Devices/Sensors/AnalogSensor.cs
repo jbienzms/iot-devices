@@ -13,6 +13,7 @@ using Microsoft.IoT.Devices.Adc;
 using Windows.Devices.Adc;
 using Windows.Devices.Gpio;
 using Windows.Foundation;
+using Microsoft.IoT.DeviceHelpers;
 
 namespace Microsoft.IoT.Devices.Sensors
 {

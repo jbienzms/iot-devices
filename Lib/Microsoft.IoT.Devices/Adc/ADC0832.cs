@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.Adc.Provider;
 using Windows.Devices.Gpio;
+using Microsoft.IoT.DeviceHelpers;
 
 namespace Microsoft.IoT.Devices.Adc
 {

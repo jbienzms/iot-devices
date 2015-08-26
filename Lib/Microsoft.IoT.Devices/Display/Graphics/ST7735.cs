@@ -14,6 +14,7 @@ using Windows.Devices.Spi;
 using Windows.Foundation;
 using Windows.Graphics.Display;
 using Windows.UI;
+using Microsoft.IoT.DeviceHelpers;
 
 namespace Microsoft.IoT.Devices.Display
 {

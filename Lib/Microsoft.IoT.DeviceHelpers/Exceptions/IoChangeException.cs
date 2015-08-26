@@ -6,13 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.IoT.Devices
+namespace Microsoft.IoT.DeviceHelpers
 {
-    // TODO: Export
     /// <summary>
     /// Thrown when an IO setting has been changed at an unsupported time.
     /// </summary>
-    internal class IoChangeException : Exception
+    public class IoChangeException : Exception
     {
         /// <summary>
         /// Initializes a new <see cref="IoChangeException"/> with the default message.

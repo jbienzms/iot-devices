@@ -6,13 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.IoT.Devices
+namespace Microsoft.IoT.DeviceHelpers
 {
-    // TODO: Export
     /// <summary>
     /// Thrown when a required device cannot be found.
     /// </summary>
-    internal class DeviceNotFoundException : Exception
+    public class DeviceNotFoundException : Exception
     {
         /// <summary>
         /// Initializes a new <see cref="DeviceNotFoundException"/> with a device name.

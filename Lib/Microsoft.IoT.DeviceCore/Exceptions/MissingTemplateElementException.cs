@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 #if DEVICE_CORE
     namespace Microsoft.IoT.DeviceCore
 #else
-    namespace Microsoft.IoT.Devices
+    namespace Microsoft.IoT.DeviceHelpers
 #endif
 {
     // TODO: Export

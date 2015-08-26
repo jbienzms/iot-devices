@@ -6,13 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.IoT.Devices
+namespace Microsoft.IoT.DeviceHelpers
 {
-    // TODO: Export
     /// <summary>
     /// Thrown when a required IO setting has not been supplied.
     /// </summary>
-    internal class MissingIoException : Exception
+    public class MissingIoException : Exception
     {
         /// <summary>
         /// Initializes a new <see cref="IoChangeException"/> with a property name.

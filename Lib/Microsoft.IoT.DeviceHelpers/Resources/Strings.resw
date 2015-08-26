@@ -117,7 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="UnknownDisplayType" xml:space="preserve">
-    <value>Unknown display type '{0}'</value>
+  <data name="DeviceNotFound" xml:space="preserve">
+    <value>The device '{0}' could not be found</value>
+  </data>
+  <data name="IOChangeState" xml:space="preserve">
+    <value>The requested IO change is not supported in the current state</value>
+  </data>
+  <data name="MissingRequiredIO" xml:space="preserve">
+    <value>The required IO device property '{0}' has not been assigned</value>
+  </data>
+  <data name="MissingTemplateElement" xml:space="preserve">
+    <value>The element {'0'} is missing from the '{1}' template</value>
   </data>
 </root>

@@ -17,7 +17,7 @@
 // 	This code contains a helper class exposing property representations
 // 	of the string resources defined in the specified .ResW file
 // 
-// 	Generated: 08/26/2015 14:13:57
+// 	Generated: 08/26/2015 16:19:44
 // </auto-generatedInfo>
 // --------------------------------------------------------------------------------------------------
 namespace Microsoft.IoT.DeviceCore
@@ -64,17 +64,6 @@ namespace Microsoft.IoT.DeviceCore
         }
         
         /// <summary>
-        /// Localized resource similar to "The device '{0}' could not be found"
-        /// </summary>
-        public static string DeviceNotFound
-        {
-            get
-            {
-                return resourceLoader.GetString("DeviceNotFound");
-            }
-        }
-        
-        /// <summary>
         /// Localized resource similar to "An existing update action has already been scheduled and cannot be changed"
         /// </summary>
         public static string ExistingUpdateAction
@@ -93,28 +82,6 @@ namespace Microsoft.IoT.DeviceCore
             get
             {
                 return resourceLoader.GetString("InvalidSubscriberType");
-            }
-        }
-        
-        /// <summary>
-        /// Localized resource similar to "The requested IO change is not supported in the current state"
-        /// </summary>
-        public static string IOChangeState
-        {
-            get
-            {
-                return resourceLoader.GetString("IOChangeState");
-            }
-        }
-        
-        /// <summary>
-        /// Localized resource similar to "The required IO device property '{0}' has not been assigned"
-        /// </summary>
-        public static string MissingRequiredIO
-        {
-            get
-            {
-                return resourceLoader.GetString("MissingRequiredIO");
             }
         }
         
@@ -141,17 +108,6 @@ namespace Microsoft.IoT.DeviceCore
         }
         
         /// <summary>
-        /// Localized resource similar to "The specified type '{0}' is not a delegate"
-        /// </summary>
-        public static string TypeNotDelegate
-        {
-            get
-            {
-                return resourceLoader.GetString("TypeNotDelegate");
-            }
-        }
-        
-        /// <summary>
         /// Localized resource similar to "Unknown pixel format '{0}'"
         /// </summary>
         public static string UnknownPixelFormat
@@ -159,17 +115,6 @@ namespace Microsoft.IoT.DeviceCore
             get
             {
                 return resourceLoader.GetString("UnknownPixelFormat");
-            }
-        }
-        
-        /// <summary>
-        /// Localized resource similar to "Unknwon display type '{0}'"
-        /// </summary>
-        public static string UnknownDisplayType
-        {
-            get
-            {
-                return resourceLoader.GetString("UnknownDisplayType");
             }
         }
         

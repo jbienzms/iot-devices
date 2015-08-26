@@ -6,9 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+#if DEVICE_CORE
 namespace Microsoft.IoT.DeviceCore
 {
     static internal class TaskExtensions
+#else
+namespace Microsoft.IoT.DeviceHelpers
+{
+    static public class TaskExtensions
+#endif
     {
         /// <summary>
         /// Schedules a continuation that ignores any exceptions during execution.

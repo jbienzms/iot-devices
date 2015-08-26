@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Metadata;
 
-namespace Microsoft.IoT.Devices
+namespace Microsoft.IoT.DeviceHelpers
 {
-    internal interface IObservableEvent<TSender, TResult>
+    public interface IObservableEvent<TSender, TResult>
     {
         /// <summary>
         /// Adds a handler to the observed event.

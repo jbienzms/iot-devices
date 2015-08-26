@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.IoT.DeviceCore.Lights;
 using Windows.Devices.Pwm;
 using Windows.UI;
+using Microsoft.IoT.DeviceHelpers;
 
 namespace Microsoft.IoT.Devices.Lights
 {

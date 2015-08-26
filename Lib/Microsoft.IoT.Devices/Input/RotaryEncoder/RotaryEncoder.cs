@@ -11,6 +11,8 @@ using Microsoft.IoT.DeviceCore;
 using Microsoft.IoT.DeviceCore.Input;
 using Windows.Devices.Gpio;
 using Windows.Foundation;
+using Microsoft.IoT.DeviceHelpers;
+using Microsoft.IoT.DeviceHelpers.Input;
 
 namespace Microsoft.IoT.Devices.Input
 {

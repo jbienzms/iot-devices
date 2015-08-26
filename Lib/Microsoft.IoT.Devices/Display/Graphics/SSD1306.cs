@@ -13,6 +13,7 @@ using Windows.Devices.Gpio;
 using Windows.Devices.Spi;
 using Windows.Foundation;
 using Windows.UI;
+using Microsoft.IoT.DeviceHelpers;
 
 namespace Microsoft.IoT.Devices.Display
 {

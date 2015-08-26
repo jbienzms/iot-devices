@@ -12,7 +12,8 @@ using Windows.Devices.I2c;
 using Windows.Devices.Pwm.Provider;
 using Windows.Foundation;
 using Microsoft.IoT.DeviceCore;
-using TaskExtensions = Microsoft.IoT.DeviceCore.TaskExtensions;
+using TaskExtensions = Microsoft.IoT.DeviceHelpers.TaskExtensions;
+using Microsoft.IoT.DeviceHelpers;
 
 namespace Microsoft.IoT.Devices.Pwm
 {

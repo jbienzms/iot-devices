@@ -12,9 +12,12 @@ using Microsoft.IoT.DeviceCore.Input;
 using Windows.Devices.Gpio;
 using Windows.Foundation;
 
-namespace Microsoft.IoT.Devices.Input
+namespace Microsoft.IoT.DeviceHelpers.Input
 {
-    internal sealed class PushButtonHelper : IDisposable
+    /// <summary>
+    /// A helper class for implementing the <see cref="IPushButton"/> interface.
+    /// </summary>
+    public sealed class PushButtonHelper : IDisposable
     {
         #region Member Variables
         private ObservableEvent<IPushButton,EmptyEventArgs> clickEvent;

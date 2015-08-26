@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.IoT.DeviceCore;
 using Windows.Devices.Gpio;
 using Windows.Devices.Pwm.Provider;
+using Microsoft.IoT.DeviceHelpers;
 
 namespace Microsoft.IoT.Devices.Pwm
 {

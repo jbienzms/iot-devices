@@ -120,20 +120,11 @@
   <data name="AlreadySubscribed" xml:space="preserve">
     <value>Already subscribed</value>
   </data>
-  <data name="DeviceNotFound" xml:space="preserve">
-    <value>The device '{0}' could not be found</value>
-  </data>
   <data name="ExistingUpdateAction" xml:space="preserve">
     <value>An existing update action has already been scheduled and cannot be changed</value>
   </data>
   <data name="InvalidSubscriberType" xml:space="preserve">
     <value>Subscriber must be of type Action or Func&lt;Task&gt;</value>
-  </data>
-  <data name="IOChangeState" xml:space="preserve">
-    <value>The requested IO change is not supported in the current state</value>
-  </data>
-  <data name="MissingRequiredIO" xml:space="preserve">
-    <value>The required IO device property '{0}' has not been assigned</value>
   </data>
   <data name="NoUpdateAction" xml:space="preserve">
     <value>The update action must first be specified by calling SetUpdateAction or SetAsyncUpdateAction</value>
@@ -141,14 +132,8 @@
   <data name="SubscriptionNotFound" xml:space="preserve">
     <value>Subscription not found</value>
   </data>
-  <data name="TypeNotDelegate" xml:space="preserve">
-    <value>The specified type '{0}' is not a delegate</value>
-  </data>
   <data name="UnknownPixelFormat" xml:space="preserve">
     <value>Unknown pixel format '{0}'</value>
-  </data>
-  <data name="UnknownDisplayType" xml:space="preserve">
-    <value>Unknwon display type '{0}'</value>
   </data>
   <data name="MissingTemplateElement" xml:space="preserve">
     <value>The element {'0'} is missing from the '{1}' template</value>
