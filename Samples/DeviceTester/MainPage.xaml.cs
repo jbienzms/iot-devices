@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Devices.Gpio;
+using Microsoft.IoT.DeviceCore.Adc;
+using Microsoft.IoT.DeviceCore.Input;
 using Microsoft.IoT.Devices.Input;
 using Microsoft.IoT.Devices;
 using Microsoft.IoT.Devices.Adc;
@@ -26,6 +28,9 @@ using System.Threading.Tasks;
 using Microsoft.IoT.Devices.Display;
 using Windows.UI;
 using Windows.Graphics.Display;
+using Microsoft.IoT.DeviceCore;
+using Microsoft.IoT.DeviceCore.Display;
+using Microsoft.IoT.DeviceCore.Sensors;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -392,7 +397,7 @@ namespace DeviceTester
             });
         }
 
-        private void Rotary_Rotated(RotaryEncoder sender, RotaryEncoderRotatedEventArgs args)
+        private void Rotary_Rotated(IRotaryEncoder sender, RotaryEncoderRotatedEventArgs args)
         {
             Dispatcher.Run(() =>
             {

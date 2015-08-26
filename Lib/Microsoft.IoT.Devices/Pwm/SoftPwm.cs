@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.IoT.DeviceCore;
 using Windows.Devices.Gpio;
 using Windows.Devices.Pwm.Provider;
 

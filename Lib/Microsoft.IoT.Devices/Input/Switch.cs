@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.Gpio;
 using Windows.Foundation;
+using Microsoft.IoT.DeviceCore;
+using Microsoft.IoT.DeviceCore.Input;
 
 namespace Microsoft.IoT.Devices.Input
 {

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Microsoft.IoT.DeviceCore.Pwm;
 using Microsoft.IoT.Devices.Lights;
 using Microsoft.IoT.Devices.Pwm;
 using Windows.Devices.Gpio;
@@ -88,10 +89,9 @@ namespace PwmLed
             }
         }
 
-        private void ColorPick_PointerReleased(object sender, PointerRoutedEventArgs e)
+        private void ColorPick_SelectedColorChanged(object sender, EventArgs e)
         {
-            var selCol = ColorPick.SelectedColor;
-            if (selCol != null)
+            if (ColorPick.SelectedColor != null)
             {
                 led.Color = ColorPick.SelectedColor.Color;
             }

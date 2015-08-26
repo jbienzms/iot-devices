@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.IoT.DeviceCore;
 using Windows.Foundation;
 
 namespace Microsoft.IoT.Devices

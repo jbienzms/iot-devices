@@ -7,6 +7,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.IoT.DeviceCore;
+using Microsoft.IoT.DeviceCore.Sensors;
 using Microsoft.IoT.Devices.Adc;
 using Windows.Devices.Adc;
 using Windows.Devices.Gpio;

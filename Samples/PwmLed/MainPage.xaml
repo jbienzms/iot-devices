@@ -9,6 +9,6 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ColPic:ColorPicker x:Name="ColorPick" HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Height="500" PointerMoved="ColorPick_PointerMoved" PointerReleased="ColorPick_PointerReleased"/>
+        <ColPic:ColorPicker x:Name="ColorPick" HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Height="500" SelectedColorChanged="ColorPick_SelectedColorChanged"/>
     </Grid>
 </Page>

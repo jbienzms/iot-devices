@@ -7,12 +7,14 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.IoT.DeviceCore;
+using Microsoft.IoT.DeviceCore.Input;
 using Windows.Devices.Gpio;
 using Windows.Foundation;
 
 namespace Microsoft.IoT.Devices.Input
 {
-    public sealed class RotaryEncoder : IPushButton, IDisposable
+    public sealed class RotaryEncoder : IRotaryEncoder, IDisposable
     {
         #region Member Variables
         private PushButtonHelper buttonHelper;
@@ -20,7 +22,7 @@ namespace Microsoft.IoT.Devices.Input
         private GpioPin directionPin;
         private bool isInitialized;
         private GpioPinValue lastDirValue;
-        private ObservableEvent<RotaryEncoder, RotaryEncoderRotatedEventArgs> rotatedEvent;
+        private ObservableEvent<IRotaryEncoder, RotaryEncoderRotatedEventArgs> rotatedEvent;
         #endregion // Member Variables
 
         #region Constructors
@@ -36,7 +38,7 @@ namespace Microsoft.IoT.Devices.Input
             buttonHelper.DebounceTimeout = 10;
 
             // Create events
-            rotatedEvent = new ObservableEvent<RotaryEncoder, RotaryEncoderRotatedEventArgs>(firstAdded: EnsureInitialized);
+            rotatedEvent = new ObservableEvent<IRotaryEncoder, RotaryEncoderRotatedEventArgs>(firstAdded: EnsureInitialized);
         }
         #endregion // Constructors
 
@@ -253,7 +255,7 @@ namespace Microsoft.IoT.Devices.Input
         /// <summary>
         /// Occurs when the encoder is rotated.
         /// </summary>
-        public event TypedEventHandler<RotaryEncoder, RotaryEncoderRotatedEventArgs> Rotated
+        public event TypedEventHandler<IRotaryEncoder, RotaryEncoderRotatedEventArgs> Rotated
         {
             add
             {

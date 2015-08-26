@@ -1,0 +1,22 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Microsoft.IoT.DeviceCore"
+    xmlns:controls="using:Microsoft.IoT.DeviceCore.Controls"
+    >
+
+
+    <Style TargetType="controls:GraphicsDisplayPanel">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:GraphicsDisplayPanel">
+                    <Viewbox Stretch="Uniform">
+                        <Grid x:Name="ContentPanel">
+                            <ContentPresenter Content="{TemplateBinding Content}" />
+                        </Grid>
+                    </Viewbox>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

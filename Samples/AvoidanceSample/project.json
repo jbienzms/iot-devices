@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "Microsoft.IoT.Devices": "1.0.0-beta2",
+    "Microsoft.IoT.Devices": "1.0.0-beta3",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
   },
   "frameworks": {

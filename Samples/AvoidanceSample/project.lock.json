@@ -29,7 +29,7 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.IoT.Devices/1.0.0-beta2": {
+      "Microsoft.IoT.Devices/1.0.0-beta3": {
         "compile": {
           "lib/uap10.0/Microsoft.IoT.Devices.winmd": {}
         },
@@ -1572,7 +1572,7 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.IoT.Devices/1.0.0-beta2": {
+      "Microsoft.IoT.Devices/1.0.0-beta3": {
         "compile": {
           "lib/uap10.0/Microsoft.IoT.Devices.winmd": {}
         },
@@ -3205,7 +3205,7 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.IoT.Devices/1.0.0-beta2": {
+      "Microsoft.IoT.Devices/1.0.0-beta3": {
         "compile": {
           "lib/uap10.0/Microsoft.IoT.Devices.winmd": {}
         },
@@ -4810,7 +4810,7 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.IoT.Devices/1.0.0-beta2": {
+      "Microsoft.IoT.Devices/1.0.0-beta3": {
         "compile": {
           "lib/uap10.0/Microsoft.IoT.Devices.winmd": {}
         },
@@ -6448,7 +6448,7 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.IoT.Devices/1.0.0-beta2": {
+      "Microsoft.IoT.Devices/1.0.0-beta3": {
         "compile": {
           "lib/uap10.0/Microsoft.IoT.Devices.winmd": {}
         },
@@ -8053,7 +8053,7 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.IoT.Devices/1.0.0-beta2": {
+      "Microsoft.IoT.Devices/1.0.0-beta3": {
         "compile": {
           "lib/uap10.0/Microsoft.IoT.Devices.winmd": {}
         },
@@ -9691,7 +9691,7 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.IoT.Devices/1.0.0-beta2": {
+      "Microsoft.IoT.Devices/1.0.0-beta3": {
         "compile": {
           "lib/uap10.0/Microsoft.IoT.Devices.winmd": {}
         },
@@ -11312,8 +11312,8 @@
         "[Content_Types].xml"
       ]
     },
-    "Microsoft.IoT.Devices/1.0.0-beta2": {
-      "sha512": "KYoCHRLQLU0oPAIBl3asu93RHm9P5yL5VNDkEoS++N2lGAQlqp0zmnQJys63O+CExvKgsKy5Kn5h0eKKpzvDew==",
+    "Microsoft.IoT.Devices/1.0.0-beta3": {
+      "sha512": "xdOu0XuHNcN7j469tEyKZFEU/gutDW35tXuqL+dz8Sp46vSBVwopokq3Bc+V3D+IUlAXN/YngUXs9tPy8We3Lw==",
       "type": "Package",
       "files": [
         "_rels/.rels",
@@ -11324,7 +11324,7 @@
         "lib/uap10.0/Microsoft.IoT.Devices.pdb",
         "lib/uap10.0/Microsoft.IoT.Devices.pri",
         "lib/uap10.0/Microsoft.IoT.Devices.winmd",
-        "package/services/metadata/core-properties/e9ffdd34d2e44bef94fc8ec048180d10.psmdcp",
+        "package/services/metadata/core-properties/1c43940824ca4f06a557a36ef34cae3e.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -14638,7 +14638,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "Microsoft.IoT.Devices >= 1.0.0-beta2",
+      "Microsoft.IoT.Devices >= 1.0.0-beta3",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0"
     ],
     "UAP,Version=v10.0": []

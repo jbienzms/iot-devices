@@ -134,6 +134,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Lib\Microsoft.IoT.DeviceCore\Microsoft.IoT.DeviceCore.csproj">
+      <Project>{a4a5d4f4-4e52-4db6-9fbc-4826554a1944}</Project>
+      <Name>Microsoft.IoT.DeviceCore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Lib\Microsoft.IoT.Devices\Microsoft.IoT.Devices.csproj">
       <Project>{1ed1007a-7708-4721-b16b-4283a66a4290}</Project>
       <Name>Microsoft.IoT.Devices</Name>

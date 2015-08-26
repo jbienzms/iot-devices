@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:input="using:Microsoft.IoT.Devices.Input"
-    xmlns:controls="using:Microsoft.IoT.Devices.Controls"
+    xmlns:controls="using:Microsoft.IoT.DeviceCore.Controls"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">

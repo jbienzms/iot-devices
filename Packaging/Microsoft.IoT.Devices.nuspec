@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Microsoft.IoT.Devices</id>
-    <version>1.0.0-beta2</version>
+    <version>1.0.0-beta3</version>
     <title>Devices for Microsoft IoT Core</title>
     <authors>jbienzms, toolboc (pdecarlo)</authors>
     <owners>jbienzms</owners>

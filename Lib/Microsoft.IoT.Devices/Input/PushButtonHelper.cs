@@ -7,6 +7,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.IoT.DeviceCore;
+using Microsoft.IoT.DeviceCore.Input;
 using Windows.Devices.Gpio;
 using Windows.Foundation;
 
