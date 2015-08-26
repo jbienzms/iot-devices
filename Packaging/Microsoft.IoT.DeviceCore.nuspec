@@ -1,26 +1,24 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Microsoft.IoT.Devices</id>
+    <id>Microsoft.IoT.DeviceCore</id>
     <version>1.0.0</version>
-    <title>Devices for Windows IoT Core</title>
+    <title>Devices Core for Windows IoT</title>
     <authors>jbienzms, toolboc (pdecarlo)</authors>
     <owners>jbienzms</owners>
     <licenseUrl>https://raw.githubusercontent.com/jbienzms/iot-devices/master/License/LICENSE.txt</licenseUrl>
     <projectUrl>https://github.com/jbienzms/iot-devices</projectUrl>
     <iconUrl>http://go.microsoft.com/fwlink/?LinkID=288890</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <summary>Makes it easy to use sensors, displays, and other hardware devices on the Windows IoT Core platform.</summary>
-    <description>Makes it easy to use sensors, displays, and other hardware devices on the Windows IoT Core platform.</description>
-    <releaseNotes>First release includes implementations for LCD, multiple ADCs, PWM, Rotary Encoder, Switches and Analog sensors.</releaseNotes>
+    <summary>Defines interfaces and types that can be used to expand the device capabilities of Windows IoT.</summary>
+    <description>Defines interfaces and types that can be used to expand the device capabilities of Windows IoT.</description>
+    <releaseNotes>First release includes interfaces for ADC, PWM, Switches and Analog sensors. It also includes a control for XAML projection.</releaseNotes>
     <copyright>Copyright © Microsoft Corporation</copyright>
     <tags>sensors devices hardware displays microsoft windows iot iot-core</tags>
     <dependencies>
-      <dependency id="Microsoft.IoT.DeviceCore" version="1.0.0" />
-      <dependency id="Microsoft.IoT.DeviceHelpers" version="1.0.0" />
     </dependencies>
   </metadata>
   <files>
-    <file src="Builds\Microsoft.IoT.Devices\**\*.*" target="" />
+    <file src="Builds\Microsoft.IoT.DeviceCore\**\*.*" target="" />
   </files>
 </package>

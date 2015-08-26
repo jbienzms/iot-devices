@@ -14,8 +14,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packaging", "Packaging", "{288F2A17-7DBB-4C81-81B1-CD4EDA7E7E82}"
 	ProjectSection(SolutionItems) = preProject
 		Packaging\Build.proj = Packaging\Build.proj
+		Packaging\BuildAndPackage.cmd = Packaging\BuildAndPackage.cmd
+		Packaging\Microsoft.IoT.DeviceCore.nuspec = Packaging\Microsoft.IoT.DeviceCore.nuspec
+		Packaging\Microsoft.IoT.DeviceHelpers.nuspec = Packaging\Microsoft.IoT.DeviceHelpers.nuspec
 		Packaging\Microsoft.IoT.Devices.nuspec = Packaging\Microsoft.IoT.Devices.nuspec
-		Packaging\package.cmd = Packaging\package.cmd
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvoidanceSample", "Samples\AvoidanceSample\AvoidanceSample.csproj", "{CD0FDF48-E06A-4A49-9226-2CB0620C8F1A}"
