@@ -64,10 +64,10 @@
   <!-- Build Each Project for Each Architecture -->
   <Target Name="BuildAll" DependsOnTargets="Setup" Inputs="@(ProjectArchitectureToBuild)" Outputs="%(Identity)">
     <PropertyGroup>
-      <BuildDir>%(ProjectArchitectureToBuild.Path)\bin\%(ProjectArchitectureToBuild.BuildDir)\$(BuildConfiguration)</BuildDir>
+      <BuildDir>%(ProjectArchitectureToBuild.Path)\bin%(ProjectArchitectureToBuild.BuildDir)\$(BuildConfiguration)</BuildDir>
+      <BuildLayoutDir>$(BuildDir)\%(ProjectArchitectureToBuild.Identity)</BuildLayoutDir>
       <OutDir>$(MSBuildProjectDirectory)\Builds\%(ProjectArchitectureToBuild.Identity)\%(ProjectArchitectureToBuild.OutDir)</OutDir>
-      <ResDir>$(OutDir)\%(ProjectArchitectureToBuild.Identity)</ResDir>
-      <ThemeDir>$(ResDir)\Themes</ThemeDir>
+      <OutLayoutDir>$(OutDir)\%(ProjectArchitectureToBuild.Identity)</OutLayoutDir>
     </PropertyGroup>
 
     <!-- Clean output folder -->
@@ -86,17 +86,15 @@
     <!-- Get output files for current build -->
     <ItemGroup>
       <BinFiles Include="$(BuildDir)\%(ProjectArchitectureToBuild.Identity).*" Exclude="$(BuildDir)\*.xr.xml" />
-      <ResFiles Include="$(BuildDir)\%(ProjectArchitectureToBuild.Identity).xr.xml" />
-      <ThemeFiles Include="$(BuildDir)\Themes\**\*.*" />
+      <LayoutFiles Include="$(BuildLayoutDir)\**\*.*" />
     </ItemGroup>
-
+    
     <!-- Making sure output dir exists -->
     <MakeDir Directories="$(OutDir)" />
     
     <!-- Copy to Nuget package folder -->
     <Message Text="Copying output files to $(OutDir)"  Importance="high"/>
     <Copy SourceFiles="@(BinFiles)" DestinationFolder="$(OutDir)" Condition="Exists('%(FullPath)')"/>
-    <Copy SourceFiles="@(ResFiles)" DestinationFolder="$(ResDir)" Condition="Exists('%(FullPath)')"/>
-    <Copy SourceFiles="@(ThemeFiles)" DestinationFolder="$(ThemeDir)\%(RecursiveDir)" Condition="Exists('%(FullPath)')"/>
+    <Copy SourceFiles="@(LayoutFiles)" DestinationFolder="$(OutLayoutDir)\%(RecursiveDir)" Condition="Exists('%(FullPath)')"/>
   </Target>
 </Project>

@@ -1,4 +1,4 @@
 @ECHO OFF
 
-Build.cmd
-Package.cmd
+CALL Build.cmd
+CALL Package.cmd

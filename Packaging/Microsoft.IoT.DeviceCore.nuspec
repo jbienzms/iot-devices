@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Microsoft.IoT.DeviceCore</id>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
     <title>Devices Core for Windows IoT</title>
     <authors>jbienzms, toolboc (pdecarlo)</authors>
     <owners>jbienzms</owners>
