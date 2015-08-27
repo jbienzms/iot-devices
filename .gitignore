@@ -167,7 +167,7 @@ ClientBin/
 *~
 *.dbmdl
 *.dbproj.schemaview
-*.pfx
+# *.pfx // Allowing PFX because all PFX files are for samples
 *.publishsettings
 node_modules/
 bower_components/
