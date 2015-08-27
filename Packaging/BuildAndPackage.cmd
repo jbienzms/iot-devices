@@ -1,19 +1,4 @@
 @ECHO OFF
 
-REM Variables
-SET MSBUILD="%ProgramFiles(x86)%\MSBuild\14.0\Bin\msbuild.exe"
-
-REM Build All Projects
-%MSBUILD% /v:m Build.proj
-
-REM Clear Packages directory
-IF EXIST Packages (RMDIR Packages /s /q) 
-MKDIR Packages
-
-ECHO Copying Package Content
-XCOPY /Y Content\*.* /s Builds
-
-ECHO Packaging
-nuget pack Microsoft.IoT.DeviceCore.nuspec -OutputDirectory Packages
-nuget pack Microsoft.IoT.DeviceHelpers.nuspec -OutputDirectory Packages
-nuget pack Microsoft.IoT.Devices.nuspec -OutputDirectory Packages
+Build.cmd
+Package.cmd

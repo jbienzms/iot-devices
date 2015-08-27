@@ -9,19 +9,28 @@
   
     <!-- Define Architectures -->
     <ItemGroup>
-      <Architecture Include="AnyCPU">
+      <Architecture Include="AnyCPU-NET">
+        <BuildName>AnyCPU</BuildName>
+        <BuildDir></BuildDir>
+        <OutDir>lib\dotnet</OutDir>
+      </Architecture>
+      <Architecture Include="AnyCPU-UAP">
+        <BuildName>AnyCPU</BuildName>
         <BuildDir></BuildDir>
         <OutDir>lib\uap10.0</OutDir>
       </Architecture>
       <!--<Architecture Include="ARM">
+        <BuildName>ARM</BuildName>
         <BuildDir>ARM</BuildDir>
         <OutDir>runtime\win10-arm\lib</OutDir>
       </Architecture>
       <Architecture Include="x86">
+        <BuildName>x86</BuildName>
         <BuildDir>x86</BuildDir>
         <OutDir>runtime\win10-x86\lib</OutDir>
       </Architecture>
       <Architecture Include="x64">
+        <BuildName>x64</BuildName>
         <BuildDir>x64</BuildDir>
         <OutDir>runtime\win10-x64\lib</OutDir>
       </Architecture>-->
@@ -30,20 +39,26 @@
     <!-- Define Projects to Build -->
     <ItemGroup>
       <ProjectToBuild Include="Microsoft.IoT.DeviceCore">
+        <Architectures>AnyCPU-UAP</Architectures>
         <Path>..\Lib\Microsoft.IoT.DeviceCore</Path>
       </ProjectToBuild>
       <ProjectToBuild Include="Microsoft.IoT.DeviceHelpers">
+        <Architectures>AnyCPU-UAP</Architectures>
         <Path>..\Lib\Microsoft.IoT.DeviceHelpers</Path>
       </ProjectToBuild>
       <ProjectToBuild Include="Microsoft.IoT.Devices">
+        <Architectures>AnyCPU-UAP</Architectures>
         <Path>..\Lib\Microsoft.IoT.Devices</Path>
       </ProjectToBuild>
     </ItemGroup>
 
-    <!-- Create a Merge of Each Project + Architecture Combination -->
-    <CreateItem Include="@(ProjectToBuild)" AdditionalMetadata="Architecture=%(Architecture.Identity);BuildDir=%(Architecture.BuildDir);OutDir=%(Architecture.OutDir)">
-      <Output ItemName="ProjectArchitectureToBuild" TaskParameter="Include"/>
+    <!-- Create a Merge of Each Project + Supported Architecture -->
+    <CreateItem Include="@(ProjectToBuild)" AdditionalMetadata="BuildIdentity=%(Architecture.Identity);BuildName=%(Architecture.BuildName);BuildDir=%(Architecture.BuildDir);OutDir=%(Architecture.OutDir)">
+      <Output ItemName="PAToBuild" TaskParameter="Include" />
     </CreateItem>
+  <ItemGroup>
+      <ProjectArchitectureToBuild Include="@(PAToBuild)" Condition="$([System.String]::Copy('%(PAToBuild.Architectures)').Contains('%(PAToBuild.BuildIdentity)'))"/>
+  </ItemGroup>
   </Target>
 
   <!-- Build Each Project for Each Architecture -->
@@ -63,17 +78,16 @@
     <Delete Files="@(CleanFiles)" />
 
     <!-- Build -->
-    <Message Text="Building %(ProjectArchitectureToBuild.Identity) - %(ProjectArchitectureToBuild.Architecture) to $(OutDir)" Importance="high" />
+    <Message Text="Building %(ProjectArchitectureToBuild.Identity) - %(ProjectArchitectureToBuild.BuildIdentity) to $(OutDir)" Importance="high" />
     <MSBuild Projects="%(ProjectArchitectureToBuild.Path)\%(ProjectArchitectureToBuild.Identity).csproj"
-             Targets="$(BuildTargets)"
-             Properties="Configuration=$(BuildConfiguration);Platform=%(ProjectArchitectureToBuild.Architecture)"
+             Properties="Configuration=$(BuildConfiguration);Platform=%(ProjectArchitectureToBuild.BuildName)"
              ContinueOnError="false"/>
 
     <!-- Get output files for current build -->
     <ItemGroup>
       <BinFiles Include="$(BuildDir)\%(ProjectArchitectureToBuild.Identity).*" Exclude="$(BuildDir)\*.xr.xml" />
       <ResFiles Include="$(BuildDir)\%(ProjectArchitectureToBuild.Identity).xr.xml" />
-      <ThemeFiles Include="$(BuildDir)\Themes\**\%(ProjectArchitectureToBuild.Identity).*" />
+      <ThemeFiles Include="$(BuildDir)\Themes\**\*.*" />
     </ItemGroup>
 
     <!-- Making sure output dir exists -->
