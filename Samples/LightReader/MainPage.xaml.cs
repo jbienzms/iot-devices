@@ -15,7 +15,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 // ...
+using Microsoft.IoT.DeviceCore.Adc;
 using Microsoft.IoT.Devices.Adc;
+using Microsoft.IoT.DeviceCore.Sensors;
 using Microsoft.IoT.Devices.Sensors;
 using Windows.Devices.Gpio;
 using Windows.UI;

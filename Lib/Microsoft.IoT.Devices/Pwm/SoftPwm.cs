@@ -115,7 +115,7 @@ namespace Microsoft.IoT.Devices.Pwm
             for (int i = 0; i < enabledPins.Count; i++)
             {
                 var softPin = enabledPins[i];
-                double targetTicks = startTicks + softPin.DutyCycle * period * ticksPerSecond / 1000.0;
+                double targetTicks = ((double)(startTicks + (softPin.DutyCycle * period * ticksPerSecond))) / 1000.0;
                 currentTicks = stopwatch.ElapsedTicks;
                 
                 while (currentTicks < targetTicks)
@@ -127,7 +127,7 @@ namespace Microsoft.IoT.Devices.Pwm
                 softPin.Pin.Write(pinValue);
             }
 
-            double endCycleTicks = startTicks + period * ticksPerSecond / 1000.0;
+            double endCycleTicks = ((double)(startTicks + (period * ticksPerSecond))) / 1000.0;
             currentTicks = stopwatch.ElapsedTicks;
 
             while (currentTicks < endCycleTicks)

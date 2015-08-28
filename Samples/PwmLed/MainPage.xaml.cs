@@ -56,8 +56,8 @@ namespace PwmLed
             var pwmManager = new PwmProviderManager();
 
             // Add providers
-            pwmManager.Providers.Add(new PCA9685());
-            // pwmManager.Providers.Add(new SoftPwm());
+            // pwmManager.Providers.Add(new PCA9685());
+            pwmManager.Providers.Add(new SoftPwm());
 
             // Get the well-known controller collection back
             var pwmControllers = await pwmManager.GetControllersAsync();
@@ -71,9 +71,9 @@ namespace PwmLed
             // Create light sensor
             led = new RgbLed()
             {
-                RedPin = controller.OpenPin(0),
-                GreenPin = controller.OpenPin(1),
-                BluePin = controller.OpenPin(2),
+                RedPin = controller.OpenPin(4),
+                GreenPin = controller.OpenPin(5),
+                BluePin = controller.OpenPin(6),
             };
         }
 
