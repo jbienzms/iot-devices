@@ -5,10 +5,14 @@
     xmlns:local="using:AvoidanceSample"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.IoT.DeviceCore.Controls"
     mc:Ignorable="d">
 
     <Grid Background="White">
         <TextBlock x:Name="StatusText" FontSize="48" 
          HorizontalAlignment="Center" VerticalAlignment="Center" Text="Close" Foreground="Red" />
+        <controls:GraphicsDisplayPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="500" Height="500">
+            <Rectangle Width="160" Height="120" Fill="Green" />
+        </controls:GraphicsDisplayPanel>
     </Grid>
 </Page>

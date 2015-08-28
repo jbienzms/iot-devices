@@ -159,22 +159,21 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Microsoft.IoT.DeviceCore\Microsoft.IoT.DeviceCore.csproj">
-      <Project>{a4a5d4f4-4e52-4db6-9fbc-4826554a1944}</Project>
-      <Name>Microsoft.IoT.DeviceCore</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Microsoft.IoT.DeviceHelpers\Microsoft.IoT.DeviceHelpers.csproj">
-      <Project>{304a00e3-07f1-4148-904b-2512a2d09705}</Project>
-      <Name>Microsoft.IoT.DeviceHelpers</Name>
-    </ProjectReference>
+    <Reference Include="Microsoft.IoT.DeviceCore">
+      <HintPath>..\..\Ref\Microsoft.IoT.DeviceCore\Microsoft.IoT.DeviceCore.winmd</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.IoT.DeviceHelpers">
+      <HintPath>..\..\Ref\Microsoft.IoT.DeviceHelpers\Microsoft.IoT.DeviceHelpers.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>XCOPY /I /Y *.* /S "$(ProjectDir)..\..\Ref\$(ProjectName)"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
