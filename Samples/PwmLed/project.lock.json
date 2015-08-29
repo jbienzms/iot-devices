@@ -53,7 +53,7 @@
           "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
         }
       },
-      "Microsoft.IoT.Devices/1.0.3": {
+      "Microsoft.IoT.Devices/1.0.4": {
         "dependencies": {
           "Microsoft.IoT.DeviceCore": "[1.0.3, )",
           "Microsoft.IoT.DeviceHelpers": "[1.0.3, )"
@@ -1624,7 +1624,7 @@
           "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
         }
       },
-      "Microsoft.IoT.Devices/1.0.3": {
+      "Microsoft.IoT.Devices/1.0.4": {
         "dependencies": {
           "Microsoft.IoT.DeviceCore": "[1.0.3, )",
           "Microsoft.IoT.DeviceHelpers": "[1.0.3, )"
@@ -3285,7 +3285,7 @@
           "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
         }
       },
-      "Microsoft.IoT.Devices/1.0.3": {
+      "Microsoft.IoT.Devices/1.0.4": {
         "dependencies": {
           "Microsoft.IoT.DeviceCore": "[1.0.3, )",
           "Microsoft.IoT.DeviceHelpers": "[1.0.3, )"
@@ -4918,7 +4918,7 @@
           "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
         }
       },
-      "Microsoft.IoT.Devices/1.0.3": {
+      "Microsoft.IoT.Devices/1.0.4": {
         "dependencies": {
           "Microsoft.IoT.DeviceCore": "[1.0.3, )",
           "Microsoft.IoT.DeviceHelpers": "[1.0.3, )"
@@ -6584,7 +6584,7 @@
           "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
         }
       },
-      "Microsoft.IoT.Devices/1.0.3": {
+      "Microsoft.IoT.Devices/1.0.4": {
         "dependencies": {
           "Microsoft.IoT.DeviceCore": "[1.0.3, )",
           "Microsoft.IoT.DeviceHelpers": "[1.0.3, )"
@@ -8217,7 +8217,7 @@
           "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
         }
       },
-      "Microsoft.IoT.Devices/1.0.3": {
+      "Microsoft.IoT.Devices/1.0.4": {
         "dependencies": {
           "Microsoft.IoT.DeviceCore": "[1.0.3, )",
           "Microsoft.IoT.DeviceHelpers": "[1.0.3, )"
@@ -9883,7 +9883,7 @@
           "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
         }
       },
-      "Microsoft.IoT.Devices/1.0.3": {
+      "Microsoft.IoT.Devices/1.0.4": {
         "dependencies": {
           "Microsoft.IoT.DeviceCore": "[1.0.3, )",
           "Microsoft.IoT.DeviceHelpers": "[1.0.3, )"
@@ -11553,8 +11553,8 @@
         "[Content_Types].xml"
       ]
     },
-    "Microsoft.IoT.Devices/1.0.3": {
-      "sha512": "VkJR0vXB5abT6FGrG45PrKxAL6fWtySOu/FsODbizjzRaf+zDehzDp1/ne3jMy2ww+n7+i3duBTKJhC/Pmz96w==",
+    "Microsoft.IoT.Devices/1.0.4": {
+      "sha512": "P//AqUrXQxw2X/KTPUkNs1mZXWGt7jUQbxYQsItzCEyVBwpeljEci83DIeSRvasuya7+/jh+e0n3YV3AUPiZ0g==",
       "type": "Package",
       "files": [
         "_rels/.rels",
@@ -11562,7 +11562,7 @@
         "lib/uap10.0/Microsoft.IoT.Devices.pdb",
         "lib/uap10.0/Microsoft.IoT.Devices.pri",
         "lib/uap10.0/Microsoft.IoT.Devices.winmd",
-        "package/services/metadata/core-properties/09fb0ffaf01c4ed0a3e9c42283faccc5.psmdcp",
+        "package/services/metadata/core-properties/f8254a8aec014047a2b5e994a103a678.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -14877,7 +14877,7 @@
   "projectFileDependencyGroups": {
     "": [
       "ColorPicker >= 1.0.2",
-      "Microsoft.IoT.Devices >= 1.0.3",
+      "Microsoft.IoT.Devices >= 1.0.4",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0"
     ],
     "UAP,Version=v10.0": []

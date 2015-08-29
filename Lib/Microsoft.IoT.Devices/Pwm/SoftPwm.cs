@@ -18,6 +18,7 @@ namespace Microsoft.IoT.Devices.Pwm
         {
             #region Member Variables
             private GpioPin pin;
+            internal double targetTicks;
             #endregion // Member Variables
 
             #region Constructors
@@ -99,8 +100,6 @@ namespace Microsoft.IoT.Devices.Pwm
                 return;
             }
 
-            if (!stopwatch.IsRunning) { stopwatch.Start(); }
-
             for (int i = 0; i < enabledPins.Count; i++)
             {
                 var softPin = enabledPins[i];
@@ -108,26 +107,39 @@ namespace Microsoft.IoT.Devices.Pwm
                 softPin.Pin.Write(value);
             }
 
+            if (!stopwatch.IsRunning) { stopwatch.Start(); } else { stopwatch.Restart(); }
+
             long startTicks = stopwatch.ElapsedTicks;
             long currentTicks = 0;
             double period = 1000.0 / actualFrequency;
 
+            // Calculate target ticks
             for (int i = 0; i < enabledPins.Count; i++)
             {
                 var softPin = enabledPins[i];
-                double targetTicks = ((double)(startTicks + (softPin.DutyCycle * period * ticksPerSecond))) / 1000.0;
-                currentTicks = stopwatch.ElapsedTicks;
-                
-                while (currentTicks < targetTicks)
-                {
-                    // TODO: Better looping strategy
-                    currentTicks = stopwatch.ElapsedTicks;
-                }
-                var pinValue = (softPin.InvertPolarity) ? GpioPinValue.High : GpioPinValue.Low;
-                softPin.Pin.Write(pinValue);
+                softPin.targetTicks = startTicks + softPin.DutyCycle * period * ticksPerSecond / 1000.0;
             }
 
-            double endCycleTicks = ((double)(startTicks + (period * ticksPerSecond))) / 1000.0;
+            int processedPins = 0;
+            while (processedPins < enabledPins.Count)
+            {
+                currentTicks = stopwatch.ElapsedTicks;
+
+                for (int i = 0; i < enabledPins.Count; i++)
+                {
+                    var softPin = enabledPins[i];
+                    if ((softPin.targetTicks > 0) && (currentTicks > softPin.targetTicks))
+                    {
+                        softPin.targetTicks = 0;
+                        processedPins++;
+
+                        var pinValue = (softPin.InvertPolarity) ? GpioPinValue.High : GpioPinValue.Low;
+                        softPin.Pin.Write(pinValue);
+                    }
+                }
+            }
+
+            double endCycleTicks = startTicks + period * ticksPerSecond / 1000.0;
             currentTicks = stopwatch.ElapsedTicks;
 
             while (currentTicks < endCycleTicks)

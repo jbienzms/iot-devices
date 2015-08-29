@@ -66,7 +66,7 @@ namespace PwmLed
             var controller = pwmControllers[0];
 
             // Set desired frequency
-            controller.SetDesiredFrequency(50);
+            controller.SetDesiredFrequency(60);
 
             // Create light sensor
             led = new RgbLed()
