@@ -4,5 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Breathalyzer"
     RequestedTheme="Light">
+    <Application.Resources>
+        <SolidColorBrush x:Key="SectionBorderColor" Color="Black"/>
+    </Application.Resources>
 
 </Application>

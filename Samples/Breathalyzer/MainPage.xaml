@@ -5,9 +5,99 @@
     xmlns:local="using:Breathalyzer"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:chart="using:Syncfusion.UI.Xaml.Charts"
+    xmlns:syncfusion="using:Syncfusion.UI.Xaml.Controls.Layout"
+    xmlns:controls="using:Microsoft.IoT.DeviceCore.Controls"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <Style TargetType="Line" x:Key="PrimaryAxisGridLineStyle">
+            <Setter Property="Stroke" Value="Gray"></Setter>
+        </Style>
+        <Style TargetType="Line" x:Key="PrimaryAxisLineStyle">
+            <Setter Property="Stroke" Value="Gray"></Setter>
+        </Style>
+        <Style TargetType="Line" x:Key="SecondaryAxisGridLineStyle">
+            <Setter Property="Stroke" Value="Gray"></Setter>
+        </Style>
+        <Style TargetType="Line" x:Key="SecondaryAxisLineStyle">
+            <Setter Property="Stroke" Value="Gray"></Setter>
+        </Style>
+        <Style TargetType="Line" x:Key="SecondaryAxisTickLineStyle">
+            <Setter Property="Stroke" Value="Gray"></Setter>
+        </Style>
+        <Style TargetType="Line" x:Key="PrimaryAxisTickLineStyle">
+            <Setter Property="Stroke" Value="Gray"></Setter>
+        </Style>
 
+    </Page.Resources>
+    
+    <Grid x:Name="LayoutRoot"  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,-2,0,2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.75*"/>
+            <ColumnDefinition Width="0.25*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="0.85*"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="MainChartLayout" Grid.Row="0" Grid.ColumnSpan="2">
+            <Border BorderThickness="2" BorderBrush="{StaticResource SectionBorderColor}">
+                <chart:SfChart x:Name="historyChart">
+                    <chart:SfChart.Behaviors>
+                        <chart:ChartSelectionBehavior></chart:ChartSelectionBehavior>
+                    </chart:SfChart.Behaviors>
+                    <chart:SfChart.PrimaryAxis>
+                        <chart:CategoryAxis MajorGridLineStyle="{StaticResource PrimaryAxisGridLineStyle}" MajorTickLineStyle="{StaticResource PrimaryAxisTickLineStyle}" 
+                                        AxisLineStyle="{StaticResource PrimaryAxisLineStyle}" LabelFormat="dd-MMM"/>
+                    </chart:SfChart.PrimaryAxis>
+                    <chart:SfChart.SecondaryAxis>
+                        <chart:NumericalAxis Minimum="0" Maximum="100" MajorGridLineStyle="{StaticResource SecondaryAxisGridLineStyle}" MajorTickLineStyle="{StaticResource SecondaryAxisTickLineStyle}" 
+                                        AxisLineStyle="{StaticResource SecondaryAxisLineStyle}"/>
+                    </chart:SfChart.SecondaryAxis>
+                    <chart:ColumnSeries ItemsSource="{Binding SalesVsTarget}" SegmentSelectionBrush="Green" XBindingPath="Date" YBindingPath="Sales"></chart:ColumnSeries>
+
+                </chart:SfChart>
+
+            </Border>
+        </Grid>
+        <Grid x:Name="LeaderLayout" Grid.Row="1">
+            
+        </Grid>
+        <Grid x:Name="SidePanel" Grid.Column="1" Grid.Row="1">
+            <Border BorderThickness="2" BorderBrush="{StaticResource SectionBorderColor}">
+                <Grid x:Name="SidePanelLayout">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <controls:GraphicsDisplayPanel x:Name="GraphicsPanel" Grid.Row="1">
+                        <controls:GraphicsDisplayPanel.Template>
+                            <ControlTemplate>
+                                <Viewbox Stretch="Uniform">
+                                    <Grid x:Name="ContentPanel">
+                                        <ContentPresenter Content="{Binding Content}" />
+                                    </Grid>
+                                </Viewbox>
+                            </ControlTemplate>
+                        </controls:GraphicsDisplayPanel.Template>
+                        <Grid Width="128" Height="160" Background="#FF616161" >
+                            <Ellipse x:Name="ColorDot" Width="64" Height="64" Stroke="Blue" Fill="Yellow" />
+                            <TextBlock Visibility="Collapsed" Text="{Binding ElementName=TimeBlock, Path=Text}" FontFamily="{Binding ElementName=TimeBlock, Path=FontFamily}" FontSize="{Binding ElementName=TimeBlock, Path=FontSize}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" Margin="2,3,0,0" />
+                            <TextBlock x:Name="TimeBlock" Text="44%" FontFamily="Assets/Fonts/lcddot_tr.ttf#LCDDot TR" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" />
+                            <TextBlock Text="44%" FontFamily="Assets/Fonts/LCD2N___.TTF#LCD2" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                                <TextBlock.Foreground>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF069B8D" Offset="0"/>
+                                        <GradientStop Color="White" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </TextBlock.Foreground>
+                            </TextBlock>
+                        </Grid>
+                    </controls:GraphicsDisplayPanel>
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </Page>

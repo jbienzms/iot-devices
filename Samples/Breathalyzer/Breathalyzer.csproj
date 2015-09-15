@@ -93,6 +93,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Fonts\LCD2N___.TTF" />
+    <Content Include="Assets\Fonts\lcddot_tr.ttf" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +131,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="SyncfusionUniversalWindows, Version=13.2.0.34">
+      <Name>Syncfusion Controls for UWP XAML</Name>
+    </SDKReference>
+    <SDKReference Include="WindowsIoT, Version=10.0.10240.0">
+      <Name>Windows IoT Extensions for the UWP</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
