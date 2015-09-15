@@ -61,7 +61,7 @@
                         <chart:NumericalAxis Minimum="0" Maximum="1" MajorGridLineStyle="{StaticResource SecondaryAxisGridLineStyle}" MajorTickLineStyle="{StaticResource SecondaryAxisTickLineStyle}" 
                                         AxisLineStyle="{StaticResource SecondaryAxisLineStyle}"/>
                     </chart:SfChart.SecondaryAxis>
-                    <chart:ColumnSeries ItemsSource="{Binding BreathHistory}" SegmentSelectionBrush="Green" XBindingPath="TimeStamp" YBindingPath="Value"></chart:ColumnSeries>
+                    <chart:ColumnSeries x:Name="GlobalSeries" SegmentSelectionBrush="Green" XBindingPath="TimeStamp" YBindingPath="Value"></chart:ColumnSeries>
 
                 </chart:SfChart>
 

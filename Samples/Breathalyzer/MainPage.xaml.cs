@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,13 +23,56 @@ namespace Breathalyzer
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private MainPageViewModel viewModel;
+        #region Member Variables
+        private ObservableCollection<BreathMeasurement> globalHistory;
+        #endregion // Member Variables
 
+
+        #region Constructors
         public MainPage()
         {
             this.InitializeComponent();
-            viewModel = new MainPageViewModel();
-            this.DataContext = viewModel;
+
+            // Create Data
+            globalHistory = new ObservableCollection<BreathMeasurement>();
+            FakeData();
+
+            // Bind Data
+            GlobalSeries.ItemsSource = globalHistory;
         }
+        #endregion // Constructors
+
+
+        #region Internal Methods
+        private void FakeData()
+        {
+            globalHistory.Add(new BreathMeasurement()
+            {
+                Alias = "jbienz",
+                TimeStamp = DateTime.Now - TimeSpan.FromMinutes(34),
+                Value = 0.5,
+            });
+            globalHistory.Add(new BreathMeasurement()
+            {
+                Alias = "jbienz",
+                TimeStamp = DateTime.Now - TimeSpan.FromMinutes(60),
+                Value = 0.25,
+            });
+            globalHistory.Add(new BreathMeasurement()
+            {
+                Alias = "pdecarlo",
+                TimeStamp = DateTime.Now - TimeSpan.FromMinutes(64),
+                Value = 0.75,
+            });
+
+            for (int i = 0; i < 10; i++)
+            {
+                globalHistory.Add(globalHistory[globalHistory.Count - 3]);
+            }
+
+        }
+        #endregion // Internal Methods
+
+
     }
 }
