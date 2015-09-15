@@ -44,18 +44,24 @@
         <Grid x:Name="MainChartLayout" Grid.Row="0" Grid.ColumnSpan="2">
             <Border BorderThickness="2" BorderBrush="{StaticResource SectionBorderColor}">
                 <chart:SfChart x:Name="historyChart">
+                    <chart:SfChart.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFBBBBBB" Offset="0"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </chart:SfChart.Background>
                     <chart:SfChart.Behaviors>
                         <chart:ChartSelectionBehavior></chart:ChartSelectionBehavior>
                     </chart:SfChart.Behaviors>
                     <chart:SfChart.PrimaryAxis>
                         <chart:CategoryAxis MajorGridLineStyle="{StaticResource PrimaryAxisGridLineStyle}" MajorTickLineStyle="{StaticResource PrimaryAxisTickLineStyle}" 
-                                        AxisLineStyle="{StaticResource PrimaryAxisLineStyle}" LabelFormat="dd-MMM"/>
+                                        AxisLineStyle="{StaticResource PrimaryAxisLineStyle}" LabelFormat="hh:mm:ss tt"/>
                     </chart:SfChart.PrimaryAxis>
                     <chart:SfChart.SecondaryAxis>
-                        <chart:NumericalAxis Minimum="0" Maximum="100" MajorGridLineStyle="{StaticResource SecondaryAxisGridLineStyle}" MajorTickLineStyle="{StaticResource SecondaryAxisTickLineStyle}" 
+                        <chart:NumericalAxis Minimum="0" Maximum="1" MajorGridLineStyle="{StaticResource SecondaryAxisGridLineStyle}" MajorTickLineStyle="{StaticResource SecondaryAxisTickLineStyle}" 
                                         AxisLineStyle="{StaticResource SecondaryAxisLineStyle}"/>
                     </chart:SfChart.SecondaryAxis>
-                    <chart:ColumnSeries ItemsSource="{Binding SalesVsTarget}" SegmentSelectionBrush="Green" XBindingPath="Date" YBindingPath="Sales"></chart:ColumnSeries>
+                    <chart:ColumnSeries ItemsSource="{Binding BreathHistory}" SegmentSelectionBrush="Green" XBindingPath="TimeStamp" YBindingPath="Value"></chart:ColumnSeries>
 
                 </chart:SfChart>
 

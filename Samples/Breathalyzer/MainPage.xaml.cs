@@ -22,9 +22,13 @@ namespace Breathalyzer
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private MainPageViewModel viewModel;
+
         public MainPage()
         {
             this.InitializeComponent();
+            viewModel = new MainPageViewModel();
+            this.DataContext = viewModel;
         }
     }
 }
