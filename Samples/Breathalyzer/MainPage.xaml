@@ -29,10 +29,55 @@
         <Style TargetType="Line" x:Key="PrimaryAxisTickLineStyle">
             <Setter Property="Stroke" Value="Gray"></Setter>
         </Style>
+        <LinearGradientBrush x:Key="ValueFillBrush" EndPoint="0.5,1" StartPoint="0.5,0" SpreadMethod="Repeat">
+            <LinearGradientBrush.RelativeTransform>
+                <CompositeTransform CenterY="0.5" CenterX="0.5" Rotation="-90"/>
+            </LinearGradientBrush.RelativeTransform>
+            <GradientStop Color="#FF00FF36"/>
+            <GradientStop Color="Red" Offset="1"/>
+            <GradientStop Color="#FFFFE300" Offset="0.461"/>
+        </LinearGradientBrush>
 
     </Page.Resources>
-    
+
     <Grid x:Name="LayoutRoot"  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,-2,0,2">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="ModeStates">
+                <VisualState x:Name="Capturing">
+                    <VisualState.Setters>
+                        <Setter Target="StatusBlock.(UIElement.Visibility)" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Cooldown">
+                    <VisualState.Setters>
+                        <Setter Target="LCDBackground.(Panel.Background).(SolidColorBrush.Color)">
+                            <Setter.Value>
+                                <Color>#FF004973</Color>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="PercentBlock.(UIElement.Visibility)" Value="Collapsed"/>
+                        <Setter Target="CounterBlock.(UIElement.Visibility)" Value="Collapsed"/>
+                        <Setter Target="CurrentValueProg.(UIElement.Visibility)" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Ready">
+                    <VisualState.Setters>
+                        <Setter Target="CounterBlock.(UIElement.Visibility)" Value="Collapsed"/>
+                        <Setter Target="StatusBlock.(TextBlock.Text)" Value="Ready"/>
+                        <Setter Target="PercentBlock.(UIElement.Visibility)" Value="Collapsed"/>
+                        <Setter Target="CurrentValueProg.(UIElement.Visibility)" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Sending">
+                    <VisualState.Setters>
+                        <Setter Target="PercentBlock.(UIElement.Visibility)" Value="Collapsed"/>
+                        <Setter Target="CounterBlock.(UIElement.Visibility)" Value="Collapsed"/>
+                        <Setter Target="StatusBlock.(TextBlock.Text)" Value="Sending..."/>
+                        <Setter Target="CurrentValueProg.(UIElement.Visibility)" Value="Collapsed"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.75*"/>
             <ColumnDefinition Width="0.25*"/>
@@ -68,7 +113,7 @@
             </Border>
         </Grid>
         <Grid x:Name="LeaderLayout" Grid.Row="1">
-            
+
         </Grid>
         <Grid x:Name="SidePanel" Grid.Column="1" Grid.Row="1">
             <Border BorderThickness="2" BorderBrush="{StaticResource SectionBorderColor}">
@@ -88,11 +133,10 @@
                                 </Viewbox>
                             </ControlTemplate>
                         </controls:GraphicsDisplayPanel.Template>
-                        <Grid Width="128" Height="160" Background="#FF616161" >
-                            <Ellipse x:Name="ColorDot" Width="64" Height="64" Stroke="Blue" Fill="Yellow" />
-                            <TextBlock Visibility="Collapsed" Text="{Binding ElementName=TimeBlock, Path=Text}" FontFamily="{Binding ElementName=TimeBlock, Path=FontFamily}" FontSize="{Binding ElementName=TimeBlock, Path=FontSize}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" Margin="2,3,0,0" />
-                            <TextBlock x:Name="TimeBlock" Text="44%" FontFamily="Assets/Fonts/lcddot_tr.ttf#LCDDot TR" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" />
-                            <TextBlock Text="44%" FontFamily="Assets/Fonts/LCD2N___.TTF#LCD2" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                        <Grid x:Name="LCDBackground" Width="128" Height="160" Background="#FF616161" >
+                            <TextBlock x:Name="CounterBlock" Text="10..." FontFamily="Assets/Fonts/lcddot_tr.ttf#LCDDot TR" FontSize="36" VerticalAlignment="Top" Foreground="White" Margin="5,15,5,0" TextWrapping="WrapWholeWords" TextAlignment="Center" />
+                            <TextBlock x:Name="StatusBlock" Text="Cooling down, please wait..." FontFamily="Assets/Fonts/lcddot_tr.ttf#LCDDot TR" FontSize="36" VerticalAlignment="Center" Foreground="White" Margin="5,15,5,0" TextWrapping="WrapWholeWords" TextAlignment="Center" />
+                            <TextBlock x:Name="PercentBlock" Text="100%" FontFamily="Assets/Fonts/LCD2N___.TTF#LCD2" FontSize="50.667" HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <TextBlock.Foreground>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="#FF069B8D" Offset="0"/>
@@ -100,6 +144,7 @@
                                     </LinearGradientBrush>
                                 </TextBlock.Foreground>
                             </TextBlock>
+                            <ProgressBar x:Name="CurrentValueProg" Height="10" VerticalAlignment="Bottom" Margin="5,0,5,10" Maximum="1" Value="0.25" Foreground="#FF00FFB9"/>
                         </Grid>
                     </controls:GraphicsDisplayPanel>
                 </Grid>
