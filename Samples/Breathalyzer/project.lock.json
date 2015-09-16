@@ -34,6 +34,18 @@
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
         }
       },
+      "Microsoft.Bcl/1.1.9": {
+        "dependencies": {
+          "Microsoft.Bcl.Build": "[1.0.14, )"
+        },
+        "compile": {
+          "lib/win8/_._": {}
+        },
+        "runtime": {
+          "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.14": {},
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -86,6 +98,20 @@
         },
         "runtime": {
           "lib/uap10.0/Microsoft.IoT.Devices.winmd": {}
+        }
+      },
+      "Microsoft.Net.Http/2.2.28": {
+        "dependencies": {
+          "Microsoft.Bcl": "[1.1.9, )",
+          "Microsoft.Bcl.Build": "[1.0.14, )"
+        },
+        "compile": {
+          "lib/win8/System.Net.Http.Primitives.dll": {},
+          "lib/win8/System.Net.Http.Extensions.dll": {}
+        },
+        "runtime": {
+          "lib/win8/System.Net.Http.Primitives.dll": {},
+          "lib/win8/System.Net.Http.Extensions.dll": {}
         }
       },
       "Microsoft.NETCore/5.0.0": {
@@ -258,6 +284,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Newtonsoft.Json/6.0.4": {
+        "compile": {
+          "lib/netcore45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netcore45/Newtonsoft.Json.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -1594,6 +1628,21 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "WindowsAzure.MobileServices/1.3.2": {
+        "dependencies": {
+          "Newtonsoft.Json": "[6.0.4, )",
+          "Microsoft.Bcl": "[1.1.9, )",
+          "Microsoft.Net.Http": "[2.2.28, )"
+        },
+        "compile": {
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll": {},
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
+        },
+        "runtime": {
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll": {},
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-arm": {
@@ -1628,6 +1677,18 @@
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
         }
       },
+      "Microsoft.Bcl/1.1.9": {
+        "dependencies": {
+          "Microsoft.Bcl.Build": "[1.0.14, )"
+        },
+        "compile": {
+          "lib/win8/_._": {}
+        },
+        "runtime": {
+          "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.14": {},
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -1680,6 +1741,20 @@
         },
         "runtime": {
           "lib/uap10.0/Microsoft.IoT.Devices.winmd": {}
+        }
+      },
+      "Microsoft.Net.Http/2.2.28": {
+        "dependencies": {
+          "Microsoft.Bcl": "[1.1.9, )",
+          "Microsoft.Bcl.Build": "[1.0.14, )"
+        },
+        "compile": {
+          "lib/win8/System.Net.Http.Primitives.dll": {},
+          "lib/win8/System.Net.Http.Extensions.dll": {}
+        },
+        "runtime": {
+          "lib/win8/System.Net.Http.Primitives.dll": {},
+          "lib/win8/System.Net.Http.Extensions.dll": {}
         }
       },
       "Microsoft.NETCore/5.0.0": {
@@ -1895,6 +1970,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Newtonsoft.Json/6.0.4": {
+        "compile": {
+          "lib/netcore45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netcore45/Newtonsoft.Json.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -3278,6 +3361,21 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "WindowsAzure.MobileServices/1.3.2": {
+        "dependencies": {
+          "Newtonsoft.Json": "[6.0.4, )",
+          "Microsoft.Bcl": "[1.1.9, )",
+          "Microsoft.Net.Http": "[2.2.28, )"
+        },
+        "compile": {
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll": {},
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
+        },
+        "runtime": {
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll": {},
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
@@ -3312,6 +3410,18 @@
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
         }
       },
+      "Microsoft.Bcl/1.1.9": {
+        "dependencies": {
+          "Microsoft.Bcl.Build": "[1.0.14, )"
+        },
+        "compile": {
+          "lib/win8/_._": {}
+        },
+        "runtime": {
+          "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.14": {},
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -3364,6 +3474,20 @@
         },
         "runtime": {
           "lib/uap10.0/Microsoft.IoT.Devices.winmd": {}
+        }
+      },
+      "Microsoft.Net.Http/2.2.28": {
+        "dependencies": {
+          "Microsoft.Bcl": "[1.1.9, )",
+          "Microsoft.Bcl.Build": "[1.0.14, )"
+        },
+        "compile": {
+          "lib/win8/System.Net.Http.Primitives.dll": {},
+          "lib/win8/System.Net.Http.Extensions.dll": {}
+        },
+        "runtime": {
+          "lib/win8/System.Net.Http.Primitives.dll": {},
+          "lib/win8/System.Net.Http.Extensions.dll": {}
         }
       },
       "Microsoft.NETCore/5.0.0": {
@@ -3565,6 +3689,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Newtonsoft.Json/6.0.4": {
+        "compile": {
+          "lib/netcore45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netcore45/Newtonsoft.Json.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -4934,6 +5066,21 @@
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "WindowsAzure.MobileServices/1.3.2": {
+        "dependencies": {
+          "Newtonsoft.Json": "[6.0.4, )",
+          "Microsoft.Bcl": "[1.1.9, )",
+          "Microsoft.Net.Http": "[2.2.28, )"
+        },
+        "compile": {
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll": {},
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
+        },
+        "runtime": {
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll": {},
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-x86": {
@@ -4968,6 +5115,18 @@
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
         }
       },
+      "Microsoft.Bcl/1.1.9": {
+        "dependencies": {
+          "Microsoft.Bcl.Build": "[1.0.14, )"
+        },
+        "compile": {
+          "lib/win8/_._": {}
+        },
+        "runtime": {
+          "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.14": {},
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -5020,6 +5179,20 @@
         },
         "runtime": {
           "lib/uap10.0/Microsoft.IoT.Devices.winmd": {}
+        }
+      },
+      "Microsoft.Net.Http/2.2.28": {
+        "dependencies": {
+          "Microsoft.Bcl": "[1.1.9, )",
+          "Microsoft.Bcl.Build": "[1.0.14, )"
+        },
+        "compile": {
+          "lib/win8/System.Net.Http.Primitives.dll": {},
+          "lib/win8/System.Net.Http.Extensions.dll": {}
+        },
+        "runtime": {
+          "lib/win8/System.Net.Http.Primitives.dll": {},
+          "lib/win8/System.Net.Http.Extensions.dll": {}
         }
       },
       "Microsoft.NETCore/5.0.0": {
@@ -5242,6 +5415,14 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "Newtonsoft.Json/6.0.4": {
+        "compile": {
+          "lib/netcore45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netcore45/Newtonsoft.Json.dll": {}
+        }
+      },
       "System.AppContext/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -6623,6 +6804,21 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "WindowsAzure.MobileServices/1.3.2": {
+        "dependencies": {
+          "Newtonsoft.Json": "[6.0.4, )",
+          "Microsoft.Bcl": "[1.1.9, )",
+          "Microsoft.Net.Http": "[2.2.28, )"
+        },
+        "compile": {
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll": {},
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
+        },
+        "runtime": {
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll": {},
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
@@ -6657,6 +6853,18 @@
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
         }
       },
+      "Microsoft.Bcl/1.1.9": {
+        "dependencies": {
+          "Microsoft.Bcl.Build": "[1.0.14, )"
+        },
+        "compile": {
+          "lib/win8/_._": {}
+        },
+        "runtime": {
+          "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.14": {},
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -6709,6 +6917,20 @@
         },
         "runtime": {
           "lib/uap10.0/Microsoft.IoT.Devices.winmd": {}
+        }
+      },
+      "Microsoft.Net.Http/2.2.28": {
+        "dependencies": {
+          "Microsoft.Bcl": "[1.1.9, )",
+          "Microsoft.Bcl.Build": "[1.0.14, )"
+        },
+        "compile": {
+          "lib/win8/System.Net.Http.Primitives.dll": {},
+          "lib/win8/System.Net.Http.Extensions.dll": {}
+        },
+        "runtime": {
+          "lib/win8/System.Net.Http.Primitives.dll": {},
+          "lib/win8/System.Net.Http.Extensions.dll": {}
         }
       },
       "Microsoft.NETCore/5.0.0": {
@@ -6910,6 +7132,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Newtonsoft.Json/6.0.4": {
+        "compile": {
+          "lib/netcore45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netcore45/Newtonsoft.Json.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -8279,6 +8509,21 @@
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "WindowsAzure.MobileServices/1.3.2": {
+        "dependencies": {
+          "Newtonsoft.Json": "[6.0.4, )",
+          "Microsoft.Bcl": "[1.1.9, )",
+          "Microsoft.Net.Http": "[2.2.28, )"
+        },
+        "compile": {
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll": {},
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
+        },
+        "runtime": {
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll": {},
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-x64": {
@@ -8313,6 +8558,18 @@
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
         }
       },
+      "Microsoft.Bcl/1.1.9": {
+        "dependencies": {
+          "Microsoft.Bcl.Build": "[1.0.14, )"
+        },
+        "compile": {
+          "lib/win8/_._": {}
+        },
+        "runtime": {
+          "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.14": {},
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -8365,6 +8622,20 @@
         },
         "runtime": {
           "lib/uap10.0/Microsoft.IoT.Devices.winmd": {}
+        }
+      },
+      "Microsoft.Net.Http/2.2.28": {
+        "dependencies": {
+          "Microsoft.Bcl": "[1.1.9, )",
+          "Microsoft.Bcl.Build": "[1.0.14, )"
+        },
+        "compile": {
+          "lib/win8/System.Net.Http.Primitives.dll": {},
+          "lib/win8/System.Net.Http.Extensions.dll": {}
+        },
+        "runtime": {
+          "lib/win8/System.Net.Http.Primitives.dll": {},
+          "lib/win8/System.Net.Http.Extensions.dll": {}
         }
       },
       "Microsoft.NETCore/5.0.0": {
@@ -8587,6 +8858,14 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "Newtonsoft.Json/6.0.4": {
+        "compile": {
+          "lib/netcore45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netcore45/Newtonsoft.Json.dll": {}
+        }
+      },
       "System.AppContext/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -9968,6 +10247,21 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "WindowsAzure.MobileServices/1.3.2": {
+        "dependencies": {
+          "Newtonsoft.Json": "[6.0.4, )",
+          "Microsoft.Bcl": "[1.1.9, )",
+          "Microsoft.Net.Http": "[2.2.28, )"
+        },
+        "compile": {
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll": {},
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
+        },
+        "runtime": {
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll": {},
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
@@ -10002,6 +10296,18 @@
           "lib/win81/Microsoft.ApplicationInsights.Extensibility.Windows.dll": {}
         }
       },
+      "Microsoft.Bcl/1.1.9": {
+        "dependencies": {
+          "Microsoft.Bcl.Build": "[1.0.14, )"
+        },
+        "compile": {
+          "lib/win8/_._": {}
+        },
+        "runtime": {
+          "lib/win8/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.14": {},
       "Microsoft.CSharp/4.0.0": {
         "dependencies": {
           "System.Runtime": "[4.0.20, )",
@@ -10054,6 +10360,20 @@
         },
         "runtime": {
           "lib/uap10.0/Microsoft.IoT.Devices.winmd": {}
+        }
+      },
+      "Microsoft.Net.Http/2.2.28": {
+        "dependencies": {
+          "Microsoft.Bcl": "[1.1.9, )",
+          "Microsoft.Bcl.Build": "[1.0.14, )"
+        },
+        "compile": {
+          "lib/win8/System.Net.Http.Primitives.dll": {},
+          "lib/win8/System.Net.Http.Extensions.dll": {}
+        },
+        "runtime": {
+          "lib/win8/System.Net.Http.Primitives.dll": {},
+          "lib/win8/System.Net.Http.Extensions.dll": {}
         }
       },
       "Microsoft.NETCore/5.0.0": {
@@ -10255,6 +10575,14 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Newtonsoft.Json/6.0.4": {
+        "compile": {
+          "lib/netcore45/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netcore45/Newtonsoft.Json.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -11624,6 +11952,21 @@
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "WindowsAzure.MobileServices/1.3.2": {
+        "dependencies": {
+          "Newtonsoft.Json": "[6.0.4, )",
+          "Microsoft.Bcl": "[1.1.9, )",
+          "Microsoft.Net.Http": "[2.2.28, )"
+        },
+        "compile": {
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll": {},
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
+        },
+        "runtime": {
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll": {},
+          "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
+        }
       }
     }
   },
@@ -11663,7 +12006,7 @@
       ]
     },
     "Microsoft.ApplicationInsights.WindowsApps/1.0.0": {
-      "sha512": "NvBQnFeiFd0O1QdBz06UGApD7zn7ztVi7qO18IsM3EjiXRNgfrEBXB+azNm8XqLY8xGFAqh3HAuSd/wHZMe0XA==",
+      "sha512": "fNCAjIwvbTV+G0dT14bgM5tptsqeSaKQaCrlq7QknOq1Xdm8ZmgsDYddMgXkvykyKLjWyU6fKuOpj6fsQJy+wQ==",
       "type": "Package",
       "files": [
         "_rels/.rels",
@@ -11675,6 +12018,129 @@
         "lib/wpa81/Microsoft.ApplicationInsights.Extensibility.Windows.dll",
         "lib/wpa81/Microsoft.ApplicationInsights.Extensibility.Windows.XML",
         "package/services/metadata/core-properties/4f6f732debe548beaa1183418e8d65cc.psmdcp",
+        "[Content_Types].xml"
+      ]
+    },
+    "Microsoft.Bcl/1.1.9": {
+      "sha512": "USQ55innJy8K+tAXvVa1O8dUTp2s7pmJ5cJj6Tl02HtGc2xBDj0P2QH5620HbGXIWKWYhydoeQF8Rm/JRDBGhw==",
+      "type": "Package",
+      "files": [
+        "_rels/.rels",
+        "Microsoft.Bcl.nuspec",
+        "License-Stable.rtf",
+        "lib/net45/_._",
+        "content/net45/_._",
+        "lib/wp8/_._",
+        "content/wp8/_._",
+        "lib/wpa81/_._",
+        "content/wpa81/_._",
+        "lib/win8/_._",
+        "content/win8/_._",
+        "lib/monotouch/_._",
+        "content/monotouch/_._",
+        "lib/monoandroid/_._",
+        "content/monoandroid/_._",
+        "lib/portable-net45+win8+wp8+wpa81/_._",
+        "content/portable-net45+win8+wp8+wpa81/_._",
+        "lib/portable-net45+win8+wpa81/_._",
+        "content/portable-net45+win8+wpa81/_._",
+        "lib/portable-net451+win81/_._",
+        "content/portable-net451+win81/_._",
+        "lib/portable-net451+win81+wpa81/_._",
+        "content/portable-net451+win81+wpa81/_._",
+        "lib/portable-win81+wp81+wpa81/_._",
+        "content/portable-win81+wp81+wpa81/_._",
+        "lib/net40/System.IO.dll",
+        "lib/net40/System.IO.xml",
+        "lib/net40/System.Runtime.dll",
+        "lib/net40/System.Runtime.xml",
+        "lib/net40/System.Threading.Tasks.dll",
+        "lib/net40/System.Threading.Tasks.xml",
+        "lib/net40/ensureRedirect.xml",
+        "lib/sl4/System.IO.dll",
+        "lib/sl4/System.IO.xml",
+        "lib/sl4/System.Runtime.dll",
+        "lib/sl4/System.Runtime.xml",
+        "lib/sl4/System.Threading.Tasks.dll",
+        "lib/sl4/System.Threading.Tasks.xml",
+        "content/sl4/_._",
+        "lib/sl5/System.IO.dll",
+        "lib/sl5/System.IO.xml",
+        "lib/sl5/System.Runtime.dll",
+        "lib/sl5/System.Runtime.xml",
+        "lib/sl5/System.Threading.Tasks.dll",
+        "lib/sl5/System.Threading.Tasks.xml",
+        "content/sl5/_._",
+        "lib/sl4-windowsphone71/System.IO.dll",
+        "lib/sl4-windowsphone71/System.IO.xml",
+        "lib/sl4-windowsphone71/System.Runtime.dll",
+        "lib/sl4-windowsphone71/System.Runtime.xml",
+        "lib/sl4-windowsphone71/System.Threading.Tasks.dll",
+        "lib/sl4-windowsphone71/System.Threading.Tasks.xml",
+        "lib/sl4-windowsphone71/ensureRedirect.xml",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.IO.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.IO.xml",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Runtime.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Runtime.xml",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Threading.Tasks.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Threading.Tasks.xml",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/ensureRedirect.xml",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.IO.dll",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.IO.xml",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.Runtime.dll",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.Runtime.xml",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.Threading.Tasks.dll",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.Threading.Tasks.xml",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/ensureRedirect.xml",
+        "lib/portable-net40+sl4+win8/System.IO.dll",
+        "lib/portable-net40+sl4+win8/System.IO.xml",
+        "lib/portable-net40+sl4+win8/System.Runtime.dll",
+        "lib/portable-net40+sl4+win8/System.Runtime.xml",
+        "lib/portable-net40+sl4+win8/System.Threading.Tasks.dll",
+        "lib/portable-net40+sl4+win8/System.Threading.Tasks.xml",
+        "lib/portable-net40+sl4+win8/ensureRedirect.xml",
+        "lib/portable-net40+win8/System.IO.dll",
+        "lib/portable-net40+win8/System.IO.xml",
+        "lib/portable-net40+win8/System.Runtime.dll",
+        "lib/portable-net40+win8/System.Runtime.xml",
+        "lib/portable-net40+win8/System.Threading.Tasks.dll",
+        "lib/portable-net40+win8/System.Threading.Tasks.xml",
+        "lib/portable-net40+win8/ensureRedirect.xml",
+        "lib/portable-net40+win8+wp8+wpa81/System.IO.dll",
+        "lib/portable-net40+win8+wp8+wpa81/System.IO.xml",
+        "lib/portable-net40+win8+wp8+wpa81/System.Runtime.dll",
+        "lib/portable-net40+win8+wp8+wpa81/System.Runtime.xml",
+        "lib/portable-net40+win8+wp8+wpa81/System.Threading.Tasks.dll",
+        "lib/portable-net40+win8+wp8+wpa81/System.Threading.Tasks.xml",
+        "lib/portable-net40+win8+wp8+wpa81/ensureRedirect.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.IO.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.IO.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.Runtime.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.Runtime.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.Threading.Tasks.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.Threading.Tasks.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/ensureRedirect.xml",
+        "package/services/metadata/core-properties/a2c2e4aac469425ea858153a6ad602c0.psmdcp",
+        "[Content_Types].xml"
+      ]
+    },
+    "Microsoft.Bcl.Build/1.0.14": {
+      "sha512": "cDLKSvNvRa519hplsbSoYqO69TjdDIhfjtKUM0g20/nVROoWsGav9KCI9HtnGjLmdV1+TcUUDhbotcllibjPEA==",
+      "type": "Package",
+      "files": [
+        "_rels/.rels",
+        "Microsoft.Bcl.Build.nuspec",
+        "License-Stable.rtf",
+        "content/sl4/_._",
+        "content/net40/_._",
+        "content/netcore45/_._",
+        "content/sl4-windowsphone71/_._",
+        "content/portable-net40+win8+sl4+wp71+wpa81/_._",
+        "tools/Install.ps1",
+        "tools/Uninstall.ps1",
+        "tools/Microsoft.Bcl.Build.targets",
+        "tools/Microsoft.Bcl.Build.Tasks.dll",
+        "package/services/metadata/core-properties/ded9cfb683144eaba586f13af4ae979c.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -11759,6 +12225,70 @@
         "lib/uap10.0/Microsoft.IoT.Devices.pri",
         "lib/uap10.0/Microsoft.IoT.Devices.winmd",
         "package/services/metadata/core-properties/f8254a8aec014047a2b5e994a103a678.psmdcp",
+        "[Content_Types].xml"
+      ]
+    },
+    "Microsoft.Net.Http/2.2.28": {
+      "sha512": "hPL9k+rPIpAj84RZSq3WtJkOD9uMStBovAIAz/0OQ+9hQIwQ2XqQlAhMqI4kw0XDxweJySIqNTMlkhRRuthcPQ==",
+      "type": "Package",
+      "files": [
+        "_rels/.rels",
+        "Microsoft.Net.Http.nuspec",
+        "License-Stable.rtf",
+        "lib/sl4-windowsphone71/System.Net.Http.dll",
+        "lib/sl4-windowsphone71/System.Net.Http.xml",
+        "lib/sl4-windowsphone71/System.Net.Http.Primitives.dll",
+        "lib/sl4-windowsphone71/System.Net.Http.Primitives.XML",
+        "lib/sl4-windowsphone71/System.Net.Http.Extensions.dll",
+        "lib/sl4-windowsphone71/System.Net.Http.Extensions.XML",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.xml",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.Primitives.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.Primitives.XML",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.Extensions.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.Extensions.XML",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/ensureRedirect.xml",
+        "lib/net40/System.Net.Http.dll",
+        "lib/net40/System.Net.Http.xml",
+        "lib/net40/System.Net.Http.Primitives.dll",
+        "lib/net40/System.Net.Http.Primitives.xml",
+        "lib/net40/System.Net.Http.WebRequest.dll",
+        "lib/net40/System.Net.Http.WebRequest.xml",
+        "lib/net40/System.Net.Http.Extensions.dll",
+        "lib/net40/System.Net.Http.Extensions.XML",
+        "lib/net40/ensureRedirect.xml",
+        "lib/net45/System.Net.Http.Primitives.dll",
+        "lib/net45/System.Net.Http.Primitives.xml",
+        "lib/net45/System.Net.Http.Extensions.dll",
+        "lib/net45/System.Net.Http.Extensions.XML",
+        "lib/net45/ensureRedirect.xml",
+        "lib/monotouch/System.Net.Http.Primitives.dll",
+        "lib/monotouch/System.Net.Http.Primitives.xml",
+        "lib/monotouch/System.Net.Http.Extensions.dll",
+        "lib/monotouch/System.Net.Http.Extensions.XML",
+        "lib/monoandroid/System.Net.Http.Primitives.dll",
+        "lib/monoandroid/System.Net.Http.Primitives.xml",
+        "lib/monoandroid/System.Net.Http.Extensions.dll",
+        "lib/monoandroid/System.Net.Http.Extensions.XML",
+        "lib/win8/System.Net.Http.Primitives.dll",
+        "lib/win8/System.Net.Http.Primitives.xml",
+        "lib/win8/System.Net.Http.Extensions.dll",
+        "lib/win8/System.Net.Http.Extensions.XML",
+        "lib/wpa81/System.Net.Http.Primitives.dll",
+        "lib/wpa81/System.Net.Http.Primitives.xml",
+        "lib/wpa81/System.Net.Http.Extensions.dll",
+        "lib/wpa81/System.Net.Http.Extensions.XML",
+        "lib/portable-net45+win8+wpa81/System.Net.Http.Primitives.dll",
+        "lib/portable-net45+win8+wpa81/System.Net.Http.Primitives.xml",
+        "lib/portable-net45+win8+wpa81/System.Net.Http.Extensions.dll",
+        "lib/portable-net45+win8+wpa81/System.Net.Http.Extensions.XML",
+        "lib/portable-net45+win8+wpa81/ensureRedirect.xml",
+        "lib/portable-net45+win8/System.Net.Http.Primitives.dll",
+        "lib/portable-net45+win8/System.Net.Http.Primitives.xml",
+        "lib/portable-net45+win8/System.Net.Http.Extensions.dll",
+        "lib/portable-net45+win8/System.Net.Http.Extensions.XML",
+        "lib/portable-net45+win8/ensureRedirect.xml",
+        "package/services/metadata/core-properties/c97ab158801448e9aeb07e2b039b0e1e.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -12371,6 +12901,31 @@
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._",
         "package/services/metadata/core-properties/1d4eb9d0228b48b88d2df3822fba2d86.psmdcp",
+        "[Content_Types].xml"
+      ]
+    },
+    "Newtonsoft.Json/6.0.4": {
+      "sha512": "FyQLmEpjsCrEP+znauLDGAi+h6i9YnaMkITlfIoiM4RYyX3nki306bTHsr/0okiIvIc7BJhQTbOAIZVocccFUw==",
+      "type": "Package",
+      "files": [
+        "_rels/.rels",
+        "Newtonsoft.Json.nuspec",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netcore45/Newtonsoft.Json.dll",
+        "lib/netcore45/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.xml",
+        "tools/install.ps1",
+        "package/services/metadata/core-properties/87a0a4e28d50417ea282e20f81bc6477.psmdcp",
         "[Content_Types].xml"
       ]
     },
@@ -15068,6 +15623,49 @@
         "package/services/metadata/core-properties/1cffc42bca944f1d81ef3c3abdb0f0be.psmdcp",
         "[Content_Types].xml"
       ]
+    },
+    "WindowsAzure.MobileServices/1.3.2": {
+      "sha512": "suP1sgVBLOWp4xitpPQvUOrKqotGNIyqq3JJymBNAL3kA+DcW1FNXMs4KxFHuwa56GJaeCHBrHurqjvjbbUklQ==",
+      "type": "Package",
+      "files": [
+        "_rels/.rels",
+        "WindowsAzure.MobileServices.nuspec",
+        "lib/portable-win+net45+wp8+wpa81+monotouch+monoandroid/Microsoft.WindowsAzure.Mobile.dll",
+        "lib/portable-win+net45+wp8+wpa81+monotouch+monoandroid/Microsoft.WindowsAzure.Mobile.xml",
+        "lib/wp8/Microsoft.WindowsAzure.Mobile.dll",
+        "lib/wp8/Microsoft.WindowsAzure.Mobile.xml",
+        "lib/wp8/Microsoft.WindowsAzure.Mobile.Ext.dll",
+        "lib/wp8/Microsoft.WindowsAzure.Mobile.Ext.xml",
+        "lib/wp8/Microsoft.WindowsAzure.Mobile.UI.dll",
+        "lib/wp8/Microsoft.WindowsAzure.Mobile.UI.xml",
+        "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll",
+        "lib/netcore45/Microsoft.WindowsAzure.Mobile.xml",
+        "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.pri",
+        "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll",
+        "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.xml",
+        "lib/wpa81/Microsoft.WindowsAzure.Mobile.dll",
+        "lib/wpa81/Microsoft.WindowsAzure.Mobile.xml",
+        "lib/wpa81/Microsoft.WindowsAzure.Mobile.Ext.dll",
+        "lib/wpa81/Microsoft.WindowsAzure.Mobile.Ext.xml",
+        "lib/net45/Microsoft.WindowsAzure.Mobile.dll",
+        "lib/net45/Microsoft.WindowsAzure.Mobile.xml",
+        "lib/net45/Microsoft.WindowsAzure.Mobile.Ext.dll",
+        "lib/net45/Microsoft.WindowsAzure.Mobile.Ext.XML",
+        "lib/monotouch/Microsoft.WindowsAzure.Mobile.dll",
+        "lib/monotouch/Microsoft.WindowsAzure.Mobile.xml",
+        "lib/monotouch/Microsoft.WindowsAzure.Mobile.Ext.dll",
+        "lib/monotouch/Microsoft.WindowsAzure.Mobile.Ext.xml",
+        "lib/Xamarin.iOS10/Microsoft.WindowsAzure.Mobile.dll",
+        "lib/Xamarin.iOS10/Microsoft.WindowsAzure.Mobile.xml",
+        "lib/Xamarin.iOS10/Microsoft.WindowsAzure.Mobile.Ext.dll",
+        "lib/Xamarin.iOS10/Microsoft.WindowsAzure.Mobile.Ext.xml",
+        "lib/monoandroid/Microsoft.WindowsAzure.Mobile.dll",
+        "lib/monoandroid/Microsoft.WindowsAzure.Mobile.xml",
+        "lib/monoandroid/Microsoft.WindowsAzure.Mobile.Ext.dll",
+        "lib/monoandroid/Microsoft.WindowsAzure.Mobile.Ext.xml",
+        "package/services/metadata/core-properties/ef570bfb91f64b4e997f6ba451f706f8.psmdcp",
+        "[Content_Types].xml"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -15076,7 +15674,8 @@
       "Microsoft.ApplicationInsights.PersistenceChannel >= 1.0.0",
       "Microsoft.ApplicationInsights.WindowsApps >= 1.0.0",
       "Microsoft.IoT.Devices >= 1.0.4",
-      "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0"
+      "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
+      "WindowsAzure.MobileServices >= 1.3.2"
     ],
     "UAP,Version=v10.0": []
   }

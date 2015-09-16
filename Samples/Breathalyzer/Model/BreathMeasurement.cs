@@ -8,6 +8,8 @@ namespace Breathalyzer
 {
     public class BreathMeasurement
     {
+        public string Id { get; set; }
+
         public string Alias { get; set; }
 
         public DateTime TimeStamp { get; set; }

@@ -57,7 +57,6 @@
                         </Setter>
                         <Setter Target="PercentBlock.(UIElement.Visibility)" Value="Collapsed"/>
                         <Setter Target="CounterBlock.(UIElement.Visibility)" Value="Collapsed"/>
-                        <Setter Target="CurrentValueProg.(UIElement.Visibility)" Value="Collapsed"/>
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState x:Name="Ready">
@@ -79,12 +78,12 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.75*"/>
-            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="0.70*"/>
+            <ColumnDefinition Width="0.30*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.15*"/>
-            <RowDefinition Height="0.85*"/>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.75*"/>
         </Grid.RowDefinitions>
         <Grid x:Name="MainChartLayout" Grid.Row="0" Grid.ColumnSpan="2">
             <Border BorderThickness="2" BorderBrush="{StaticResource SectionBorderColor}">
@@ -113,7 +112,27 @@
             </Border>
         </Grid>
         <Grid x:Name="LeaderLayout" Grid.Row="1">
-
+            <ListView x:Name="LeaderGridView">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="20*" />
+                                <ColumnDefinition Width="40*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0"  Text="{Binding Alias}" FontSize="36" />
+                            <TextBlock Grid.Column="1"  Text="{Binding Value}" FontSize="36" />
+                            <TextBlock Grid.Column="2"  Text="{Binding TimeStamp}" FontSize="36" />
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
         <Grid x:Name="SidePanel" Grid.Column="1" Grid.Row="1">
             <Border BorderThickness="2" BorderBrush="{StaticResource SectionBorderColor}">
@@ -122,6 +141,13 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
+
+                    <Border VerticalAlignment="Center" BorderThickness="2" BorderBrush="{StaticResource SectionBorderColor}" Margin="10,10,10,10">
+                        <StackPanel>
+                            <TextBox x:Name="AliasBlock" PlaceholderText="Alias" Text="Alias" FontSize="48" />
+                            <TextBlock Text="Alias required for leaderboard" FontWeight="Bold" FontSize="22" />
+                        </StackPanel>
+                    </Border>
 
                     <controls:GraphicsDisplayPanel x:Name="GraphicsPanel" Grid.Row="1">
                         <controls:GraphicsDisplayPanel.Template>

@@ -24,6 +24,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.IoT.DeviceCore.Sensors;
+using Microsoft.WindowsAzure.MobileServices;
+using Windows.UI.Core;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -35,14 +37,29 @@ namespace Breathalyzer
     public sealed partial class MainPage : Page
     {
         #region Member Variables
+        public static MobileServiceClient MobileService = new MobileServiceClient(
+        "https://breathalyzer.azure-mobile.net/",
+        "wMZVVcPRvcYQypUxSbffbaLWSWSimJ57"
+        );
+
+        private MobileServiceCollection<BreathMeasurement, BreathMeasurement> breathMeasurements;
+        private IMobileServiceTable<BreathMeasurement> breathMeasurementTable = MobileService.GetTable<BreathMeasurement>();
+
         private ObservableCollection<BreathMeasurement> globalHistory;
         private AdcProviderManager adcManager;
         private IReadOnlyList<AdcController> adcControllers;
-        private DispatcherTimer clockTimer;
-        private DispatcherTimer cloudTimer;
         private GpioController gpioController;
-        #endregion // Member Variables
+        private DispatcherTimer countdownTimer;
 
+        private const int captureSeconds = 10;
+        private int currentcaptureSecond = 0;
+        private const double ambientThreshold = .14;
+        private double currentReading = 0;
+        private double maxReading = 0;
+
+        private enum States {Init, Ready, Capturing, Sending, Cooldown};
+        private States currentState = States.Init;
+        #endregion // Member Variables
 
         #region Constructors
         public MainPage()
@@ -51,7 +68,7 @@ namespace Breathalyzer
 
             // Create Data
             globalHistory = new ObservableCollection<BreathMeasurement>();
-            FakeData();
+            //FakeData();
 
             // Bind Data
             GlobalSeries.ItemsSource = globalHistory;
@@ -62,7 +79,21 @@ namespace Breathalyzer
 
         private async void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
+            await LoadDataAsync(); 
+
+            foreach (var measurement in breathMeasurements)
+                globalHistory.Add(measurement);
+
             await SetupAsync();
+        }
+
+        private async Task LoadDataAsync()
+        {
+            breathMeasurements = await (from m in breathMeasurementTable
+                                        orderby m.Value descending
+                                        select m).Take(30).ToCollectionAsync();
+
+            LeaderGridView.ItemsSource = breathMeasurements;
         }
 
         private async Task SetupAsync()
@@ -92,7 +123,10 @@ namespace Breathalyzer
 
             await StartDisplayAsync();
             StartAnalog();
+            SetupTimers();
+            await TestAndUpdateStateAsync();
         }
+
 
         private async Task StartDisplayAsync()
         {
@@ -107,8 +141,8 @@ namespace Breathalyzer
                 ResetPin = gpioController.OpenPin(16),
 
                 Orientation = DisplayOrientations.Portrait,
-                Width = 160,
-                Height = 128,
+                Width = 128,
+                Height = 160,
             };
 
             // Initialize the display
@@ -133,7 +167,7 @@ namespace Breathalyzer
             var analogSensor = new AnalogSensor()
             {
                 AdcChannel = controller.OpenChannel(0),
-                ReportInterval = 500, // This demo doesn't need fast reports and it helps with responsiveness
+                ReportInterval = 1000, // This demo doesn't need fast reports and it helps with responsiveness
             };
 
             // Subscribe to events
@@ -145,8 +179,98 @@ namespace Breathalyzer
             // Get reading
             var r = args.Reading;
 
+            currentReading = args.Reading.Ratio - ambientThreshold;
+            maxReading = Math.Max(maxReading, currentReading);
+
+            var t = Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                if (currentState == States.Cooldown)
+                {
+                    CurrentValueProg.Value = currentReading;
+                }
+                else
+                {
+                    CurrentValueProg.Value = maxReading;
+                }
+                PercentBlock.Text = string.Format("{0:N0}%", maxReading * 100);
+                await TestAndUpdateStateAsync();
+            });
+
             // Print
-            Debug.WriteLine(string.Format("Value: {0}  Ratio: {1}", r.Value, r.Ratio));
+            //Debug.WriteLine(string.Format("Value: {0}  Ratio: {1}", r.Value, r.Ratio));
+        }
+
+        private void SetupTimers()
+        {
+            countdownTimer = new DispatcherTimer();
+            countdownTimer.Interval = TimeSpan.FromSeconds(1);
+            countdownTimer.Tick += countdownTimer_Tick; ;
+        }
+
+        private async void countdownTimer_Tick(object sender, object e)
+        {
+            currentcaptureSecond--;
+            CounterBlock.Text = currentcaptureSecond.ToString();
+
+            if (currentcaptureSecond == 0)
+                await TestAndUpdateStateAsync();
+        }
+
+        private async Task TestAndUpdateStateAsync()
+        {
+            switch (currentState)
+            {
+                case States.Init:
+                    currentState = States.Ready;
+                    VisualStateManager.GoToState(this, currentState.ToString(), true);
+                    break;
+                case States.Ready:
+                    if(currentReading > 0)
+                    {
+                        currentReading = 0;
+                        maxReading = 0;
+                        currentcaptureSecond = captureSeconds;
+                        currentState = States.Capturing;
+                        VisualStateManager.GoToState(this, currentState.ToString(), true);
+                        countdownTimer.Start();
+                    }
+                    break;
+                case States.Capturing:
+                    if (currentcaptureSecond <= 0)
+                    {
+                        currentState = States.Sending;
+                        VisualStateManager.GoToState(this, currentState.ToString(), true);
+                        await SendReadingAsync();
+                        currentState = States.Cooldown;
+                        VisualStateManager.GoToState(this, currentState.ToString(), true);
+                    }
+                    break;
+                case States.Cooldown:
+                    if (currentReading < 1)
+                    {
+                        currentState = States.Ready;
+                        VisualStateManager.GoToState(this, currentState.ToString(), true);
+                        AliasBlock.Text = string.Empty;
+                    }
+
+                    break;
+            }
+        }
+
+        private async Task SendReadingAsync()
+        {
+            var reading = new BreathMeasurement()
+            {
+                Alias = AliasBlock.Text,
+                Value = maxReading,
+                TimeStamp = DateTime.Now,
+            };
+            if (!string.IsNullOrWhiteSpace(reading.Alias))
+            {
+                await breathMeasurementTable.InsertAsync(reading);
+                await LoadDataAsync();
+            }
+            globalHistory.Add(reading);
         }
 
         #region Internal Methods
