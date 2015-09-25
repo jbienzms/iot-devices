@@ -210,7 +210,7 @@ namespace Breathalyzer
             });
 
             // Print
-            //Debug.WriteLine(string.Format("Value: {0}  Ratio: {1}", r.Value, r.Ratio));
+            Debug.WriteLine(string.Format("Value: {0}  Ratio: {1}", r.Value, r.Ratio));
         }
 
         private void SetupTimers()
@@ -263,7 +263,7 @@ namespace Breathalyzer
                     {
                         currentState = States.Ready;
                         VisualStateManager.GoToState(this, currentState.ToString(), true);
-                        AliasBlock.Text = string.Empty;
+                        //AliasBlock.Text = string.Empty;
                     }
 
                     break;
