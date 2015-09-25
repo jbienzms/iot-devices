@@ -26,6 +26,7 @@ using Windows.UI.Xaml.Navigation;
 using Microsoft.IoT.DeviceCore.Sensors;
 using Microsoft.WindowsAzure.MobileServices;
 using Windows.UI.Core;
+using Windows.UI.Popups;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -79,21 +80,33 @@ namespace Breathalyzer
 
         private async void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            await LoadDataAsync(); 
+            await LoadDataAsync();
 
-            foreach (var measurement in breathMeasurements)
-                globalHistory.Add(measurement);
+            if (breathMeasurements != null)
+            {
+                foreach (var measurement in breathMeasurements)
+                {
+                    globalHistory.Add(measurement);
+                }
+            }
 
             await SetupAsync();
         }
 
         private async Task LoadDataAsync()
         {
-            breathMeasurements = await (from m in breathMeasurementTable
-                                        orderby m.Value descending
-                                        select m).Take(30).ToCollectionAsync();
+            try
+            {
+                breathMeasurements = await (from m in breathMeasurementTable
+                                            orderby m.Value descending
+                                            select m).Take(30).ToCollectionAsync();
 
-            LeaderGridView.ItemsSource = breathMeasurements;
+                LeaderGridView.ItemsSource = breathMeasurements;
+            }
+            catch (Exception ex)
+            {
+                await new MessageDialog(string.Format("Could not load data: {0}", ex.Message)).ShowAsync();
+            }
         }
 
         private async Task SetupAsync()
@@ -265,12 +278,20 @@ namespace Breathalyzer
                 Value = maxReading,
                 TimeStamp = DateTime.Now,
             };
-            if (!string.IsNullOrWhiteSpace(reading.Alias))
-            {
-                await breathMeasurementTable.InsertAsync(reading);
-                await LoadDataAsync();
-            }
             globalHistory.Add(reading);
+
+            try
+            { 
+                if (!string.IsNullOrWhiteSpace(reading.Alias))
+                {
+                    await breathMeasurementTable.InsertAsync(reading);
+                    await LoadDataAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                await new MessageDialog(string.Format("Could not send reading: {0}", ex.Message)).ShowAsync();
+            }
         }
 
         #region Internal Methods
