@@ -1,0 +1,4 @@
+name: Tactile Theme
+markdown: redcarpet
+pygments: true
+permalink: pretty
