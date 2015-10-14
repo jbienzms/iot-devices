@@ -2,4 +2,4 @@ name: Tactile Theme
 markdown: redcarpet
 pygments: true
 permalink: pretty
-baseurl: "/iot-devices"
+baseurl: /iot-devices
