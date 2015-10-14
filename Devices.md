@@ -1,3 +1,7 @@
+---
+title: Document Center
+---
+ 
 # Supported Devices #
 The **Microsoft.IoT.Devices** library supports hundreds of devices. Some devices are supported directly using specialized classes built specifically for a device or chipset. Others are supported through generic classes that can be used to interface with a wide range of devices. 
 
