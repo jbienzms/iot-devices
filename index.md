@@ -1,5 +1,5 @@
 ---
-title: Home
+title: Devices for IoT Home
 layout: page
 ---
 
