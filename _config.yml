@@ -4,3 +4,4 @@ markdown: redcarpet
 pygments: true
 permalink: pretty
 baseurl: /iot-devices
+repourl: https://github.com/jbienzms/iot-devices
