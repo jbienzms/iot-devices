@@ -44,3 +44,5 @@ Select **Microsoft.IoT.DeviceCore** on the left-hand side and click the **Instal
 Finally, if you're using a managed language to build your custom library also add a reference to the **Microsoft.IoT.DeviceHelpers** library.
 
 ![](images/devicehelperspack.png)
+
+TEST
