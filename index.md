@@ -1,5 +1,5 @@
 ---
-title: Microsoft.IoT.Devices
+title: Home
 layout: page
 ---
 
