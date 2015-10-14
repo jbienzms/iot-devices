@@ -1,4 +1,5 @@
-name: Tactile Theme
+name: Microsoft.IoT.Devices
+description: Helper library for interfacing with devices in Windows IoT projects.
 markdown: redcarpet
 pygments: true
 permalink: pretty
