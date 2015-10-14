@@ -1,5 +1,6 @@
 ---
-title: Document Center
+title: Supported Devices
+layout: post
 ---
  
 # Supported Devices #
