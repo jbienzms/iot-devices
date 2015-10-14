@@ -1,3 +1,8 @@
+---
+title: Building a Custom Library
+layout: post
+---
+
 # Building a Custom Library #
 **Microsoft.IoT.Devices** was designed from the ground up to be extensible. This page describes how to build a custom device library and add support for your own devices.
 
