@@ -25,5 +25,3 @@ Properties:
 Events:
 Helpers:
 Notes:
-
-Foo
