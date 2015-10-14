@@ -1,5 +1,5 @@
 name: Microsoft.IoT.Devices
-description: Helper library for interfacing with devices in Windows IoT projects.
+description: Help with devices in Windows IoT projects.
 markdown: redcarpet
 pygments: true
 permalink: pretty
