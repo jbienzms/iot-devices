@@ -10,6 +10,11 @@ using Windows.UI.Core;
 
 namespace Microsoft.IoT.DeviceCore
 {
+    /// <summary>
+    /// Provides extension methods that make it easier to schedule actions on a dispatcher.
+    /// </summary>
+    /// <remarks>
+    /// </remarks>
     static public class DispatcherExtensions
     {
         static public void Run(this CoreDispatcher dispatcher, DispatchedHandler handler)

@@ -75,7 +75,7 @@ namespace Microsoft.IoT.DeviceCore
         }
         
         /// <summary>
-        /// Localized resource similar to "Subscriber must be of type Action or Func<Task>"
+        /// Localized resource similar to "Subscriber must be of type Action or Func Task"
         /// </summary>
         public static string InvalidSubscriberType
         {

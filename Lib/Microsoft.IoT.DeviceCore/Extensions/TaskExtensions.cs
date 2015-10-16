@@ -13,6 +13,9 @@ namespace Microsoft.IoT.DeviceCore
 #else
 namespace Microsoft.IoT.DeviceHelpers
 {
+    /// <summary>
+    /// Provides extension methods for creating, scheduling and working with tasks.
+    /// </summary>
     static public class TaskExtensions
 #endif
     {

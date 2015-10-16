@@ -8,11 +8,20 @@ using System.Threading.Tasks;
 
 namespace Microsoft.IoT.DeviceCore
 {
-    public interface IEmptyEventArgs { }
 
-    public sealed class EmptyEventArgs : IEmptyEventArgs
+    /// <summary>
+    /// Represents an argument for events that do not provide custom data.
+    /// </summary>
+    /// <remarks>
+    /// This type is typically used with <see cref="Windows.Foundation.TypedEventHandler{TSender, TResult}">TypedEventHandler</see>
+    /// </remarks>
+    public sealed class EmptyEventArgs
     {
         static private EmptyEventArgs instance;
+
+        /// <summary>
+        /// Returns the singleton instance of <see cref="EmptyEventArgs"/>.
+        /// </summary>
         static public EmptyEventArgs Instance
         {
             get

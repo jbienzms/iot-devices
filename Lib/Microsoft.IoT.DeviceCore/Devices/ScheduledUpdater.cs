@@ -107,6 +107,7 @@ namespace Microsoft.IoT.DeviceCore
 
 
         #region Public Methods
+        /// <inheritdoc/>
         public void Dispose()
         {
             if (scheduled)
@@ -270,7 +271,7 @@ namespace Microsoft.IoT.DeviceCore
         /// first event is subscribed to; otherwise false. The default is <c>true</c>.
         /// </value>
         /// <remarks>
-        /// Only events that are internally implemented using <see cref="SchedulingEvent"/> 
+        /// Only events that are internally implemented using <see cref="ScheduledUpdater"/> 
         /// participate in auto start and stop.
         /// </remarks>
         public bool StartWithEvents { get; set; }
@@ -284,7 +285,7 @@ namespace Microsoft.IoT.DeviceCore
         /// last event is unsubscribed; otherwise false. The default is <c>true</c>.
         /// </value>
         /// <remarks>
-        /// Only events that are internally implemented using <see cref="SchedulingEvent"/> 
+        /// Only events that are internally implemented using <see cref="ScheduledUpdater"/> 
         /// participate in auto start and stop.
         /// </remarks>
         public bool StopWithEvents { get; set; }

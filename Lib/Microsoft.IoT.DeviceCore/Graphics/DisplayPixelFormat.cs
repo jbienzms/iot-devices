@@ -10,7 +10,7 @@ namespace Microsoft.IoT.DeviceCore.Display
 {
     /// <summary>
     /// Specifies the pixel format of pixel data. Each enumeration value defines a channel 
-    //  ordering, bit depth, and data type.
+    /// ordering, bit depth, and data type.
     /// </summary>
     public enum DisplayPixelFormat
     {

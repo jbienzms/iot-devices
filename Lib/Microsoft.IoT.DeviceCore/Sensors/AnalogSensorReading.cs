@@ -21,8 +21,7 @@ namespace Microsoft.IoT.DeviceCore.Sensors
         /// The value of the reading.
         /// </param>
         /// <param name="ratio">
-        /// The ratio of the reading as a percentage of the range 
-        /// between <see cref="AnalogSensor.Min"/> and <see cref="AnalogSensor.Max"/>
+        /// The ratio of the reading as a percentage of the range.
         /// </param>
         public AnalogSensorReading(int val, double ratio)
         {
@@ -39,8 +38,7 @@ namespace Microsoft.IoT.DeviceCore.Sensors
         public double Value { get; }
 
         /// <summary>
-        /// Gets the ratio of the reading as a percentage of the range 
-        /// between <see cref="AnalogSensor.Min"/> and <see cref="AnalogSensor.Max"/>.
+        /// Gets the ratio of the reading as a percentage of the range.
         /// </summary>
         /// <value>
         /// The ratio of the reading.

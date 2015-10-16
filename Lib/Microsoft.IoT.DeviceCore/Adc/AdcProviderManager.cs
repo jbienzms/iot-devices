@@ -37,6 +37,7 @@ namespace Microsoft.IoT.DeviceCore.Adc
         #endregion // Constructors
 
         #region Public Methods
+        /// <inheritdoc/>
         public void Dispose()
         {
             // Dispose and remove each provider
@@ -52,7 +53,7 @@ namespace Microsoft.IoT.DeviceCore.Adc
         /// Gets the <see cref="AdcController"/> instances for each controller provider.
         /// </summary>
         /// <returns>
-        /// An <see cref="IAsyncOperation"/> that yields the list of controllers.
+        /// An <see cref="IAsyncOperation{TResult}"/> that yields the list of controllers.
         /// </returns>
         public IAsyncOperation<IReadOnlyList<AdcController>> GetControllersAsync()
         {

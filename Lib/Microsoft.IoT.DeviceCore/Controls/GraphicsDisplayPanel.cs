@@ -24,6 +24,28 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace Microsoft.IoT.DeviceCore.Controls
 {
+    /// <summary>
+    /// A container control that can mirror its contents out to a hardware graphics display.
+    /// </summary>
+    /// <remarks>
+    /// <p>
+    /// <see cref="GraphicsDisplayPanel"/> works with any display that implements the <see cref="IGraphicsDisplay"/> interface. 
+    /// The display must be initialized and assigned to the <see cref="Display"/> property of this control. After the display 
+    /// has been assigned set the <see cref="AutoUpdate"/> property to <c>true</c> to begin rendering to the display.
+    /// </p>
+    /// <p>
+    /// Child content inside of this control should have the same pixel dimensions as the attached graphics display. 
+    /// The default template for this control wraps child content with a <see cref="Viewbox"/> so that the content will fill 
+    /// available screen space regardless of the native pixel dimensions.
+    /// </p>
+    /// <p>
+    /// This control must be present in the XAML tree in order for it to work, however it does not have to be opaque. The  
+    /// <see cref="UIElement.Opacity">Opacity</see> property can be set to <c>0</c> to keep the control from rendering on an 
+    /// HDMI display while still allowing it to render on the attached graphics display. Importantly, do not set the 
+    /// <see cref="UIElement.Visibility">Visibility</see> property to <c>Collapsed</c> or the XAML framework will not allow the 
+    /// control to render on either display.
+    /// </p>
+    /// </remarks>
     public sealed class GraphicsDisplayPanel : ContentControl
     {
         #region Static Version
@@ -56,6 +78,7 @@ namespace Microsoft.IoT.DeviceCore.Controls
         #endregion // Constructors
 
         #region Overrides / Event Handlers
+        /// <inheritdoc/>
         protected override void OnApplyTemplate()
         {
             // Apply the template

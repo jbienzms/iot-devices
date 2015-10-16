@@ -50,9 +50,6 @@ namespace Microsoft.IoT.DeviceHelpers
         /// <summary>
         /// Initializes a new <see cref="ObservableEvent"/>.
         /// </summary>
-        /// <param name="observer">
-        /// An <see cref="IEventObserver"/> that monitors the event.
-        /// </param>
         public ObservableEvent(ScheduledAction firstAdded) : this()
         {
             // Validate
@@ -143,7 +140,7 @@ namespace Microsoft.IoT.DeviceHelpers
         /// <summary>
         /// Removes a handler from the observed event.
         /// </summary>
-        /// <param name="removed">
+        /// <param name="handler">
         /// The handler to remove.
         /// </param>
         public void Remove(TypedEventHandler<TSender, TResult> handler)

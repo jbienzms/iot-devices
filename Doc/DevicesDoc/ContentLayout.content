@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Topics>
+  <Topic id="f5033eb9-76f4-4567-921e-7d84815c826d" visible="True" isDefault="true" title="Welcome to Microsoft.IoT.Devices">
+    <HelpKeywords>
+      <HelpKeyword index="K" term="Welcome" />
+    </HelpKeywords>
+  </Topic>
+  <Topic id="7e4af686-8c97-40c6-a035-af6a5c86781f" visible="True" isExpanded="true" title="Version History">
+    <HelpKeywords>
+      <HelpKeyword index="K" term="version, history" />
+    </HelpKeywords>
+    <Topic id="F79FE839-895C-4677-8C7E-9C2F3E34FFA2" visible="True" isSelected="true" title="Version 1.0.0.0" />
+    <Topic id="ce87bb79-5e03-4e84-ac35-e4414332813d" visible="True" title="Version 1.0.4.0">
+      <HelpKeywords>
+        <HelpKeyword index="K" term="version, 1.0.4.0" />
+      </HelpKeywords>
+    </Topic>
+  </Topic>
+</Topics>

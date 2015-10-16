@@ -52,7 +52,7 @@ namespace Microsoft.IoT.DeviceCore.Pwm
         /// Gets the <see cref="PwmController"/> instances for each controller provider.
         /// </summary>
         /// <returns>
-        /// An <see cref="IAsyncOperation"/> that yields the list of controllers.
+        /// An IAsyncOperation that yields the list of controllers.
         /// </returns>
         public IAsyncOperation<IReadOnlyList<PwmController>> GetControllersAsync()
         {
