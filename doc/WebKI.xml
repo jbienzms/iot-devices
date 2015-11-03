@@ -1,0 +1,1114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpKI>
+  <HelpKINode Title="AcquireChannel method">
+    <HelpKINode Title="ADC0832.AcquireChannel Method " Url="html/2b4244be-c81f-ed72-196f-7b2194b20ea7.htm" />
+    <HelpKINode Title="MCP3208.AcquireChannel Method " Url="html/a5d7412e-5b78-b36d-bbd4-bfd2d90973b2.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AcquirePin method">
+    <HelpKINode Title="PCA9685.AcquirePin Method " Url="html/d1315159-0d0d-e151-e502-01e296a20efe.htm" />
+    <HelpKINode Title="SoftPwm.AcquirePin Method " Url="html/00b02964-af6a-ccf2-518c-b446eaaf8f9e.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ActualFrequency property">
+    <HelpKINode Title="PCA9685.ActualFrequency Property " Url="html/4827f0e2-240a-9b79-29c6-fc98baf0134b.htm" />
+    <HelpKINode Title="SoftPwm.ActualFrequency Property " Url="html/29c2410a-fd6f-6da2-87d4-71989e72a415.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ADA938 class">
+    <HelpKINode Title="ADA938 Class" Url="html/532e44c1-5325-26c1-c3c1-050faf2ea4da.htm" />
+    <HelpKINode Title="about ADA938 class" Url="html/532e44c1-5325-26c1-c3c1-050faf2ea4da.htm" />
+    <HelpKINode Title="constructor" Url="html/bd111837-8fc2-9bd4-b0a1-0878595876c5.htm" />
+    <HelpKINode Title="methods" Url="html/80f66b89-03fd-4cc2-00f2-50c8c20a41f5.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ADA938.ADA938 constructor" Url="html/bd111837-8fc2-9bd4-b0a1-0878595876c5.htm" />
+  <HelpKINode Title="ADC0832 class">
+    <HelpKINode Title="ADC0832 Class" Url="html/ea51091e-16c6-114a-e0d9-9d2af17817ac.htm" />
+    <HelpKINode Title="about ADC0832 class" Url="html/ea51091e-16c6-114a-e0d9-9d2af17817ac.htm" />
+    <HelpKINode Title="constructor" Url="html/fb124621-6056-93d6-0161-a4cf1e862bf6.htm" />
+    <HelpKINode Title="methods" Url="html/01343d28-849b-cdf2-a370-a5886f9fef4d.htm" />
+    <HelpKINode Title="properties" Url="html/5b82897d-04ba-43db-ddc1-547a6c384e57.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ADC0832.AcquireChannel method" Url="html/2b4244be-c81f-ed72-196f-7b2194b20ea7.htm" />
+  <HelpKINode Title="ADC0832.ADC0832 constructor" Url="html/fb124621-6056-93d6-0161-a4cf1e862bf6.htm" />
+  <HelpKINode Title="ADC0832.ChannelCount property" Url="html/45b5d707-9899-19a3-4662-b751aea8fc30.htm" />
+  <HelpKINode Title="ADC0832.ChannelMode property" Url="html/55ab565a-6da9-ebf2-0f41-90a4ff19f7bd.htm" />
+  <HelpKINode Title="ADC0832.ChipSelectPin property" Url="html/3e2e3ada-c671-140c-9f3b-ece895261e91.htm" />
+  <HelpKINode Title="ADC0832.ClockPin property" Url="html/bcb2348f-90db-1c95-be01-4b94f42e33aa.htm" />
+  <HelpKINode Title="ADC0832.Close method" Url="html/9ceaac95-200f-02f8-45a6-6d666f0e031d.htm" />
+  <HelpKINode Title="ADC0832.DataPin property" Url="html/5668455a-6c38-ff9d-d3b1-bcfef3c7fd7d.htm" />
+  <HelpKINode Title="ADC0832.IsChannelModeSupported method" Url="html/5aa31c19-300f-55d9-5d70-0322a4caf0d7.htm" />
+  <HelpKINode Title="ADC0832.MaxValue property" Url="html/6fb9cc0b-1ec4-0320-77f7-02f03ac89b62.htm" />
+  <HelpKINode Title="ADC0832.MinValue property" Url="html/c3a824ef-f2fc-5460-7bf9-7843f5783060.htm" />
+  <HelpKINode Title="ADC0832.ReadValue method" Url="html/3f9ed3ac-7b5d-e973-872a-1899c6753b97.htm" />
+  <HelpKINode Title="ADC0832.ReleaseChannel method" Url="html/bb393a9f-e13a-e925-7d86-2c012f13a23f.htm" />
+  <HelpKINode Title="ADC0832.ResolutionInBits property" Url="html/aafa173f-1134-14b9-f001-aaf26a420887.htm" />
+  <HelpKINode Title="AdcChannel property" Url="html/04b822be-8089-b921-d0dd-41ab5b89b8b0.htm" />
+  <HelpKINode Title="AdcProviderManager class">
+    <HelpKINode Title="AdcProviderManager Class" Url="html/43b9cb0d-e27d-a0f4-bce3-cc407fade4e2.htm" />
+    <HelpKINode Title="about AdcProviderManager class" Url="html/43b9cb0d-e27d-a0f4-bce3-cc407fade4e2.htm" />
+    <HelpKINode Title="constructor" Url="html/1fc60245-0954-9b14-d1f9-ff29dc272c78.htm" />
+    <HelpKINode Title="methods" Url="html/4adbfbae-b412-acb6-41e8-bdc369f31f17.htm" />
+    <HelpKINode Title="properties" Url="html/544de3b9-1bfd-2378-5cd7-6c69b5785d96.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AdcProviderManager.AdcProviderManager constructor" Url="html/1fc60245-0954-9b14-d1f9-ff29dc272c78.htm" />
+  <HelpKINode Title="AdcProviderManager.Close method" Url="html/1b177980-db37-3674-a2da-5ccd12a61b48.htm" />
+  <HelpKINode Title="AdcProviderManager.GetControllersAsync method" Url="html/be680042-92c0-b76b-e01f-2a3fffde8889.htm" />
+  <HelpKINode Title="AdcProviderManager.Providers property" Url="html/0252933f-576b-1422-7300-816b158a4aab.htm" />
+  <HelpKINode Title="Add method">
+    <HelpKINode Title="IObservableEvent(TSender, TResult).Add Method " Url="html/960457fa-3775-c404-faaa-65365e254cee.htm" />
+    <HelpKINode Title="ObservableEvent(TSender, TResult).Add Method " Url="html/eb7f5eca-2c8c-2f74-a81f-62ca03400c57.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Added method" Url="html/708cfb6f-572a-b079-4d32-5003a6bbca3d.htm" />
+  <HelpKINode Title="AddressMode property" Url="html/a1b5f63f-4371-d8dc-0fe7-32b603c2fa57.htm" />
+  <HelpKINode Title="AnalogSensor class">
+    <HelpKINode Title="AnalogSensor Class" Url="html/f6b9f31e-55fd-466f-651d-9ae7ac872160.htm" />
+    <HelpKINode Title="about AnalogSensor class" Url="html/f6b9f31e-55fd-466f-651d-9ae7ac872160.htm" />
+    <HelpKINode Title="constructor" Url="html/71ec2189-0e1a-5394-f533-1618ce8fee95.htm" />
+    <HelpKINode Title="events" Url="html/a0030278-e09d-03a5-0f35-c7a4451a90e7.htm" />
+    <HelpKINode Title="methods" Url="html/4980ea4d-fda9-9a29-8987-9d47429a713c.htm" />
+    <HelpKINode Title="properties" Url="html/b841d8ca-2b33-d3bf-c84c-563819aaff74.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AnalogSensor.AdcChannel property" Url="html/04b822be-8089-b921-d0dd-41ab5b89b8b0.htm" />
+  <HelpKINode Title="AnalogSensor.AnalogSensor constructor" Url="html/71ec2189-0e1a-5394-f533-1618ce8fee95.htm" />
+  <HelpKINode Title="AnalogSensor.Close method" Url="html/3a2a3d29-abc5-db61-b177-172b1f6120bb.htm" />
+  <HelpKINode Title="AnalogSensor.GetCurrentReading method" Url="html/5191a3f8-f835-177a-3861-272800446f2c.htm" />
+  <HelpKINode Title="AnalogSensor.ReadingChanged event" Url="html/b384b613-a587-b961-e6f3-4428c8f93ca6.htm" />
+  <HelpKINode Title="AnalogSensor.ReportInterval property" Url="html/fa7e0b24-5a57-3643-7006-282c18bdf174.htm" />
+  <HelpKINode Title="AnalogSensorReading class">
+    <HelpKINode Title="AnalogSensorReading Class" Url="html/45e3a871-34f7-c7a0-c49b-622a40780a65.htm" />
+    <HelpKINode Title="about AnalogSensorReading class" Url="html/45e3a871-34f7-c7a0-c49b-622a40780a65.htm" />
+    <HelpKINode Title="constructor" Url="html/da6622d9-92e6-a7fc-4297-e67e335ad4cd.htm" />
+    <HelpKINode Title="methods" Url="html/488ef584-31db-f31d-17a6-6bbb6a91a9a8.htm" />
+    <HelpKINode Title="properties" Url="html/b09d5797-aa7b-e0e9-e24b-f7934783e1b2.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AnalogSensorReading.AnalogSensorReading constructor" Url="html/da6622d9-92e6-a7fc-4297-e67e335ad4cd.htm" />
+  <HelpKINode Title="AnalogSensorReading.Ratio property" Url="html/7f7ebde2-e2fd-1600-269d-7d6512bf2991.htm" />
+  <HelpKINode Title="AnalogSensorReading.Value property" Url="html/b793dd89-255b-7bf2-5c5a-a76507f81142.htm" />
+  <HelpKINode Title="AnalogSensorReadingChangedEventArgs class">
+    <HelpKINode Title="AnalogSensorReadingChangedEventArgs Class" Url="html/69141a8a-124c-7b4f-032a-fb9735b8c06a.htm" />
+    <HelpKINode Title="about AnalogSensorReadingChangedEventArgs class" Url="html/69141a8a-124c-7b4f-032a-fb9735b8c06a.htm" />
+    <HelpKINode Title="constructor" Url="html/251315ec-c149-47dc-67fc-d5ab7744a3e3.htm" />
+    <HelpKINode Title="methods" Url="html/0b132b27-b40c-8a6c-f7e7-328a54b94ea8.htm" />
+    <HelpKINode Title="properties" Url="html/394d16e4-e52b-e8f9-9660-61618c802be2.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AnalogSensorReadingChangedEventArgs.AnalogSensorReadingChangedEventArgs constructor" Url="html/251315ec-c149-47dc-67fc-d5ab7744a3e3.htm" />
+  <HelpKINode Title="AnalogSensorReadingChangedEventArgs.Reading property" Url="html/4f56174f-7ff0-08a1-dc37-fad12f95c9bb.htm" />
+  <HelpKINode Title="AutoStart property" Url="html/5a20d27f-86f4-f520-3c2e-2d40caaa5687.htm" />
+  <HelpKINode Title="AutoUpdate property">
+    <HelpKINode Title="GraphicsDisplayPanel.AutoUpdate Property " Url="html/f7ce7e2b-9132-bb40-0877-a3d64a3029d9.htm" />
+    <HelpKINode Title="IGraphicsDisplay.AutoUpdate Property " Url="html/ec88cd5d-e141-5e92-e4ea-4e3527c5cf0a.htm" />
+    <HelpKINode Title="ST7735.AutoUpdate Property " Url="html/91811cc1-eed6-b166-2fbc-7f26323724a8.htm" />
+  </HelpKINode>
+  <HelpKINode Title="B enumeration member" Url="html/44a15ead-930f-ed35-5f5e-a57fa0af2773.htm" />
+  <HelpKINode Title="BluePin property" Url="html/005adfc5-4196-64ce-8c56-b30bb52a6fd0.htm" />
+  <HelpKINode Title="BrightnessLevel property">
+    <HelpKINode Title="ILight.BrightnessLevel Property " Url="html/b97d693f-90b3-9757-f988-10444a6527dd.htm" />
+    <HelpKINode Title="RgbLed.BrightnessLevel Property " Url="html/6cf86f2e-267a-a139-c812-1c4c7df8a1c4.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ButtonClickMode enumeration" Url="html/a7a7704a-2b6f-07fe-6b96-b7f196094df0.htm" />
+  <HelpKINode Title="ButtonPin property">
+    <HelpKINode Title="RotaryEncoder.ButtonPin Property " Url="html/e1bf8172-44d8-74a7-5d00-da7cdc4659cf.htm" />
+    <HelpKINode Title="SS944.ButtonPin Property " Url="html/cbf90a7e-c6b7-5e77-b9d3-978fa56c0e20.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ChannelCount property">
+    <HelpKINode Title="ADC0832.ChannelCount Property " Url="html/45b5d707-9899-19a3-4662-b751aea8fc30.htm" />
+    <HelpKINode Title="MCP3208.ChannelCount Property " Url="html/e34e0395-3a08-664b-79f5-1a53e6b63726.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ChannelMode property">
+    <HelpKINode Title="ADC0832.ChannelMode Property " Url="html/55ab565a-6da9-ebf2-0f41-90a4ff19f7bd.htm" />
+    <HelpKINode Title="MCP3208.ChannelMode Property " Url="html/6111b5d1-659d-f052-781f-44a4eb646613.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ChipSelectLine property">
+    <HelpKINode Title="ISpiBasedDevice.ChipSelectLine Property " Url="html/10d08cdc-5555-bd4a-755f-c5335dccb98b.htm" />
+    <HelpKINode Title="MCP3208.ChipSelectLine Property " Url="html/02f59847-69e1-555c-efb9-e22574a7cec1.htm" />
+    <HelpKINode Title="SSD1306.ChipSelectLine Property " Url="html/f76ce278-bd14-4f0f-ab71-4c439eb464b1.htm" />
+    <HelpKINode Title="ST7735.ChipSelectLine Property " Url="html/ac55e1bd-0b7c-1acb-443d-2b8167227fde.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ChipSelectPin property" Url="html/3e2e3ada-c671-140c-9f3b-ece895261e91.htm" />
+  <HelpKINode Title="Clear method">
+    <HelpKINode Title="IGraphicsDisplay.Clear Method " Url="html/7117f883-5045-fc4a-1d49-c02628ede28b.htm" />
+    <HelpKINode Title="ST7735.Clear Method " Url="html/bd897a49-aaef-59ab-52d6-165af1923ff4.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ClearAsync method" Url="html/3c15d7e9-7272-98df-a502-72d2d3ee825b.htm" />
+  <HelpKINode Title="Click event">
+    <HelpKINode Title="IPushButton.Click Event" Url="html/eaf5ec58-d435-24c2-8f48-12e0599c5703.htm" />
+    <HelpKINode Title="PushButton.Click Event" Url="html/6c32acee-3eae-9db1-9d49-0ae7333c6a06.htm" />
+    <HelpKINode Title="RotaryEncoder.Click Event" Url="html/e7b8d608-2eeb-45ca-d245-be61fc13b68e.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ClickEvent property" Url="html/e4718825-087e-85aa-2b30-72059056712f.htm" />
+  <HelpKINode Title="ClickMode property">
+    <HelpKINode Title="IPushButton.ClickMode Property " Url="html/9808ecde-9d9b-41cd-e660-014167720220.htm" />
+    <HelpKINode Title="PushButton.ClickMode Property " Url="html/b9de210f-7867-af7b-6a99-41f2e8c19084.htm" />
+    <HelpKINode Title="PushButtonHelper.ClickMode Property " Url="html/faba9210-aa4f-b4b4-418f-10039b773f0a.htm" />
+    <HelpKINode Title="RotaryEncoder.ClickMode Property " Url="html/07b7f8d5-1dbc-a1b7-c696-b93dd83a76f7.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ClockFrequency property" Url="html/0c77ef3b-ccd0-2d70-1f40-468fd032b76f.htm" />
+  <HelpKINode Title="ClockPin property">
+    <HelpKINode Title="ADC0832.ClockPin Property " Url="html/bcb2348f-90db-1c95-be01-4b94f42e33aa.htm" />
+    <HelpKINode Title="RotaryEncoder.ClockPin Property " Url="html/3f1639af-350b-6339-b096-ee28ba205cd8.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Clockwise enumeration member" Url="html/98f6fc7b-5dec-a55e-4f16-eabb489d0742.htm" />
+  <HelpKINode Title="Close method">
+    <HelpKINode Title="ADC0832.Close Method " Url="html/9ceaac95-200f-02f8-45a6-6d666f0e031d.htm" />
+    <HelpKINode Title="AdcProviderManager.Close Method " Url="html/1b177980-db37-3674-a2da-5ccd12a61b48.htm" />
+    <HelpKINode Title="AnalogSensor.Close Method " Url="html/3a2a3d29-abc5-db61-b177-172b1f6120bb.htm" />
+    <HelpKINode Title="MCP3208.Close Method " Url="html/6c06c7ac-fe78-1be5-df2c-29824a3d7736.htm" />
+    <HelpKINode Title="PCA9685.Close Method " Url="html/4b81b6b7-5981-dd26-c47b-6003707f3ef4.htm" />
+    <HelpKINode Title="PushButton.Close Method " Url="html/463368fd-47fb-bcd2-1931-4861fa8d2333.htm" />
+    <HelpKINode Title="PwmProviderManager.Close Method " Url="html/e3ce0b83-f1dd-78cb-7e61-b0f66760e41d.htm" />
+    <HelpKINode Title="RgbLed.Close Method " Url="html/8ca8e13b-2319-fb4e-75c1-622904ad537d.htm" />
+    <HelpKINode Title="RotaryEncoder.Close Method " Url="html/4961e4d1-db10-4adc-5fb1-3cc758cf4084.htm" />
+    <HelpKINode Title="ScheduledUpdater.Close Method " Url="html/ad235d34-4356-56cc-b6b9-3bab52799c2c.htm" />
+    <HelpKINode Title="SoftPwm.Close Method " Url="html/f2c58918-b135-b9b9-c667-52aec769691a.htm" />
+    <HelpKINode Title="SS944.Close Method " Url="html/36936a79-1206-a6ff-89ff-35bde50d1c3a.htm" />
+    <HelpKINode Title="SSD1306.Close Method " Url="html/de7c648e-37c3-3151-9a1d-e668963c4757.htm" />
+    <HelpKINode Title="ST7735.Close Method " Url="html/fc3ef498-ad60-8112-08db-25a1f4a1787c.htm" />
+    <HelpKINode Title="Switch.Close Method " Url="html/58d3714f-815d-1ac4-7f1b-6a8796591a65.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Color property">
+    <HelpKINode Title="ILight.Color Property " Url="html/115cc408-434a-a7a2-b009-e2965cbc18b3.htm" />
+    <HelpKINode Title="RgbLed.Color Property " Url="html/32f79cd7-df88-f599-037b-dcd91f75c578.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ControllerName property">
+    <HelpKINode Title="ISpiBasedDevice.ControllerName Property " Url="html/7b6821be-c5f3-ab90-7678-c82d5243bd65.htm" />
+    <HelpKINode Title="MCP3208.ControllerName Property " Url="html/0b26dec2-bce7-487b-19b1-576ac8d1eb74.htm" />
+    <HelpKINode Title="PCA9685.ControllerName Property " Url="html/feed2df9-22b7-3dde-ac70-f3c11ad2a2e2.htm" />
+    <HelpKINode Title="SSD1306.ControllerName Property " Url="html/e0622574-e3ee-c6c2-0565-502b18e96279.htm" />
+    <HelpKINode Title="ST7735.ControllerName Property " Url="html/5421af9e-52ea-6420-5300-d011035c07b8.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Counterclockwise enumeration member" Url="html/98f6fc7b-5dec-a55e-4f16-eabb489d0742.htm" />
+  <HelpKINode Title="DataCommandPin property" Url="html/e2ae13cd-62b6-3488-a4bf-6401dc97560a.htm" />
+  <HelpKINode Title="DataPin property">
+    <HelpKINode Title="ADC0832.DataPin Property " Url="html/5668455a-6c38-ff9d-d3b1-bcfef3c7fd7d.htm" />
+    <HelpKINode Title="SSD1306.DataPin Property " Url="html/b8f66f31-71c6-f143-e1f3-18535fe16841.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DebounceTimeout property">
+    <HelpKINode Title="PushButton.DebounceTimeout Property " Url="html/9481e388-b2ba-9932-4ac9-1962dab8e8bd.htm" />
+    <HelpKINode Title="PushButtonHelper.DebounceTimeout Property " Url="html/c57ab508-8dcd-655c-553f-74cd8939dc55.htm" />
+    <HelpKINode Title="RotaryEncoder.DebounceTimeout Property " Url="html/83f86a18-d50e-4b52-0999-e10ace49e8dc.htm" />
+    <HelpKINode Title="Switch.DebounceTimeout Property " Url="html/c58d053b-f4c8-0513-5ddd-922b7eacb919.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Default enumeration member" Url="html/1cc69ac8-9456-ba04-2cba-f07bb5acba36.htm" />
+  <HelpKINode Title="Default property" Url="html/4ce99a19-e80b-dcf5-b783-819fa3b69d8c.htm" />
+  <HelpKINode Title="DeviceNotFoundException class">
+    <HelpKINode Title="DeviceNotFoundException Class" Url="html/621326e5-b132-ed81-180d-348639c45609.htm" />
+    <HelpKINode Title="about DeviceNotFoundException class" Url="html/621326e5-b132-ed81-180d-348639c45609.htm" />
+    <HelpKINode Title="constructor" Url="html/a7761839-1177-ec62-800b-9362e787c15f.htm" />
+    <HelpKINode Title="methods" Url="html/e0c6dce9-aafb-32a0-ebc4-e6746b62c780.htm" />
+    <HelpKINode Title="properties" Url="html/d83152e2-859b-ddaf-3312-05c7a91e943e.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DeviceNotFoundException.DeviceNotFoundException constructor" Url="html/a7761839-1177-ec62-800b-9362e787c15f.htm" />
+  <HelpKINode Title="Direction property" Url="html/adfe45fd-9cd1-3ed5-1e6b-efedebd0c9b4.htm" />
+  <HelpKINode Title="DirectionPin property" Url="html/f0552334-bbe5-fc97-ae06-01df3818110b.htm" />
+  <HelpKINode Title="DisablePin method">
+    <HelpKINode Title="PCA9685.DisablePin Method " Url="html/fc7953b4-a117-fe22-13bc-f2688c5d1711.htm" />
+    <HelpKINode Title="SoftPwm.DisablePin Method " Url="html/9eda7f19-2305-3384-2198-14faafaca1d7.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DispatcherExtensions class">
+    <HelpKINode Title="DispatcherExtensions Class" Url="html/da14ae16-ac18-7e1a-9e78-081539b405ee.htm" />
+    <HelpKINode Title="about DispatcherExtensions class" Url="html/da14ae16-ac18-7e1a-9e78-081539b405ee.htm" />
+    <HelpKINode Title="methods" Url="html/4d9d9706-8ef7-f771-d691-a1c8e46b866f.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DispatcherExtensions.Run method" Url="html/cb4df575-1d72-b9b9-8d32-5d74849d575a.htm" />
+  <HelpKINode Title="DispatcherExtensions.RunAsync method" Url="html/0300af92-9968-8e28-2cf6-52c5c9afc654.htm" />
+  <HelpKINode Title="DispatcherExtensions.RunIdle method" Url="html/3bec7486-099a-9d34-b5cd-703e74a6fd82.htm" />
+  <HelpKINode Title="DispatcherExtensions.RunIdleAsync method" Url="html/179caaf5-72c8-0638-37cb-437fdc58acd8.htm" />
+  <HelpKINode Title="Display property" Url="html/c8cdbc5e-690c-d2bf-b14d-0308b391ec1b.htm" />
+  <HelpKINode Title="DisplayPixelFormat enumeration" Url="html/6d044a07-577b-d381-84eb-8528bd288151.htm" />
+  <HelpKINode Title="DisplayType property" Url="html/81974a18-25c4-4586-a2f5-bfe262ec62db.htm" />
+  <HelpKINode Title="Dispose method" Url="html/fa5aed15-4825-9a5b-9909-700a084babfe.htm" />
+  <HelpKINode Title="DrawPixel method">
+    <HelpKINode Title="IGraphicsDisplay.DrawPixel Method " Url="html/659e90d6-1b00-614f-7f0d-26bbe030e357.htm" />
+    <HelpKINode Title="ST7735.DrawPixel Method " Url="html/edd1f841-c9d1-02f9-1c3d-a633ff2e84bf.htm" />
+  </HelpKINode>
+  <HelpKINode Title="EmptyEventArgs class">
+    <HelpKINode Title="EmptyEventArgs Class" Url="html/2d0ac2a7-7b0b-3528-b86a-6790dbe209fb.htm" />
+    <HelpKINode Title="about EmptyEventArgs class" Url="html/2d0ac2a7-7b0b-3528-b86a-6790dbe209fb.htm" />
+    <HelpKINode Title="constructor" Url="html/cef96adc-dd22-a006-98d6-b346a027ad96.htm" />
+    <HelpKINode Title="methods" Url="html/ce160cd0-223a-e955-e7d0-b7ff967bd364.htm" />
+    <HelpKINode Title="properties" Url="html/7bd096e8-b31d-cda1-d16f-86f181c1365b.htm" />
+  </HelpKINode>
+  <HelpKINode Title="EmptyEventArgs.EmptyEventArgs constructor" Url="html/cef96adc-dd22-a006-98d6-b346a027ad96.htm" />
+  <HelpKINode Title="EmptyEventArgs.Instance property" Url="html/cb0c21b2-d75e-6269-7aad-5f89ea4604f5.htm" />
+  <HelpKINode Title="EnablePin method">
+    <HelpKINode Title="PCA9685.EnablePin Method " Url="html/198dc56d-003d-93b7-30e2-e57fe705673f.htm" />
+    <HelpKINode Title="SoftPwm.EnablePin Method " Url="html/9ff3c2c2-1d47-1317-2ebb-24cf36231e26.htm" />
+  </HelpKINode>
+  <HelpKINode Title="EnsureInitialized method" Url="html/b1e0b792-be0f-7ae0-6839-4c8601205493.htm" />
+  <HelpKINode Title="FailFastOnException method" Url="html/5edfc81b-e3df-80e4-1ffc-ec3865a7c514.htm" />
+  <HelpKINode Title="FirstAdded method" Url="html/cd017e90-f6fd-5aaa-6a79-939ee88a24df.htm" />
+  <HelpKINode Title="FlipAsync method" Url="html/807204ee-19a7-6253-ccf7-3b2128525884.htm" />
+  <HelpKINode Title="GetBitsPerPixel method" Url="html/537c3c83-6874-a459-3a22-4d59fea4b45b.htm" />
+  <HelpKINode Title="GetControllersAsync method">
+    <HelpKINode Title="AdcProviderManager.GetControllersAsync Method " Url="html/be680042-92c0-b76b-e01f-2a3fffde8889.htm" />
+    <HelpKINode Title="PwmProviderManager.GetControllersAsync Method " Url="html/ca06d74d-3a09-e78b-123f-e79e33d13d65.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GetCurrentReading method">
+    <HelpKINode Title="AnalogSensor.GetCurrentReading Method " Url="html/5191a3f8-f835-177a-3861-272800446f2c.htm" />
+    <HelpKINode Title="IAnalogSensor.GetCurrentReading Method " Url="html/970854a5-3442-1f7e-7d11-63302b38f0e2.htm" />
+    <HelpKINode Title="IThumbstick.GetCurrentReading Method " Url="html/7a9c77f9-4ef4-ff68-dc82-0bc04aac9703.htm" />
+    <HelpKINode Title="SS944.GetCurrentReading Method " Url="html/b055e72b-e238-e47b-1a9b-abf4964ceb2d.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GetNativeColor method" Url="html/c10ed448-0f9e-4a80-dde7-1e0d0a96ec33.htm" />
+  <HelpKINode Title="GetXamlType method" Url="html/ec184680-908c-204e-a0a1-bdd5f9cb1a20.htm" />
+  <HelpKINode Title="GetXmlnsDefinitions method" Url="html/1272499b-e4ee-9c62-165f-d30219ad45c4.htm" />
+  <HelpKINode Title="GpioExtensions class">
+    <HelpKINode Title="GpioExtensions Class" Url="html/35d00605-4f52-eb02-720f-6c241bd016d6.htm" />
+    <HelpKINode Title="about GpioExtensions class" Url="html/35d00605-4f52-eb02-720f-6c241bd016d6.htm" />
+    <HelpKINode Title="methods" Url="html/33d057a5-5c51-f2fb-cebb-34e6b1a96bc6.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GpioExtensions.SetDriveModeWithFallback method" Url="html/3a01fefc-2b79-06e1-545a-d83dd9fe680b.htm" />
+  <HelpKINode Title="GraphicsDisplayPanel class">
+    <HelpKINode Title="GraphicsDisplayPanel Class" Url="html/2721e332-29ea-cd68-9a38-54172b40627d.htm" />
+    <HelpKINode Title="about GraphicsDisplayPanel class" Url="html/2721e332-29ea-cd68-9a38-54172b40627d.htm" />
+    <HelpKINode Title="constructor" Url="html/f415c866-1f34-7feb-ffce-86db604d341d.htm" />
+    <HelpKINode Title="events" Url="html/04484914-79ac-c290-2dff-ccd4d359fbc9.htm" />
+    <HelpKINode Title="methods" Url="html/f2e77089-675d-945c-21ab-21dfcc320681.htm" />
+    <HelpKINode Title="properties" Url="html/d66fb92d-785d-540d-b7c1-2b59386fdb27.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GraphicsDisplayPanel.AutoUpdate property" Url="html/f7ce7e2b-9132-bb40-0877-a3d64a3029d9.htm" />
+  <HelpKINode Title="GraphicsDisplayPanel.Display property" Url="html/c8cdbc5e-690c-d2bf-b14d-0308b391ec1b.htm" />
+  <HelpKINode Title="GraphicsDisplayPanel.GraphicsDisplayPanel constructor" Url="html/f415c866-1f34-7feb-ffce-86db604d341d.htm" />
+  <HelpKINode Title="GraphicsDisplayPanel.UpdateInterval property" Url="html/b182cf51-335e-5c63-6696-41f247d2bf9f.htm" />
+  <HelpKINode Title="GraphicsTools class">
+    <HelpKINode Title="GraphicsTools Class" Url="html/1a0797d1-7556-4ded-3845-2122040da5dd.htm" />
+    <HelpKINode Title="about GraphicsTools class" Url="html/1a0797d1-7556-4ded-3845-2122040da5dd.htm" />
+    <HelpKINode Title="methods" Url="html/da5b5e40-de33-4d74-582c-039d1b9e334a.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GraphicsTools.GetBitsPerPixel method" Url="html/537c3c83-6874-a459-3a22-4d59fea4b45b.htm" />
+  <HelpKINode Title="GraphicsTools.GetNativeColor method" Url="html/c10ed448-0f9e-4a80-dde7-1e0d0a96ec33.htm" />
+  <HelpKINode Title="GraphicsTools.IsAspectChanging method" Url="html/67a5c836-5126-830d-27f1-5c56e56c6405.htm" />
+  <HelpKINode Title="GreenPin property" Url="html/dbaab45a-8ff2-36ff-e658-d5e842378fe8.htm" />
+  <HelpKINode Title="Height property">
+    <HelpKINode Title="IGraphicsDisplay.Height Property " Url="html/f9782976-fad0-7ca3-7f94-2ebf57b79dba.htm" />
+    <HelpKINode Title="SSD1306.Height Property " Url="html/f9e42dc7-ff67-c35a-12fc-ba48add5ac77.htm" />
+    <HelpKINode Title="ST7735.Height Property " Url="html/23e5260a-ed80-6a1b-8923-0cefe6c42223.htm" />
+  </HelpKINode>
+  <HelpKINode Title="High enumeration member" Url="html/1cc69ac8-9456-ba04-2cba-f07bb5acba36.htm" />
+  <HelpKINode Title="Horizontal enumeration member" Url="html/ceb5128c-dcb6-65e7-e329-c8dbfd3f2248.htm" />
+  <HelpKINode Title="IAnalogSensor interface">
+    <HelpKINode Title="IAnalogSensor Interface" Url="html/2edb4ded-c1eb-a07a-4c9a-e11f3b3fb984.htm" />
+    <HelpKINode Title="about IAnalogSensor interface" Url="html/2edb4ded-c1eb-a07a-4c9a-e11f3b3fb984.htm" />
+    <HelpKINode Title="events" Url="html/f8f37a23-9175-ba7b-54c1-1aa4c0083434.htm" />
+    <HelpKINode Title="methods" Url="html/fcb96fc5-74dc-4cd5-3fe3-fd6889e6a26f.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IAnalogSensor.GetCurrentReading method" Url="html/970854a5-3442-1f7e-7d11-63302b38f0e2.htm" />
+  <HelpKINode Title="IAnalogSensor.ReadingChanged event" Url="html/ee850eeb-5136-dabd-711c-e3301ce4eef6.htm" />
+  <HelpKINode Title="IAnalogSensorReadingChangedEventArgs interface">
+    <HelpKINode Title="IAnalogSensorReadingChangedEventArgs Interface" Url="html/b9bed0a0-6bc5-404e-a000-543df18099e9.htm" />
+    <HelpKINode Title="about IAnalogSensorReadingChangedEventArgs interface" Url="html/b9bed0a0-6bc5-404e-a000-543df18099e9.htm" />
+    <HelpKINode Title="properties" Url="html/d89c76ce-699b-13cb-3d94-2db3b30aaa21.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IAnalogSensorReadingChangedEventArgs.Reading property" Url="html/92b9b7e7-4297-0978-1c1b-95151628ea50.htm" />
+  <HelpKINode Title="IDevice interface">
+    <HelpKINode Title="IDevice Interface" Url="html/9b7f8968-f7b3-072d-321d-d9e38dddb255.htm" />
+    <HelpKINode Title="about IDevice interface" Url="html/9b7f8968-f7b3-072d-321d-d9e38dddb255.htm" />
+    <HelpKINode Title="methods" Url="html/81909629-fceb-0bdd-cd17-3d6b180a44b5.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IEventObserver interface">
+    <HelpKINode Title="IEventObserver Interface" Url="html/aa686a79-0c95-1067-c7d1-b0f7f50d5e0d.htm" />
+    <HelpKINode Title="about IEventObserver interface" Url="html/aa686a79-0c95-1067-c7d1-b0f7f50d5e0d.htm" />
+    <HelpKINode Title="methods" Url="html/f30e8dec-ad79-669e-8dc3-e070119847d9.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IEventObserver.Added method" Url="html/708cfb6f-572a-b079-4d32-5003a6bbca3d.htm" />
+  <HelpKINode Title="IEventObserver.FirstAdded method" Url="html/cd017e90-f6fd-5aaa-6a79-939ee88a24df.htm" />
+  <HelpKINode Title="IEventObserver.LastRemoved method" Url="html/93d15706-4b20-803c-cf16-2dac56f6940a.htm" />
+  <HelpKINode Title="IEventObserver.Removed method" Url="html/33badb59-146d-5cd6-3bf4-ced744eaa606.htm" />
+  <HelpKINode Title="IgnoreExceptions method" Url="html/1bb41838-b19c-9eac-f417-df1538f675b4.htm" />
+  <HelpKINode Title="IGraphicsDisplay interface">
+    <HelpKINode Title="IGraphicsDisplay Interface" Url="html/be29d5e5-a869-e2ec-5d9a-6b93e2567a76.htm" />
+    <HelpKINode Title="about IGraphicsDisplay interface" Url="html/be29d5e5-a869-e2ec-5d9a-6b93e2567a76.htm" />
+    <HelpKINode Title="methods" Url="html/e8940e0f-e27f-6817-70b9-9898641ba78f.htm" />
+    <HelpKINode Title="properties" Url="html/03ce33e8-508c-096e-5c21-042360461c5d.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IGraphicsDisplay.AutoUpdate property" Url="html/ec88cd5d-e141-5e92-e4ea-4e3527c5cf0a.htm" />
+  <HelpKINode Title="IGraphicsDisplay.Clear method" Url="html/7117f883-5045-fc4a-1d49-c02628ede28b.htm" />
+  <HelpKINode Title="IGraphicsDisplay.DrawPixel method" Url="html/659e90d6-1b00-614f-7f0d-26bbe030e357.htm" />
+  <HelpKINode Title="IGraphicsDisplay.Height property" Url="html/f9782976-fad0-7ca3-7f94-2ebf57b79dba.htm" />
+  <HelpKINode Title="IGraphicsDisplay.IsOrientationSupported method" Url="html/3d7dd338-eb55-c2a2-e9cb-e0975317a274.htm" />
+  <HelpKINode Title="IGraphicsDisplay.Orientation property" Url="html/7767afc0-e5f5-b78b-db26-98cc181af366.htm" />
+  <HelpKINode Title="IGraphicsDisplay.PixelFormat property" Url="html/e3ad2c4c-0e32-014b-fa0f-beee1fd4ec37.htm" />
+  <HelpKINode Title="IGraphicsDisplay.Update method" Url="html/08250264-e6cf-5fa9-14be-7ecf75d9902f.htm" />
+  <HelpKINode Title="IGraphicsDisplay.Width property" Url="html/9fe55fad-30f6-7418-af55-6bde518b0b24.htm" />
+  <HelpKINode Title="ILight interface">
+    <HelpKINode Title="ILight Interface" Url="html/f1603079-b3cf-106a-2327-c64bec2c3431.htm" />
+    <HelpKINode Title="about ILight interface" Url="html/f1603079-b3cf-106a-2327-c64bec2c3431.htm" />
+    <HelpKINode Title="properties" Url="html/74d7b2e9-28ca-d4e2-18ae-55129499868f.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ILight.BrightnessLevel property" Url="html/b97d693f-90b3-9757-f988-10444a6527dd.htm" />
+  <HelpKINode Title="ILight.Color property" Url="html/115cc408-434a-a7a2-b009-e2965cbc18b3.htm" />
+  <HelpKINode Title="ILight.IsColorSettable property" Url="html/d6325e74-7df6-86e5-c694-14e34a052420.htm" />
+  <HelpKINode Title="InitializeAsync method" Url="html/2affe5c1-51da-f920-b22b-9b33aebd1e26.htm" />
+  <HelpKINode Title="Instance property" Url="html/cb0c21b2-d75e-6269-7aad-5f89ea4604f5.htm" />
+  <HelpKINode Title="IObservableEvent(Of TSender, TResult) interface">
+    <HelpKINode Title="IObservableEvent(TSender, TResult) Interface" Url="html/e4faf74f-10f6-ea83-ab6c-cbade6ecbd1b.htm" />
+    <HelpKINode Title="about IObservableEvent(Of TSender, TResult) interface" Url="html/e4faf74f-10f6-ea83-ab6c-cbade6ecbd1b.htm" />
+    <HelpKINode Title="methods" Url="html/4d6f3689-36d7-e771-d816-86a8b61cd4b6.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IObservableEvent(Of TSender, TResult).Add method" Url="html/960457fa-3775-c404-faaa-65365e254cee.htm" />
+  <HelpKINode Title="IObservableEvent(Of TSender, TResult).Raise method" Url="html/5c051ebf-e8fc-7b6f-2e1e-80bcc2177c47.htm" />
+  <HelpKINode Title="IObservableEvent(Of TSender, TResult).Remove method" Url="html/36aba266-d7e0-30db-24bf-f00bb22bdbab.htm" />
+  <HelpKINode Title="IObservableEvent&lt;TSender, TResult&gt; interface">
+    <HelpKINode Title="IObservableEvent(TSender, TResult) Interface" Url="html/e4faf74f-10f6-ea83-ab6c-cbade6ecbd1b.htm" />
+    <HelpKINode Title="about IObservableEvent&lt;TSender, TResult&gt; interface" Url="html/e4faf74f-10f6-ea83-ab6c-cbade6ecbd1b.htm" />
+    <HelpKINode Title="methods" Url="html/4d6f3689-36d7-e771-d816-86a8b61cd4b6.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IObservableEvent&lt;TSender, TResult&gt;.Add method" Url="html/960457fa-3775-c404-faaa-65365e254cee.htm" />
+  <HelpKINode Title="IObservableEvent&lt;TSender, TResult&gt;.Raise method" Url="html/5c051ebf-e8fc-7b6f-2e1e-80bcc2177c47.htm" />
+  <HelpKINode Title="IObservableEvent&lt;TSender, TResult&gt;.Remove method" Url="html/36aba266-d7e0-30db-24bf-f00bb22bdbab.htm" />
+  <HelpKINode Title="IoChangeException class">
+    <HelpKINode Title="IoChangeException Class" Url="html/0c2ae732-45cf-42ca-f986-7463f814042d.htm" />
+    <HelpKINode Title="about IoChangeException class" Url="html/0c2ae732-45cf-42ca-f986-7463f814042d.htm" />
+    <HelpKINode Title="constructor" Url="html/303fe577-b623-134d-1254-111c34da5548.htm" />
+    <HelpKINode Title="methods" Url="html/ac54de62-9d52-27b0-f1a2-06a012f686c1.htm" />
+    <HelpKINode Title="properties" Url="html/70e3466e-1c50-9c8a-22d6-936dc4d5d9ed.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IoChangeException.IoChangeException constructor" Url="html/303fe577-b623-134d-1254-111c34da5548.htm" />
+  <HelpKINode Title="IPushButton interface">
+    <HelpKINode Title="IPushButton Interface" Url="html/d72ca69d-4590-80b0-d5f0-77fee473f1cb.htm" />
+    <HelpKINode Title="about IPushButton interface" Url="html/d72ca69d-4590-80b0-d5f0-77fee473f1cb.htm" />
+    <HelpKINode Title="events" Url="html/35e1dc3e-8e1f-536f-be97-2e1abd77c2af.htm" />
+    <HelpKINode Title="methods" Url="html/57406342-04c8-7c48-2580-a2efaa7a9078.htm" />
+    <HelpKINode Title="properties" Url="html/b59e00f3-31b9-ba01-ac4d-1bb784ea682d.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IPushButton.Click event" Url="html/eaf5ec58-d435-24c2-8f48-12e0599c5703.htm" />
+  <HelpKINode Title="IPushButton.ClickMode property" Url="html/9808ecde-9d9b-41cd-e660-014167720220.htm" />
+  <HelpKINode Title="IPushButton.IsPressed property" Url="html/cb15b63f-c3fb-7adf-64a6-48f7e1b58a93.htm" />
+  <HelpKINode Title="IPushButton.Pressed event" Url="html/2f0b1870-60dc-09e1-f269-cfec5ef4bca1.htm" />
+  <HelpKINode Title="IPushButton.Released event" Url="html/e4c253be-ff4b-8650-b239-c4f9f7a368e0.htm" />
+  <HelpKINode Title="IRotaryEncoder interface">
+    <HelpKINode Title="IRotaryEncoder Interface" Url="html/c592fa02-c407-e236-ee85-3f59913a8575.htm" />
+    <HelpKINode Title="about IRotaryEncoder interface" Url="html/c592fa02-c407-e236-ee85-3f59913a8575.htm" />
+    <HelpKINode Title="events" Url="html/35d8e574-cb24-a684-701c-c9c11d6de508.htm" />
+    <HelpKINode Title="methods" Url="html/e5bf9d8f-ec8f-46c2-2245-2812d54e46f7.htm" />
+    <HelpKINode Title="properties" Url="html/67a62e35-b741-5a23-0210-79c64f099183.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IRotaryEncoder.Rotated event" Url="html/59bd4469-bbe3-d223-eb84-a367f1b628c3.htm" />
+  <HelpKINode Title="IsAspectChanging method" Url="html/67a5c836-5126-830d-27f1-5c56e56c6405.htm" />
+  <HelpKINode Title="IsChannelModeSupported method">
+    <HelpKINode Title="ADC0832.IsChannelModeSupported Method " Url="html/5aa31c19-300f-55d9-5d70-0322a4caf0d7.htm" />
+    <HelpKINode Title="MCP3208.IsChannelModeSupported Method " Url="html/7bd4c4ce-dbb5-0b74-d83a-e30b41e15360.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IScheduledDevice interface">
+    <HelpKINode Title="IScheduledDevice Interface" Url="html/0c54d0c3-32fc-2055-77a0-240721c9683a.htm" />
+    <HelpKINode Title="about IScheduledDevice interface" Url="html/0c54d0c3-32fc-2055-77a0-240721c9683a.htm" />
+    <HelpKINode Title="methods" Url="html/9755f01e-ee17-65bd-a03b-7afbd3b101c7.htm" />
+    <HelpKINode Title="properties" Url="html/a0e50541-ffd8-380e-c364-b4aa946f5c8b.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IScheduledDevice.ReportInterval property" Url="html/ebc1121b-6dbc-3776-f90e-a5654c416014.htm" />
+  <HelpKINode Title="IScheduler interface">
+    <HelpKINode Title="IScheduler Interface" Url="html/f5c5a840-2c89-0632-2826-0d1e3d59394b.htm" />
+    <HelpKINode Title="about IScheduler interface" Url="html/f5c5a840-2c89-0632-2826-0d1e3d59394b.htm" />
+    <HelpKINode Title="methods" Url="html/b8c7b660-3388-eaf3-3ace-a9aee973e8f0.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IScheduler.Resume method" Url="html/6b0436f1-ded1-0b2b-aa36-40923536d2fa.htm" />
+  <HelpKINode Title="IScheduler.Schedule method" Url="html/b46bdc7c-7c94-2506-cbbe-01b64e98312f.htm" />
+  <HelpKINode Title="IScheduler.Suspend method" Url="html/1af946c0-7908-8ed1-a58b-95712a161c12.htm" />
+  <HelpKINode Title="IScheduler.Unschedule method" Url="html/b6cce78a-26b8-2f78-b85c-7c9ca1af8c1d.htm" />
+  <HelpKINode Title="IScheduler.UpdateSchedule method" Url="html/4274279a-1c00-3561-3c51-94c8136b46ac.htm" />
+  <HelpKINode Title="IsColorSettable property">
+    <HelpKINode Title="ILight.IsColorSettable Property " Url="html/d6325e74-7df6-86e5-c694-14e34a052420.htm" />
+    <HelpKINode Title="RgbLed.IsColorSettable Property " Url="html/b9d996ee-238e-ba5d-e6ab-08e35aced6bb.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsOn property">
+    <HelpKINode Title="ISwitch.IsOn Property " Url="html/c62496ca-abf3-c9b5-d728-f98a98001da7.htm" />
+    <HelpKINode Title="Switch.IsOn Property " Url="html/b6b2a97d-f76c-f627-b37d-c7e0f3c8e997.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsOrientationSupported method">
+    <HelpKINode Title="IGraphicsDisplay.IsOrientationSupported Method " Url="html/3d7dd338-eb55-c2a2-e9cb-e0975317a274.htm" />
+    <HelpKINode Title="ST7735.IsOrientationSupported Method " Url="html/fee01c2c-523d-ad64-e5ce-c8a4a6fcb884.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ISpiBasedDevice interface">
+    <HelpKINode Title="ISpiBasedDevice Interface" Url="html/f7277c2c-f697-4800-c51a-600817526aa9.htm" />
+    <HelpKINode Title="about ISpiBasedDevice interface" Url="html/f7277c2c-f697-4800-c51a-600817526aa9.htm" />
+    <HelpKINode Title="methods" Url="html/417a9a00-c206-e238-da4c-ef276aa85c71.htm" />
+    <HelpKINode Title="properties" Url="html/373fb745-9ff6-2501-cc4d-729e1512756f.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ISpiBasedDevice.ChipSelectLine property" Url="html/10d08cdc-5555-bd4a-755f-c5335dccb98b.htm" />
+  <HelpKINode Title="ISpiBasedDevice.ControllerName property" Url="html/7b6821be-c5f3-ab90-7678-c82d5243bd65.htm" />
+  <HelpKINode Title="IsPressed property">
+    <HelpKINode Title="IPushButton.IsPressed Property " Url="html/cb15b63f-c3fb-7adf-64a6-48f7e1b58a93.htm" />
+    <HelpKINode Title="PushButton.IsPressed Property " Url="html/bff0411e-c8fc-02f7-c162-ab78ab69c1bb.htm" />
+    <HelpKINode Title="PushButtonHelper.IsPressed Property " Url="html/c94e05e5-219d-5a44-3f60-4ce259d60aed.htm" />
+    <HelpKINode Title="RotaryEncoder.IsPressed Property " Url="html/ea0a1221-3177-bfda-b3c9-5b56b1020202.htm" />
+    <HelpKINode Title="ThumbstickReading.IsPressed Property " Url="html/27c91809-cd74-e794-9ff2-8efc2fd4d9d9.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsRunning property" Url="html/72a22e27-b543-ea75-a73c-722f0dd2e733.htm" />
+  <HelpKINode Title="IsStarted property" Url="html/80c12d83-bc0f-f762-0897-be2c9b5e7f44.htm" />
+  <HelpKINode Title="ISwitch interface">
+    <HelpKINode Title="ISwitch Interface" Url="html/74a1df20-ead0-e6d9-e09c-1376b59ad793.htm" />
+    <HelpKINode Title="about ISwitch interface" Url="html/74a1df20-ead0-e6d9-e09c-1376b59ad793.htm" />
+    <HelpKINode Title="events" Url="html/67c38dd5-c7ea-2ebb-a895-120cdff529eb.htm" />
+    <HelpKINode Title="methods" Url="html/c9c98009-0224-c4b0-a116-7a41adf439dc.htm" />
+    <HelpKINode Title="properties" Url="html/56dd3361-b5bc-d0a6-48eb-5869fffcf051.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ISwitch.IsOn property" Url="html/c62496ca-abf3-c9b5-d728-f98a98001da7.htm" />
+  <HelpKINode Title="ISwitch.Switched event" Url="html/691e0193-e8a3-27e6-694f-24f9f09f726c.htm" />
+  <HelpKINode Title="IThumbstick interface">
+    <HelpKINode Title="IThumbstick Interface" Url="html/5c1b88c5-a044-328b-09aa-c196e0ba81e2.htm" />
+    <HelpKINode Title="about IThumbstick interface" Url="html/5c1b88c5-a044-328b-09aa-c196e0ba81e2.htm" />
+    <HelpKINode Title="events" Url="html/d3a9e59f-807e-b85b-c883-e9d14e70354b.htm" />
+    <HelpKINode Title="methods" Url="html/975b219d-157a-7ff0-c9ad-d9e3fd0e5da2.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IThumbstick.GetCurrentReading method" Url="html/7a9c77f9-4ef4-ff68-dc82-0bc04aac9703.htm" />
+  <HelpKINode Title="IThumbstick.ReadingChanged event" Url="html/caf5650f-c42d-fafd-f571-26abdf6121a1.htm" />
+  <HelpKINode Title="IThumbstickReadingChangedEventArgs interface">
+    <HelpKINode Title="IThumbstickReadingChangedEventArgs Interface" Url="html/8d41c169-08e5-0824-f90b-2e85a44caee5.htm" />
+    <HelpKINode Title="about IThumbstickReadingChangedEventArgs interface" Url="html/8d41c169-08e5-0824-f90b-2e85a44caee5.htm" />
+    <HelpKINode Title="properties" Url="html/a13c42b4-f8d7-9df0-e74f-ed4d69701f03.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IThumbstickReadingChangedEventArgs.Reading property" Url="html/4d675ca3-8495-cf1d-b2e5-54fc6dc6541c.htm" />
+  <HelpKINode Title="LastRemoved method" Url="html/93d15706-4b20-803c-cf16-2dac56f6940a.htm" />
+  <HelpKINode Title="MaxFrequency property">
+    <HelpKINode Title="PCA9685.MaxFrequency Property " Url="html/17a0591c-2ebb-84bd-f4b1-e5bc2bc67993.htm" />
+    <HelpKINode Title="SoftPwm.MaxFrequency Property " Url="html/6339567a-b800-985f-95b2-86cc71597e50.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MaxValue property">
+    <HelpKINode Title="ADC0832.MaxValue Property " Url="html/6fb9cc0b-1ec4-0320-77f7-02f03ac89b62.htm" />
+    <HelpKINode Title="MCP3208.MaxValue Property " Url="html/40270b2b-1013-0cbf-574b-a398b9c57677.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MCP3208 class">
+    <HelpKINode Title="MCP3208 Class" Url="html/41a21194-765a-1891-4080-f2938ea1f43a.htm" />
+    <HelpKINode Title="about MCP3208 class" Url="html/41a21194-765a-1891-4080-f2938ea1f43a.htm" />
+    <HelpKINode Title="constructor" Url="html/53db11cc-257b-e713-40fc-cdd92a2fbe0b.htm" />
+    <HelpKINode Title="methods" Url="html/17f7359f-e05d-1df7-c773-302c333157af.htm" />
+    <HelpKINode Title="properties" Url="html/7a38f1ab-c06e-a8b9-d2d9-1450a6b9c652.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MCP3208.AcquireChannel method" Url="html/a5d7412e-5b78-b36d-bbd4-bfd2d90973b2.htm" />
+  <HelpKINode Title="MCP3208.ChannelCount property" Url="html/e34e0395-3a08-664b-79f5-1a53e6b63726.htm" />
+  <HelpKINode Title="MCP3208.ChannelMode property" Url="html/6111b5d1-659d-f052-781f-44a4eb646613.htm" />
+  <HelpKINode Title="MCP3208.ChipSelectLine property" Url="html/02f59847-69e1-555c-efb9-e22574a7cec1.htm" />
+  <HelpKINode Title="MCP3208.Close method" Url="html/6c06c7ac-fe78-1be5-df2c-29824a3d7736.htm" />
+  <HelpKINode Title="MCP3208.ControllerName property" Url="html/0b26dec2-bce7-487b-19b1-576ac8d1eb74.htm" />
+  <HelpKINode Title="MCP3208.IsChannelModeSupported method" Url="html/7bd4c4ce-dbb5-0b74-d83a-e30b41e15360.htm" />
+  <HelpKINode Title="MCP3208.MaxValue property" Url="html/40270b2b-1013-0cbf-574b-a398b9c57677.htm" />
+  <HelpKINode Title="MCP3208.MCP3208 constructor" Url="html/53db11cc-257b-e713-40fc-cdd92a2fbe0b.htm" />
+  <HelpKINode Title="MCP3208.MinValue property" Url="html/153d43dc-46dc-ccd4-fe01-7664ee9e37ff.htm" />
+  <HelpKINode Title="MCP3208.ReadValue method" Url="html/69f3975b-ff16-2e55-0a97-552ea4a2a162.htm" />
+  <HelpKINode Title="MCP3208.ReleaseChannel method" Url="html/eef2ad44-c353-4720-010c-8259fd711675.htm" />
+  <HelpKINode Title="MCP3208.ResolutionInBits property" Url="html/67370e59-b1d1-6aed-19e0-e666dd4033c3.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore namespace" Url="html/96573c63-70f2-5231-ea69-742b2abd7c03.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Adc namespace" Url="html/7fe1711d-4be6-8e17-9712-ae30cc7d71b8.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Adc.AdcProviderManager class" Url="html/43b9cb0d-e27d-a0f4-bce3-cc407fade4e2.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Controls namespace" Url="html/a791e3ff-fbe2-43d4-7134-402f442db96d.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Controls.GraphicsDisplayPanel class" Url="html/2721e332-29ea-cd68-9a38-54172b40627d.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.DispatcherExtensions class" Url="html/da14ae16-ac18-7e1a-9e78-081539b405ee.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Display namespace" Url="html/36369082-3f77-5ea6-9efb-2265c9ec6d8e.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Display.DisplayPixelFormat enumeration" Url="html/6d044a07-577b-d381-84eb-8528bd288151.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Display.GraphicsTools class" Url="html/1a0797d1-7556-4ded-3845-2122040da5dd.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Display.IGraphicsDisplay interface" Url="html/be29d5e5-a869-e2ec-5d9a-6b93e2567a76.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.EmptyEventArgs class" Url="html/2d0ac2a7-7b0b-3528-b86a-6790dbe209fb.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.GpioExtensions class" Url="html/35d00605-4f52-eb02-720f-6c241bd016d6.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.IDevice interface" Url="html/9b7f8968-f7b3-072d-321d-d9e38dddb255.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.IEventObserver interface" Url="html/aa686a79-0c95-1067-c7d1-b0f7f50d5e0d.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Input namespace" Url="html/922bd7d9-6423-ccd0-ce7c-2e89b96ae637.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Input.ButtonClickMode enumeration" Url="html/a7a7704a-2b6f-07fe-6b96-b7f196094df0.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Input.IPushButton interface" Url="html/d72ca69d-4590-80b0-d5f0-77fee473f1cb.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Input.IRotaryEncoder interface" Url="html/c592fa02-c407-e236-ee85-3f59913a8575.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Input.ISwitch interface" Url="html/74a1df20-ead0-e6d9-e09c-1376b59ad793.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Input.IThumbstick interface" Url="html/5c1b88c5-a044-328b-09aa-c196e0ba81e2.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Input.IThumbstickReadingChangedEventArgs interface" Url="html/8d41c169-08e5-0824-f90b-2e85a44caee5.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Input.RotaryEncoderRotatedEventArgs class" Url="html/380e7654-1281-3f16-4e72-44babbc5796f.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Input.ThumbstickReading class" Url="html/d18249ea-0375-293d-8406-e78ada2fd289.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Input.ThumbstickReadingChangedEventArgs class" Url="html/a8a0096e-7480-7b4f-fdc0-11b40cfc296a.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.IScheduledDevice interface" Url="html/0c54d0c3-32fc-2055-77a0-240721c9683a.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.IScheduler interface" Url="html/f5c5a840-2c89-0632-2826-0d1e3d59394b.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Lights namespace" Url="html/eb5ab49d-0400-fae1-6dc4-747be626bc9b.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Lights.ILight interface" Url="html/f1603079-b3cf-106a-2327-c64bec2c3431.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Microsoft_IoT_DeviceCore_XamlTypeInfo namespace" Url="html/3dc7add4-1ac6-b04f-ad13-55a37ed6bb8d.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Microsoft_IoT_DeviceCore_XamlTypeInfo.XamlMetaDataProvider class" Url="html/4a14a99c-e4c8-ddfd-7bd1-c3e51f21d403.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Pwm namespace" Url="html/d2ddadc2-67fa-4802-bdfa-bd75b04c4246.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Pwm.PwmProviderManager class" Url="html/1e579d7f-f194-3748-6337-25d40f00c8dd.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.RotationDirection enumeration" Url="html/98f6fc7b-5dec-a55e-4f16-eabb489d0742.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.ScheduledAction delegate" Url="html/e4bb63d1-c0e3-0e04-15e7-699964517764.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.ScheduledAsyncAction delegate" Url="html/545efb9f-e05f-cc24-6b6d-314aad42cd72.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.ScheduledUpdater class" Url="html/ae75484a-cab9-744d-3ace-b214fb20ac39.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.ScheduleOptions class" Url="html/f659e58d-e4df-f9f3-1f04-c4e279ec8034.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Scheduler class" Url="html/da348da8-f7e0-5ca8-6921-8e2a103c3812.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.SchedulerPriority enumeration" Url="html/1cc69ac8-9456-ba04-2cba-f07bb5acba36.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Sensors namespace" Url="html/88e5d688-82ee-34f4-9e58-fa3e326dc8f8.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Sensors.AnalogSensorReading class" Url="html/45e3a871-34f7-c7a0-c49b-622a40780a65.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Sensors.AnalogSensorReadingChangedEventArgs class" Url="html/69141a8a-124c-7b4f-032a-fb9735b8c06a.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Sensors.IAnalogSensor interface" Url="html/2edb4ded-c1eb-a07a-4c9a-e11f3b3fb984.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Sensors.IAnalogSensorReadingChangedEventArgs interface" Url="html/b9bed0a0-6bc5-404e-a000-543df18099e9.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Spi namespace" Url="html/f1973fc4-428d-793b-a6f6-4a24f3c50a3a.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceCore.Spi.ISpiBasedDevice interface" Url="html/f7277c2c-f697-4800-c51a-600817526aa9.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceHelpers namespace" Url="html/a1d1a9af-5664-1338-fe74-2668b6018131.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceHelpers.DeviceNotFoundException class" Url="html/621326e5-b132-ed81-180d-348639c45609.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceHelpers.Input namespace" Url="html/382cc06a-5513-fa81-d192-a9811741f28e.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceHelpers.Input.PushButtonHelper class" Url="html/5a5f01ce-094d-4308-842f-8ab51c17ac43.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceHelpers.IObservableEvent(Of TSender, TResult) interface" Url="html/e4faf74f-10f6-ea83-ab6c-cbade6ecbd1b.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceHelpers.IObservableEvent&lt;TSender, TResult&gt; interface" Url="html/e4faf74f-10f6-ea83-ab6c-cbade6ecbd1b.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceHelpers.IoChangeException class" Url="html/0c2ae732-45cf-42ca-f986-7463f814042d.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceHelpers.MissingIoException class" Url="html/a5e5792e-e584-5f10-748f-a0caf1bd708c.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceHelpers.ObservableEvent(Of TSender, TResult) class" Url="html/d422d22d-dd81-593a-7bcb-6c7ad086d405.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceHelpers.ObservableEvent&lt;TSender, TResult&gt; class" Url="html/d422d22d-dd81-593a-7bcb-6c7ad086d405.htm" />
+  <HelpKINode Title="Microsoft.IoT.DeviceHelpers.TaskExtensions class" Url="html/d15c207b-15ca-daf6-0f71-c956ea2deb66.htm" />
+  <HelpKINode Title="Microsoft.IoT.Devices.Adc namespace" Url="html/0077ffd9-d912-6c74-9e46-8c4c0cadd2ff.htm" />
+  <HelpKINode Title="Microsoft.IoT.Devices.Adc.ADC0832 class" Url="html/ea51091e-16c6-114a-e0d9-9d2af17817ac.htm" />
+  <HelpKINode Title="Microsoft.IoT.Devices.Adc.MCP3208 class" Url="html/41a21194-765a-1891-4080-f2938ea1f43a.htm" />
+  <HelpKINode Title="Microsoft.IoT.Devices.Display namespace" Url="html/be55adb6-a588-c99e-180d-769f73c48cad.htm" />
+  <HelpKINode Title="Microsoft.IoT.Devices.Display.ADA938 class" Url="html/532e44c1-5325-26c1-c3c1-050faf2ea4da.htm" />
+  <HelpKINode Title="Microsoft.IoT.Devices.Display.SSD1306 class" Url="html/eb44fdd8-a351-a46b-88c1-78e63cdd8e04.htm" />
+  <HelpKINode Title="Microsoft.IoT.Devices.Display.SSD1306AddressMode enumeration" Url="html/ceb5128c-dcb6-65e7-e329-c8dbfd3f2248.htm" />
+  <HelpKINode Title="Microsoft.IoT.Devices.Display.ST7735 class" Url="html/31d40e6c-411f-c0f5-dbcc-90167b57eb92.htm" />
+  <HelpKINode Title="Microsoft.IoT.Devices.Display.ST7735DisplayType enumeration" Url="html/44a15ead-930f-ed35-5f5e-a57fa0af2773.htm" />
+  <HelpKINode Title="Microsoft.IoT.Devices.Input namespace" Url="html/8b9ff6c0-abd0-3f8c-45c6-cc90232dedde.htm" />
+  <HelpKINode Title="Microsoft.IoT.Devices.Input.PushButton class" Url="html/77b2b355-81e9-c0de-bb29-df02005483ed.htm" />
+  <HelpKINode Title="Microsoft.IoT.Devices.Input.RotaryEncoder class" Url="html/2202edc4-157e-0b3d-36bf-1ee746d04660.htm" />
+  <HelpKINode Title="Microsoft.IoT.Devices.Input.SS944 class" Url="html/13cc1625-0085-087b-f872-b22ba7ec5b8e.htm" />
+  <HelpKINode Title="Microsoft.IoT.Devices.Input.Switch class" Url="html/63a00db0-9e25-0b8a-97d6-a5fdcff53bca.htm" />
+  <HelpKINode Title="Microsoft.IoT.Devices.Lights namespace" Url="html/6dc4b775-1c37-99e8-63bd-4e60ef18c200.htm" />
+  <HelpKINode Title="Microsoft.IoT.Devices.Lights.RgbLed class" Url="html/80db6f47-6ee2-efc7-d05a-39f80bd1b3d6.htm" />
+  <HelpKINode Title="Microsoft.IoT.Devices.Pwm namespace" Url="html/70ad3344-58ff-9c06-3217-b1c77b48d41d.htm" />
+  <HelpKINode Title="Microsoft.IoT.Devices.Pwm.PCA9685 class" Url="html/be93be20-edab-1cc0-0acc-ad71bf675abb.htm" />
+  <HelpKINode Title="Microsoft.IoT.Devices.Pwm.SoftPwm class" Url="html/c2d0e9f9-30e5-6f29-8d5f-87d599ebd586.htm" />
+  <HelpKINode Title="Microsoft.IoT.Devices.Sensors namespace" Url="html/218db8db-9963-6cbc-0de0-d946f1f8ec4c.htm" />
+  <HelpKINode Title="Microsoft.IoT.Devices.Sensors.AnalogSensor class" Url="html/f6b9f31e-55fd-466f-651d-9ae7ac872160.htm" />
+  <HelpKINode Title="MinFrequency property">
+    <HelpKINode Title="PCA9685.MinFrequency Property " Url="html/14c54108-fb43-0070-0553-4d925ed724ad.htm" />
+    <HelpKINode Title="SoftPwm.MinFrequency Property " Url="html/b3caee80-d719-974a-37f3-760153e08014.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MinValue property">
+    <HelpKINode Title="ADC0832.MinValue Property " Url="html/c3a824ef-f2fc-5460-7bf9-7843f5783060.htm" />
+    <HelpKINode Title="MCP3208.MinValue Property " Url="html/153d43dc-46dc-ccd4-fe01-7664ee9e37ff.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MirrorAsync method" Url="html/17171a57-1b15-731b-d708-02d7d67ed9b5.htm" />
+  <HelpKINode Title="MissingIoException class">
+    <HelpKINode Title="MissingIoException Class" Url="html/a5e5792e-e584-5f10-748f-a0caf1bd708c.htm" />
+    <HelpKINode Title="about MissingIoException class" Url="html/a5e5792e-e584-5f10-748f-a0caf1bd708c.htm" />
+    <HelpKINode Title="constructor" Url="html/e26f309c-4802-7ffb-ee16-c12665e5625c.htm" />
+    <HelpKINode Title="methods" Url="html/1359c7f0-2a53-360f-186e-41380e30ed56.htm" />
+    <HelpKINode Title="properties" Url="html/b4dc9588-57b5-c503-4830-44baf556fa01.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MissingIoException.MissingIoException constructor" Url="html/e26f309c-4802-7ffb-ee16-c12665e5625c.htm" />
+  <HelpKINode Title="ObservableEvent(Of TSender, TResult) class">
+    <HelpKINode Title="ObservableEvent(TSender, TResult) Class" Url="html/d422d22d-dd81-593a-7bcb-6c7ad086d405.htm" />
+    <HelpKINode Title="about ObservableEvent(Of TSender, TResult) class" Url="html/d422d22d-dd81-593a-7bcb-6c7ad086d405.htm" />
+    <HelpKINode Title="constructor" Url="html/6842f19c-e19b-a65b-9840-77a3a1bcfb07.htm" />
+    <HelpKINode Title="methods" Url="html/fc2d7608-3bb9-5524-97bd-e285a1bfd819.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ObservableEvent(Of TSender, TResult).Add method" Url="html/eb7f5eca-2c8c-2f74-a81f-62ca03400c57.htm" />
+  <HelpKINode Title="ObservableEvent(Of TSender, TResult).ObservableEvent constructor" Url="html/6842f19c-e19b-a65b-9840-77a3a1bcfb07.htm" />
+  <HelpKINode Title="ObservableEvent(Of TSender, TResult).Raise method" Url="html/265d8ab6-7a88-46b6-0167-24946afbb01c.htm" />
+  <HelpKINode Title="ObservableEvent(Of TSender, TResult).Remove method" Url="html/e43b9c8c-d495-06c7-50bf-822acf4b8d60.htm" />
+  <HelpKINode Title="ObservableEvent&lt;TSender, TResult&gt; class">
+    <HelpKINode Title="ObservableEvent(TSender, TResult) Class" Url="html/d422d22d-dd81-593a-7bcb-6c7ad086d405.htm" />
+    <HelpKINode Title="about ObservableEvent&lt;TSender, TResult&gt; class" Url="html/d422d22d-dd81-593a-7bcb-6c7ad086d405.htm" />
+    <HelpKINode Title="constructor" Url="html/6842f19c-e19b-a65b-9840-77a3a1bcfb07.htm" />
+    <HelpKINode Title="methods" Url="html/fc2d7608-3bb9-5524-97bd-e285a1bfd819.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ObservableEvent&lt;TSender, TResult&gt;.Add method" Url="html/eb7f5eca-2c8c-2f74-a81f-62ca03400c57.htm" />
+  <HelpKINode Title="ObservableEvent&lt;TSender, TResult&gt;.ObservableEvent constructor" Url="html/6842f19c-e19b-a65b-9840-77a3a1bcfb07.htm" />
+  <HelpKINode Title="ObservableEvent&lt;TSender, TResult&gt;.Raise method" Url="html/265d8ab6-7a88-46b6-0167-24946afbb01c.htm" />
+  <HelpKINode Title="ObservableEvent&lt;TSender, TResult&gt;.Remove method" Url="html/e43b9c8c-d495-06c7-50bf-822acf4b8d60.htm" />
+  <HelpKINode Title="OneBit enumeration member" Url="html/6d044a07-577b-d381-84eb-8528bd288151.htm" />
+  <HelpKINode Title="OnValue property" Url="html/ca48493f-0713-c6a7-8f75-ed1653aac6a8.htm" />
+  <HelpKINode Title="Orientation property">
+    <HelpKINode Title="IGraphicsDisplay.Orientation Property " Url="html/7767afc0-e5f5-b78b-db26-98cc181af366.htm" />
+    <HelpKINode Title="ST7735.Orientation Property " Url="html/1d0d2bae-9d6c-5164-2b75-0b7c6ec1de03.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Page enumeration member" Url="html/ceb5128c-dcb6-65e7-e329-c8dbfd3f2248.htm" />
+  <HelpKINode Title="PCA9685 class">
+    <HelpKINode Title="PCA9685 Class" Url="html/be93be20-edab-1cc0-0acc-ad71bf675abb.htm" />
+    <HelpKINode Title="about PCA9685 class" Url="html/be93be20-edab-1cc0-0acc-ad71bf675abb.htm" />
+    <HelpKINode Title="constructor" Url="html/a67ce680-368a-0240-9124-285915515296.htm" />
+    <HelpKINode Title="methods" Url="html/ebae9b2a-c177-9c4f-9e8a-a1ad6618f5d4.htm" />
+    <HelpKINode Title="properties" Url="html/a1adb4ea-f7eb-dffb-a14d-3d559940c9c2.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PCA9685.AcquirePin method" Url="html/d1315159-0d0d-e151-e502-01e296a20efe.htm" />
+  <HelpKINode Title="PCA9685.ActualFrequency property" Url="html/4827f0e2-240a-9b79-29c6-fc98baf0134b.htm" />
+  <HelpKINode Title="PCA9685.Close method" Url="html/4b81b6b7-5981-dd26-c47b-6003707f3ef4.htm" />
+  <HelpKINode Title="PCA9685.ControllerName property" Url="html/feed2df9-22b7-3dde-ac70-f3c11ad2a2e2.htm" />
+  <HelpKINode Title="PCA9685.DisablePin method" Url="html/fc7953b4-a117-fe22-13bc-f2688c5d1711.htm" />
+  <HelpKINode Title="PCA9685.EnablePin method" Url="html/198dc56d-003d-93b7-30e2-e57fe705673f.htm" />
+  <HelpKINode Title="PCA9685.MaxFrequency property" Url="html/17a0591c-2ebb-84bd-f4b1-e5bc2bc67993.htm" />
+  <HelpKINode Title="PCA9685.MinFrequency property" Url="html/14c54108-fb43-0070-0553-4d925ed724ad.htm" />
+  <HelpKINode Title="PCA9685.PCA9685 constructor" Url="html/a67ce680-368a-0240-9124-285915515296.htm" />
+  <HelpKINode Title="PCA9685.PinCount property" Url="html/f00dad40-2efb-ff56-28e6-ddbadd3d0f75.htm" />
+  <HelpKINode Title="PCA9685.ReleasePin method" Url="html/a3850acb-5b82-d8a7-fc43-28389327b011.htm" />
+  <HelpKINode Title="PCA9685.SetDesiredFrequency method" Url="html/ba9c0ba2-4d8b-04f5-f07b-118312ae9ac8.htm" />
+  <HelpKINode Title="PCA9685.SetPulseParameters method" Url="html/5649a49d-b787-535f-0071-84115927b7d3.htm" />
+  <HelpKINode Title="Pin property">
+    <HelpKINode Title="PushButton.Pin Property " Url="html/7ad7a375-a656-716e-f713-aeee4c25b663.htm" />
+    <HelpKINode Title="PushButtonHelper.Pin Property " Url="html/e6b8826b-11a4-aa4e-f7ec-fe476feb3042.htm" />
+    <HelpKINode Title="Switch.Pin Property " Url="html/6050bdcc-0438-ba56-31d5-76ca3e003a27.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PinCount property">
+    <HelpKINode Title="PCA9685.PinCount Property " Url="html/f00dad40-2efb-ff56-28e6-ddbadd3d0f75.htm" />
+    <HelpKINode Title="SoftPwm.PinCount Property " Url="html/595206b9-f49e-5696-f418-6d4a71e16135.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PixelFormat property">
+    <HelpKINode Title="IGraphicsDisplay.PixelFormat Property " Url="html/e3ad2c4c-0e32-014b-fa0f-beee1fd4ec37.htm" />
+    <HelpKINode Title="SSD1306.PixelFormat Property " Url="html/7aecd27c-edbe-afab-5adb-a04e2e86305e.htm" />
+    <HelpKINode Title="ST7735.PixelFormat Property " Url="html/df0b039b-c7b7-c42c-00b4-c586648cd99c.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PixelsPerPage property" Url="html/e8f88a6d-5f63-cec4-0ece-53d92d495e03.htm" />
+  <HelpKINode Title="Press enumeration member" Url="html/a7a7704a-2b6f-07fe-6b96-b7f196094df0.htm" />
+  <HelpKINode Title="Pressed event">
+    <HelpKINode Title="IPushButton.Pressed Event" Url="html/2f0b1870-60dc-09e1-f269-cfec5ef4bca1.htm" />
+    <HelpKINode Title="PushButton.Pressed Event" Url="html/f76886c2-6e09-dc73-43dd-1db94e333d88.htm" />
+    <HelpKINode Title="RotaryEncoder.Pressed Event" Url="html/131127f4-de8c-02ba-ecff-dec272561d68.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PressedEvent property" Url="html/b773cf2a-590b-9d79-d308-e1e04a0690d7.htm" />
+  <HelpKINode Title="PressedValue property">
+    <HelpKINode Title="PushButton.PressedValue Property " Url="html/cc5afd6d-2fdc-1cb0-4e8b-48551b56ade7.htm" />
+    <HelpKINode Title="PushButtonHelper.PressedValue Property " Url="html/a3ec1871-45a0-ef1a-3894-9d11c5be9ffa.htm" />
+    <HelpKINode Title="RotaryEncoder.PressedValue Property " Url="html/dcabd997-3e18-083c-3017-ce63e640d850.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Priority property" Url="html/62fcad05-4615-ac6a-be4d-83dd1545e840.htm" />
+  <HelpKINode Title="Providers property">
+    <HelpKINode Title="AdcProviderManager.Providers Property " Url="html/0252933f-576b-1422-7300-816b158a4aab.htm" />
+    <HelpKINode Title="PwmProviderManager.Providers Property " Url="html/18d8afe2-484e-468e-00d8-cc8bc1d15520.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PushButton class">
+    <HelpKINode Title="PushButton Class" Url="html/77b2b355-81e9-c0de-bb29-df02005483ed.htm" />
+    <HelpKINode Title="about PushButton class" Url="html/77b2b355-81e9-c0de-bb29-df02005483ed.htm" />
+    <HelpKINode Title="constructor" Url="html/3163f461-2c14-0e40-16fa-5128c663ffbe.htm" />
+    <HelpKINode Title="events" Url="html/0c2cf226-7294-e6c7-571e-4cf9e11db491.htm" />
+    <HelpKINode Title="methods" Url="html/11c55ef6-e40b-7494-9c92-ca150428dd48.htm" />
+    <HelpKINode Title="properties" Url="html/e2197260-54d0-772a-c3dc-e8b1787607aa.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PushButton.Click event" Url="html/6c32acee-3eae-9db1-9d49-0ae7333c6a06.htm" />
+  <HelpKINode Title="PushButton.ClickMode property" Url="html/b9de210f-7867-af7b-6a99-41f2e8c19084.htm" />
+  <HelpKINode Title="PushButton.Close method" Url="html/463368fd-47fb-bcd2-1931-4861fa8d2333.htm" />
+  <HelpKINode Title="PushButton.DebounceTimeout property" Url="html/9481e388-b2ba-9932-4ac9-1962dab8e8bd.htm" />
+  <HelpKINode Title="PushButton.IsPressed property" Url="html/bff0411e-c8fc-02f7-c162-ab78ab69c1bb.htm" />
+  <HelpKINode Title="PushButton.Pin property" Url="html/7ad7a375-a656-716e-f713-aeee4c25b663.htm" />
+  <HelpKINode Title="PushButton.Pressed event" Url="html/f76886c2-6e09-dc73-43dd-1db94e333d88.htm" />
+  <HelpKINode Title="PushButton.PressedValue property" Url="html/cc5afd6d-2fdc-1cb0-4e8b-48551b56ade7.htm" />
+  <HelpKINode Title="PushButton.PushButton constructor" Url="html/3163f461-2c14-0e40-16fa-5128c663ffbe.htm" />
+  <HelpKINode Title="PushButton.Released event" Url="html/e089a68b-19bb-138d-a4d9-09ac77415391.htm" />
+  <HelpKINode Title="PushButton.UsePullResistors property" Url="html/23554a31-89cb-d983-d171-c3c26e03223e.htm" />
+  <HelpKINode Title="PushButtonHelper class">
+    <HelpKINode Title="PushButtonHelper Class" Url="html/5a5f01ce-094d-4308-842f-8ab51c17ac43.htm" />
+    <HelpKINode Title="about PushButtonHelper class" Url="html/5a5f01ce-094d-4308-842f-8ab51c17ac43.htm" />
+    <HelpKINode Title="constructor" Url="html/9c39ff30-19ea-7c8a-4394-27e23df021a0.htm" />
+    <HelpKINode Title="methods" Url="html/43ccc9b3-927f-46e7-2d92-9108c85d70c7.htm" />
+    <HelpKINode Title="properties" Url="html/956c1e6d-881b-2108-3abd-b4ffd568ab5c.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PushButtonHelper.ClickEvent property" Url="html/e4718825-087e-85aa-2b30-72059056712f.htm" />
+  <HelpKINode Title="PushButtonHelper.ClickMode property" Url="html/faba9210-aa4f-b4b4-418f-10039b773f0a.htm" />
+  <HelpKINode Title="PushButtonHelper.DebounceTimeout property" Url="html/c57ab508-8dcd-655c-553f-74cd8939dc55.htm" />
+  <HelpKINode Title="PushButtonHelper.Dispose method" Url="html/fa5aed15-4825-9a5b-9909-700a084babfe.htm" />
+  <HelpKINode Title="PushButtonHelper.EnsureInitialized method" Url="html/b1e0b792-be0f-7ae0-6839-4c8601205493.htm" />
+  <HelpKINode Title="PushButtonHelper.IsPressed property" Url="html/c94e05e5-219d-5a44-3f60-4ce259d60aed.htm" />
+  <HelpKINode Title="PushButtonHelper.Pin property" Url="html/e6b8826b-11a4-aa4e-f7ec-fe476feb3042.htm" />
+  <HelpKINode Title="PushButtonHelper.PressedEvent property" Url="html/b773cf2a-590b-9d79-d308-e1e04a0690d7.htm" />
+  <HelpKINode Title="PushButtonHelper.PressedValue property" Url="html/a3ec1871-45a0-ef1a-3894-9d11c5be9ffa.htm" />
+  <HelpKINode Title="PushButtonHelper.PushButtonHelper constructor" Url="html/9c39ff30-19ea-7c8a-4394-27e23df021a0.htm" />
+  <HelpKINode Title="PushButtonHelper.ReleasedEvent property" Url="html/87a6deb4-83b5-7a21-79b8-b471494a542f.htm" />
+  <HelpKINode Title="PushButtonHelper.UsePullResistors property" Url="html/643317c5-0125-f3d7-3e77-5a50fab8dbfd.htm" />
+  <HelpKINode Title="PwmProviderManager class">
+    <HelpKINode Title="PwmProviderManager Class" Url="html/1e579d7f-f194-3748-6337-25d40f00c8dd.htm" />
+    <HelpKINode Title="about PwmProviderManager class" Url="html/1e579d7f-f194-3748-6337-25d40f00c8dd.htm" />
+    <HelpKINode Title="constructor" Url="html/cde291a6-f6ff-b423-5789-a056a9ef31cc.htm" />
+    <HelpKINode Title="methods" Url="html/d76fe4e6-4703-2b84-609e-f55ae933416a.htm" />
+    <HelpKINode Title="properties" Url="html/66ac37d4-34b5-c557-6362-8fee65a1a971.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PwmProviderManager.Close method" Url="html/e3ce0b83-f1dd-78cb-7e61-b0f66760e41d.htm" />
+  <HelpKINode Title="PwmProviderManager.GetControllersAsync method" Url="html/ca06d74d-3a09-e78b-123f-e79e33d13d65.htm" />
+  <HelpKINode Title="PwmProviderManager.Providers property" Url="html/18d8afe2-484e-468e-00d8-cc8bc1d15520.htm" />
+  <HelpKINode Title="PwmProviderManager.PwmProviderManager constructor" Url="html/cde291a6-f6ff-b423-5789-a056a9ef31cc.htm" />
+  <HelpKINode Title="R enumeration member" Url="html/44a15ead-930f-ed35-5f5e-a57fa0af2773.htm" />
+  <HelpKINode Title="Raise method">
+    <HelpKINode Title="IObservableEvent(TSender, TResult).Raise Method " Url="html/5c051ebf-e8fc-7b6f-2e1e-80bcc2177c47.htm" />
+    <HelpKINode Title="ObservableEvent(TSender, TResult).Raise Method " Url="html/265d8ab6-7a88-46b6-0167-24946afbb01c.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Ratio property" Url="html/7f7ebde2-e2fd-1600-269d-7d6512bf2991.htm" />
+  <HelpKINode Title="RBlack enumeration member" Url="html/44a15ead-930f-ed35-5f5e-a57fa0af2773.htm" />
+  <HelpKINode Title="Reading property">
+    <HelpKINode Title="AnalogSensorReadingChangedEventArgs.Reading Property " Url="html/4f56174f-7ff0-08a1-dc37-fad12f95c9bb.htm" />
+    <HelpKINode Title="IAnalogSensorReadingChangedEventArgs.Reading Property " Url="html/92b9b7e7-4297-0978-1c1b-95151628ea50.htm" />
+    <HelpKINode Title="IThumbstickReadingChangedEventArgs.Reading Property " Url="html/4d675ca3-8495-cf1d-b2e5-54fc6dc6541c.htm" />
+    <HelpKINode Title="ThumbstickReadingChangedEventArgs.Reading Property " Url="html/84e551cb-81d8-d075-22df-ca090cabca93.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ReadingChanged event">
+    <HelpKINode Title="AnalogSensor.ReadingChanged Event" Url="html/b384b613-a587-b961-e6f3-4428c8f93ca6.htm" />
+    <HelpKINode Title="IAnalogSensor.ReadingChanged Event" Url="html/ee850eeb-5136-dabd-711c-e3301ce4eef6.htm" />
+    <HelpKINode Title="IThumbstick.ReadingChanged Event" Url="html/caf5650f-c42d-fafd-f571-26abdf6121a1.htm" />
+    <HelpKINode Title="SS944.ReadingChanged Event" Url="html/e0ac372b-156d-4904-47ae-3cec9347d0b4.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ReadValue method">
+    <HelpKINode Title="ADC0832.ReadValue Method " Url="html/3f9ed3ac-7b5d-e973-872a-1899c6753b97.htm" />
+    <HelpKINode Title="MCP3208.ReadValue Method " Url="html/69f3975b-ff16-2e55-0a97-552ea4a2a162.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RedPin property" Url="html/3379c3fa-8e83-a648-5caf-f4b4f3a1e2ce.htm" />
+  <HelpKINode Title="Release enumeration member" Url="html/a7a7704a-2b6f-07fe-6b96-b7f196094df0.htm" />
+  <HelpKINode Title="ReleaseChannel method">
+    <HelpKINode Title="ADC0832.ReleaseChannel Method " Url="html/bb393a9f-e13a-e925-7d86-2c012f13a23f.htm" />
+    <HelpKINode Title="MCP3208.ReleaseChannel Method " Url="html/eef2ad44-c353-4720-010c-8259fd711675.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Released event">
+    <HelpKINode Title="IPushButton.Released Event" Url="html/e4c253be-ff4b-8650-b239-c4f9f7a368e0.htm" />
+    <HelpKINode Title="PushButton.Released Event" Url="html/e089a68b-19bb-138d-a4d9-09ac77415391.htm" />
+    <HelpKINode Title="RotaryEncoder.Released Event" Url="html/f530a302-cc50-8428-0945-a8f5db126cf8.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ReleasedEvent property" Url="html/87a6deb4-83b5-7a21-79b8-b471494a542f.htm" />
+  <HelpKINode Title="ReleasePin method">
+    <HelpKINode Title="PCA9685.ReleasePin Method " Url="html/a3850acb-5b82-d8a7-fc43-28389327b011.htm" />
+    <HelpKINode Title="SoftPwm.ReleasePin Method " Url="html/c77d16d0-cd32-c944-789c-455129473d3d.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Remove method">
+    <HelpKINode Title="IObservableEvent(TSender, TResult).Remove Method " Url="html/36aba266-d7e0-30db-24bf-f00bb22bdbab.htm" />
+    <HelpKINode Title="ObservableEvent(TSender, TResult).Remove Method " Url="html/e43b9c8c-d495-06c7-50bf-822acf4b8d60.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Removed method" Url="html/33badb59-146d-5cd6-3bf4-ced744eaa606.htm" />
+  <HelpKINode Title="ReportInterval property">
+    <HelpKINode Title="AnalogSensor.ReportInterval Property " Url="html/fa7e0b24-5a57-3643-7006-282c18bdf174.htm" />
+    <HelpKINode Title="IScheduledDevice.ReportInterval Property " Url="html/ebc1121b-6dbc-3776-f90e-a5654c416014.htm" />
+    <HelpKINode Title="SS944.ReportInterval Property " Url="html/b65275c3-2733-4abb-45d1-e2b1ff7fd9ee.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ResetAsync method" Url="html/9fd8370a-f787-b149-d92c-a6ba769b8ea3.htm" />
+  <HelpKINode Title="ResetPin property">
+    <HelpKINode Title="SSD1306.ResetPin Property " Url="html/a3ef1c7d-5a36-a318-67a0-e281b370f5f3.htm" />
+    <HelpKINode Title="ST7735.ResetPin Property " Url="html/c922f5ec-6f46-30d0-6557-74bcd1925ec5.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ResolutionInBits property">
+    <HelpKINode Title="ADC0832.ResolutionInBits Property " Url="html/aafa173f-1134-14b9-f001-aaf26a420887.htm" />
+    <HelpKINode Title="MCP3208.ResolutionInBits Property " Url="html/67370e59-b1d1-6aed-19e0-e666dd4033c3.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Resume method">
+    <HelpKINode Title="IScheduler.Resume Method " Url="html/6b0436f1-ded1-0b2b-aa36-40923536d2fa.htm" />
+    <HelpKINode Title="Scheduler.Resume Method " Url="html/fa0c9a7d-44a2-2b58-d6d2-49e9572ab794.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Rgb444 enumeration member" Url="html/6d044a07-577b-d381-84eb-8528bd288151.htm" />
+  <HelpKINode Title="Rgb565 enumeration member" Url="html/6d044a07-577b-d381-84eb-8528bd288151.htm" />
+  <HelpKINode Title="Rgb666 enumeration member" Url="html/6d044a07-577b-d381-84eb-8528bd288151.htm" />
+  <HelpKINode Title="RgbLed class">
+    <HelpKINode Title="RgbLed Class" Url="html/80db6f47-6ee2-efc7-d05a-39f80bd1b3d6.htm" />
+    <HelpKINode Title="about RgbLed class" Url="html/80db6f47-6ee2-efc7-d05a-39f80bd1b3d6.htm" />
+    <HelpKINode Title="constructor" Url="html/eb4a04e2-9e20-0286-3bb5-bfea2086343e.htm" />
+    <HelpKINode Title="methods" Url="html/05490256-c404-fc65-a834-2be1d536d834.htm" />
+    <HelpKINode Title="properties" Url="html/6e8c4e5a-d490-f123-c369-cd9745fc1a1d.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RgbLed.BluePin property" Url="html/005adfc5-4196-64ce-8c56-b30bb52a6fd0.htm" />
+  <HelpKINode Title="RgbLed.BrightnessLevel property" Url="html/6cf86f2e-267a-a139-c812-1c4c7df8a1c4.htm" />
+  <HelpKINode Title="RgbLed.Close method" Url="html/8ca8e13b-2319-fb4e-75c1-622904ad537d.htm" />
+  <HelpKINode Title="RgbLed.Color property" Url="html/32f79cd7-df88-f599-037b-dcd91f75c578.htm" />
+  <HelpKINode Title="RgbLed.GreenPin property" Url="html/dbaab45a-8ff2-36ff-e658-d5e842378fe8.htm" />
+  <HelpKINode Title="RgbLed.IsColorSettable property" Url="html/b9d996ee-238e-ba5d-e6ab-08e35aced6bb.htm" />
+  <HelpKINode Title="RgbLed.RedPin property" Url="html/3379c3fa-8e83-a648-5caf-f4b4f3a1e2ce.htm" />
+  <HelpKINode Title="RgbLed.RgbLed constructor" Url="html/eb4a04e2-9e20-0286-3bb5-bfea2086343e.htm" />
+  <HelpKINode Title="RGreen enumeration member" Url="html/44a15ead-930f-ed35-5f5e-a57fa0af2773.htm" />
+  <HelpKINode Title="RGreen144 enumeration member" Url="html/44a15ead-930f-ed35-5f5e-a57fa0af2773.htm" />
+  <HelpKINode Title="RotaryEncoder class">
+    <HelpKINode Title="RotaryEncoder Class" Url="html/2202edc4-157e-0b3d-36bf-1ee746d04660.htm" />
+    <HelpKINode Title="about RotaryEncoder class" Url="html/2202edc4-157e-0b3d-36bf-1ee746d04660.htm" />
+    <HelpKINode Title="constructor" Url="html/9cfa0cb1-6261-8d02-917d-0e8f685319fa.htm" />
+    <HelpKINode Title="events" Url="html/f43a07e3-b037-66bc-90d3-460d97072c4b.htm" />
+    <HelpKINode Title="methods" Url="html/019a1a33-cbe4-5cdf-3211-6269533b65f8.htm" />
+    <HelpKINode Title="properties" Url="html/8a794029-010d-7cc9-ecfd-d8326b7962a7.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RotaryEncoder.ButtonPin property" Url="html/e1bf8172-44d8-74a7-5d00-da7cdc4659cf.htm" />
+  <HelpKINode Title="RotaryEncoder.Click event" Url="html/e7b8d608-2eeb-45ca-d245-be61fc13b68e.htm" />
+  <HelpKINode Title="RotaryEncoder.ClickMode property" Url="html/07b7f8d5-1dbc-a1b7-c696-b93dd83a76f7.htm" />
+  <HelpKINode Title="RotaryEncoder.ClockPin property" Url="html/3f1639af-350b-6339-b096-ee28ba205cd8.htm" />
+  <HelpKINode Title="RotaryEncoder.Close method" Url="html/4961e4d1-db10-4adc-5fb1-3cc758cf4084.htm" />
+  <HelpKINode Title="RotaryEncoder.DebounceTimeout property" Url="html/83f86a18-d50e-4b52-0999-e10ace49e8dc.htm" />
+  <HelpKINode Title="RotaryEncoder.DirectionPin property" Url="html/f0552334-bbe5-fc97-ae06-01df3818110b.htm" />
+  <HelpKINode Title="RotaryEncoder.IsPressed property" Url="html/ea0a1221-3177-bfda-b3c9-5b56b1020202.htm" />
+  <HelpKINode Title="RotaryEncoder.Pressed event" Url="html/131127f4-de8c-02ba-ecff-dec272561d68.htm" />
+  <HelpKINode Title="RotaryEncoder.PressedValue property" Url="html/dcabd997-3e18-083c-3017-ce63e640d850.htm" />
+  <HelpKINode Title="RotaryEncoder.Released event" Url="html/f530a302-cc50-8428-0945-a8f5db126cf8.htm" />
+  <HelpKINode Title="RotaryEncoder.RotaryEncoder constructor" Url="html/9cfa0cb1-6261-8d02-917d-0e8f685319fa.htm" />
+  <HelpKINode Title="RotaryEncoder.Rotated event" Url="html/159d7019-1abb-96e2-bbf8-c3002d678716.htm" />
+  <HelpKINode Title="RotaryEncoder.UsePullResistors property" Url="html/17548e66-0634-03e1-8603-50cbd82addc0.htm" />
+  <HelpKINode Title="RotaryEncoderRotatedEventArgs class">
+    <HelpKINode Title="RotaryEncoderRotatedEventArgs Class" Url="html/380e7654-1281-3f16-4e72-44babbc5796f.htm" />
+    <HelpKINode Title="about RotaryEncoderRotatedEventArgs class" Url="html/380e7654-1281-3f16-4e72-44babbc5796f.htm" />
+    <HelpKINode Title="constructor" Url="html/3ddee0df-5c02-d62a-e935-8bdfa14bd150.htm" />
+    <HelpKINode Title="methods" Url="html/ed28e7c8-2748-d6aa-86d0-6977b61c9c24.htm" />
+    <HelpKINode Title="properties" Url="html/a7324ab7-ae99-8256-36bd-dfa9d93eefc7.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RotaryEncoderRotatedEventArgs.Direction property" Url="html/adfe45fd-9cd1-3ed5-1e6b-efedebd0c9b4.htm" />
+  <HelpKINode Title="RotaryEncoderRotatedEventArgs.RotaryEncoderRotatedEventArgs constructor" Url="html/3ddee0df-5c02-d62a-e935-8bdfa14bd150.htm" />
+  <HelpKINode Title="Rotated event">
+    <HelpKINode Title="IRotaryEncoder.Rotated Event" Url="html/59bd4469-bbe3-d223-eb84-a367f1b628c3.htm" />
+    <HelpKINode Title="RotaryEncoder.Rotated Event" Url="html/159d7019-1abb-96e2-bbf8-c3002d678716.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RotationDirection enumeration" Url="html/98f6fc7b-5dec-a55e-4f16-eabb489d0742.htm" />
+  <HelpKINode Title="RRed enumeration member" Url="html/44a15ead-930f-ed35-5f5e-a57fa0af2773.htm" />
+  <HelpKINode Title="Run method" Url="html/cb4df575-1d72-b9b9-8d32-5d74849d575a.htm" />
+  <HelpKINode Title="RunAsync method" Url="html/0300af92-9968-8e28-2cf6-52c5c9afc654.htm" />
+  <HelpKINode Title="RunIdle method" Url="html/3bec7486-099a-9d34-b5cd-703e74a6fd82.htm" />
+  <HelpKINode Title="RunIdleAsync method" Url="html/179caaf5-72c8-0638-37cb-437fdc58acd8.htm" />
+  <HelpKINode Title="Schedule method">
+    <HelpKINode Title="IScheduler.Schedule Method " Url="html/b46bdc7c-7c94-2506-cbbe-01b64e98312f.htm" />
+    <HelpKINode Title="Scheduler.Schedule Method " Url="html/73d19d6b-a2c9-f2de-e368-f486b2f624ab.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ScheduledAction delegate" Url="html/e4bb63d1-c0e3-0e04-15e7-699964517764.htm" />
+  <HelpKINode Title="ScheduledAsyncAction delegate" Url="html/545efb9f-e05f-cc24-6b6d-314aad42cd72.htm" />
+  <HelpKINode Title="ScheduledUpdater class">
+    <HelpKINode Title="ScheduledUpdater Class" Url="html/ae75484a-cab9-744d-3ace-b214fb20ac39.htm" />
+    <HelpKINode Title="about ScheduledUpdater class" Url="html/ae75484a-cab9-744d-3ace-b214fb20ac39.htm" />
+    <HelpKINode Title="constructor" Url="html/1532e946-84c2-6695-f288-bdd32daf3ca5.htm" />
+    <HelpKINode Title="events" Url="html/b618e574-4c7c-21f8-b128-bbc543785974.htm" />
+    <HelpKINode Title="methods" Url="html/56ce13cf-9ea8-3da9-6d82-9d5cd672fd66.htm" />
+    <HelpKINode Title="properties" Url="html/81084cd4-31c7-d7f5-e74e-91d09868dd00.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ScheduledUpdater.Close method" Url="html/ad235d34-4356-56cc-b6b9-3bab52799c2c.htm" />
+  <HelpKINode Title="ScheduledUpdater.IsStarted property" Url="html/80c12d83-bc0f-f762-0897-be2c9b5e7f44.htm" />
+  <HelpKINode Title="ScheduledUpdater.ScheduledUpdater constructor" Url="html/1532e946-84c2-6695-f288-bdd32daf3ca5.htm" />
+  <HelpKINode Title="ScheduledUpdater.ScheduleOptions property" Url="html/4c7504ad-9697-ad94-a0a5-1ab416ce6b49.htm" />
+  <HelpKINode Title="ScheduledUpdater.Scheduler property" Url="html/b95fc83c-7efc-4aef-3622-dfad51056b78.htm" />
+  <HelpKINode Title="ScheduledUpdater.SetAsyncUpdateAction method" Url="html/888a8888-b3ba-7f2c-53f2-df0a5a3eea7a.htm" />
+  <HelpKINode Title="ScheduledUpdater.SetUpdateAction method" Url="html/96ebfa62-d9d5-7089-367a-825e24df6aab.htm" />
+  <HelpKINode Title="ScheduledUpdater.Start method" Url="html/178bd34a-b3f6-2c35-1f1a-60a0f114e8c9.htm" />
+  <HelpKINode Title="ScheduledUpdater.Started event" Url="html/21602c0d-a2c4-7428-abe7-4de6c0e5d14b.htm" />
+  <HelpKINode Title="ScheduledUpdater.Starting event" Url="html/52ef1483-2e5e-1516-da67-4fdf61979308.htm" />
+  <HelpKINode Title="ScheduledUpdater.StartWithEvents property" Url="html/aabc2dd6-b796-1622-facf-e5c43e73290d.htm" />
+  <HelpKINode Title="ScheduledUpdater.Stop method" Url="html/74e6571b-4978-4197-43a1-406f0ac5180f.htm" />
+  <HelpKINode Title="ScheduledUpdater.Stopped event" Url="html/f8567ed9-317f-5e4b-2269-197bf28eb874.htm" />
+  <HelpKINode Title="ScheduledUpdater.Stopping event" Url="html/c348c9bd-1cae-62bb-cc57-6b6ef012c980.htm" />
+  <HelpKINode Title="ScheduledUpdater.StopWithEvents property" Url="html/910b1d1a-e877-83f4-c38e-426d2315e27c.htm" />
+  <HelpKINode Title="ScheduledUpdater.UpdateInterval property" Url="html/69bcb2f5-f4dc-536b-b75a-81ab7a325e75.htm" />
+  <HelpKINode Title="ScheduleOptions class">
+    <HelpKINode Title="ScheduleOptions Class" Url="html/f659e58d-e4df-f9f3-1f04-c4e279ec8034.htm" />
+    <HelpKINode Title="about ScheduleOptions class" Url="html/f659e58d-e4df-f9f3-1f04-c4e279ec8034.htm" />
+    <HelpKINode Title="constructor" Url="html/d0585ad1-7ca2-2c82-fe7b-a577d8f9e9bd.htm" />
+    <HelpKINode Title="methods" Url="html/146208f3-9eb1-c8a9-366e-3e43a56b5c0e.htm" />
+    <HelpKINode Title="properties" Url="html/57c815ee-c5bc-7f48-c81a-bea0ba2c119a.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ScheduleOptions property" Url="html/4c7504ad-9697-ad94-a0a5-1ab416ce6b49.htm" />
+  <HelpKINode Title="ScheduleOptions.Priority property" Url="html/62fcad05-4615-ac6a-be4d-83dd1545e840.htm" />
+  <HelpKINode Title="ScheduleOptions.ScheduleOptions constructor" Url="html/d0585ad1-7ca2-2c82-fe7b-a577d8f9e9bd.htm" />
+  <HelpKINode Title="ScheduleOptions.UpdateInterval property" Url="html/b1ac1218-6b26-34ce-f151-48fae45a5436.htm" />
+  <HelpKINode Title="ScheduleOptions.WithNewPriority method" Url="html/3917cf27-3c92-15df-60f6-8297dd7cc625.htm" />
+  <HelpKINode Title="ScheduleOptions.WithNewUpdateInterval method" Url="html/af8d8392-38ed-082b-20aa-577ce14b006d.htm" />
+  <HelpKINode Title="Scheduler class">
+    <HelpKINode Title="Scheduler Class" Url="html/da348da8-f7e0-5ca8-6921-8e2a103c3812.htm" />
+    <HelpKINode Title="about Scheduler class" Url="html/da348da8-f7e0-5ca8-6921-8e2a103c3812.htm" />
+    <HelpKINode Title="constructor" Url="html/b3a833bf-7293-932a-cd96-b03123e8bfd3.htm" />
+    <HelpKINode Title="methods" Url="html/1954a3a9-8c86-8b74-e1c3-03b73f5c7165.htm" />
+    <HelpKINode Title="properties" Url="html/c2d277e5-b26c-0466-f87d-d0eb058c6872.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Scheduler property" Url="html/b95fc83c-7efc-4aef-3622-dfad51056b78.htm" />
+  <HelpKINode Title="Scheduler.AutoStart property" Url="html/5a20d27f-86f4-f520-3c2e-2d40caaa5687.htm" />
+  <HelpKINode Title="Scheduler.Default property" Url="html/4ce99a19-e80b-dcf5-b783-819fa3b69d8c.htm" />
+  <HelpKINode Title="Scheduler.IsRunning property" Url="html/72a22e27-b543-ea75-a73c-722f0dd2e733.htm" />
+  <HelpKINode Title="Scheduler.Resume method" Url="html/fa0c9a7d-44a2-2b58-d6d2-49e9572ab794.htm" />
+  <HelpKINode Title="Scheduler.Schedule method" Url="html/73d19d6b-a2c9-f2de-e368-f486b2f624ab.htm" />
+  <HelpKINode Title="Scheduler.Scheduler constructor" Url="html/b3a833bf-7293-932a-cd96-b03123e8bfd3.htm" />
+  <HelpKINode Title="Scheduler.Start method" Url="html/f5604879-1c8e-ce83-a3bb-beca3d2acc43.htm" />
+  <HelpKINode Title="Scheduler.Stop method" Url="html/51c9345b-9028-6ec1-1cb1-4227a0911a9b.htm" />
+  <HelpKINode Title="Scheduler.Suspend method" Url="html/cfd6b2b7-0569-d530-1f2f-a208d293905a.htm" />
+  <HelpKINode Title="Scheduler.Unschedule method" Url="html/0106977b-eae8-5028-5f8f-3d56dd8c3060.htm" />
+  <HelpKINode Title="Scheduler.UpdateSchedule method" Url="html/7c3c9ef7-2972-0615-4bcb-56fe3b5447cd.htm" />
+  <HelpKINode Title="SchedulerPriority enumeration" Url="html/1cc69ac8-9456-ba04-2cba-f07bb5acba36.htm" />
+  <HelpKINode Title="SetAsyncUpdateAction method" Url="html/888a8888-b3ba-7f2c-53f2-df0a5a3eea7a.htm" />
+  <HelpKINode Title="SetDesiredFrequency method">
+    <HelpKINode Title="PCA9685.SetDesiredFrequency Method " Url="html/ba9c0ba2-4d8b-04f5-f07b-118312ae9ac8.htm" />
+    <HelpKINode Title="SoftPwm.SetDesiredFrequency Method " Url="html/1c7540c6-248b-63f5-e4b5-6c576f05a682.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SetDriveModeWithFallback method" Url="html/3a01fefc-2b79-06e1-545a-d83dd9fe680b.htm" />
+  <HelpKINode Title="SetPulseParameters method">
+    <HelpKINode Title="PCA9685.SetPulseParameters Method " Url="html/5649a49d-b787-535f-0071-84115927b7d3.htm" />
+    <HelpKINode Title="SoftPwm.SetPulseParameters Method " Url="html/828fe13c-7788-fddf-b6ef-e75600af0847.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SetUpdateAction method" Url="html/96ebfa62-d9d5-7089-367a-825e24df6aab.htm" />
+  <HelpKINode Title="SoftPwm class">
+    <HelpKINode Title="SoftPwm Class" Url="html/c2d0e9f9-30e5-6f29-8d5f-87d599ebd586.htm" />
+    <HelpKINode Title="about SoftPwm class" Url="html/c2d0e9f9-30e5-6f29-8d5f-87d599ebd586.htm" />
+    <HelpKINode Title="constructor" Url="html/1e073679-b2fd-9b4a-e080-c13374c4a7be.htm" />
+    <HelpKINode Title="methods" Url="html/e1875e69-85c2-51bf-83c2-552d92d62451.htm" />
+    <HelpKINode Title="properties" Url="html/4af3413c-69bd-f90d-cf1d-8237e49f9d3e.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SoftPwm.AcquirePin method" Url="html/00b02964-af6a-ccf2-518c-b446eaaf8f9e.htm" />
+  <HelpKINode Title="SoftPwm.ActualFrequency property" Url="html/29c2410a-fd6f-6da2-87d4-71989e72a415.htm" />
+  <HelpKINode Title="SoftPwm.Close method" Url="html/f2c58918-b135-b9b9-c667-52aec769691a.htm" />
+  <HelpKINode Title="SoftPwm.DisablePin method" Url="html/9eda7f19-2305-3384-2198-14faafaca1d7.htm" />
+  <HelpKINode Title="SoftPwm.EnablePin method" Url="html/9ff3c2c2-1d47-1317-2ebb-24cf36231e26.htm" />
+  <HelpKINode Title="SoftPwm.MaxFrequency property" Url="html/6339567a-b800-985f-95b2-86cc71597e50.htm" />
+  <HelpKINode Title="SoftPwm.MinFrequency property" Url="html/b3caee80-d719-974a-37f3-760153e08014.htm" />
+  <HelpKINode Title="SoftPwm.PinCount property" Url="html/595206b9-f49e-5696-f418-6d4a71e16135.htm" />
+  <HelpKINode Title="SoftPwm.ReleasePin method" Url="html/c77d16d0-cd32-c944-789c-455129473d3d.htm" />
+  <HelpKINode Title="SoftPwm.SetDesiredFrequency method" Url="html/1c7540c6-248b-63f5-e4b5-6c576f05a682.htm" />
+  <HelpKINode Title="SoftPwm.SetPulseParameters method" Url="html/828fe13c-7788-fddf-b6ef-e75600af0847.htm" />
+  <HelpKINode Title="SoftPwm.SoftPwm constructor" Url="html/1e073679-b2fd-9b4a-e080-c13374c4a7be.htm" />
+  <HelpKINode Title="SS944 class">
+    <HelpKINode Title="SS944 Class" Url="html/13cc1625-0085-087b-f872-b22ba7ec5b8e.htm" />
+    <HelpKINode Title="about SS944 class" Url="html/13cc1625-0085-087b-f872-b22ba7ec5b8e.htm" />
+    <HelpKINode Title="constructor" Url="html/f86ea455-6c30-005e-0226-186adb6e0cfb.htm" />
+    <HelpKINode Title="events" Url="html/ee6e5cfe-cd99-4db3-1cf6-665fef8e2077.htm" />
+    <HelpKINode Title="methods" Url="html/514b56df-f216-956f-0b81-800d063bbc44.htm" />
+    <HelpKINode Title="properties" Url="html/676a424f-6438-15a4-5d54-d0b1e09cc9dd.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SS944.ButtonPin property" Url="html/cbf90a7e-c6b7-5e77-b9d3-978fa56c0e20.htm" />
+  <HelpKINode Title="SS944.Close method" Url="html/36936a79-1206-a6ff-89ff-35bde50d1c3a.htm" />
+  <HelpKINode Title="SS944.GetCurrentReading method" Url="html/b055e72b-e238-e47b-1a9b-abf4964ceb2d.htm" />
+  <HelpKINode Title="SS944.ReadingChanged event" Url="html/e0ac372b-156d-4904-47ae-3cec9347d0b4.htm" />
+  <HelpKINode Title="SS944.ReportInterval property" Url="html/b65275c3-2733-4abb-45d1-e2b1ff7fd9ee.htm" />
+  <HelpKINode Title="SS944.SS944 constructor" Url="html/f86ea455-6c30-005e-0226-186adb6e0cfb.htm" />
+  <HelpKINode Title="SS944.XChannel property" Url="html/7ecbd789-07dc-9bd0-9e6d-31a7a08a0752.htm" />
+  <HelpKINode Title="SS944.YChannel property" Url="html/b261f0d4-f246-6237-7d4a-3abc9f925d4b.htm" />
+  <HelpKINode Title="SSD1306 class">
+    <HelpKINode Title="SSD1306 Class" Url="html/eb44fdd8-a351-a46b-88c1-78e63cdd8e04.htm" />
+    <HelpKINode Title="about SSD1306 class" Url="html/eb44fdd8-a351-a46b-88c1-78e63cdd8e04.htm" />
+    <HelpKINode Title="constructor" Url="html/baaafb72-1740-fa11-41f6-82e9c5a58eaa.htm" />
+    <HelpKINode Title="methods" Url="html/91f469b4-6408-01f0-0662-67772f464fe8.htm" />
+    <HelpKINode Title="properties" Url="html/1ea43e02-0ac3-17c9-b901-8d521531de4a.htm" />
+  </HelpKINode>
+  <HelpKINode Title="SSD1306.AddressMode property" Url="html/a1b5f63f-4371-d8dc-0fe7-32b603c2fa57.htm" />
+  <HelpKINode Title="SSD1306.ChipSelectLine property" Url="html/f76ce278-bd14-4f0f-ab71-4c439eb464b1.htm" />
+  <HelpKINode Title="SSD1306.ClearAsync method" Url="html/3c15d7e9-7272-98df-a502-72d2d3ee825b.htm" />
+  <HelpKINode Title="SSD1306.Close method" Url="html/de7c648e-37c3-3151-9a1d-e668963c4757.htm" />
+  <HelpKINode Title="SSD1306.ControllerName property" Url="html/e0622574-e3ee-c6c2-0565-502b18e96279.htm" />
+  <HelpKINode Title="SSD1306.DataPin property" Url="html/b8f66f31-71c6-f143-e1f3-18535fe16841.htm" />
+  <HelpKINode Title="SSD1306.FlipAsync method" Url="html/807204ee-19a7-6253-ccf7-3b2128525884.htm" />
+  <HelpKINode Title="SSD1306.Height property" Url="html/f9e42dc7-ff67-c35a-12fc-ba48add5ac77.htm" />
+  <HelpKINode Title="SSD1306.MirrorAsync method" Url="html/17171a57-1b15-731b-d708-02d7d67ed9b5.htm" />
+  <HelpKINode Title="SSD1306.PixelFormat property" Url="html/7aecd27c-edbe-afab-5adb-a04e2e86305e.htm" />
+  <HelpKINode Title="SSD1306.PixelsPerPage property" Url="html/e8f88a6d-5f63-cec4-0ece-53d92d495e03.htm" />
+  <HelpKINode Title="SSD1306.ResetAsync method" Url="html/9fd8370a-f787-b149-d92c-a6ba769b8ea3.htm" />
+  <HelpKINode Title="SSD1306.ResetPin property" Url="html/a3ef1c7d-5a36-a318-67a0-e281b370f5f3.htm" />
+  <HelpKINode Title="SSD1306.SSD1306 constructor" Url="html/baaafb72-1740-fa11-41f6-82e9c5a58eaa.htm" />
+  <HelpKINode Title="SSD1306.UpdateAsync method" Url="html/7c7a27a7-49e9-2c51-4165-4f9cec72f700.htm" />
+  <HelpKINode Title="SSD1306.Width property" Url="html/cc938320-6bd5-eb15-5225-fff2ec5063a3.htm" />
+  <HelpKINode Title="SSD1306.WritePixelAsync method" Url="html/42a4ddad-84b7-eef8-657b-142a877d262e.htm" />
+  <HelpKINode Title="SSD1306AddressMode enumeration" Url="html/ceb5128c-dcb6-65e7-e329-c8dbfd3f2248.htm" />
+  <HelpKINode Title="ST7735 class">
+    <HelpKINode Title="ST7735 Class" Url="html/31d40e6c-411f-c0f5-dbcc-90167b57eb92.htm" />
+    <HelpKINode Title="about ST7735 class" Url="html/31d40e6c-411f-c0f5-dbcc-90167b57eb92.htm" />
+    <HelpKINode Title="constructor" Url="html/12ce94a4-6989-9ea4-cfc3-19916be8e1b4.htm" />
+    <HelpKINode Title="methods" Url="html/7a4f0ffc-ec33-bf3e-dbaa-7bcd320312cd.htm" />
+    <HelpKINode Title="properties" Url="html/3b547f60-d6eb-f047-4a8a-8dde57ff6d06.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ST7735.AutoUpdate property" Url="html/91811cc1-eed6-b166-2fbc-7f26323724a8.htm" />
+  <HelpKINode Title="ST7735.ChipSelectLine property" Url="html/ac55e1bd-0b7c-1acb-443d-2b8167227fde.htm" />
+  <HelpKINode Title="ST7735.Clear method" Url="html/bd897a49-aaef-59ab-52d6-165af1923ff4.htm" />
+  <HelpKINode Title="ST7735.ClockFrequency property" Url="html/0c77ef3b-ccd0-2d70-1f40-468fd032b76f.htm" />
+  <HelpKINode Title="ST7735.Close method" Url="html/fc3ef498-ad60-8112-08db-25a1f4a1787c.htm" />
+  <HelpKINode Title="ST7735.ControllerName property" Url="html/5421af9e-52ea-6420-5300-d011035c07b8.htm" />
+  <HelpKINode Title="ST7735.DataCommandPin property" Url="html/e2ae13cd-62b6-3488-a4bf-6401dc97560a.htm" />
+  <HelpKINode Title="ST7735.DisplayType property" Url="html/81974a18-25c4-4586-a2f5-bfe262ec62db.htm" />
+  <HelpKINode Title="ST7735.DrawPixel method" Url="html/edd1f841-c9d1-02f9-1c3d-a633ff2e84bf.htm" />
+  <HelpKINode Title="ST7735.Height property" Url="html/23e5260a-ed80-6a1b-8923-0cefe6c42223.htm" />
+  <HelpKINode Title="ST7735.InitializeAsync method" Url="html/2affe5c1-51da-f920-b22b-9b33aebd1e26.htm" />
+  <HelpKINode Title="ST7735.IsOrientationSupported method" Url="html/fee01c2c-523d-ad64-e5ce-c8a4a6fcb884.htm" />
+  <HelpKINode Title="ST7735.Orientation property" Url="html/1d0d2bae-9d6c-5164-2b75-0b7c6ec1de03.htm" />
+  <HelpKINode Title="ST7735.PixelFormat property" Url="html/df0b039b-c7b7-c42c-00b4-c586648cd99c.htm" />
+  <HelpKINode Title="ST7735.ResetPin property" Url="html/c922f5ec-6f46-30d0-6557-74bcd1925ec5.htm" />
+  <HelpKINode Title="ST7735.ST7735 constructor" Url="html/12ce94a4-6989-9ea4-cfc3-19916be8e1b4.htm" />
+  <HelpKINode Title="ST7735.Update method" Url="html/ba71f8d8-b798-54e8-ec7b-6f7ad378caa4.htm" />
+  <HelpKINode Title="ST7735.Width property" Url="html/5adb45a5-eab0-e61c-b790-6c2ce1f41d00.htm" />
+  <HelpKINode Title="ST7735DisplayType enumeration" Url="html/44a15ead-930f-ed35-5f5e-a57fa0af2773.htm" />
+  <HelpKINode Title="Start method">
+    <HelpKINode Title="ScheduledUpdater.Start Method " Url="html/178bd34a-b3f6-2c35-1f1a-60a0f114e8c9.htm" />
+    <HelpKINode Title="Scheduler.Start Method " Url="html/f5604879-1c8e-ce83-a3bb-beca3d2acc43.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Started event" Url="html/21602c0d-a2c4-7428-abe7-4de6c0e5d14b.htm" />
+  <HelpKINode Title="Starting event" Url="html/52ef1483-2e5e-1516-da67-4fdf61979308.htm" />
+  <HelpKINode Title="StartWithEvents property" Url="html/aabc2dd6-b796-1622-facf-e5c43e73290d.htm" />
+  <HelpKINode Title="Stop method">
+    <HelpKINode Title="ScheduledUpdater.Stop Method " Url="html/74e6571b-4978-4197-43a1-406f0ac5180f.htm" />
+    <HelpKINode Title="Scheduler.Stop Method " Url="html/51c9345b-9028-6ec1-1cb1-4227a0911a9b.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Stopped event" Url="html/f8567ed9-317f-5e4b-2269-197bf28eb874.htm" />
+  <HelpKINode Title="Stopping event" Url="html/c348c9bd-1cae-62bb-cc57-6b6ef012c980.htm" />
+  <HelpKINode Title="StopWithEvents property" Url="html/910b1d1a-e877-83f4-c38e-426d2315e27c.htm" />
+  <HelpKINode Title="Suspend method">
+    <HelpKINode Title="IScheduler.Suspend Method " Url="html/1af946c0-7908-8ed1-a58b-95712a161c12.htm" />
+    <HelpKINode Title="Scheduler.Suspend Method " Url="html/cfd6b2b7-0569-d530-1f2f-a208d293905a.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Switch class">
+    <HelpKINode Title="Switch Class" Url="html/63a00db0-9e25-0b8a-97d6-a5fdcff53bca.htm" />
+    <HelpKINode Title="about Switch class" Url="html/63a00db0-9e25-0b8a-97d6-a5fdcff53bca.htm" />
+    <HelpKINode Title="constructor" Url="html/7bc52415-2a81-4eb7-86fc-4a1d731a7593.htm" />
+    <HelpKINode Title="events" Url="html/54960221-ffc1-6aee-df29-4f58c10091e0.htm" />
+    <HelpKINode Title="methods" Url="html/f7917cf3-5737-0b35-8d8c-9510a48b13b1.htm" />
+    <HelpKINode Title="properties" Url="html/00487a43-51d5-ad39-02dc-7653848a0803.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Switch.Close method" Url="html/58d3714f-815d-1ac4-7f1b-6a8796591a65.htm" />
+  <HelpKINode Title="Switch.DebounceTimeout property" Url="html/c58d053b-f4c8-0513-5ddd-922b7eacb919.htm" />
+  <HelpKINode Title="Switch.IsOn property" Url="html/b6b2a97d-f76c-f627-b37d-c7e0f3c8e997.htm" />
+  <HelpKINode Title="Switch.OnValue property" Url="html/ca48493f-0713-c6a7-8f75-ed1653aac6a8.htm" />
+  <HelpKINode Title="Switch.Pin property" Url="html/6050bdcc-0438-ba56-31d5-76ca3e003a27.htm" />
+  <HelpKINode Title="Switch.Switch constructor" Url="html/7bc52415-2a81-4eb7-86fc-4a1d731a7593.htm" />
+  <HelpKINode Title="Switch.Switched event" Url="html/aa6a03f9-ad93-e391-8289-c9455e8c772e.htm" />
+  <HelpKINode Title="Switch.UsePullResistors property" Url="html/3cb5b7b4-6cab-ddd2-3eaf-521afd4e2a07.htm" />
+  <HelpKINode Title="Switched event">
+    <HelpKINode Title="ISwitch.Switched Event" Url="html/691e0193-e8a3-27e6-694f-24f9f09f726c.htm" />
+    <HelpKINode Title="Switch.Switched Event" Url="html/aa6a03f9-ad93-e391-8289-c9455e8c772e.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TaskExtensions class">
+    <HelpKINode Title="TaskExtensions Class" Url="html/d15c207b-15ca-daf6-0f71-c956ea2deb66.htm" />
+    <HelpKINode Title="about TaskExtensions class" Url="html/d15c207b-15ca-daf6-0f71-c956ea2deb66.htm" />
+    <HelpKINode Title="methods" Url="html/a819b06a-3663-9a3b-5c6c-dc130e4bbae8.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TaskExtensions.FailFastOnException method" Url="html/5edfc81b-e3df-80e4-1ffc-ec3865a7c514.htm" />
+  <HelpKINode Title="TaskExtensions.IgnoreExceptions method" Url="html/1bb41838-b19c-9eac-f417-df1538f675b4.htm" />
+  <HelpKINode Title="TaskExtensions.UISafeWait method" Url="html/1436a3da-d232-4940-b3d7-27cf93e8645d.htm" />
+  <HelpKINode Title="ThumbstickReading class">
+    <HelpKINode Title="ThumbstickReading Class" Url="html/d18249ea-0375-293d-8406-e78ada2fd289.htm" />
+    <HelpKINode Title="about ThumbstickReading class" Url="html/d18249ea-0375-293d-8406-e78ada2fd289.htm" />
+    <HelpKINode Title="constructor" Url="html/2211c48e-1a5c-be45-83fd-366c62d2a986.htm" />
+    <HelpKINode Title="methods" Url="html/0c37fdd6-4f01-d054-26fe-f909e3c2b71a.htm" />
+    <HelpKINode Title="properties" Url="html/3af0377d-b0e0-03f1-31e8-b0c9d4334d4d.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ThumbstickReading.IsPressed property" Url="html/27c91809-cd74-e794-9ff2-8efc2fd4d9d9.htm" />
+  <HelpKINode Title="ThumbstickReading.ThumbstickReading constructor" Url="html/2211c48e-1a5c-be45-83fd-366c62d2a986.htm" />
+  <HelpKINode Title="ThumbstickReading.XAxis property" Url="html/ca1bb3d1-bbf8-c1cd-711b-8386b59197c0.htm" />
+  <HelpKINode Title="ThumbstickReading.YAxis property" Url="html/70c0d691-5ebb-d1d2-ae8b-56bd4dbe92aa.htm" />
+  <HelpKINode Title="ThumbstickReadingChangedEventArgs class">
+    <HelpKINode Title="ThumbstickReadingChangedEventArgs Class" Url="html/a8a0096e-7480-7b4f-fdc0-11b40cfc296a.htm" />
+    <HelpKINode Title="about ThumbstickReadingChangedEventArgs class" Url="html/a8a0096e-7480-7b4f-fdc0-11b40cfc296a.htm" />
+    <HelpKINode Title="constructor" Url="html/ae74bd43-cbb9-6e99-6ce3-dc616fd9583d.htm" />
+    <HelpKINode Title="methods" Url="html/22df7742-6469-6e86-5f13-0b489b12ebcd.htm" />
+    <HelpKINode Title="properties" Url="html/fefbda0f-d05c-1514-bbb4-86c6293ad09f.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ThumbstickReadingChangedEventArgs.Reading property" Url="html/84e551cb-81d8-d075-22df-ca090cabca93.htm" />
+  <HelpKINode Title="ThumbstickReadingChangedEventArgs.ThumbstickReadingChangedEventArgs constructor" Url="html/ae74bd43-cbb9-6e99-6ce3-dc616fd9583d.htm" />
+  <HelpKINode Title="UISafeWait method" Url="html/1436a3da-d232-4940-b3d7-27cf93e8645d.htm" />
+  <HelpKINode Title="Unknown enumeration member" Url="html/6d044a07-577b-d381-84eb-8528bd288151.htm" />
+  <HelpKINode Title="Unschedule method">
+    <HelpKINode Title="IScheduler.Unschedule Method " Url="html/b6cce78a-26b8-2f78-b85c-7c9ca1af8c1d.htm" />
+    <HelpKINode Title="Scheduler.Unschedule Method " Url="html/0106977b-eae8-5028-5f8f-3d56dd8c3060.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Update method">
+    <HelpKINode Title="IGraphicsDisplay.Update Method " Url="html/08250264-e6cf-5fa9-14be-7ecf75d9902f.htm" />
+    <HelpKINode Title="ST7735.Update Method " Url="html/ba71f8d8-b798-54e8-ec7b-6f7ad378caa4.htm" />
+  </HelpKINode>
+  <HelpKINode Title="UpdateAsync method" Url="html/7c7a27a7-49e9-2c51-4165-4f9cec72f700.htm" />
+  <HelpKINode Title="UpdateInterval property">
+    <HelpKINode Title="GraphicsDisplayPanel.UpdateInterval Property " Url="html/b182cf51-335e-5c63-6696-41f247d2bf9f.htm" />
+    <HelpKINode Title="ScheduledUpdater.UpdateInterval Property " Url="html/69bcb2f5-f4dc-536b-b75a-81ab7a325e75.htm" />
+    <HelpKINode Title="ScheduleOptions.UpdateInterval Property " Url="html/b1ac1218-6b26-34ce-f151-48fae45a5436.htm" />
+  </HelpKINode>
+  <HelpKINode Title="UpdateSchedule method">
+    <HelpKINode Title="IScheduler.UpdateSchedule Method " Url="html/4274279a-1c00-3561-3c51-94c8136b46ac.htm" />
+    <HelpKINode Title="Scheduler.UpdateSchedule Method " Url="html/7c3c9ef7-2972-0615-4bcb-56fe3b5447cd.htm" />
+  </HelpKINode>
+  <HelpKINode Title="UsePullResistors property">
+    <HelpKINode Title="PushButton.UsePullResistors Property " Url="html/23554a31-89cb-d983-d171-c3c26e03223e.htm" />
+    <HelpKINode Title="PushButtonHelper.UsePullResistors Property " Url="html/643317c5-0125-f3d7-3e77-5a50fab8dbfd.htm" />
+    <HelpKINode Title="RotaryEncoder.UsePullResistors Property " Url="html/17548e66-0634-03e1-8603-50cbd82addc0.htm" />
+    <HelpKINode Title="Switch.UsePullResistors Property " Url="html/3cb5b7b4-6cab-ddd2-3eaf-521afd4e2a07.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Value property" Url="html/b793dd89-255b-7bf2-5c5a-a76507f81142.htm" />
+  <HelpKINode Title="version">
+    <HelpKINode Title="1.0.4.0" Url="html/ce87bb79-5e03-4e84-ac35-e4414332813d.htm" />
+    <HelpKINode Title="history" Url="html/7e4af686-8c97-40c6-a035-af6a5c86781f.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Vertical enumeration member" Url="html/ceb5128c-dcb6-65e7-e329-c8dbfd3f2248.htm" />
+  <HelpKINode Title="Welcome" Url="html/f5033eb9-76f4-4567-921e-7d84815c826d.htm" />
+  <HelpKINode Title="Width property">
+    <HelpKINode Title="IGraphicsDisplay.Width Property " Url="html/9fe55fad-30f6-7418-af55-6bde518b0b24.htm" />
+    <HelpKINode Title="SSD1306.Width Property " Url="html/cc938320-6bd5-eb15-5225-fff2ec5063a3.htm" />
+    <HelpKINode Title="ST7735.Width Property " Url="html/5adb45a5-eab0-e61c-b790-6c2ce1f41d00.htm" />
+  </HelpKINode>
+  <HelpKINode Title="WithNewPriority method" Url="html/3917cf27-3c92-15df-60f6-8297dd7cc625.htm" />
+  <HelpKINode Title="WithNewUpdateInterval method" Url="html/af8d8392-38ed-082b-20aa-577ce14b006d.htm" />
+  <HelpKINode Title="WritePixelAsync method" Url="html/42a4ddad-84b7-eef8-657b-142a877d262e.htm" />
+  <HelpKINode Title="XamlMetaDataProvider class">
+    <HelpKINode Title="XamlMetaDataProvider Class" Url="html/4a14a99c-e4c8-ddfd-7bd1-c3e51f21d403.htm" />
+    <HelpKINode Title="about XamlMetaDataProvider class" Url="html/4a14a99c-e4c8-ddfd-7bd1-c3e51f21d403.htm" />
+    <HelpKINode Title="constructor" Url="html/b0278bf4-614d-88fb-a10e-405fa42bfcdb.htm" />
+    <HelpKINode Title="methods" Url="html/e7687448-8a6d-b80c-b9a7-66df7dea7f85.htm" />
+  </HelpKINode>
+  <HelpKINode Title="XamlMetaDataProvider.GetXamlType method" Url="html/ec184680-908c-204e-a0a1-bdd5f9cb1a20.htm" />
+  <HelpKINode Title="XamlMetaDataProvider.GetXmlnsDefinitions method" Url="html/1272499b-e4ee-9c62-165f-d30219ad45c4.htm" />
+  <HelpKINode Title="XamlMetaDataProvider.XamlMetaDataProvider constructor" Url="html/b0278bf4-614d-88fb-a10e-405fa42bfcdb.htm" />
+  <HelpKINode Title="XAxis property" Url="html/ca1bb3d1-bbf8-c1cd-711b-8386b59197c0.htm" />
+  <HelpKINode Title="XChannel property" Url="html/7ecbd789-07dc-9bd0-9e6d-31a7a08a0752.htm" />
+  <HelpKINode Title="YAxis property" Url="html/70c0d691-5ebb-d1d2-ae8b-56bd4dbe92aa.htm" />
+  <HelpKINode Title="YChannel property" Url="html/b261f0d4-f246-6237-7d4a-3abc9f925d4b.htm" />
+</HelpKI>

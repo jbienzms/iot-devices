@@ -1,0 +1,666 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpTOC>
+
+  <HelpTOCNode Title="Welcome to Microsoft.IoT.Devices" Url="html/f5033eb9-76f4-4567-921e-7d84815c826d.htm" />
+  <HelpTOCNode Id="4d324610-54d8-44da-b970-59cc3bad8001" Title="Version History" Url="html/7e4af686-8c97-40c6-a035-af6a5c86781f.htm">
+    <HelpTOCNode Title="Version 1.0.0.0" Url="html/F79FE839-895C-4677-8C7E-9C2F3E34FFA2.htm" />
+    <HelpTOCNode Title="Version 1.0.4.0" Url="html/ce87bb79-5e03-4e84-ac35-e4414332813d.htm" />
+  </HelpTOCNode>
+  <HelpTOCNode Id="ca7d9c4a-dce6-4c19-94f8-3d53239b9d47" Title="Microsoft.IoT.DeviceCore" Url="html/96573c63-70f2-5231-ea69-742b2abd7c03.htm">
+    <HelpTOCNode Id="23173073-0bf3-4b5f-beb5-c0a402989723" Title="DispatcherExtensions Class" Url="html/da14ae16-ac18-7e1a-9e78-081539b405ee.htm">
+      <HelpTOCNode Id="78e9c7d5-2612-4abb-bbf4-8da5005855f6" Title="DispatcherExtensions Methods" Url="html/4d9d9706-8ef7-f771-d691-a1c8e46b866f.htm">
+        <HelpTOCNode Title="Run Method " Url="html/cb4df575-1d72-b9b9-8d32-5d74849d575a.htm" />
+        <HelpTOCNode Title="RunAsync Method " Url="html/0300af92-9968-8e28-2cf6-52c5c9afc654.htm" />
+        <HelpTOCNode Title="RunIdle Method " Url="html/3bec7486-099a-9d34-b5cd-703e74a6fd82.htm" />
+        <HelpTOCNode Title="RunIdleAsync Method " Url="html/179caaf5-72c8-0638-37cb-437fdc58acd8.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="078fe010-80c0-45a7-adb7-96aed8809a7a" Title="EmptyEventArgs Class" Url="html/2d0ac2a7-7b0b-3528-b86a-6790dbe209fb.htm">
+      <HelpTOCNode Title="EmptyEventArgs Constructor " Url="html/cef96adc-dd22-a006-98d6-b346a027ad96.htm" />
+      <HelpTOCNode Id="25f1f576-096d-48d8-aa0c-ad202e66af3e" Title="EmptyEventArgs Properties" Url="html/7bd096e8-b31d-cda1-d16f-86f181c1365b.htm">
+        <HelpTOCNode Title="Instance Property " Url="html/cb0c21b2-d75e-6269-7aad-5f89ea4604f5.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="EmptyEventArgs Methods" Url="html/ce160cd0-223a-e955-e7d0-b7ff967bd364.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="9bff03d9-6fca-484e-bb9e-02c817a019ed" Title="GpioExtensions Class" Url="html/35d00605-4f52-eb02-720f-6c241bd016d6.htm">
+      <HelpTOCNode Id="cbcb5082-a0f9-4289-85b4-ab3e8dc6bba7" Title="GpioExtensions Methods" Url="html/33d057a5-5c51-f2fb-cebb-34e6b1a96bc6.htm">
+        <HelpTOCNode Id="a39de4e2-3ec0-4e86-b04d-855c75b5e319" Title="SetDriveModeWithFallback Method " Url="html/3a01fefc-2b79-06e1-545a-d83dd9fe680b.htm">
+          <HelpTOCNode Title="SetDriveModeWithFallback Method (GpioPin, GpioPinDriveMode)" Url="html/25b410d3-8a45-8657-5021-c902da078273.htm" />
+          <HelpTOCNode Title="SetDriveModeWithFallback Method (GpioPin, GpioPinDriveMode, GpioPinDriveMode)" Url="html/4a586abb-5989-73cf-e562-1ea805b9c74c.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="ad9919d9-26bd-426c-a777-a140bc1e9c74" Title="IDevice Interface" Url="html/9b7f8968-f7b3-072d-321d-d9e38dddb255.htm">
+      <HelpTOCNode Title="IDevice Methods" Url="html/81909629-fceb-0bdd-cd17-3d6b180a44b5.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="ea90a50b-f9ab-4575-a363-22b56c52243c" Title="IEventObserver Interface" Url="html/aa686a79-0c95-1067-c7d1-b0f7f50d5e0d.htm">
+      <HelpTOCNode Id="c1e27c9f-dce7-4255-b909-21b1d5ec7e7f" Title="IEventObserver Methods" Url="html/f30e8dec-ad79-669e-8dc3-e070119847d9.htm">
+        <HelpTOCNode Title="Added Method " Url="html/708cfb6f-572a-b079-4d32-5003a6bbca3d.htm" />
+        <HelpTOCNode Title="FirstAdded Method " Url="html/cd017e90-f6fd-5aaa-6a79-939ee88a24df.htm" />
+        <HelpTOCNode Title="LastRemoved Method " Url="html/93d15706-4b20-803c-cf16-2dac56f6940a.htm" />
+        <HelpTOCNode Title="Removed Method " Url="html/33badb59-146d-5cd6-3bf4-ced744eaa606.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="65008838-2db3-4326-9bde-5eb4046bb2fe" Title="IScheduledDevice Interface" Url="html/0c54d0c3-32fc-2055-77a0-240721c9683a.htm">
+      <HelpTOCNode Id="a2e3d7d4-85d8-4805-9a1f-2803683f56d9" Title="IScheduledDevice Properties" Url="html/a0e50541-ffd8-380e-c364-b4aa946f5c8b.htm">
+        <HelpTOCNode Title="ReportInterval Property " Url="html/ebc1121b-6dbc-3776-f90e-a5654c416014.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="IScheduledDevice Methods" Url="html/9755f01e-ee17-65bd-a03b-7afbd3b101c7.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="5f9df755-9c11-412e-8e95-b6b94f642b19" Title="IScheduler Interface" Url="html/f5c5a840-2c89-0632-2826-0d1e3d59394b.htm">
+      <HelpTOCNode Id="64d8091b-a722-4d98-b5ba-9f23286124d9" Title="IScheduler Methods" Url="html/b8c7b660-3388-eaf3-3ace-a9aee973e8f0.htm">
+        <HelpTOCNode Id="709d86b0-f3d0-43a4-b0db-c3c07b74153d" Title="Resume Method " Url="html/6b0436f1-ded1-0b2b-aa36-40923536d2fa.htm">
+          <HelpTOCNode Title="Resume Method (ScheduledAction)" Url="html/20a471bb-2623-bd39-aa96-f3f0886d036b.htm" />
+          <HelpTOCNode Title="Resume Method (ScheduledAsyncAction)" Url="html/74bb8a03-7616-67c1-4f27-65103da15390.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="49070439-6493-44c7-8d42-726168614169" Title="Schedule Method " Url="html/b46bdc7c-7c94-2506-cbbe-01b64e98312f.htm">
+          <HelpTOCNode Title="Schedule Method (ScheduledAction, ScheduleOptions)" Url="html/aea435c1-8d55-46a3-6e8b-6855fa427295.htm" />
+          <HelpTOCNode Title="Schedule Method (ScheduledAsyncAction, ScheduleOptions)" Url="html/10f80d53-5340-4ff2-036a-0705a53caf9e.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="642c266b-a0bd-4994-9bd9-dc076fddd499" Title="Suspend Method " Url="html/1af946c0-7908-8ed1-a58b-95712a161c12.htm">
+          <HelpTOCNode Title="Suspend Method (ScheduledAction)" Url="html/6a34b264-134a-c700-192e-05ed8f9b3acc.htm" />
+          <HelpTOCNode Title="Suspend Method (ScheduledAsyncAction)" Url="html/b60ca615-f5ce-6e41-ae1d-2c8caa7fd50e.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="a2df6230-f4bf-41ff-87a5-330f20925483" Title="Unschedule Method " Url="html/b6cce78a-26b8-2f78-b85c-7c9ca1af8c1d.htm">
+          <HelpTOCNode Title="Unschedule Method (ScheduledAction)" Url="html/3259a67d-daeb-6f38-edd8-d6664118e925.htm" />
+          <HelpTOCNode Title="Unschedule Method (ScheduledAsyncAction)" Url="html/906144b1-38c4-4e10-22b4-b8cb5e2aabc3.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="156fd6a8-0664-4002-b66a-1990385adf3d" Title="UpdateSchedule Method " Url="html/4274279a-1c00-3561-3c51-94c8136b46ac.htm">
+          <HelpTOCNode Title="UpdateSchedule Method (ScheduledAction, ScheduleOptions)" Url="html/f4c4bfd9-1aa7-341b-fd1a-44e3452a137d.htm" />
+          <HelpTOCNode Title="UpdateSchedule Method (ScheduledAsyncAction, ScheduleOptions)" Url="html/b891d7c3-8bfc-6dd0-66c6-a11cc2100165.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Title="RotationDirection Enumeration" Url="html/98f6fc7b-5dec-a55e-4f16-eabb489d0742.htm" />
+    <HelpTOCNode Title="ScheduledAction Delegate" Url="html/e4bb63d1-c0e3-0e04-15e7-699964517764.htm" />
+    <HelpTOCNode Title="ScheduledAsyncAction Delegate" Url="html/545efb9f-e05f-cc24-6b6d-314aad42cd72.htm" />
+    <HelpTOCNode Id="2a8a8529-01f0-4ab3-9caa-7cfa8f38a076" Title="ScheduledUpdater Class" Url="html/ae75484a-cab9-744d-3ace-b214fb20ac39.htm">
+      <HelpTOCNode Id="2e81475a-521a-498d-a22a-95da916fa8f8" Title="ScheduledUpdater Constructor " Url="html/1532e946-84c2-6695-f288-bdd32daf3ca5.htm">
+        <HelpTOCNode Title="ScheduledUpdater Constructor (ScheduleOptions)" Url="html/f7350949-679a-62ea-edca-734c5896c31e.htm" />
+        <HelpTOCNode Title="ScheduledUpdater Constructor (ScheduleOptions, IScheduler)" Url="html/f2e4e2fd-1d02-2d6f-ddd1-86460d27eb2f.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="6f0319b7-af67-4fbf-a087-51b712a8ce9c" Title="ScheduledUpdater Properties" Url="html/81084cd4-31c7-d7f5-e74e-91d09868dd00.htm">
+        <HelpTOCNode Title="IsStarted Property " Url="html/80c12d83-bc0f-f762-0897-be2c9b5e7f44.htm" />
+        <HelpTOCNode Title="ScheduleOptions Property " Url="html/4c7504ad-9697-ad94-a0a5-1ab416ce6b49.htm" />
+        <HelpTOCNode Title="Scheduler Property " Url="html/b95fc83c-7efc-4aef-3622-dfad51056b78.htm" />
+        <HelpTOCNode Title="StartWithEvents Property " Url="html/aabc2dd6-b796-1622-facf-e5c43e73290d.htm" />
+        <HelpTOCNode Title="StopWithEvents Property " Url="html/910b1d1a-e877-83f4-c38e-426d2315e27c.htm" />
+        <HelpTOCNode Title="UpdateInterval Property " Url="html/69bcb2f5-f4dc-536b-b75a-81ab7a325e75.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="d4c2d743-dfdc-4342-8bb3-18ae42d9b554" Title="ScheduledUpdater Methods" Url="html/56ce13cf-9ea8-3da9-6d82-9d5cd672fd66.htm">
+        <HelpTOCNode Title="Close Method " Url="html/ad235d34-4356-56cc-b6b9-3bab52799c2c.htm" />
+        <HelpTOCNode Title="SetAsyncUpdateAction Method " Url="html/888a8888-b3ba-7f2c-53f2-df0a5a3eea7a.htm" />
+        <HelpTOCNode Title="SetUpdateAction Method " Url="html/96ebfa62-d9d5-7089-367a-825e24df6aab.htm" />
+        <HelpTOCNode Title="Start Method " Url="html/178bd34a-b3f6-2c35-1f1a-60a0f114e8c9.htm" />
+        <HelpTOCNode Title="Stop Method " Url="html/74e6571b-4978-4197-43a1-406f0ac5180f.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="e6591224-5924-4b72-b54e-4126c72c87b7" Title="ScheduledUpdater Events" Url="html/b618e574-4c7c-21f8-b128-bbc543785974.htm">
+        <HelpTOCNode Title="Started Event" Url="html/21602c0d-a2c4-7428-abe7-4de6c0e5d14b.htm" />
+        <HelpTOCNode Title="Starting Event" Url="html/52ef1483-2e5e-1516-da67-4fdf61979308.htm" />
+        <HelpTOCNode Title="Stopped Event" Url="html/f8567ed9-317f-5e4b-2269-197bf28eb874.htm" />
+        <HelpTOCNode Title="Stopping Event" Url="html/c348c9bd-1cae-62bb-cc57-6b6ef012c980.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="25950128-0b86-4816-b8fa-b6c660184202" Title="ScheduleOptions Class" Url="html/f659e58d-e4df-f9f3-1f04-c4e279ec8034.htm">
+      <HelpTOCNode Id="6138ab7c-85d4-4faa-8306-2f4d888633d9" Title="ScheduleOptions Constructor " Url="html/d0585ad1-7ca2-2c82-fe7b-a577d8f9e9bd.htm">
+        <HelpTOCNode Title="ScheduleOptions Constructor (UInt32)" Url="html/5bd53915-a149-6c65-403d-7e90227cc93c.htm" />
+        <HelpTOCNode Title="ScheduleOptions Constructor (UInt32, SchedulerPriority)" Url="html/e5002f74-76c7-8438-941d-56330ab2230b.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="e12261b8-b50e-4d69-835d-f768d4d791b4" Title="ScheduleOptions Properties" Url="html/57c815ee-c5bc-7f48-c81a-bea0ba2c119a.htm">
+        <HelpTOCNode Title="Priority Property " Url="html/62fcad05-4615-ac6a-be4d-83dd1545e840.htm" />
+        <HelpTOCNode Title="UpdateInterval Property " Url="html/b1ac1218-6b26-34ce-f151-48fae45a5436.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="443fddcc-638c-4c4a-887b-05dc61a0e903" Title="ScheduleOptions Methods" Url="html/146208f3-9eb1-c8a9-366e-3e43a56b5c0e.htm">
+        <HelpTOCNode Title="WithNewPriority Method " Url="html/3917cf27-3c92-15df-60f6-8297dd7cc625.htm" />
+        <HelpTOCNode Title="WithNewUpdateInterval Method " Url="html/af8d8392-38ed-082b-20aa-577ce14b006d.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="02d7ee2c-3e3f-4686-b667-1d75a704583e" Title="Scheduler Class" Url="html/da348da8-f7e0-5ca8-6921-8e2a103c3812.htm">
+      <HelpTOCNode Title="Scheduler Constructor " Url="html/b3a833bf-7293-932a-cd96-b03123e8bfd3.htm" />
+      <HelpTOCNode Id="fa34e3ea-9d14-4bf8-95d3-c780d5a2fc9e" Title="Scheduler Properties" Url="html/c2d277e5-b26c-0466-f87d-d0eb058c6872.htm">
+        <HelpTOCNode Title="AutoStart Property " Url="html/5a20d27f-86f4-f520-3c2e-2d40caaa5687.htm" />
+        <HelpTOCNode Title="Default Property " Url="html/4ce99a19-e80b-dcf5-b783-819fa3b69d8c.htm" />
+        <HelpTOCNode Title="IsRunning Property " Url="html/72a22e27-b543-ea75-a73c-722f0dd2e733.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="e7f4ae18-9af9-4fe9-bb50-1daf3385228b" Title="Scheduler Methods" Url="html/1954a3a9-8c86-8b74-e1c3-03b73f5c7165.htm">
+        <HelpTOCNode Id="afafb1c4-b7ee-415d-9166-aa74d3c507f3" Title="Resume Method " Url="html/fa0c9a7d-44a2-2b58-d6d2-49e9572ab794.htm">
+          <HelpTOCNode Title="Resume Method (ScheduledAction)" Url="html/9e627f5b-d979-2397-e673-ba3a282cc5ca.htm" />
+          <HelpTOCNode Title="Resume Method (ScheduledAsyncAction)" Url="html/ea0ab296-baf5-12a1-eda8-428b61b6bbc7.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="6d022737-6c80-42c9-9ae0-f71f8b3c5a99" Title="Schedule Method " Url="html/73d19d6b-a2c9-f2de-e368-f486b2f624ab.htm">
+          <HelpTOCNode Title="Schedule Method (ScheduledAction, ScheduleOptions)" Url="html/7b3b49bb-441b-aa00-a80b-ac89f4c9ec7f.htm" />
+          <HelpTOCNode Title="Schedule Method (ScheduledAsyncAction, ScheduleOptions)" Url="html/8d79e346-d6ee-e28f-427d-cb49cf1c2601.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="Start Method " Url="html/f5604879-1c8e-ce83-a3bb-beca3d2acc43.htm" />
+        <HelpTOCNode Title="Stop Method " Url="html/51c9345b-9028-6ec1-1cb1-4227a0911a9b.htm" />
+        <HelpTOCNode Id="b2ea3a8a-1380-46c9-9a87-fca2dde578d2" Title="Suspend Method " Url="html/cfd6b2b7-0569-d530-1f2f-a208d293905a.htm">
+          <HelpTOCNode Title="Suspend Method (ScheduledAction)" Url="html/a865dfab-4cab-eeff-65fb-a44f7ed121ad.htm" />
+          <HelpTOCNode Title="Suspend Method (ScheduledAsyncAction)" Url="html/730e542b-906e-77c9-cbcc-f71f61fe4281.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="b8f70df3-7e31-4844-a927-c0df9e4692b4" Title="Unschedule Method " Url="html/0106977b-eae8-5028-5f8f-3d56dd8c3060.htm">
+          <HelpTOCNode Title="Unschedule Method (ScheduledAction)" Url="html/08477195-c115-e361-5d91-befe49a89321.htm" />
+          <HelpTOCNode Title="Unschedule Method (ScheduledAsyncAction)" Url="html/6b846722-57fc-9f06-b1e3-00862e2a8de4.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="80b1b647-8d43-4e98-8bc7-023b9363394f" Title="UpdateSchedule Method " Url="html/7c3c9ef7-2972-0615-4bcb-56fe3b5447cd.htm">
+          <HelpTOCNode Title="UpdateSchedule Method (ScheduledAction, ScheduleOptions)" Url="html/f94d1993-d73a-292b-e947-3266a1dec081.htm" />
+          <HelpTOCNode Title="UpdateSchedule Method (ScheduledAsyncAction, ScheduleOptions)" Url="html/d27353da-8ee9-12a8-b392-870c6afabb67.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Title="SchedulerPriority Enumeration" Url="html/1cc69ac8-9456-ba04-2cba-f07bb5acba36.htm" />
+  </HelpTOCNode>
+  <HelpTOCNode Id="42de024b-a4f1-4002-9a02-ca167398e503" Title="Microsoft.IoT.DeviceCore.Adc" Url="html/7fe1711d-4be6-8e17-9712-ae30cc7d71b8.htm">
+    <HelpTOCNode Id="79961f9d-4be5-4227-950c-62c190aa5269" Title="AdcProviderManager Class" Url="html/43b9cb0d-e27d-a0f4-bce3-cc407fade4e2.htm">
+      <HelpTOCNode Title="AdcProviderManager Constructor " Url="html/1fc60245-0954-9b14-d1f9-ff29dc272c78.htm" />
+      <HelpTOCNode Id="6e28ffdd-f480-4c77-8e1d-7fc0ff1a6c48" Title="AdcProviderManager Properties" Url="html/544de3b9-1bfd-2378-5cd7-6c69b5785d96.htm">
+        <HelpTOCNode Title="Providers Property " Url="html/0252933f-576b-1422-7300-816b158a4aab.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="569d6ab4-d1f6-434b-a75b-513f58ae1c1b" Title="AdcProviderManager Methods" Url="html/4adbfbae-b412-acb6-41e8-bdc369f31f17.htm">
+        <HelpTOCNode Title="Close Method " Url="html/1b177980-db37-3674-a2da-5ccd12a61b48.htm" />
+        <HelpTOCNode Title="GetControllersAsync Method " Url="html/be680042-92c0-b76b-e01f-2a3fffde8889.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="28f996df-1acd-4242-879a-165f84163717" Title="Microsoft.IoT.DeviceCore.Controls" Url="html/a791e3ff-fbe2-43d4-7134-402f442db96d.htm">
+    <HelpTOCNode Id="fe241129-ab34-4adc-a22a-b9a667f9e44d" Title="GraphicsDisplayPanel Class" Url="html/2721e332-29ea-cd68-9a38-54172b40627d.htm">
+      <HelpTOCNode Title="GraphicsDisplayPanel Constructor " Url="html/f415c866-1f34-7feb-ffce-86db604d341d.htm" />
+      <HelpTOCNode Id="d0a5e4b5-98d6-48f5-a3c8-43cc9af1691e" Title="GraphicsDisplayPanel Properties" Url="html/d66fb92d-785d-540d-b7c1-2b59386fdb27.htm">
+        <HelpTOCNode Title="AutoUpdate Property " Url="html/f7ce7e2b-9132-bb40-0877-a3d64a3029d9.htm" />
+        <HelpTOCNode Title="Display Property " Url="html/c8cdbc5e-690c-d2bf-b14d-0308b391ec1b.htm" />
+        <HelpTOCNode Title="UpdateInterval Property " Url="html/b182cf51-335e-5c63-6696-41f247d2bf9f.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="GraphicsDisplayPanel Methods" Url="html/f2e77089-675d-945c-21ab-21dfcc320681.htm" />
+      <HelpTOCNode Title="GraphicsDisplayPanel Events" Url="html/04484914-79ac-c290-2dff-ccd4d359fbc9.htm" />
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="4804a2ca-066c-41de-b38a-87ec426b6d22" Title="Microsoft.IoT.DeviceCore.Display" Url="html/36369082-3f77-5ea6-9efb-2265c9ec6d8e.htm">
+    <HelpTOCNode Title="DisplayPixelFormat Enumeration" Url="html/6d044a07-577b-d381-84eb-8528bd288151.htm" />
+    <HelpTOCNode Id="a8c69fc1-a8be-41d0-b782-e3c24f734819" Title="GraphicsTools Class" Url="html/1a0797d1-7556-4ded-3845-2122040da5dd.htm">
+      <HelpTOCNode Id="d46059bc-1555-4a53-bafd-4260ac4023d8" Title="GraphicsTools Methods" Url="html/da5b5e40-de33-4d74-582c-039d1b9e334a.htm">
+        <HelpTOCNode Title="GetBitsPerPixel Method " Url="html/537c3c83-6874-a459-3a22-4d59fea4b45b.htm" />
+        <HelpTOCNode Id="cd102f25-3445-4352-80a0-267bb3ef8983" Title="GetNativeColor Method " Url="html/c10ed448-0f9e-4a80-dde7-1e0d0a96ec33.htm">
+          <HelpTOCNode Title="GetNativeColor Method (DisplayPixelFormat, Color)" Url="html/54c046e2-126c-b5fb-5b5d-657181ec509f.htm" />
+          <HelpTOCNode Title="GetNativeColor Method (DisplayPixelFormat, Byte, Byte, Byte)" Url="html/9ed211e0-6a4c-d73d-dd2b-00bd2c93cf09.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="IsAspectChanging Method " Url="html/67a5c836-5126-830d-27f1-5c56e56c6405.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="15453c9c-44ce-4a3e-9585-cda09c929841" Title="IGraphicsDisplay Interface" Url="html/be29d5e5-a869-e2ec-5d9a-6b93e2567a76.htm">
+      <HelpTOCNode Id="3f226a2b-66fc-4db1-8fe4-d7c0e186cc2f" Title="IGraphicsDisplay Properties" Url="html/03ce33e8-508c-096e-5c21-042360461c5d.htm">
+        <HelpTOCNode Title="AutoUpdate Property " Url="html/ec88cd5d-e141-5e92-e4ea-4e3527c5cf0a.htm" />
+        <HelpTOCNode Title="Height Property " Url="html/f9782976-fad0-7ca3-7f94-2ebf57b79dba.htm" />
+        <HelpTOCNode Title="Orientation Property " Url="html/7767afc0-e5f5-b78b-db26-98cc181af366.htm" />
+        <HelpTOCNode Title="PixelFormat Property " Url="html/e3ad2c4c-0e32-014b-fa0f-beee1fd4ec37.htm" />
+        <HelpTOCNode Title="Width Property " Url="html/9fe55fad-30f6-7418-af55-6bde518b0b24.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="8c3f8465-78e0-4d17-8756-4da9e0ca1238" Title="IGraphicsDisplay Methods" Url="html/e8940e0f-e27f-6817-70b9-9898641ba78f.htm">
+        <HelpTOCNode Title="Clear Method " Url="html/7117f883-5045-fc4a-1d49-c02628ede28b.htm" />
+        <HelpTOCNode Id="fcb06699-ca3b-45ea-9526-ea639d818257" Title="DrawPixel Method " Url="html/659e90d6-1b00-614f-7f0d-26bbe030e357.htm">
+          <HelpTOCNode Title="DrawPixel Method (Int32, Int32, Color)" Url="html/5243bc66-5135-9b46-03b2-15c13872c810.htm" />
+          <HelpTOCNode Title="DrawPixel Method (Int32, Int32, Byte, Byte, Byte)" Url="html/2e9ce195-cd4b-0e75-851b-1483e9966bf3.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="IsOrientationSupported Method " Url="html/3d7dd338-eb55-c2a2-e9cb-e0975317a274.htm" />
+        <HelpTOCNode Title="Update Method " Url="html/08250264-e6cf-5fa9-14be-7ecf75d9902f.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="14376051-73a9-4c8e-8138-b96e8d48ed13" Title="Microsoft.IoT.DeviceCore.Input" Url="html/922bd7d9-6423-ccd0-ce7c-2e89b96ae637.htm">
+    <HelpTOCNode Title="ButtonClickMode Enumeration" Url="html/a7a7704a-2b6f-07fe-6b96-b7f196094df0.htm" />
+    <HelpTOCNode Id="3098b353-cac4-4aee-abe0-be7e702575fc" Title="IPushButton Interface" Url="html/d72ca69d-4590-80b0-d5f0-77fee473f1cb.htm">
+      <HelpTOCNode Id="493413cf-440e-4e6d-b2eb-6012efae2843" Title="IPushButton Properties" Url="html/b59e00f3-31b9-ba01-ac4d-1bb784ea682d.htm">
+        <HelpTOCNode Title="ClickMode Property " Url="html/9808ecde-9d9b-41cd-e660-014167720220.htm" />
+        <HelpTOCNode Title="IsPressed Property " Url="html/cb15b63f-c3fb-7adf-64a6-48f7e1b58a93.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="IPushButton Methods" Url="html/57406342-04c8-7c48-2580-a2efaa7a9078.htm" />
+      <HelpTOCNode Id="6aea0704-47eb-4b98-afe2-c24e0f50c9b9" Title="IPushButton Events" Url="html/35e1dc3e-8e1f-536f-be97-2e1abd77c2af.htm">
+        <HelpTOCNode Title="Click Event" Url="html/eaf5ec58-d435-24c2-8f48-12e0599c5703.htm" />
+        <HelpTOCNode Title="Pressed Event" Url="html/2f0b1870-60dc-09e1-f269-cfec5ef4bca1.htm" />
+        <HelpTOCNode Title="Released Event" Url="html/e4c253be-ff4b-8650-b239-c4f9f7a368e0.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="6c112454-b012-45ec-a5c9-e70db537fb68" Title="IRotaryEncoder Interface" Url="html/c592fa02-c407-e236-ee85-3f59913a8575.htm">
+      <HelpTOCNode Title="IRotaryEncoder Properties" Url="html/67a62e35-b741-5a23-0210-79c64f099183.htm" />
+      <HelpTOCNode Title="IRotaryEncoder Methods" Url="html/e5bf9d8f-ec8f-46c2-2245-2812d54e46f7.htm" />
+      <HelpTOCNode Id="d3ac4c91-1670-4c4a-af4c-ed42c678cda6" Title="IRotaryEncoder Events" Url="html/35d8e574-cb24-a684-701c-c9c11d6de508.htm">
+        <HelpTOCNode Title="Rotated Event" Url="html/59bd4469-bbe3-d223-eb84-a367f1b628c3.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="69beaaa4-8942-476c-8bbd-78ba2196e015" Title="ISwitch Interface" Url="html/74a1df20-ead0-e6d9-e09c-1376b59ad793.htm">
+      <HelpTOCNode Id="4a3343dc-d98f-4983-95f2-eb358abc0a6b" Title="ISwitch Properties" Url="html/56dd3361-b5bc-d0a6-48eb-5869fffcf051.htm">
+        <HelpTOCNode Title="IsOn Property " Url="html/c62496ca-abf3-c9b5-d728-f98a98001da7.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="ISwitch Methods" Url="html/c9c98009-0224-c4b0-a116-7a41adf439dc.htm" />
+      <HelpTOCNode Id="6cc5c031-91de-49ad-9a01-5696c0fb03c0" Title="ISwitch Events" Url="html/67c38dd5-c7ea-2ebb-a895-120cdff529eb.htm">
+        <HelpTOCNode Title="Switched Event" Url="html/691e0193-e8a3-27e6-694f-24f9f09f726c.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="63e38bf0-6cf2-441e-a1ea-896f87228552" Title="IThumbstick Interface" Url="html/5c1b88c5-a044-328b-09aa-c196e0ba81e2.htm">
+      <HelpTOCNode Id="075ae380-7ef9-46a6-9454-69f6b1cc9583" Title="IThumbstick Methods" Url="html/975b219d-157a-7ff0-c9ad-d9e3fd0e5da2.htm">
+        <HelpTOCNode Title="GetCurrentReading Method " Url="html/7a9c77f9-4ef4-ff68-dc82-0bc04aac9703.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="246e3464-f73b-447a-af1b-6912a7997b79" Title="IThumbstick Events" Url="html/d3a9e59f-807e-b85b-c883-e9d14e70354b.htm">
+        <HelpTOCNode Title="ReadingChanged Event" Url="html/caf5650f-c42d-fafd-f571-26abdf6121a1.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="ffcec026-6d86-43aa-9c22-50d537fcb878" Title="IThumbstickReadingChangedEventArgs Interface" Url="html/8d41c169-08e5-0824-f90b-2e85a44caee5.htm">
+      <HelpTOCNode Id="d73e0850-696c-46d3-807c-c49a9414aa2c" Title="IThumbstickReadingChangedEventArgs Properties" Url="html/a13c42b4-f8d7-9df0-e74f-ed4d69701f03.htm">
+        <HelpTOCNode Title="Reading Property " Url="html/4d675ca3-8495-cf1d-b2e5-54fc6dc6541c.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="99db6749-692a-413a-b7aa-21e97bc13a48" Title="RotaryEncoderRotatedEventArgs Class" Url="html/380e7654-1281-3f16-4e72-44babbc5796f.htm">
+      <HelpTOCNode Title="RotaryEncoderRotatedEventArgs Constructor " Url="html/3ddee0df-5c02-d62a-e935-8bdfa14bd150.htm" />
+      <HelpTOCNode Id="1153d18e-c407-4e6a-aeab-18e57fe6c4da" Title="RotaryEncoderRotatedEventArgs Properties" Url="html/a7324ab7-ae99-8256-36bd-dfa9d93eefc7.htm">
+        <HelpTOCNode Title="Direction Property " Url="html/adfe45fd-9cd1-3ed5-1e6b-efedebd0c9b4.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="RotaryEncoderRotatedEventArgs Methods" Url="html/ed28e7c8-2748-d6aa-86d0-6977b61c9c24.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="fd897f2b-a73a-4f89-a62d-2d6e9f9f8dd2" Title="ThumbstickReading Class" Url="html/d18249ea-0375-293d-8406-e78ada2fd289.htm">
+      <HelpTOCNode Title="ThumbstickReading Constructor " Url="html/2211c48e-1a5c-be45-83fd-366c62d2a986.htm" />
+      <HelpTOCNode Id="9d7ce61b-6f91-45bf-b66c-124b0f7fca4e" Title="ThumbstickReading Properties" Url="html/3af0377d-b0e0-03f1-31e8-b0c9d4334d4d.htm">
+        <HelpTOCNode Title="IsPressed Property " Url="html/27c91809-cd74-e794-9ff2-8efc2fd4d9d9.htm" />
+        <HelpTOCNode Title="XAxis Property " Url="html/ca1bb3d1-bbf8-c1cd-711b-8386b59197c0.htm" />
+        <HelpTOCNode Title="YAxis Property " Url="html/70c0d691-5ebb-d1d2-ae8b-56bd4dbe92aa.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="ThumbstickReading Methods" Url="html/0c37fdd6-4f01-d054-26fe-f909e3c2b71a.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="b57333d8-dec1-4175-be71-b549e6ae6175" Title="ThumbstickReadingChangedEventArgs Class" Url="html/a8a0096e-7480-7b4f-fdc0-11b40cfc296a.htm">
+      <HelpTOCNode Title="ThumbstickReadingChangedEventArgs Constructor " Url="html/ae74bd43-cbb9-6e99-6ce3-dc616fd9583d.htm" />
+      <HelpTOCNode Id="24f57fa1-4261-4c39-9679-25fefac4edf0" Title="ThumbstickReadingChangedEventArgs Properties" Url="html/fefbda0f-d05c-1514-bbb4-86c6293ad09f.htm">
+        <HelpTOCNode Title="Reading Property " Url="html/84e551cb-81d8-d075-22df-ca090cabca93.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="ThumbstickReadingChangedEventArgs Methods" Url="html/22df7742-6469-6e86-5f13-0b489b12ebcd.htm" />
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="b3708157-b911-48b3-a73c-7c745ab367a4" Title="Microsoft.IoT.DeviceCore.Lights" Url="html/eb5ab49d-0400-fae1-6dc4-747be626bc9b.htm">
+    <HelpTOCNode Id="711c42a6-0342-46bc-b8e3-15187bb495aa" Title="ILight Interface" Url="html/f1603079-b3cf-106a-2327-c64bec2c3431.htm">
+      <HelpTOCNode Id="378a365c-2523-458c-aefd-0d06957da154" Title="ILight Properties" Url="html/74d7b2e9-28ca-d4e2-18ae-55129499868f.htm">
+        <HelpTOCNode Title="BrightnessLevel Property " Url="html/b97d693f-90b3-9757-f988-10444a6527dd.htm" />
+        <HelpTOCNode Title="Color Property " Url="html/115cc408-434a-a7a2-b009-e2965cbc18b3.htm" />
+        <HelpTOCNode Title="IsColorSettable Property " Url="html/d6325e74-7df6-86e5-c694-14e34a052420.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="9f843a4a-b946-4552-9696-b0c6d356564b" Title="Microsoft.IoT.DeviceCore.Microsoft_IoT_DeviceCore_XamlTypeInfo" Url="html/3dc7add4-1ac6-b04f-ad13-55a37ed6bb8d.htm">
+    <HelpTOCNode Id="def6c0a1-12c6-4040-8c04-54dab3b87f40" Title="XamlMetaDataProvider Class" Url="html/4a14a99c-e4c8-ddfd-7bd1-c3e51f21d403.htm">
+      <HelpTOCNode Title="XamlMetaDataProvider Constructor " Url="html/b0278bf4-614d-88fb-a10e-405fa42bfcdb.htm" />
+      <HelpTOCNode Id="bcb8a354-3993-4762-9328-3a3ed3e7f301" Title="XamlMetaDataProvider Methods" Url="html/e7687448-8a6d-b80c-b9a7-66df7dea7f85.htm">
+        <HelpTOCNode Id="7ae24ef7-43b9-4207-9b3c-3ca10ec6ef72" Title="GetXamlType Method " Url="html/ec184680-908c-204e-a0a1-bdd5f9cb1a20.htm">
+          <HelpTOCNode Title="GetXamlType Method (String)" Url="html/1c47873c-d1bd-1973-3020-c50a49721ee5.htm" />
+          <HelpTOCNode Title="GetXamlType Method (TypeName)" Url="html/022ecd8d-cc2c-c2c1-dd37-a19ccf4a5481.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="GetXmlnsDefinitions Method " Url="html/1272499b-e4ee-9c62-165f-d30219ad45c4.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="477f749b-8476-480f-af42-f05a2e026935" Title="Microsoft.IoT.DeviceCore.Pwm" Url="html/d2ddadc2-67fa-4802-bdfa-bd75b04c4246.htm">
+    <HelpTOCNode Id="4f4c5619-78d2-4c77-a020-471337b97da0" Title="PwmProviderManager Class" Url="html/1e579d7f-f194-3748-6337-25d40f00c8dd.htm">
+      <HelpTOCNode Title="PwmProviderManager Constructor " Url="html/cde291a6-f6ff-b423-5789-a056a9ef31cc.htm" />
+      <HelpTOCNode Id="a1a48b86-1dbb-44a8-9271-b0da3040542a" Title="PwmProviderManager Properties" Url="html/66ac37d4-34b5-c557-6362-8fee65a1a971.htm">
+        <HelpTOCNode Title="Providers Property " Url="html/18d8afe2-484e-468e-00d8-cc8bc1d15520.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="b9fbade2-a3d3-446b-a0eb-0d7030ebdd6a" Title="PwmProviderManager Methods" Url="html/d76fe4e6-4703-2b84-609e-f55ae933416a.htm">
+        <HelpTOCNode Title="Close Method " Url="html/e3ce0b83-f1dd-78cb-7e61-b0f66760e41d.htm" />
+        <HelpTOCNode Title="GetControllersAsync Method " Url="html/ca06d74d-3a09-e78b-123f-e79e33d13d65.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="80e65a0d-5ef5-4132-b5e1-3582aadef328" Title="Microsoft.IoT.DeviceCore.Sensors" Url="html/88e5d688-82ee-34f4-9e58-fa3e326dc8f8.htm">
+    <HelpTOCNode Id="102b5fc4-ebb2-4ccc-8dfe-88169c47b251" Title="AnalogSensorReading Class" Url="html/45e3a871-34f7-c7a0-c49b-622a40780a65.htm">
+      <HelpTOCNode Title="AnalogSensorReading Constructor " Url="html/da6622d9-92e6-a7fc-4297-e67e335ad4cd.htm" />
+      <HelpTOCNode Id="7e9e801c-8388-4bdd-bb74-db0ac92c3374" Title="AnalogSensorReading Properties" Url="html/b09d5797-aa7b-e0e9-e24b-f7934783e1b2.htm">
+        <HelpTOCNode Title="Ratio Property " Url="html/7f7ebde2-e2fd-1600-269d-7d6512bf2991.htm" />
+        <HelpTOCNode Title="Value Property " Url="html/b793dd89-255b-7bf2-5c5a-a76507f81142.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="AnalogSensorReading Methods" Url="html/488ef584-31db-f31d-17a6-6bbb6a91a9a8.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="2e9c3dd2-1f87-4288-abf7-3ee436dfcbaf" Title="AnalogSensorReadingChangedEventArgs Class" Url="html/69141a8a-124c-7b4f-032a-fb9735b8c06a.htm">
+      <HelpTOCNode Title="AnalogSensorReadingChangedEventArgs Constructor " Url="html/251315ec-c149-47dc-67fc-d5ab7744a3e3.htm" />
+      <HelpTOCNode Id="3eda1317-be6f-438a-9a04-a6af7d28f58c" Title="AnalogSensorReadingChangedEventArgs Properties" Url="html/394d16e4-e52b-e8f9-9660-61618c802be2.htm">
+        <HelpTOCNode Title="Reading Property " Url="html/4f56174f-7ff0-08a1-dc37-fad12f95c9bb.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="AnalogSensorReadingChangedEventArgs Methods" Url="html/0b132b27-b40c-8a6c-f7e7-328a54b94ea8.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="1a106ac2-0a34-40ec-a521-fe5e4fc58b76" Title="IAnalogSensor Interface" Url="html/2edb4ded-c1eb-a07a-4c9a-e11f3b3fb984.htm">
+      <HelpTOCNode Id="9969ca0d-31bc-49cf-a8f1-9e60659a5fe4" Title="IAnalogSensor Methods" Url="html/fcb96fc5-74dc-4cd5-3fe3-fd6889e6a26f.htm">
+        <HelpTOCNode Title="GetCurrentReading Method " Url="html/970854a5-3442-1f7e-7d11-63302b38f0e2.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="9f7d4ac3-e3e5-42f1-8071-1a8e91d2e675" Title="IAnalogSensor Events" Url="html/f8f37a23-9175-ba7b-54c1-1aa4c0083434.htm">
+        <HelpTOCNode Title="ReadingChanged Event" Url="html/ee850eeb-5136-dabd-711c-e3301ce4eef6.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="136b9318-1293-4c42-9940-e5aa422a0bd7" Title="IAnalogSensorReadingChangedEventArgs Interface" Url="html/b9bed0a0-6bc5-404e-a000-543df18099e9.htm">
+      <HelpTOCNode Id="304836b8-ed92-4b66-bf88-4774fa066804" Title="IAnalogSensorReadingChangedEventArgs Properties" Url="html/d89c76ce-699b-13cb-3d94-2db3b30aaa21.htm">
+        <HelpTOCNode Title="Reading Property " Url="html/92b9b7e7-4297-0978-1c1b-95151628ea50.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="093257c7-aa83-4a17-8020-80fbdedc4c04" Title="Microsoft.IoT.DeviceCore.Spi" Url="html/f1973fc4-428d-793b-a6f6-4a24f3c50a3a.htm">
+    <HelpTOCNode Id="47bd1e3c-d30a-4694-8c59-70ed7b11f4fe" Title="ISpiBasedDevice Interface" Url="html/f7277c2c-f697-4800-c51a-600817526aa9.htm">
+      <HelpTOCNode Id="50d9b574-84fd-4d52-bf66-2b00868559f0" Title="ISpiBasedDevice Properties" Url="html/373fb745-9ff6-2501-cc4d-729e1512756f.htm">
+        <HelpTOCNode Title="ChipSelectLine Property " Url="html/10d08cdc-5555-bd4a-755f-c5335dccb98b.htm" />
+        <HelpTOCNode Title="ControllerName Property " Url="html/7b6821be-c5f3-ab90-7678-c82d5243bd65.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="ISpiBasedDevice Methods" Url="html/417a9a00-c206-e238-da4c-ef276aa85c71.htm" />
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="08bea7f0-0a54-4c7d-8b88-33fc383a8c3c" Title="Microsoft.IoT.DeviceHelpers" Url="html/a1d1a9af-5664-1338-fe74-2668b6018131.htm">
+    <HelpTOCNode Id="744a4229-e9a6-4e04-a433-2acc6fa3aaf7" Title="DeviceNotFoundException Class" Url="html/621326e5-b132-ed81-180d-348639c45609.htm">
+      <HelpTOCNode Title="DeviceNotFoundException Constructor " Url="html/a7761839-1177-ec62-800b-9362e787c15f.htm" />
+      <HelpTOCNode Title="DeviceNotFoundException Properties" Url="html/d83152e2-859b-ddaf-3312-05c7a91e943e.htm" />
+      <HelpTOCNode Title="DeviceNotFoundException Methods" Url="html/e0c6dce9-aafb-32a0-ebc4-e6746b62c780.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="3abda8d9-0d77-494c-970f-3cf73d40ae9e" Title="IObservableEvent(TSender, TResult) Interface" Url="html/e4faf74f-10f6-ea83-ab6c-cbade6ecbd1b.htm">
+      <HelpTOCNode Id="6d41db79-a489-4e81-8041-e540123bd744" Title="IObservableEvent(TSender, TResult) Methods" Url="html/4d6f3689-36d7-e771-d816-86a8b61cd4b6.htm">
+        <HelpTOCNode Title="Add Method " Url="html/960457fa-3775-c404-faaa-65365e254cee.htm" />
+        <HelpTOCNode Title="Raise Method " Url="html/5c051ebf-e8fc-7b6f-2e1e-80bcc2177c47.htm" />
+        <HelpTOCNode Id="1b17ced5-53d5-4dc6-a4b2-64895c3256bc" Title="Remove Method " Url="html/36aba266-d7e0-30db-24bf-f00bb22bdbab.htm">
+          <HelpTOCNode Title="Remove Method (EventRegistrationToken)" Url="html/4956bd07-8bbb-df8a-ce32-28e0e446738c.htm" />
+          <HelpTOCNode Title="Remove Method (TypedEventHandler(TSender, TResult))" Url="html/f76ea501-58dc-6663-5134-510001aa64c3.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="c759c814-6ee5-4414-8ac6-2741ce90bb3f" Title="IoChangeException Class" Url="html/0c2ae732-45cf-42ca-f986-7463f814042d.htm">
+      <HelpTOCNode Id="10337762-a889-44df-af6d-a835b3b0374f" Title="IoChangeException Constructor " Url="html/303fe577-b623-134d-1254-111c34da5548.htm">
+        <HelpTOCNode Title="IoChangeException Constructor " Url="html/0f46bb9a-bb7d-ea72-974b-a3fa0e26cb66.htm" />
+        <HelpTOCNode Title="IoChangeException Constructor (String)" Url="html/f9952e82-322b-f12f-3994-332308659c7d.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Title="IoChangeException Properties" Url="html/70e3466e-1c50-9c8a-22d6-936dc4d5d9ed.htm" />
+      <HelpTOCNode Title="IoChangeException Methods" Url="html/ac54de62-9d52-27b0-f1a2-06a012f686c1.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="05a66f07-e981-4a52-ae09-92fc613b937e" Title="MissingIoException Class" Url="html/a5e5792e-e584-5f10-748f-a0caf1bd708c.htm">
+      <HelpTOCNode Title="MissingIoException Constructor " Url="html/e26f309c-4802-7ffb-ee16-c12665e5625c.htm" />
+      <HelpTOCNode Title="MissingIoException Properties" Url="html/b4dc9588-57b5-c503-4830-44baf556fa01.htm" />
+      <HelpTOCNode Title="MissingIoException Methods" Url="html/1359c7f0-2a53-360f-186e-41380e30ed56.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="c87e690c-689e-45f0-8c4e-4312fb7f947d" Title="ObservableEvent(TSender, TResult) Class" Url="html/d422d22d-dd81-593a-7bcb-6c7ad086d405.htm">
+      <HelpTOCNode Id="466d01b0-addc-41d2-ab45-f347f085632d" Title="ObservableEvent(TSender, TResult) Constructor " Url="html/6842f19c-e19b-a65b-9840-77a3a1bcfb07.htm">
+        <HelpTOCNode Title="ObservableEvent(TSender, TResult) Constructor (IEventObserver)" Url="html/32c911b8-85d3-ed6c-f8d4-39de836a58cd.htm" />
+        <HelpTOCNode Title="ObservableEvent(TSender, TResult) Constructor (ScheduledAction)" Url="html/66908c73-c657-69c1-3e84-2df91ebf63d8.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="380b7aa5-7260-46cd-998a-2ef7f16e231b" Title="ObservableEvent(TSender, TResult) Methods" Url="html/fc2d7608-3bb9-5524-97bd-e285a1bfd819.htm">
+        <HelpTOCNode Title="Add Method " Url="html/eb7f5eca-2c8c-2f74-a81f-62ca03400c57.htm" />
+        <HelpTOCNode Title="Raise Method " Url="html/265d8ab6-7a88-46b6-0167-24946afbb01c.htm" />
+        <HelpTOCNode Id="324155ef-3f7b-4f40-8a97-f4bd64158a60" Title="Remove Method " Url="html/e43b9c8c-d495-06c7-50bf-822acf4b8d60.htm">
+          <HelpTOCNode Title="Remove Method (EventRegistrationToken)" Url="html/0f71aa98-7174-0ff5-2504-9cb7dc155ce4.htm" />
+          <HelpTOCNode Title="Remove Method (TypedEventHandler(TSender, TResult))" Url="html/1b2949de-0023-4f4c-d9e1-11621a3954a5.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="b4bd6a67-914a-46a1-884a-b3c54225b807" Title="TaskExtensions Class" Url="html/d15c207b-15ca-daf6-0f71-c956ea2deb66.htm">
+      <HelpTOCNode Id="c3b6aa47-ac9d-4e72-94fb-f91a01e7955a" Title="TaskExtensions Methods" Url="html/a819b06a-3663-9a3b-5c6c-dc130e4bbae8.htm">
+        <HelpTOCNode Title="FailFastOnException Method " Url="html/5edfc81b-e3df-80e4-1ffc-ec3865a7c514.htm" />
+        <HelpTOCNode Title="IgnoreExceptions Method " Url="html/1bb41838-b19c-9eac-f417-df1538f675b4.htm" />
+        <HelpTOCNode Id="14bbf397-3864-4a22-a40a-85641dcee3bf" Title="UISafeWait Method " Url="html/1436a3da-d232-4940-b3d7-27cf93e8645d.htm">
+          <HelpTOCNode Title="UISafeWait(T) Method (Func(Task(T)))" Url="html/3efd2423-f1c5-38d7-bee1-5022734a07eb.htm" />
+          <HelpTOCNode Title="UISafeWait Method (Func(Task))" Url="html/03114c75-eab0-03df-cb7f-17a9d63866c0.htm" />
+          <HelpTOCNode Title="UISafeWait(TParam) Method (Func(TParam, Task), TParam)" Url="html/f09099d5-289e-28a1-ea96-9604fe6303b2.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="5387b616-168a-44b7-aa9f-80b1ca821628" Title="Microsoft.IoT.DeviceHelpers.Input" Url="html/382cc06a-5513-fa81-d192-a9811741f28e.htm">
+    <HelpTOCNode Id="10fcf429-6dc7-4059-aa75-09188d0dc8c0" Title="PushButtonHelper Class" Url="html/5a5f01ce-094d-4308-842f-8ab51c17ac43.htm">
+      <HelpTOCNode Title="PushButtonHelper Constructor " Url="html/9c39ff30-19ea-7c8a-4394-27e23df021a0.htm" />
+      <HelpTOCNode Id="0841a4cb-44c2-4753-920b-0dc0d58d0584" Title="PushButtonHelper Properties" Url="html/956c1e6d-881b-2108-3abd-b4ffd568ab5c.htm">
+        <HelpTOCNode Title="ClickEvent Property " Url="html/e4718825-087e-85aa-2b30-72059056712f.htm" />
+        <HelpTOCNode Title="ClickMode Property " Url="html/faba9210-aa4f-b4b4-418f-10039b773f0a.htm" />
+        <HelpTOCNode Title="DebounceTimeout Property " Url="html/c57ab508-8dcd-655c-553f-74cd8939dc55.htm" />
+        <HelpTOCNode Title="IsPressed Property " Url="html/c94e05e5-219d-5a44-3f60-4ce259d60aed.htm" />
+        <HelpTOCNode Title="Pin Property " Url="html/e6b8826b-11a4-aa4e-f7ec-fe476feb3042.htm" />
+        <HelpTOCNode Title="PressedEvent Property " Url="html/b773cf2a-590b-9d79-d308-e1e04a0690d7.htm" />
+        <HelpTOCNode Title="PressedValue Property " Url="html/a3ec1871-45a0-ef1a-3894-9d11c5be9ffa.htm" />
+        <HelpTOCNode Title="ReleasedEvent Property " Url="html/87a6deb4-83b5-7a21-79b8-b471494a542f.htm" />
+        <HelpTOCNode Title="UsePullResistors Property " Url="html/643317c5-0125-f3d7-3e77-5a50fab8dbfd.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="464dd32e-0e84-41ae-8abf-8de420300f5a" Title="PushButtonHelper Methods" Url="html/43ccc9b3-927f-46e7-2d92-9108c85d70c7.htm">
+        <HelpTOCNode Title="Dispose Method " Url="html/fa5aed15-4825-9a5b-9909-700a084babfe.htm" />
+        <HelpTOCNode Title="EnsureInitialized Method " Url="html/b1e0b792-be0f-7ae0-6839-4c8601205493.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="2bd72434-7cbc-466b-b05b-568f5e51b37a" Title="Microsoft.IoT.Devices.Adc" Url="html/0077ffd9-d912-6c74-9e46-8c4c0cadd2ff.htm">
+    <HelpTOCNode Id="d26e9df3-1b45-409a-bfd1-3f64518244cd" Title="ADC0832 Class" Url="html/ea51091e-16c6-114a-e0d9-9d2af17817ac.htm">
+      <HelpTOCNode Title="ADC0832 Constructor " Url="html/fb124621-6056-93d6-0161-a4cf1e862bf6.htm" />
+      <HelpTOCNode Id="7b0fc2a3-bbea-4211-81ee-db1ae3862324" Title="ADC0832 Properties" Url="html/5b82897d-04ba-43db-ddc1-547a6c384e57.htm">
+        <HelpTOCNode Title="ChannelCount Property " Url="html/45b5d707-9899-19a3-4662-b751aea8fc30.htm" />
+        <HelpTOCNode Title="ChannelMode Property " Url="html/55ab565a-6da9-ebf2-0f41-90a4ff19f7bd.htm" />
+        <HelpTOCNode Title="ChipSelectPin Property " Url="html/3e2e3ada-c671-140c-9f3b-ece895261e91.htm" />
+        <HelpTOCNode Title="ClockPin Property " Url="html/bcb2348f-90db-1c95-be01-4b94f42e33aa.htm" />
+        <HelpTOCNode Title="DataPin Property " Url="html/5668455a-6c38-ff9d-d3b1-bcfef3c7fd7d.htm" />
+        <HelpTOCNode Title="MaxValue Property " Url="html/6fb9cc0b-1ec4-0320-77f7-02f03ac89b62.htm" />
+        <HelpTOCNode Title="MinValue Property " Url="html/c3a824ef-f2fc-5460-7bf9-7843f5783060.htm" />
+        <HelpTOCNode Title="ResolutionInBits Property " Url="html/aafa173f-1134-14b9-f001-aaf26a420887.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="8fc4d478-3f29-4456-853d-376fe0b8cf1d" Title="ADC0832 Methods" Url="html/01343d28-849b-cdf2-a370-a5886f9fef4d.htm">
+        <HelpTOCNode Title="AcquireChannel Method " Url="html/2b4244be-c81f-ed72-196f-7b2194b20ea7.htm" />
+        <HelpTOCNode Title="Close Method " Url="html/9ceaac95-200f-02f8-45a6-6d666f0e031d.htm" />
+        <HelpTOCNode Title="IsChannelModeSupported Method " Url="html/5aa31c19-300f-55d9-5d70-0322a4caf0d7.htm" />
+        <HelpTOCNode Title="ReadValue Method " Url="html/3f9ed3ac-7b5d-e973-872a-1899c6753b97.htm" />
+        <HelpTOCNode Title="ReleaseChannel Method " Url="html/bb393a9f-e13a-e925-7d86-2c012f13a23f.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="6e167383-9c5e-4cd6-88a2-c56caaec37bc" Title="MCP3208 Class" Url="html/41a21194-765a-1891-4080-f2938ea1f43a.htm">
+      <HelpTOCNode Title="MCP3208 Constructor " Url="html/53db11cc-257b-e713-40fc-cdd92a2fbe0b.htm" />
+      <HelpTOCNode Id="0886b134-08ac-4dcb-91af-fc4a14938e4d" Title="MCP3208 Properties" Url="html/7a38f1ab-c06e-a8b9-d2d9-1450a6b9c652.htm">
+        <HelpTOCNode Title="ChannelCount Property " Url="html/e34e0395-3a08-664b-79f5-1a53e6b63726.htm" />
+        <HelpTOCNode Title="ChannelMode Property " Url="html/6111b5d1-659d-f052-781f-44a4eb646613.htm" />
+        <HelpTOCNode Title="ChipSelectLine Property " Url="html/02f59847-69e1-555c-efb9-e22574a7cec1.htm" />
+        <HelpTOCNode Title="ControllerName Property " Url="html/0b26dec2-bce7-487b-19b1-576ac8d1eb74.htm" />
+        <HelpTOCNode Title="MaxValue Property " Url="html/40270b2b-1013-0cbf-574b-a398b9c57677.htm" />
+        <HelpTOCNode Title="MinValue Property " Url="html/153d43dc-46dc-ccd4-fe01-7664ee9e37ff.htm" />
+        <HelpTOCNode Title="ResolutionInBits Property " Url="html/67370e59-b1d1-6aed-19e0-e666dd4033c3.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="fcc8b0d0-9420-4208-8494-91774ef554d1" Title="MCP3208 Methods" Url="html/17f7359f-e05d-1df7-c773-302c333157af.htm">
+        <HelpTOCNode Title="AcquireChannel Method " Url="html/a5d7412e-5b78-b36d-bbd4-bfd2d90973b2.htm" />
+        <HelpTOCNode Title="Close Method " Url="html/6c06c7ac-fe78-1be5-df2c-29824a3d7736.htm" />
+        <HelpTOCNode Title="IsChannelModeSupported Method " Url="html/7bd4c4ce-dbb5-0b74-d83a-e30b41e15360.htm" />
+        <HelpTOCNode Title="ReadValue Method " Url="html/69f3975b-ff16-2e55-0a97-552ea4a2a162.htm" />
+        <HelpTOCNode Title="ReleaseChannel Method " Url="html/eef2ad44-c353-4720-010c-8259fd711675.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="cb214944-88de-4675-866a-7974cb305075" Title="Microsoft.IoT.Devices.Display" Url="html/be55adb6-a588-c99e-180d-769f73c48cad.htm">
+    <HelpTOCNode Id="41df9314-9689-4988-92dd-2a23080ae2fc" Title="ADA938 Class" Url="html/532e44c1-5325-26c1-c3c1-050faf2ea4da.htm">
+      <HelpTOCNode Title="ADA938 Constructor " Url="html/bd111837-8fc2-9bd4-b0a1-0878595876c5.htm" />
+      <HelpTOCNode Title="ADA938 Methods" Url="html/80f66b89-03fd-4cc2-00f2-50c8c20a41f5.htm" />
+    </HelpTOCNode>
+    <HelpTOCNode Id="4f69292b-98d7-4464-94bd-90ff07928351" Title="SSD1306 Class" Url="html/eb44fdd8-a351-a46b-88c1-78e63cdd8e04.htm">
+      <HelpTOCNode Title="SSD1306 Constructor " Url="html/baaafb72-1740-fa11-41f6-82e9c5a58eaa.htm" />
+      <HelpTOCNode Id="388245f6-e1c2-4592-9c51-a7d8281b0766" Title="SSD1306 Properties" Url="html/1ea43e02-0ac3-17c9-b901-8d521531de4a.htm">
+        <HelpTOCNode Title="AddressMode Property " Url="html/a1b5f63f-4371-d8dc-0fe7-32b603c2fa57.htm" />
+        <HelpTOCNode Title="ChipSelectLine Property " Url="html/f76ce278-bd14-4f0f-ab71-4c439eb464b1.htm" />
+        <HelpTOCNode Title="ControllerName Property " Url="html/e0622574-e3ee-c6c2-0565-502b18e96279.htm" />
+        <HelpTOCNode Title="DataPin Property " Url="html/b8f66f31-71c6-f143-e1f3-18535fe16841.htm" />
+        <HelpTOCNode Title="Height Property " Url="html/f9e42dc7-ff67-c35a-12fc-ba48add5ac77.htm" />
+        <HelpTOCNode Title="PixelFormat Property " Url="html/7aecd27c-edbe-afab-5adb-a04e2e86305e.htm" />
+        <HelpTOCNode Title="PixelsPerPage Property " Url="html/e8f88a6d-5f63-cec4-0ece-53d92d495e03.htm" />
+        <HelpTOCNode Title="ResetPin Property " Url="html/a3ef1c7d-5a36-a318-67a0-e281b370f5f3.htm" />
+        <HelpTOCNode Title="Width Property " Url="html/cc938320-6bd5-eb15-5225-fff2ec5063a3.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="90f82a9f-cc7a-4ed9-9fb7-6dd035b2bd46" Title="SSD1306 Methods" Url="html/91f469b4-6408-01f0-0662-67772f464fe8.htm">
+        <HelpTOCNode Title="ClearAsync Method " Url="html/3c15d7e9-7272-98df-a502-72d2d3ee825b.htm" />
+        <HelpTOCNode Title="Close Method " Url="html/de7c648e-37c3-3151-9a1d-e668963c4757.htm" />
+        <HelpTOCNode Title="FlipAsync Method " Url="html/807204ee-19a7-6253-ccf7-3b2128525884.htm" />
+        <HelpTOCNode Title="MirrorAsync Method " Url="html/17171a57-1b15-731b-d708-02d7d67ed9b5.htm" />
+        <HelpTOCNode Title="ResetAsync Method " Url="html/9fd8370a-f787-b149-d92c-a6ba769b8ea3.htm" />
+        <HelpTOCNode Title="UpdateAsync Method " Url="html/7c7a27a7-49e9-2c51-4165-4f9cec72f700.htm" />
+        <HelpTOCNode Title="WritePixelAsync Method " Url="html/42a4ddad-84b7-eef8-657b-142a877d262e.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Title="SSD1306AddressMode Enumeration" Url="html/ceb5128c-dcb6-65e7-e329-c8dbfd3f2248.htm" />
+    <HelpTOCNode Id="03658dfa-a7dd-4d70-97b5-f275cff23e3e" Title="ST7735 Class" Url="html/31d40e6c-411f-c0f5-dbcc-90167b57eb92.htm">
+      <HelpTOCNode Title="ST7735 Constructor " Url="html/12ce94a4-6989-9ea4-cfc3-19916be8e1b4.htm" />
+      <HelpTOCNode Id="63a14099-4bbd-443b-9406-a4373f0fb341" Title="ST7735 Properties" Url="html/3b547f60-d6eb-f047-4a8a-8dde57ff6d06.htm">
+        <HelpTOCNode Title="AutoUpdate Property " Url="html/91811cc1-eed6-b166-2fbc-7f26323724a8.htm" />
+        <HelpTOCNode Title="ChipSelectLine Property " Url="html/ac55e1bd-0b7c-1acb-443d-2b8167227fde.htm" />
+        <HelpTOCNode Title="ClockFrequency Property " Url="html/0c77ef3b-ccd0-2d70-1f40-468fd032b76f.htm" />
+        <HelpTOCNode Title="ControllerName Property " Url="html/5421af9e-52ea-6420-5300-d011035c07b8.htm" />
+        <HelpTOCNode Title="DataCommandPin Property " Url="html/e2ae13cd-62b6-3488-a4bf-6401dc97560a.htm" />
+        <HelpTOCNode Title="DisplayType Property " Url="html/81974a18-25c4-4586-a2f5-bfe262ec62db.htm" />
+        <HelpTOCNode Title="Height Property " Url="html/23e5260a-ed80-6a1b-8923-0cefe6c42223.htm" />
+        <HelpTOCNode Title="Orientation Property " Url="html/1d0d2bae-9d6c-5164-2b75-0b7c6ec1de03.htm" />
+        <HelpTOCNode Title="PixelFormat Property " Url="html/df0b039b-c7b7-c42c-00b4-c586648cd99c.htm" />
+        <HelpTOCNode Title="ResetPin Property " Url="html/c922f5ec-6f46-30d0-6557-74bcd1925ec5.htm" />
+        <HelpTOCNode Title="Width Property " Url="html/5adb45a5-eab0-e61c-b790-6c2ce1f41d00.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="9d5d308d-f12d-4334-88c0-f037f34599e0" Title="ST7735 Methods" Url="html/7a4f0ffc-ec33-bf3e-dbaa-7bcd320312cd.htm">
+        <HelpTOCNode Title="Clear Method " Url="html/bd897a49-aaef-59ab-52d6-165af1923ff4.htm" />
+        <HelpTOCNode Title="Close Method " Url="html/fc3ef498-ad60-8112-08db-25a1f4a1787c.htm" />
+        <HelpTOCNode Id="0d1f2bc6-ea03-46cc-8e50-a862f7784919" Title="DrawPixel Method " Url="html/edd1f841-c9d1-02f9-1c3d-a633ff2e84bf.htm">
+          <HelpTOCNode Title="DrawPixel Method (Int32, Int32, Color)" Url="html/a73f6658-2e58-45d5-d076-49600ddacb56.htm" />
+          <HelpTOCNode Title="DrawPixel Method (Int32, Int32, Byte, Byte, Byte)" Url="html/ed39ebca-574e-d513-d670-fc09f84abae4.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="InitializeAsync Method " Url="html/2affe5c1-51da-f920-b22b-9b33aebd1e26.htm" />
+        <HelpTOCNode Title="IsOrientationSupported Method " Url="html/fee01c2c-523d-ad64-e5ce-c8a4a6fcb884.htm" />
+        <HelpTOCNode Title="Update Method " Url="html/ba71f8d8-b798-54e8-ec7b-6f7ad378caa4.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Title="ST7735DisplayType Enumeration" Url="html/44a15ead-930f-ed35-5f5e-a57fa0af2773.htm" />
+  </HelpTOCNode>
+  <HelpTOCNode Id="9047aa76-6011-43b0-8458-c393e16c2d3f" Title="Microsoft.IoT.Devices.Input" Url="html/8b9ff6c0-abd0-3f8c-45c6-cc90232dedde.htm">
+    <HelpTOCNode Id="eec005db-9862-4a3d-a3a7-db2f8b56d717" Title="PushButton Class" Url="html/77b2b355-81e9-c0de-bb29-df02005483ed.htm">
+      <HelpTOCNode Title="PushButton Constructor " Url="html/3163f461-2c14-0e40-16fa-5128c663ffbe.htm" />
+      <HelpTOCNode Id="d72c56de-2846-4db5-8173-dea13bfab43b" Title="PushButton Properties" Url="html/e2197260-54d0-772a-c3dc-e8b1787607aa.htm">
+        <HelpTOCNode Title="ClickMode Property " Url="html/b9de210f-7867-af7b-6a99-41f2e8c19084.htm" />
+        <HelpTOCNode Title="DebounceTimeout Property " Url="html/9481e388-b2ba-9932-4ac9-1962dab8e8bd.htm" />
+        <HelpTOCNode Title="IsPressed Property " Url="html/bff0411e-c8fc-02f7-c162-ab78ab69c1bb.htm" />
+        <HelpTOCNode Title="Pin Property " Url="html/7ad7a375-a656-716e-f713-aeee4c25b663.htm" />
+        <HelpTOCNode Title="PressedValue Property " Url="html/cc5afd6d-2fdc-1cb0-4e8b-48551b56ade7.htm" />
+        <HelpTOCNode Title="UsePullResistors Property " Url="html/23554a31-89cb-d983-d171-c3c26e03223e.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="d1102af1-ed22-4d4f-8806-10dce446df93" Title="PushButton Methods" Url="html/11c55ef6-e40b-7494-9c92-ca150428dd48.htm">
+        <HelpTOCNode Title="Close Method " Url="html/463368fd-47fb-bcd2-1931-4861fa8d2333.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="3c59beae-d4b9-4152-af81-f40dd77a3298" Title="PushButton Events" Url="html/0c2cf226-7294-e6c7-571e-4cf9e11db491.htm">
+        <HelpTOCNode Title="Click Event" Url="html/6c32acee-3eae-9db1-9d49-0ae7333c6a06.htm" />
+        <HelpTOCNode Title="Pressed Event" Url="html/f76886c2-6e09-dc73-43dd-1db94e333d88.htm" />
+        <HelpTOCNode Title="Released Event" Url="html/e089a68b-19bb-138d-a4d9-09ac77415391.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="76af08da-0b20-4218-8d16-f8edd3081665" Title="RotaryEncoder Class" Url="html/2202edc4-157e-0b3d-36bf-1ee746d04660.htm">
+      <HelpTOCNode Title="RotaryEncoder Constructor " Url="html/9cfa0cb1-6261-8d02-917d-0e8f685319fa.htm" />
+      <HelpTOCNode Id="1f1f6673-7102-4c7a-82da-aba510a61fca" Title="RotaryEncoder Properties" Url="html/8a794029-010d-7cc9-ecfd-d8326b7962a7.htm">
+        <HelpTOCNode Title="ButtonPin Property " Url="html/e1bf8172-44d8-74a7-5d00-da7cdc4659cf.htm" />
+        <HelpTOCNode Title="ClickMode Property " Url="html/07b7f8d5-1dbc-a1b7-c696-b93dd83a76f7.htm" />
+        <HelpTOCNode Title="ClockPin Property " Url="html/3f1639af-350b-6339-b096-ee28ba205cd8.htm" />
+        <HelpTOCNode Title="DebounceTimeout Property " Url="html/83f86a18-d50e-4b52-0999-e10ace49e8dc.htm" />
+        <HelpTOCNode Title="DirectionPin Property " Url="html/f0552334-bbe5-fc97-ae06-01df3818110b.htm" />
+        <HelpTOCNode Title="IsPressed Property " Url="html/ea0a1221-3177-bfda-b3c9-5b56b1020202.htm" />
+        <HelpTOCNode Title="PressedValue Property " Url="html/dcabd997-3e18-083c-3017-ce63e640d850.htm" />
+        <HelpTOCNode Title="UsePullResistors Property " Url="html/17548e66-0634-03e1-8603-50cbd82addc0.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="04168686-5b98-43a8-9e76-279d78daefa8" Title="RotaryEncoder Methods" Url="html/019a1a33-cbe4-5cdf-3211-6269533b65f8.htm">
+        <HelpTOCNode Title="Close Method " Url="html/4961e4d1-db10-4adc-5fb1-3cc758cf4084.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="7908a644-6ba4-44f1-ad1e-aa11966ed104" Title="RotaryEncoder Events" Url="html/f43a07e3-b037-66bc-90d3-460d97072c4b.htm">
+        <HelpTOCNode Title="Click Event" Url="html/e7b8d608-2eeb-45ca-d245-be61fc13b68e.htm" />
+        <HelpTOCNode Title="Pressed Event" Url="html/131127f4-de8c-02ba-ecff-dec272561d68.htm" />
+        <HelpTOCNode Title="Released Event" Url="html/f530a302-cc50-8428-0945-a8f5db126cf8.htm" />
+        <HelpTOCNode Title="Rotated Event" Url="html/159d7019-1abb-96e2-bbf8-c3002d678716.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="ee3dcd11-ecae-4d74-867b-c0d9b818bb3a" Title="SS944 Class" Url="html/13cc1625-0085-087b-f872-b22ba7ec5b8e.htm">
+      <HelpTOCNode Title="SS944 Constructor " Url="html/f86ea455-6c30-005e-0226-186adb6e0cfb.htm" />
+      <HelpTOCNode Id="160c6a87-0dd9-403d-b2fa-a4ae57853a33" Title="SS944 Properties" Url="html/676a424f-6438-15a4-5d54-d0b1e09cc9dd.htm">
+        <HelpTOCNode Title="ButtonPin Property " Url="html/cbf90a7e-c6b7-5e77-b9d3-978fa56c0e20.htm" />
+        <HelpTOCNode Title="ReportInterval Property " Url="html/b65275c3-2733-4abb-45d1-e2b1ff7fd9ee.htm" />
+        <HelpTOCNode Title="XChannel Property " Url="html/7ecbd789-07dc-9bd0-9e6d-31a7a08a0752.htm" />
+        <HelpTOCNode Title="YChannel Property " Url="html/b261f0d4-f246-6237-7d4a-3abc9f925d4b.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="03ee8046-f4dd-4626-acc3-c71e47c7ce88" Title="SS944 Methods" Url="html/514b56df-f216-956f-0b81-800d063bbc44.htm">
+        <HelpTOCNode Title="Close Method " Url="html/36936a79-1206-a6ff-89ff-35bde50d1c3a.htm" />
+        <HelpTOCNode Title="GetCurrentReading Method " Url="html/b055e72b-e238-e47b-1a9b-abf4964ceb2d.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="f340080b-799a-4ac6-864f-ae80c2028578" Title="SS944 Events" Url="html/ee6e5cfe-cd99-4db3-1cf6-665fef8e2077.htm">
+        <HelpTOCNode Title="ReadingChanged Event" Url="html/e0ac372b-156d-4904-47ae-3cec9347d0b4.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="4b566760-5844-4a41-8c3c-f3733658db3f" Title="Switch Class" Url="html/63a00db0-9e25-0b8a-97d6-a5fdcff53bca.htm">
+      <HelpTOCNode Title="Switch Constructor " Url="html/7bc52415-2a81-4eb7-86fc-4a1d731a7593.htm" />
+      <HelpTOCNode Id="0d30f063-536c-45b6-8009-d3c9988b5ac2" Title="Switch Properties" Url="html/00487a43-51d5-ad39-02dc-7653848a0803.htm">
+        <HelpTOCNode Title="DebounceTimeout Property " Url="html/c58d053b-f4c8-0513-5ddd-922b7eacb919.htm" />
+        <HelpTOCNode Title="IsOn Property " Url="html/b6b2a97d-f76c-f627-b37d-c7e0f3c8e997.htm" />
+        <HelpTOCNode Title="OnValue Property " Url="html/ca48493f-0713-c6a7-8f75-ed1653aac6a8.htm" />
+        <HelpTOCNode Title="Pin Property " Url="html/6050bdcc-0438-ba56-31d5-76ca3e003a27.htm" />
+        <HelpTOCNode Title="UsePullResistors Property " Url="html/3cb5b7b4-6cab-ddd2-3eaf-521afd4e2a07.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="5cea624b-ca7a-4ae2-879d-49da9741aef1" Title="Switch Methods" Url="html/f7917cf3-5737-0b35-8d8c-9510a48b13b1.htm">
+        <HelpTOCNode Title="Close Method " Url="html/58d3714f-815d-1ac4-7f1b-6a8796591a65.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="689cd2a3-e10d-4b83-b2f7-301b613d7fb3" Title="Switch Events" Url="html/54960221-ffc1-6aee-df29-4f58c10091e0.htm">
+        <HelpTOCNode Title="Switched Event" Url="html/aa6a03f9-ad93-e391-8289-c9455e8c772e.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="388385e8-d419-4fe7-8827-b71d67e9d5a2" Title="Microsoft.IoT.Devices.Lights" Url="html/6dc4b775-1c37-99e8-63bd-4e60ef18c200.htm">
+    <HelpTOCNode Id="e376b03f-89f3-4479-a6fe-dc679c31192b" Title="RgbLed Class" Url="html/80db6f47-6ee2-efc7-d05a-39f80bd1b3d6.htm">
+      <HelpTOCNode Title="RgbLed Constructor " Url="html/eb4a04e2-9e20-0286-3bb5-bfea2086343e.htm" />
+      <HelpTOCNode Id="2686862d-cfc4-4c62-9157-d1f78a40c7b3" Title="RgbLed Properties" Url="html/6e8c4e5a-d490-f123-c369-cd9745fc1a1d.htm">
+        <HelpTOCNode Title="BluePin Property " Url="html/005adfc5-4196-64ce-8c56-b30bb52a6fd0.htm" />
+        <HelpTOCNode Title="BrightnessLevel Property " Url="html/6cf86f2e-267a-a139-c812-1c4c7df8a1c4.htm" />
+        <HelpTOCNode Title="Color Property " Url="html/32f79cd7-df88-f599-037b-dcd91f75c578.htm" />
+        <HelpTOCNode Title="GreenPin Property " Url="html/dbaab45a-8ff2-36ff-e658-d5e842378fe8.htm" />
+        <HelpTOCNode Title="IsColorSettable Property " Url="html/b9d996ee-238e-ba5d-e6ab-08e35aced6bb.htm" />
+        <HelpTOCNode Title="RedPin Property " Url="html/3379c3fa-8e83-a648-5caf-f4b4f3a1e2ce.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="acbaa972-3404-4522-8f7b-c1f514f67231" Title="RgbLed Methods" Url="html/05490256-c404-fc65-a834-2be1d536d834.htm">
+        <HelpTOCNode Title="Close Method " Url="html/8ca8e13b-2319-fb4e-75c1-622904ad537d.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="33dcc203-eaea-43ec-aea0-931e37efad30" Title="Microsoft.IoT.Devices.Pwm" Url="html/70ad3344-58ff-9c06-3217-b1c77b48d41d.htm">
+    <HelpTOCNode Id="4f1bac21-66f4-4d18-a4aa-74e509e26633" Title="PCA9685 Class" Url="html/be93be20-edab-1cc0-0acc-ad71bf675abb.htm">
+      <HelpTOCNode Title="PCA9685 Constructor " Url="html/a67ce680-368a-0240-9124-285915515296.htm" />
+      <HelpTOCNode Id="d7ddb341-b1ba-4b13-9fb3-10ac64a52d79" Title="PCA9685 Properties" Url="html/a1adb4ea-f7eb-dffb-a14d-3d559940c9c2.htm">
+        <HelpTOCNode Title="ActualFrequency Property " Url="html/4827f0e2-240a-9b79-29c6-fc98baf0134b.htm" />
+        <HelpTOCNode Title="ControllerName Property " Url="html/feed2df9-22b7-3dde-ac70-f3c11ad2a2e2.htm" />
+        <HelpTOCNode Title="MaxFrequency Property " Url="html/17a0591c-2ebb-84bd-f4b1-e5bc2bc67993.htm" />
+        <HelpTOCNode Title="MinFrequency Property " Url="html/14c54108-fb43-0070-0553-4d925ed724ad.htm" />
+        <HelpTOCNode Title="PinCount Property " Url="html/f00dad40-2efb-ff56-28e6-ddbadd3d0f75.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="78cc203b-755a-435c-a25b-e0a2c7a90d8e" Title="PCA9685 Methods" Url="html/ebae9b2a-c177-9c4f-9e8a-a1ad6618f5d4.htm">
+        <HelpTOCNode Title="AcquirePin Method " Url="html/d1315159-0d0d-e151-e502-01e296a20efe.htm" />
+        <HelpTOCNode Title="Close Method " Url="html/4b81b6b7-5981-dd26-c47b-6003707f3ef4.htm" />
+        <HelpTOCNode Title="DisablePin Method " Url="html/fc7953b4-a117-fe22-13bc-f2688c5d1711.htm" />
+        <HelpTOCNode Title="EnablePin Method " Url="html/198dc56d-003d-93b7-30e2-e57fe705673f.htm" />
+        <HelpTOCNode Title="ReleasePin Method " Url="html/a3850acb-5b82-d8a7-fc43-28389327b011.htm" />
+        <HelpTOCNode Title="SetDesiredFrequency Method " Url="html/ba9c0ba2-4d8b-04f5-f07b-118312ae9ac8.htm" />
+        <HelpTOCNode Title="SetPulseParameters Method " Url="html/5649a49d-b787-535f-0071-84115927b7d3.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="f342f504-6b09-44c0-8520-9d63fae4ce8a" Title="SoftPwm Class" Url="html/c2d0e9f9-30e5-6f29-8d5f-87d599ebd586.htm">
+      <HelpTOCNode Title="SoftPwm Constructor " Url="html/1e073679-b2fd-9b4a-e080-c13374c4a7be.htm" />
+      <HelpTOCNode Id="74243823-1255-4587-a552-3540ded415f9" Title="SoftPwm Properties" Url="html/4af3413c-69bd-f90d-cf1d-8237e49f9d3e.htm">
+        <HelpTOCNode Title="ActualFrequency Property " Url="html/29c2410a-fd6f-6da2-87d4-71989e72a415.htm" />
+        <HelpTOCNode Title="MaxFrequency Property " Url="html/6339567a-b800-985f-95b2-86cc71597e50.htm" />
+        <HelpTOCNode Title="MinFrequency Property " Url="html/b3caee80-d719-974a-37f3-760153e08014.htm" />
+        <HelpTOCNode Title="PinCount Property " Url="html/595206b9-f49e-5696-f418-6d4a71e16135.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="287128ab-205c-45b1-89b4-64cff0a3732d" Title="SoftPwm Methods" Url="html/e1875e69-85c2-51bf-83c2-552d92d62451.htm">
+        <HelpTOCNode Title="AcquirePin Method " Url="html/00b02964-af6a-ccf2-518c-b446eaaf8f9e.htm" />
+        <HelpTOCNode Title="Close Method " Url="html/f2c58918-b135-b9b9-c667-52aec769691a.htm" />
+        <HelpTOCNode Title="DisablePin Method " Url="html/9eda7f19-2305-3384-2198-14faafaca1d7.htm" />
+        <HelpTOCNode Title="EnablePin Method " Url="html/9ff3c2c2-1d47-1317-2ebb-24cf36231e26.htm" />
+        <HelpTOCNode Title="ReleasePin Method " Url="html/c77d16d0-cd32-c944-789c-455129473d3d.htm" />
+        <HelpTOCNode Title="SetDesiredFrequency Method " Url="html/1c7540c6-248b-63f5-e4b5-6c576f05a682.htm" />
+        <HelpTOCNode Title="SetPulseParameters Method " Url="html/828fe13c-7788-fddf-b6ef-e75600af0847.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="8e864b9b-c803-48f9-a1e3-badce4eacaf9" Title="Microsoft.IoT.Devices.Sensors" Url="html/218db8db-9963-6cbc-0de0-d946f1f8ec4c.htm">
+    <HelpTOCNode Id="8dd96b46-96d9-4c7a-b88f-9f64cd443b2a" Title="AnalogSensor Class" Url="html/f6b9f31e-55fd-466f-651d-9ae7ac872160.htm">
+      <HelpTOCNode Title="AnalogSensor Constructor " Url="html/71ec2189-0e1a-5394-f533-1618ce8fee95.htm" />
+      <HelpTOCNode Id="83451bd3-3755-443e-a22f-ec2367cd6bae" Title="AnalogSensor Properties" Url="html/b841d8ca-2b33-d3bf-c84c-563819aaff74.htm">
+        <HelpTOCNode Title="AdcChannel Property " Url="html/04b822be-8089-b921-d0dd-41ab5b89b8b0.htm" />
+        <HelpTOCNode Title="ReportInterval Property " Url="html/fa7e0b24-5a57-3643-7006-282c18bdf174.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="e8bae539-c635-4462-8f6d-42d33fc5dc67" Title="AnalogSensor Methods" Url="html/4980ea4d-fda9-9a29-8987-9d47429a713c.htm">
+        <HelpTOCNode Title="Close Method " Url="html/3a2a3d29-abc5-db61-b177-172b1f6120bb.htm" />
+        <HelpTOCNode Title="GetCurrentReading Method " Url="html/5191a3f8-f835-177a-3861-272800446f2c.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="c2af567b-25d2-40e8-a45d-620587d83cc1" Title="AnalogSensor Events" Url="html/a0030278-e09d-03a5-0f35-c7a4451a90e7.htm">
+        <HelpTOCNode Title="ReadingChanged Event" Url="html/b384b613-a587-b961-e6f3-4428c8f93ca6.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+</HelpTOC>
