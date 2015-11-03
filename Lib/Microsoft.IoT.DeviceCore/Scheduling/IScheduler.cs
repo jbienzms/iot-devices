@@ -12,12 +12,12 @@ using Windows.Foundation.Metadata;
 namespace Microsoft.IoT.DeviceCore
 {
     /// <summary>
-    /// A delegate for scheduled action. 
+    /// A delegate for a scheduled action. 
     /// </summary>
     public delegate void ScheduledAction();
 
     /// <summary>
-    /// A delegate for scheduled asynchronous action. 
+    /// A delegate for a scheduled asynchronous action. 
     /// </summary>
     public delegate IAsyncAction ScheduledAsyncAction();
 

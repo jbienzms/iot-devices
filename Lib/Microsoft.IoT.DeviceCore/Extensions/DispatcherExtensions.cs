@@ -17,12 +17,33 @@ namespace Microsoft.IoT.DeviceCore
     /// </remarks>
     static public class DispatcherExtensions
     {
+        /// <summary>
+        /// Runs the handler in parallel at normal priority without capturing the task.
+        /// </summary>
+        /// <param name="dispatcher">
+        /// The <see cref="CoreDispatcher"/> that will run the handler.
+        /// </param>
+        /// <param name="handler">
+        /// The handler to run.
+        /// </param>
         static public void Run(this CoreDispatcher dispatcher, DispatchedHandler handler)
         {
             // Run
             var t = RunAsync(dispatcher, handler);
         }
 
+        /// <summary>
+        /// Runs the handler at normal priority.
+        /// </summary>
+        /// <param name="dispatcher">
+        /// The <see cref="CoreDispatcher"/> that will run the handler.
+        /// </param>
+        /// <param name="handler">
+        /// The handler to run.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IAsyncAction"/> that represents the operation.
+        /// </returns>
         static public IAsyncAction RunAsync(this CoreDispatcher dispatcher, DispatchedHandler handler)
         {
             // Validate
@@ -32,12 +53,33 @@ namespace Microsoft.IoT.DeviceCore
             return dispatcher.RunAsync(CoreDispatcherPriority.Normal, handler);
         }
 
+        /// <summary>
+        /// Runs the handler in parallel at idle priority without capturing the task.
+        /// </summary>
+        /// <param name="dispatcher">
+        /// The <see cref="CoreDispatcher"/> that will run the handler.
+        /// </param>
+        /// <param name="handler">
+        /// The handler to run.
+        /// </param>
         static public void RunIdle(this CoreDispatcher dispatcher, DispatchedHandler handler)
         {
             // Run
             var t = RunIdleAsync(dispatcher, handler);
         }
 
+        /// <summary>
+        /// Runs the handler at idle priority.
+        /// </summary>
+        /// <param name="dispatcher">
+        /// The <see cref="CoreDispatcher"/> that will run the handler.
+        /// </param>
+        /// <param name="handler">
+        /// The handler to run.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IAsyncAction"/> that represents the operation.
+        /// </returns>
         static public IAsyncAction RunIdleAsync(this CoreDispatcher dispatcher, DispatchedHandler handler)
         {
             // Validate

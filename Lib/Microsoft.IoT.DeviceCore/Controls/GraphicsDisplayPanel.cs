@@ -63,6 +63,9 @@ namespace Microsoft.IoT.DeviceCore.Controls
         #endregion // Member Variables
 
         #region Constructors
+        /// <summary>
+        /// Initializes a new <see cref="GraphicsDisplayPanel"/> instance.
+        /// </summary>
         public GraphicsDisplayPanel()
         {
             // Theme

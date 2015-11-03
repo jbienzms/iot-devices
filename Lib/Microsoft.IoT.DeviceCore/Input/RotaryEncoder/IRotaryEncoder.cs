@@ -13,6 +13,11 @@ using Windows.Foundation;
 
 namespace Microsoft.IoT.DeviceCore.Input
 {
+    /// <summary>
+    /// The interface for a rotary encoder, which is a knob that can be turned indefinitely 
+    /// in either direction with discreet pules along each rotation. Rotary encoders also 
+    /// frequently include a pushbutton function.
+    /// </summary>
     public interface IRotaryEncoder : IPushButton, IDisposable
     {
         #region Public Events

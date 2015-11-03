@@ -26,6 +26,9 @@ namespace Microsoft.IoT.Devices.Adc
         #endregion // Member Variables
 
         #region Constructors
+        /// <summary>
+        /// Initializes a new <see cref="ADC0832"/> instance.
+        /// </summary>
         public ADC0832()
         {
             // Set Defaults
@@ -46,6 +49,7 @@ namespace Microsoft.IoT.Devices.Adc
         #endregion // Internal Methods
 
         #region Public Methods
+        /// <inheritdoc/>
         public void AcquireChannel(int channel)
         {
             // Validate
@@ -54,6 +58,7 @@ namespace Microsoft.IoT.Devices.Adc
             // This devices does not operate in exclusive mode, so we'll just ignore
         }
 
+        /// <inheritdoc/>
         public int ReadValue(int channelNumber)
         {
             // Validate
@@ -145,6 +150,7 @@ namespace Microsoft.IoT.Devices.Adc
             return (dat1 == dat2) ? dat1 : 0;
         }
 
+        /// <inheritdoc/>
         public void ReleaseChannel(int channel)
         {
             // Validate
@@ -153,6 +159,7 @@ namespace Microsoft.IoT.Devices.Adc
             // This devices does not operate in exclusive mode, so we'll just ignore
         }
 
+        /// <inheritdoc/>
         public void Dispose()
         {
             if (chipSelectPin != null)
@@ -173,6 +180,7 @@ namespace Microsoft.IoT.Devices.Adc
             isInitialized = false;
         }
 
+        /// <inheritdoc/>
         public bool IsChannelModeSupported(ProviderAdcChannelMode channelMode)
         {
             // All modes currently supported, but in case another mode is added later.
@@ -207,6 +215,7 @@ namespace Microsoft.IoT.Devices.Adc
             }
         }
 
+        /// <inheritdoc/>
         public int ChannelCount
         {
             get
@@ -269,6 +278,7 @@ namespace Microsoft.IoT.Devices.Adc
             }
         }
 
+        /// <inheritdoc/>
         public int MaxValue
         {
             get
@@ -277,6 +287,7 @@ namespace Microsoft.IoT.Devices.Adc
             }
         }
 
+        /// <inheritdoc/>
         public int MinValue
         {
             get
@@ -285,6 +296,7 @@ namespace Microsoft.IoT.Devices.Adc
             }
         }
 
+        /// <inheritdoc/>
         public int ResolutionInBits
         {
             get

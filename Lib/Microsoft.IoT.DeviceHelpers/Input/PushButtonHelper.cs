@@ -15,7 +15,7 @@ using Windows.Foundation;
 namespace Microsoft.IoT.DeviceHelpers.Input
 {
     /// <summary>
-    /// A helper class for implementing the <see cref="IPushButton"/> interface.
+    /// A helper class for implementing the <see cref="IPushButton"/> interface using a single GPIO pin.
     /// </summary>
     public sealed class PushButtonHelper : IDisposable
     {
@@ -92,6 +92,7 @@ namespace Microsoft.IoT.DeviceHelpers.Input
         }
 
         #region Public Methods
+        /// <inheritdoc/>
         public void Dispose()
         {
             if (pin != null)

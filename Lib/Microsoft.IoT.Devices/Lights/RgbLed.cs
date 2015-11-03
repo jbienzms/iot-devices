@@ -13,6 +13,18 @@ using Microsoft.IoT.DeviceHelpers;
 
 namespace Microsoft.IoT.Devices.Lights
 {
+    /// <summary>
+    /// A light capable of producing multiple colors by adjusting red, green and blue values. This 
+    /// class implements the <see cref="ILight"/> interface.
+    /// </summary>
+    /// <remarks>
+    /// Each color component is represented by a <see cref="PwmPin"/>. All three color components are 
+    /// <i>not</i> required but at least one <see cref="PwmPin"/> must be specified before setting the 
+    /// <see cref="Color"/> property. Setting the color to a value that cannot be displayed by the 
+    /// hardware configuration will not raise an error. For example, setting <see cref="Color"/> to 
+    /// <see cref="Colors.Blue"/> when only the <see cref="GreenPin"/> is connected will not result 
+    /// in an exception (though obviously no color will be shown).
+    /// </remarks>
     sealed public class RgbLed : ILight, IDisposable
     {
         #region Member Variables
@@ -67,6 +79,7 @@ namespace Microsoft.IoT.Devices.Lights
         #endregion // Internal Methods
 
         #region Public Methods
+        /// <inheritdoc/>
         public void Dispose()
         {
             if (bluePin != null)
@@ -107,6 +120,7 @@ namespace Microsoft.IoT.Devices.Lights
             }
         }
 
+        /// <inheritdoc/>
         [DefaultValue(1.0f)]
         public float BrightnessLevel
         {
@@ -125,6 +139,7 @@ namespace Microsoft.IoT.Devices.Lights
             }
         }
 
+        /// <inheritdoc/>
         public Color Color
         {
             get
@@ -157,7 +172,7 @@ namespace Microsoft.IoT.Devices.Lights
             }
         }
 
-
+        /// <inheritdoc/>
         public bool IsColorSettable
         {
             get

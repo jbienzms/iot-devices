@@ -16,6 +16,9 @@ using Microsoft.IoT.DeviceHelpers.Input;
 
 namespace Microsoft.IoT.Devices.Input
 {
+    /// <summary>
+    /// An implementation of <see cref="IRotaryEncoder"/> using one GPIO pin for clock and another for direction.
+    /// </summary>
     public sealed class RotaryEncoder : IRotaryEncoder, IDisposable
     {
         #region Member Variables
@@ -109,6 +112,7 @@ namespace Microsoft.IoT.Devices.Input
         #endregion // Overrides / Event Handlers
 
         #region Public Methods
+        /// <inheritdoc/>
         public void Dispose()
         {
             if (buttonHelper != null)

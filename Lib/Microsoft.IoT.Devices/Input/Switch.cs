@@ -15,6 +15,9 @@ using Microsoft.IoT.DeviceHelpers;
 
 namespace Microsoft.IoT.Devices.Input
 {
+    /// <summary>
+    /// An implementation of the <see cref="ISwitch"/> interface that uses a single GPIO pin.
+    /// </summary>
     public sealed class Switch : ISwitch, IDisposable
     {
         #region Member Variables
@@ -106,6 +109,7 @@ namespace Microsoft.IoT.Devices.Input
             }
         }
 
+        /// <inheritdoc/>
         public void Dispose()
         {
             isInitialized = false;

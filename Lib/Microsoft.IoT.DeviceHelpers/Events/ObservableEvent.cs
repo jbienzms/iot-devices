@@ -12,11 +12,19 @@ using Windows.Foundation;
 namespace Microsoft.IoT.DeviceHelpers
 {
     /// <summary>
-    /// The base class for a monitor of subscribers to an event.
+    /// A class that provides an observable event.
     /// </summary>
     /// <typeparam name="TSender">
-    /// The sender type for the event.
+    /// The type of object that raises the event.
     /// </typeparam>
+    /// <typeparam name="TResult">
+    /// The type of result (or args) passed to event handlers.
+    /// </typeparam>
+    /// <remarks>
+    /// <see cref="ObservableEvent{TSender, TResult}"/> is a helper class that creates Windows Runtime 
+    /// compatible events whose subscriptions can be monitored. Subscriptions can be monitored by 
+    /// passing a class that implements <see cref="IEventObserver"/> into the constructor.
+    /// </remarks>
     public class ObservableEvent<TSender, TResult> : IObservableEvent<TSender, TResult>
     {
         #region Member Variables
@@ -25,7 +33,7 @@ namespace Microsoft.IoT.DeviceHelpers
         private IEventObserver observer;
         #endregion // Member Variables
 
-        #region Constants
+        #region Constructors
         private ObservableEvent()
         {
             // Create
@@ -33,7 +41,7 @@ namespace Microsoft.IoT.DeviceHelpers
         }
 
         /// <summary>
-        /// Initializes a new <see cref="ObservableEvent"/>.
+        /// Initializes a new <see cref="ObservableEvent{TSender, TResult}"/>.
         /// </summary>
         /// <param name="observer">
         /// An <see cref="IEventObserver"/> that monitors the event.
@@ -48,8 +56,11 @@ namespace Microsoft.IoT.DeviceHelpers
         }
 
         /// <summary>
-        /// Initializes a new <see cref="ObservableEvent"/>.
+        /// Initializes a new <see cref="ObservableEvent{TSender, TResult}"/>.
         /// </summary>
+        /// <param name="firstAdded">
+        /// A <see cref="ScheduledAction"/> that will be called when the first subscriber is added.
+        /// </param>
         public ObservableEvent(ScheduledAction firstAdded) : this()
         {
             // Validate
@@ -58,7 +69,7 @@ namespace Microsoft.IoT.DeviceHelpers
             // Store
             this.firstAdded = firstAdded;
         }
-        #endregion // Constants
+        #endregion // Constructors
 
         private void InnerRemove(TypedEventHandler<TSender, TResult> handler, Func<EventRegistrationToken> token)
         {
@@ -129,7 +140,7 @@ namespace Microsoft.IoT.DeviceHelpers
         /// </param>
         public void Raise(TSender sender, TResult args)
         {
-            // Get innner event and call if there are subscribers
+            // Get inner event and call if there are subscribers
             var innerEvent = eventTable.InvocationList;
             if (innerEvent != null)
             {

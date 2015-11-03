@@ -79,6 +79,7 @@ namespace Microsoft.IoT.Devices.Sensors
         #endregion // Internal Methods
 
         #region Public Methods
+        /// <inheritdoc/>
         public void Dispose()
         {
             if (updater != null)

@@ -149,6 +149,60 @@ namespace Microsoft.IoT.Devices.Display
         #endregion // Member Variables
 
         #region Internal Methods
+        private void ClearScreen(Color col)
+        {
+            var color = (ushort)GraphicsTools.GetNativeColor(pixelFormat, col);
+            var high = (byte)(color >> 8);
+            var low = (byte)color;
+
+            var index = 0;
+
+            displayBuffer[index++] = high;
+            displayBuffer[index++] = low;
+            displayBuffer[index++] = high;
+            displayBuffer[index++] = low;
+            displayBuffer[index++] = high;
+            displayBuffer[index++] = low;
+            displayBuffer[index++] = high;
+            displayBuffer[index++] = low;
+            displayBuffer[index++] = high;
+            displayBuffer[index++] = low;
+            displayBuffer[index++] = high;
+            displayBuffer[index++] = low;
+            displayBuffer[index++] = high;
+            displayBuffer[index++] = low;
+            displayBuffer[index++] = high;
+            displayBuffer[index++] = low;
+
+            Array.Copy(displayBuffer, 0, displayBuffer, 16, 16);
+            Array.Copy(displayBuffer, 0, displayBuffer, 32, 32);
+            Array.Copy(displayBuffer, 0, displayBuffer, 64, 64);
+            Array.Copy(displayBuffer, 0, displayBuffer, 128, 128);
+            Array.Copy(displayBuffer, 0, displayBuffer, 256, 256);
+
+            index = 512;
+            var line = 0;
+            var Half = Height / 2;
+            while (++line < Half - 1)
+            {
+                Array.Copy(displayBuffer, 0, displayBuffer, index, 256);
+                index += 256;
+            }
+
+            Array.Copy(displayBuffer, 0, displayBuffer, index, displayBuffer.Length / 2);
+
+            if (autoUpdate)
+            {
+                Update();
+            }
+        }
+
+        /// <summary>
+        /// Initializes the display.
+        /// </summary>
+        /// <returns>
+        /// An <see cref="IAsyncAction"/> that represents the operation.
+        /// </returns>
         public IAsyncAction InitializeAsync()
         {
             return EnsureInitializedAsync().AsAsyncAction();
@@ -752,60 +806,13 @@ namespace Microsoft.IoT.Devices.Display
         }
         #endregion // Internal Methods
 
-
+        /// <inheritdoc/>
         public void Clear()
         {
-
-        }
-        public void ClearScreen(Color col)
-        {
-            var color = (ushort)GraphicsTools.GetNativeColor(pixelFormat, col);
-            var high = (byte)(color >> 8);
-            var low = (byte)color;
-
-            var index = 0;
-
-            displayBuffer[index++] = high;
-            displayBuffer[index++] = low;
-            displayBuffer[index++] = high;
-            displayBuffer[index++] = low;
-            displayBuffer[index++] = high;
-            displayBuffer[index++] = low;
-            displayBuffer[index++] = high;
-            displayBuffer[index++] = low;
-            displayBuffer[index++] = high;
-            displayBuffer[index++] = low;
-            displayBuffer[index++] = high;
-            displayBuffer[index++] = low;
-            displayBuffer[index++] = high;
-            displayBuffer[index++] = low;
-            displayBuffer[index++] = high;
-            displayBuffer[index++] = low;
-
-            Array.Copy(displayBuffer, 0, displayBuffer, 16, 16);
-            Array.Copy(displayBuffer, 0, displayBuffer, 32, 32);
-            Array.Copy(displayBuffer, 0, displayBuffer, 64, 64);
-            Array.Copy(displayBuffer, 0, displayBuffer, 128, 128);
-            Array.Copy(displayBuffer, 0, displayBuffer, 256, 256);
-
-            index = 512;
-            var line = 0;
-            var Half = Height / 2;
-            while (++line < Half - 1)
-            {
-                Array.Copy(displayBuffer, 0, displayBuffer, index, 256);
-                index += 256;
-            }
-
-            Array.Copy(displayBuffer, 0, displayBuffer, index, displayBuffer.Length / 2);
-
-            if (autoUpdate)
-            {
-                Update();
-            }
+            ClearScreen(Windows.UI.Colors.Black);
         }
 
-
+        /// <inheritdoc/>
         public void Dispose()
         {
             if (dataCommandPin != null)
@@ -826,12 +833,15 @@ namespace Microsoft.IoT.Devices.Display
             displayBuffer = null;
         }
 
+        /// <inheritdoc/>
         public void DrawPixel(int x, int y, Color color)
         {
             var nativeColor = GraphicsTools.GetNativeColor(pixelFormat, color);
             SetPixel(x, y, nativeColor);
             if (autoUpdate) { Update(); }
         }
+        
+        /// <inheritdoc/>
         public void DrawPixel(int x, int y, byte red, byte green, byte blue)
         {
             var nativeColor = GraphicsTools.GetNativeColor(pixelFormat, red, green, blue);
@@ -839,11 +849,13 @@ namespace Microsoft.IoT.Devices.Display
             if (autoUpdate) { Update(); }
         }
 
+        /// <inheritdoc/>
         public bool IsOrientationSupported(DisplayOrientations orientation)
         {
             return true;
         }
 
+        /// <inheritdoc/>
         public void Update()
         {
             spiDevice.Write(displayBuffer);

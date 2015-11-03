@@ -11,6 +11,15 @@ using Windows.Foundation.Metadata;
 
 namespace Microsoft.IoT.DeviceHelpers
 {
+    /// <summary>
+    /// The interface for an observable event.
+    /// </summary>
+    /// <typeparam name="TSender">
+    /// The type of object that raises the event.
+    /// </typeparam>
+    /// <typeparam name="TResult">
+    /// The type of result (or args) passed to event handlers.
+    /// </typeparam>
     public interface IObservableEvent<TSender, TResult>
     {
         /// <summary>

@@ -278,6 +278,7 @@ namespace Microsoft.IoT.Devices.Pwm
 
 
         #region Public Methods
+        /// <inheritdoc/>
         public void AcquirePin(int pin)
         {
             if ((pin < 0) || (pin > (PIN_COUNT - 1))) throw new ArgumentOutOfRangeException("pin");
@@ -292,6 +293,7 @@ namespace Microsoft.IoT.Devices.Pwm
             }
         }
 
+        /// <inheritdoc/>
         public void DisablePin(int pin)
         {
             if ((pin < 0) || (pin > (PIN_COUNT - 1))) throw new ArgumentOutOfRangeException("pin");
@@ -307,6 +309,7 @@ namespace Microsoft.IoT.Devices.Pwm
             primaryDevice.Write(buffer);
         }
 
+        /// <inheritdoc/>
         public void Dispose()
         {
             if (resetDevice != null)
@@ -322,6 +325,7 @@ namespace Microsoft.IoT.Devices.Pwm
             pinAccess = null;
         }
 
+        /// <inheritdoc/>
         public void EnablePin(int pin)
         {
             if ((pin < 0) || (pin > (PIN_COUNT - 1))) throw new ArgumentOutOfRangeException("pin");
@@ -340,6 +344,7 @@ namespace Microsoft.IoT.Devices.Pwm
             primaryDevice.Write(buffer);
         }
 
+        /// <inheritdoc/>
         public void ReleasePin(int pin)
         {
             if ((pin < 0) || (pin > (PIN_COUNT - 1))) throw new ArgumentOutOfRangeException("pin");
@@ -350,6 +355,7 @@ namespace Microsoft.IoT.Devices.Pwm
             }
         }
 
+        /// <inheritdoc/>
         public double SetDesiredFrequency(double frequency)
         {
             if (frequency < MIN_FREQUENCY || frequency > MAX_FREQUENCY)
@@ -377,6 +383,7 @@ namespace Microsoft.IoT.Devices.Pwm
             return actualFrequency;
         }
 
+        /// <inheritdoc/>
         public void SetPulseParameters(int pin, double dutyCycle, bool invertPolarity)
         {
             if ((pin < 0) || (pin > (PIN_COUNT - 1))) throw new ArgumentOutOfRangeException("pin");
@@ -409,6 +416,7 @@ namespace Microsoft.IoT.Devices.Pwm
         #endregion // Public Methods
 
         #region Public Properties
+        /// <inheritdoc/>
         public double ActualFrequency
         {
             get
@@ -437,6 +445,7 @@ namespace Microsoft.IoT.Devices.Pwm
             }
         }
 
+        /// <inheritdoc/>
         public double MaxFrequency
         {
             get
@@ -445,6 +454,7 @@ namespace Microsoft.IoT.Devices.Pwm
             }
         }
 
+        /// <inheritdoc/>
         public double MinFrequency
         {
             get
@@ -453,6 +463,7 @@ namespace Microsoft.IoT.Devices.Pwm
             }
         }
 
+        /// <inheritdoc/>
         public int PinCount
         {
             get

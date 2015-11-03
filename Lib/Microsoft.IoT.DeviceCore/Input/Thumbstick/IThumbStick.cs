@@ -10,7 +10,7 @@ using Windows.Foundation;
 namespace Microsoft.IoT.DeviceCore.Input
 {
     /// <summary>
-    /// The interface for a thubmstick that can be moved on two axis and clicked.
+    /// The interface for a thubmstick or joystick that can be moved on two axis and clicked.
     /// </summary>
     public interface IThumbstick : IDevice
     {

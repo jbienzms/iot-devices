@@ -263,6 +263,7 @@ namespace Microsoft.IoT.DeviceCore
         #endregion // Internal Methods
 
         #region Public Methods
+        /// <inheritdoc/>
         public void Resume(ScheduledAction subscriber)
         {
             var s = GetSubscription(subscriber);
@@ -270,6 +271,7 @@ namespace Microsoft.IoT.DeviceCore
             EnsureMinReportInterval(s.Options.UpdateInterval);
         }
 
+        /// <inheritdoc/>
         public void Resume(ScheduledAsyncAction subscriber)
         {
             var s = GetSubscription(subscriber);
@@ -277,6 +279,7 @@ namespace Microsoft.IoT.DeviceCore
             EnsureMinReportInterval(s.Options.UpdateInterval);
         }
 
+        /// <inheritdoc/>
         public void Schedule(ScheduledAction subscriber, ScheduleOptions options)
         {
             // Check for existing subscription
@@ -300,6 +303,7 @@ namespace Microsoft.IoT.DeviceCore
             QueryStart();
         }
 
+        /// <inheritdoc/>
         public void Schedule(ScheduledAsyncAction subscriber, ScheduleOptions options)
         {
             // Check for existing subscription
@@ -365,18 +369,21 @@ namespace Microsoft.IoT.DeviceCore
             cancellationSource = null;
         }
 
+        /// <inheritdoc/>
         public void Suspend(ScheduledAction subscriber)
         {
             GetSubscription(subscriber).IsSuspended = true;
             RecalcReportInterval();
         }
 
+        /// <inheritdoc/>
         public void Suspend(ScheduledAsyncAction subscriber)
         {
             GetSubscription(subscriber).IsSuspended = true;
             RecalcReportInterval();
         }
 
+        /// <inheritdoc/>
         public void Unschedule(ScheduledAction subscriber)
         {
             if (subscriptions != null)
@@ -394,6 +401,7 @@ namespace Microsoft.IoT.DeviceCore
             RecalcReportInterval();
         }
 
+        /// <inheritdoc/>
         public void Unschedule(ScheduledAsyncAction subscriber)
         {
             if (asyncSubscriptions != null)
@@ -411,6 +419,7 @@ namespace Microsoft.IoT.DeviceCore
             RecalcReportInterval();
         }
 
+        /// <inheritdoc/>
         public void UpdateSchedule(ScheduledAction subscriber, ScheduleOptions options)
         {
             if (options == null) throw new ArgumentNullException("options");
@@ -425,6 +434,7 @@ namespace Microsoft.IoT.DeviceCore
             }
         }
 
+        /// <inheritdoc/>
         public void UpdateSchedule(ScheduledAsyncAction subscriber, ScheduleOptions options)
         {
             if (options == null) throw new ArgumentNullException("options");

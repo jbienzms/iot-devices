@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Microsoft.IoT.DeviceCore.Sensors
 {
+    /// <summary>
+    /// Interface for the <see cref="AnalogSensorReadingChangedEventArgs"/> class.
+    /// </summary>
     public interface IAnalogSensorReadingChangedEventArgs
     {
         /// <summary>
@@ -16,6 +19,9 @@ namespace Microsoft.IoT.DeviceCore.Sensors
         AnalogSensorReading Reading { get; }
     }
 
+    /// <summary>
+    /// Provides data for the <see cref="IAnalogSensor.ReadingChanged"/> event.
+    /// </summary>
     public sealed class AnalogSensorReadingChangedEventArgs : IAnalogSensorReadingChangedEventArgs
     {
         /// <summary>

@@ -11,7 +11,7 @@ using Windows.Foundation;
 namespace Microsoft.IoT.DeviceCore.Input
 {
     /// <summary>
-    /// The interface for an input switch.
+    /// The interface for an input switch that can be toggled on and off.
     /// </summary>
     public interface ISwitch : IDevice
     {

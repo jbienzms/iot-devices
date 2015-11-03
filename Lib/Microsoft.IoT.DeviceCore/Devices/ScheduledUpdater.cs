@@ -10,6 +10,32 @@ using IoTScheduler = Microsoft.IoT.DeviceCore.Scheduler;
 
 namespace Microsoft.IoT.DeviceCore
 {
+    /// <summary>
+    /// <see cref="ScheduledUpdater"/> is a helper class handles scheduling and unscheduling of 
+    /// delegates for execution by an <see cref="IScheduler"/>.
+    /// </summary>
+    /// <remarks>
+    /// <p>
+    /// <see cref="ScheduledUpdater"/> is capable of delivering both synchronous and asynchronous 
+    /// through the <see cref="SetUpdateAction"/> and <see cref="SetAsyncUpdateAction"/> methods 
+    /// respectively. 
+    /// </p>
+    /// <p>
+    /// <see cref="ScheduledUpdater"/> is commonly used in device classes to schedule polling of 
+    /// device data. Devices that share the same <see cref="IScheduler"/> automatically share 
+    /// time slices on a CPU. Whenever a <see cref="ScheduledUpdater"/> is created using a 
+    /// constructor that doesn't explicitly receive an <see cref="IScheduler"/> instance, 
+    /// <see cref="IoTScheduler.Default"/> is automatically used.
+    /// </p>
+    /// <p>
+    /// Because <see cref="ScheduledUpdater"/> is commonly used by devices (especially sensors) 
+    /// there is a common need is to start updates when one or more device events are subscribed to 
+    /// then stop updates when the last subscription is removed. To help with this common scenario, 
+    /// <see cref="ScheduledUpdater"/> implements the <see cref="IEventObserver"/> interface which 
+    /// means it can be passed to the constructor of any ObservableEvent (included in the 
+    /// Microsoft.IoT.DeviceHelpers library).
+    /// </p>
+    /// </remarks>
     public sealed class ScheduledUpdater : IDisposable, IEventObserver
     {
         #region Member Variables

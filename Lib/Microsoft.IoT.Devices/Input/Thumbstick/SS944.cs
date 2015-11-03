@@ -105,6 +105,7 @@ namespace Microsoft.IoT.Devices.Input
         #endregion // Internal Methods
 
         #region Public Methods
+        /// <inheritdoc/>
         public void Dispose()
         {
             if (updater != null)

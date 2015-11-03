@@ -11,6 +11,16 @@ using Microsoft.IoT.DeviceHelpers;
 
 namespace Microsoft.IoT.Devices.Pwm
 {
+    /// <summary>
+    /// A software-based <see cref="IPwmControllerProvider"/> that uses CPU timing to generate PWM 
+    /// signals on regular GPIO pins.
+    /// </summary>
+    /// <remarks>
+    /// The number of pins reported as available by <see cref="SoftPwm"/> is the same number of 
+    /// pins reported as available by <see cref="GpioController.PinCount"/>. Therefore, developers 
+    /// should be careful not to open <see cref="SoftPwm"/> pins that are already allocated for 
+    /// other GPIO devices.
+    /// </remarks>
     sealed public class SoftPwm : IPwmControllerProvider, IDisposable
     {
         #region Nested Types
@@ -151,6 +161,7 @@ namespace Microsoft.IoT.Devices.Pwm
         #endregion // Internal Methods
 
         #region Public Methods
+        /// <inheritdoc/>
         public void AcquirePin(int pin)
         {
             if ((pin < 0) || (pin > (pinCount - 1))) throw new ArgumentOutOfRangeException("pin");
@@ -164,6 +175,7 @@ namespace Microsoft.IoT.Devices.Pwm
             }
         }
 
+        /// <inheritdoc/>
         public void DisablePin(int pin)
         {
             if ((pin < 0) || (pin > (pinCount - 1))) throw new ArgumentOutOfRangeException("pin");
@@ -175,6 +187,7 @@ namespace Microsoft.IoT.Devices.Pwm
             }
         }
 
+        /// <inheritdoc/>
         public void Dispose()
         {
             if (updater != null)
@@ -197,6 +210,7 @@ namespace Microsoft.IoT.Devices.Pwm
             pins = null;
         }
 
+        /// <inheritdoc/>
         public void EnablePin(int pin)
         {
             if ((pin < 0) || (pin > (pinCount - 1))) throw new ArgumentOutOfRangeException("pin");
@@ -211,6 +225,7 @@ namespace Microsoft.IoT.Devices.Pwm
             if (!updater.IsStarted) { updater.Start(); }
         }
 
+        /// <inheritdoc/>
         public void ReleasePin(int pin)
         {
             if ((pin < 0) || (pin > (pinCount - 1))) throw new ArgumentOutOfRangeException("pin");
@@ -223,6 +238,7 @@ namespace Microsoft.IoT.Devices.Pwm
             }
         }
 
+        /// <inheritdoc/>
         public double SetDesiredFrequency(double frequency)
         {
             if (frequency < MIN_FREQUENCY || frequency > MAX_FREQUENCY)
@@ -235,6 +251,7 @@ namespace Microsoft.IoT.Devices.Pwm
             return actualFrequency;
         }
 
+        /// <inheritdoc/>
         public void SetPulseParameters(int pin, double dutyCycle, bool invertPolarity)
         {
             if ((pin < 0) || (pin > (pinCount - 1))) throw new ArgumentOutOfRangeException("pin");
@@ -253,6 +270,7 @@ namespace Microsoft.IoT.Devices.Pwm
         #endregion // Public Methods
 
         #region Public Properties
+        /// <inheritdoc/>
         public double ActualFrequency
         {
             get
@@ -261,6 +279,7 @@ namespace Microsoft.IoT.Devices.Pwm
             }
         }
 
+        /// <inheritdoc/>
         public double MaxFrequency
         {
             get
@@ -269,6 +288,7 @@ namespace Microsoft.IoT.Devices.Pwm
             }
         }
 
+        /// <inheritdoc/>
         public double MinFrequency
         {
             get
@@ -277,6 +297,7 @@ namespace Microsoft.IoT.Devices.Pwm
             }
         }
 
+        /// <inheritdoc/>
         public int PinCount
         {
             get

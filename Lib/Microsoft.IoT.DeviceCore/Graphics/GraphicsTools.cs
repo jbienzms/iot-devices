@@ -41,6 +41,24 @@ namespace Microsoft.IoT.DeviceCore.Display
             }
         }
 
+        /// <summary>
+        /// Converts the specified 24-bit RGB value to a native binary value for the specified <see cref="DisplayPixelFormat"/>.
+        /// </summary>
+        /// <param name="format">
+        /// The desired <see cref="DisplayPixelFormat"/> output format.
+        /// </param>
+        /// <param name="red">
+        /// The 8-bit red component.
+        /// </param>
+        /// <param name="green">
+        /// The 8-bit green component.
+        /// </param>
+        /// <param name="blue">
+        /// The 8-bit blue component.
+        /// </param>
+        /// <returns>
+        /// The converted value.
+        /// </returns>
         static public ushort GetNativeColor(DisplayPixelFormat format, byte red, byte green, byte blue)
         {
             int redBits, greenBits, blueBits; // bits per color
@@ -90,6 +108,18 @@ namespace Microsoft.IoT.DeviceCore.Display
             return color;
         }
 
+        /// <summary>
+        /// Converts the specified color to a native binary value for the specified <see cref="DisplayPixelFormat"/>.
+        /// </summary>
+        /// <param name="format">
+        /// The desired <see cref="DisplayPixelFormat"/> output format.
+        /// </param>
+        /// <param name="color">
+        /// The color to convert.
+        /// </param>
+        /// <returns>
+        /// The converted value.
+        /// </returns>
         static public ushort GetNativeColor(DisplayPixelFormat format, Color color)
         {
             return GetNativeColor(format, color.R, color.G, color.B);

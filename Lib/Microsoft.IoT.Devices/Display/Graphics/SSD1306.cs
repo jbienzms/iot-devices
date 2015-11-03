@@ -22,8 +22,17 @@ namespace Microsoft.IoT.Devices.Display
     /// </summary>
     public enum SSD1306AddressMode : UInt32
     {
+        /// <summary>
+        /// Pixels are addressed horizontally.
+        /// </summary>
         Horizontal = 0x00,
+        /// <summary>
+        /// Pixels are addressed vertically.
+        /// </summary>
         Vertical = 0x01,
+        /// <summary>
+        /// Pixels are grouped into pages.
+        /// </summary>
         Page = 0x10
     };
 
@@ -395,6 +404,7 @@ namespace Microsoft.IoT.Devices.Display
             }
         }
 
+        /// <inheritdoc/>
         public void Dispose()
         {
             if (spiDevice != null)
@@ -414,6 +424,21 @@ namespace Microsoft.IoT.Devices.Display
             }
         }
 
+        /// <summary>
+        /// Writes the specified pixel to the display.
+        /// </summary>
+        /// <param name="x">
+        /// The x location of the pixel.
+        /// </param>
+        /// <param name="y">
+        /// The y location of the pixel.
+        /// </param>
+        /// <param name="color">
+        /// The color of the pixel.
+        /// </param>
+        /// <returns>
+        /// An <see cref="IAsyncAction"/> that represents the operation.
+        /// </returns>
         public IAsyncAction WritePixelAsync(int x, int y, Color color)
         {
             return Task.Run(async () =>
@@ -509,6 +534,12 @@ namespace Microsoft.IoT.Devices.Display
             }).AsAsyncAction();
         }
 
+        /// <summary>
+        /// Updates the display by writing the display buffer.
+        /// </summary>
+        /// <returns>
+        /// An <see cref="IAsyncAction"/> that represents the operation.
+        /// </returns>
         public IAsyncAction UpdateAsync()
         {
             return WriteBufferAsync().AsAsyncAction();

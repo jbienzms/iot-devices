@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Microsoft.IoT.DeviceCore.Input
 {
+    /// <summary>
+    /// Defines an interface for the <see cref="ThumbstickReadingChangedEventArgs"/> class.
+    /// </summary>
     public interface IThumbstickReadingChangedEventArgs
     {
         /// <summary>
@@ -16,6 +19,9 @@ namespace Microsoft.IoT.DeviceCore.Input
         ThumbstickReading Reading { get; }
     }
 
+    /// <summary>
+    /// Provides data for the <see cref="IThumbstick.ReadingChanged"/> event.
+    /// </summary>
     public sealed class ThumbstickReadingChangedEventArgs
     {
         /// <summary>

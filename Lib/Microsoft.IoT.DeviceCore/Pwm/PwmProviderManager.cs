@@ -37,6 +37,7 @@ namespace Microsoft.IoT.DeviceCore.Pwm
         #endregion // Constructors
 
         #region Public Methods
+        /// <inheritdoc/>
         public void Dispose()
         {
             // Dispose and remove each provider

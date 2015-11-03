@@ -15,6 +15,9 @@ using Microsoft.IoT.DeviceHelpers.Input;
 
 namespace Microsoft.IoT.Devices.Input
 {
+    /// <summary>
+    /// A basic push button that uses a single GPIO pin.
+    /// </summary>
     public sealed class PushButton : IPushButton, IDisposable
     {
         #region Member Variables
@@ -33,6 +36,7 @@ namespace Microsoft.IoT.Devices.Input
         #endregion // Constructors
 
         #region Public Methods
+        /// <inheritdoc/>
         public void Dispose()
         {
             if (helper != null)

@@ -9,6 +9,9 @@ using Windows.Devices.Gpio;
 
 namespace Microsoft.IoT.DeviceCore
 {
+    /// <summary>
+    /// Provides helper methods for working with GPIO classes like <see cref="GpioPin"/>.
+    /// </summary>
     static public class GpioExtensions
     {
         /// <summary>
