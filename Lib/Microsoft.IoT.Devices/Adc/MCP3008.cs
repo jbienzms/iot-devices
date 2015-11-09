@@ -18,14 +18,14 @@ namespace Microsoft.IoT.Devices.Adc
     public sealed class MCP3008 : IAdcControllerProvider, IDisposable
     {
         #region Constants
-        #endregion // Constants
-
-        #region Member Variables
-        private int chipSelectLine = 0;         // The chip select line used on the SPI controller
         private const int channelCount = 8;
         private const int maxValue = 1023;
         private const int minValue = 0;
         private const int resolutionInBits = 10;
+        #endregion // Constants
+
+        #region Member Variables
+        private int chipSelectLine = 0;         // The chip select line used on the SPI controller
         private string controllerName = "SPI0"; // The name of the SPI controller to use
         private bool isInitialized;
         private SpiDevice spiDevice;            // The SPI device the display is connected to
