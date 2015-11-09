@@ -139,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adc\ADC0832.cs" />
+    <Compile Include="Adc\MCP3008.cs" />
     <Compile Include="Adc\MCP3208.cs" />
     <Compile Include="Display\Graphics\ADA938.cs" />
     <Compile Include="Display\Graphics\SSD1306.cs" />

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(NuGetPackageRoot)' == ''">
-    <NuGetPackageRoot>C:\Users\jbienz\.nuget\packages\</NuGetPackageRoot>
+    <NuGetPackageRoot>C:\Users\dacrook\.nuget\packages\</NuGetPackageRoot>
   </PropertyGroup>
   <ImportGroup>
     <Import Project="$(NuGetPackageRoot)\Microsoft.IoT.Connections.Azure\0.7.0\build\uap10.0\Microsoft.IoT.Connections.Azure.targets" Condition="Exists('$(NuGetPackageRoot)\Microsoft.IoT.Connections.Azure\0.7.0\build\uap10.0\Microsoft.IoT.Connections.Azure.targets')" />
