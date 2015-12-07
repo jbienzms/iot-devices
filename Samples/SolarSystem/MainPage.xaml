@@ -5,9 +5,137 @@
     xmlns:local="using:SolarSystem"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:model="using:SolarSystem.Model"
+    xmlns:vm="using:SolarSystem.VidewModels"
+    mc:Ignorable="d"
+    RequestedTheme="Dark"
+    d:DataContext="{d:DesignInstance Type=vm:MainViewModel, IsDesignTimeCreatable=True}"
+    >
+    <Page.DataContext>
+        <vm:MainViewModel />
+    </Page.DataContext>
+
+    <Page.Resources>
+        <local:ImagePathConverter x:Key="imagePathConverter" />
+        <local:OrbitConverter x:Key="orbitConverter" />
+        
+        <DataTemplate x:Key="CelestialGridItem">
+            <StackPanel Width="250" Height="450" Orientation="Vertical">
+                <Image Source="{Binding Converter={StaticResource imagePathConverter}}" Width="220" Height="220" HorizontalAlignment="Center" />
+                <TextBlock Text="{Binding BodyName}" FontSize="36" FontWeight="Bold"/>
+                <TextBlock Text="{Binding Description}" FontSize="16" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" />
+            </StackPanel>
+        </DataTemplate>
+
+        <Style x:Key="CelestialGrid" TargetType="GridView">
+            <Setter Property="ItemTemplate" Value="{StaticResource CelestialGridItem}"/>
+            
+        </Style>
+
+        <DataTemplate x:Key="CelestialListItem">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding Converter={StaticResource imagePathConverter}, ConverterParameter=thumb}" Width="80" Height="80"/>
+                <TextBlock Text="{Binding BodyName}" FontSize="16" VerticalAlignment="Center"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <Style x:Key="CelestialList" TargetType="ListView">
+            <Setter Property="ItemTemplate" Value="{StaticResource CelestialListItem}"/>
+            <Setter Property="SelectionMode" Value="Extended" />
+        </Style>
+
+
+
+        <!--<Style x:Key="CelestialListGraphic" TargetType="ListView">
+            <Setter Property="Background" Value="Black" />
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <Canvas Background="Green" />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="DataContext">
+                            <Setter.Value>
+                                <model:CelestialBody BodyName="Neptune" Orbit="30.06896348" />
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Canvas.Left" Value="0"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <Grid>
+                                        --><!--<Ellipse x:Name="orbit" Width="{Binding Path=Orbit, Converter={StaticResource orbitConverter}}" Height="{Binding Path=Orbit, Converter={StaticResource orbitConverter}}" StrokeThickness="1" Stroke="White" RenderTransformOrigin="0,0.5">
+                                            <Ellipse.RenderTransform>
+                                                <CompositeTransform TranslateX="{Binding Path=Orbit, Converter={StaticResource orbitConverter}, ConverterParameter=-0.5}"/>
+                                            </Ellipse.RenderTransform>
+                                        </Ellipse>--><!--
+                                        <Grid x:Name="bodyLayout">
+                                            --><!--<Ellipse x:Name="selectedPlanet" Margin="-10" StrokeThickness="2" Stroke="Yellow" Visibility="Collapsed" />--><!--
+                                            <ContentPresenter />
+                                        </Grid>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Grid Background="Orange">
+                            <Image Source="{Binding Converter={StaticResource imagePathConverter}, ConverterParameter=thumb}" Width="20" Height="20"/>
+                            --><!--<Image Source="Assets/Thumbnails/Earth.gif" Width="40" Height="40"/>--><!--
+                        </Grid>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>-->
+
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Viewbox>
+            <Grid Width="1280" Height="800">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <ListView x:Name="SystemList" 
+                          Style="{StaticResource CelestialList}" 
+                          Grid.Column="0" 
+                          Margin="20,20,10,20" 
+                          ItemsSource="{Binding System.Bodies}">
+                    <!--<model:CelestialBody BodyName="Sun" Orbit="0" />
+                    <model:CelestialBody BodyName="Mercury" Orbit="0.38709893" />
+                    <model:CelestialBody BodyName="Venus" Orbit="0.72333199" />
+                    <model:CelestialBody BodyName="Earth" Orbit="1.0" />
+                    <model:CelestialBody BodyName="Mars" Orbit="1.52366231" />
+                    <model:CelestialBody BodyName="Jupiter" Orbit="5.20336301" />
+                    <model:CelestialBody BodyName="Saturn" Orbit="9.53707032" />
+                    <model:CelestialBody BodyName="Uranus" Orbit="19.19126393" />
+                    <model:CelestialBody BodyName="Neptune" Orbit="30.06896348" />
+                    <model:CelestialBody BodyName="Pluto" Orbit="39.482" />-->
+                </ListView>
+                <Viewbox Grid.Column="1" Margin="10,20,20,20">
+                    <GridView MaxWidth="780" x:Name="SelectedGrid" Style="{StaticResource CelestialGrid}">
 
+                    </GridView>
+                </Viewbox>
+                <!--<Canvas Width="500" Height="500" >
+            <Grid Canvas.Left="400" Background="Purple">
+                <Ellipse x:Name="selectedPlanet" Margin="-10" StrokeThickness="2" Stroke="Yellow" />
+                <ContentPresenter Content="FOO"/>
+            </Grid>
+
+        </Canvas>-->
+            </Grid>
+
+        </Viewbox>
     </Grid>
 </Page>

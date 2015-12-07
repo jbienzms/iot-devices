@@ -19,7 +19,7 @@ namespace SolarSystem.Model
         /// <value>
         /// The duration of a single rotation around the bodies own axis.
         /// </value>
-        [JsonProperty(Order = 3)]
+        [JsonProperty(Order = 2)]
 
         public TimeSpan Day { get; set; }
 
@@ -29,7 +29,7 @@ namespace SolarSystem.Model
         /// <value>
         /// A description of the body.
         /// </value>
-        [JsonProperty(Order = 1)]
+        [JsonProperty(Order = 4)]
         public string Description { get; set; }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace SolarSystem.Model
         /// A name for the body.
         /// </value>
         [JsonProperty(Order = 0)]
-        public string Name { get; set; }
+        public string BodyName { get; set; }
 
         /// <summary>
         /// Gets or sets the average elliptical distance from the body it orbits, in millions of kilometers.
@@ -47,7 +47,7 @@ namespace SolarSystem.Model
         /// <value>
         /// The average elliptical distance from the body it orbits, in millions of kilometers.
         /// </value>
-        [JsonProperty(Order = 2)]
+        [JsonProperty(Order = 1)]
         public double Orbit { get; set; }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace SolarSystem.Model
         /// <value>
         /// The duration of complete orbit.
         /// </value>
-        [JsonProperty(Order = 4)]
+        [JsonProperty(Order = 3)]
         public TimeSpan Year { get; set; }
     }
 }

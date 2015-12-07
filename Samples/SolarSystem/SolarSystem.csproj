@@ -96,13 +96,18 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CanvasHelper.cs" />
+    <Compile Include="Converters\ImagePathConverter.cs" />
+    <Compile Include="Helpers\BindingHelper.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\CelestialBody.cs" />
     <Compile Include="Model\CelestialFact.cs" />
     <Compile Include="Model\CelestialSystem.cs" />
+    <Compile Include="Converters\OrbitConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VidewModels\MainViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -111,6 +116,26 @@
     <None Include="SolarSystem_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Images\Earth.png" />
+    <Content Include="Assets\Images\Jupiter.png" />
+    <Content Include="Assets\Images\Mars.png" />
+    <Content Include="Assets\Images\Mercury.png" />
+    <Content Include="Assets\Images\Neptune.png" />
+    <Content Include="Assets\Images\Pluto.png" />
+    <Content Include="Assets\Images\Saturn.png" />
+    <Content Include="Assets\Images\Sun.png" />
+    <Content Include="Assets\Images\Uranus.png" />
+    <Content Include="Assets\Images\Venus.png" />
+    <Content Include="Assets\Thumbs\Earth.png" />
+    <Content Include="Assets\Thumbs\Jupiter.png" />
+    <Content Include="Assets\Thumbs\Mars.png" />
+    <Content Include="Assets\Thumbs\Mercury.png" />
+    <Content Include="Assets\Thumbs\Neptune.png" />
+    <Content Include="Assets\Thumbs\Pluto.png" />
+    <Content Include="Assets\Thumbs\Saturn.png" />
+    <Content Include="Assets\Thumbs\Sun.png" />
+    <Content Include="Assets\Thumbs\Uranus.png" />
+    <Content Include="Assets\Thumbs\Venus.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -135,9 +160,7 @@
       <Name>Windows IoT Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\Images\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
