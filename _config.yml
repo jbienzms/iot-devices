@@ -1,6 +1,8 @@
 name: Microsoft.IoT.Devices
 description: Help with devices in Windows IoT projects.
 markdown: redcarpet
+redcarpet:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]
 pygments: true
 permalink: pretty
 baseurl: /iot-devices
