@@ -15,7 +15,7 @@ using Microsoft.IoT.DeviceHelpers;
 namespace Microsoft.IoT.Devices.Adc
 {
     /// <summary>
-    /// Driver for the <see href="http://www.microchip.com/wwwproducts/Devices.aspx?dDocName=en010534">MCP3208</see> 
+    /// Driver for the <see href="http://www.microchip.com/wwwproducts/Devices.aspx?product=MCP3208">MCP3208</see> 
     /// 12-bit A/D converter.
     /// </summary>
     public sealed class MCP3208 : IAdcControllerProvider, IDisposable
