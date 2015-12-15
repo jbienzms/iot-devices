@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<grammar
+  version="1.0"
+  xml:lang="en-US"
+  root="celestialCommands"
+  xmlns="http://www.w3.org/2001/06/grammar"
+  tag-format="semantics/1.0">
+
+  <rule id="root">
+    <item>
+      <ruleref uri="#celestialCommands"/>
+      <tag>out.command=rules.latest();</tag>
+    </item>
+  </rule>
+
+  <rule id="celestialCommands">
+    <item>
+      <item> select </item>
+      <item>
+        <ruleref uri="#bodyName" />
+        <tag> out.bodyName=rules.latest(); </tag>
+      </item>
+    </item>
+  </rule>
+
+  <rule id="bodyName">
+    <one-of>
+      <item>
+        sun <tag> out="sun"; </tag>
+      </item>
+      <item>
+        earth <tag> out="earth"; </tag>
+      </item>
+    </one-of>
+  </rule>
+</grammar>

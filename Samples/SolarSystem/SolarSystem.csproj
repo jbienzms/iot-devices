@@ -96,6 +96,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\SpeechExtensions.cs" />
     <Compile Include="Helpers\CanvasHelper.cs" />
     <Compile Include="Converters\ImagePathConverter.cs" />
     <Compile Include="Helpers\BindingHelper.cs" />
@@ -107,6 +108,8 @@
     <Compile Include="Model\CelestialSystem.cs" />
     <Compile Include="Converters\OrbitConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Speech\SpeechManager.cs" />
+    <Compile Include="Speech\CelestialSpeechResult.cs" />
     <Compile Include="VidewModels\MainViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +147,7 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Speech\CelestialGrammar.xml" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

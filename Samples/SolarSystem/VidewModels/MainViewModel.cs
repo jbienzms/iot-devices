@@ -5,8 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Threading;
 using Newtonsoft.Json;
 using SolarSystem.Model;
+using SolarSystem.Speech;
 
 namespace SolarSystem.VidewModels
 {
@@ -14,6 +16,7 @@ namespace SolarSystem.VidewModels
     {
         #region Member Variables
         private ObservableCollection<CelestialBody> selectedBodies = new ObservableCollection<CelestialBody>();
+        private SpeechManager speechManager;
         private CelestialSystem system;
         #endregion // Member Variables
 
@@ -26,17 +29,35 @@ namespace SolarSystem.VidewModels
             }
             else
             {
-                LoadData();
+                Initialize();
             }
         }
 
-        public void LoadData()
+        private async void Initialize()
         {
-            // For now
+            await LoadDataAsync();
+            await InitSpeechAsync();
+        }
+
+        private async Task InitSpeechAsync()
+        {
+            // Create
+            speechManager = new SpeechManager(system);
+
+            // Subscribe to events
+            speechManager.ResultRecognized += SpeechManager_ResultRecognized;
+            // Initialize
+            await speechManager.InitializeAsync();
+        }
+
+        private async Task LoadDataAsync()
+        {
+            // Simulate for now
+            await Task.Delay(50);
             LoadSampleData();
         }
 
-        public void LoadSampleData()
+        private void LoadSampleData()
         {
             var sun = new CelestialBody()
             {
@@ -87,7 +108,19 @@ namespace SolarSystem.VidewModels
             };
 
             string ssjson = JsonConvert.SerializeObject(System, Formatting.Indented);
+        }
 
+        private void SpeechManager_ResultRecognized(SpeechManager sender, CelestialSpeechResult args)
+        {
+            // If one or more bodies were recognized, select them.
+            if (args.Bodies != null)
+            {
+                // Must be set on UI thread
+                DispatcherHelper.CheckBeginInvokeOnUI(() =>
+                {
+                    SelectedBodies = new ObservableCollection<CelestialBody>(args.Bodies);
+                });
+            }
         }
 
 
@@ -98,7 +131,12 @@ namespace SolarSystem.VidewModels
         /// <value>
         /// The selected bodies.
         /// </value>
-        public ObservableCollection<CelestialBody> SelectedBodies => selectedBodies;
+        public ObservableCollection<CelestialBody> SelectedBodies
+        {
+            get { return selectedBodies; }
+            set { Set(ref selectedBodies, value); }
+        }
+
 
         /// <summary>
         /// Gets or sets the celestial system.

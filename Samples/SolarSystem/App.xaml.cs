@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using GalaSoft.MvvmLight.Threading;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -66,6 +67,9 @@ namespace SolarSystem
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
             }
+
+            // Initialize dispatcher helper
+            DispatcherHelper.Initialize();
 
             if (rootFrame.Content == null)
             {
