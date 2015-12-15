@@ -107,7 +107,7 @@ namespace SolarSystem.Helpers
         #endregion // Nested Classes
 
         #region Dependency Property Definitions
-        static public readonly DependencyProperty SelectedItems = DependencyProperty.RegisterAttached("SelectedItems", typeof(IList), typeof(BindingHelper), new PropertyMetadata(null, OnSelectedItemsChanged));
+        static public readonly DependencyProperty SelectedItemsProperty = DependencyProperty.RegisterAttached("SelectedItems", typeof(IList), typeof(BindingHelper), new PropertyMetadata(null, OnSelectedItemsChanged));
         static private readonly DependencyProperty SynchronizerProperty = DependencyProperty.RegisterAttached("Synchronizer", typeof(Synchronizer), typeof(BindingHelper), new PropertyMetadata(null));
         #endregion // Dependency Property Definitions
 
@@ -165,7 +165,7 @@ namespace SolarSystem.Helpers
         /// </summary>
         public static IList GetSelectedItems(DependencyObject dependencyObject)
         {
-            return (IList)dependencyObject.GetValue(SelectedItems);
+            return (IList)dependencyObject.GetValue(SelectedItemsProperty);
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace SolarSystem.Helpers
         /// </summary>
         public static void SetSelectedItems(DependencyObject dependencyObject, IList value)
         {
-            dependencyObject.SetValue(SelectedItems, value);
+            dependencyObject.SetValue(SelectedItemsProperty, value);
         }
         #endregion // Public Methods
         

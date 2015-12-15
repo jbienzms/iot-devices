@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:model="using:SolarSystem.Model"
     xmlns:vm="using:SolarSystem.VidewModels"
+    xmlns:help="using:SolarSystem.Helpers"
     mc:Ignorable="d"
     RequestedTheme="Dark"
     d:DataContext="{d:DesignInstance Type=vm:MainViewModel, IsDesignTimeCreatable=True}"
@@ -110,7 +111,9 @@
                           Style="{StaticResource CelestialList}" 
                           Grid.Column="0" 
                           Margin="20,20,10,20" 
-                          ItemsSource="{Binding System.Bodies}">
+                          ItemsSource="{Binding System.Bodies}"
+                          help:BindingHelper.SelectedItems="{Binding SelectedBodies}"
+                          >
                     <!--<model:CelestialBody BodyName="Sun" Orbit="0" />
                     <model:CelestialBody BodyName="Mercury" Orbit="0.38709893" />
                     <model:CelestialBody BodyName="Venus" Orbit="0.72333199" />
@@ -123,7 +126,10 @@
                     <model:CelestialBody BodyName="Pluto" Orbit="39.482" />-->
                 </ListView>
                 <Viewbox Grid.Column="1" Margin="10,20,20,20">
-                    <GridView MaxWidth="780" x:Name="SelectedGrid" Style="{StaticResource CelestialGrid}">
+                    <GridView x:Name="SelectedGrid" 
+                              Style="{StaticResource CelestialGrid}"
+                              MaxWidth="780" 
+                              ItemsSource="{Binding SelectedBodies}">
 
                     </GridView>
                 </Viewbox>

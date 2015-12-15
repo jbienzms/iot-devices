@@ -20,19 +20,28 @@ namespace SolarSystem.VidewModels
 
         public MainViewModel()
         {
-            //if (this.IsInDesignMode)
-            //{
-
-            //}
-            LoadData();
+            if (this.IsInDesignMode)
+            {
+                LoadSampleData();
+            }
+            else
+            {
+                LoadData();
+            }
         }
 
         public void LoadData()
         {
+            // For now
+            LoadSampleData();
+        }
+
+        public void LoadSampleData()
+        {
             var sun = new CelestialBody()
             {
                 BodyName = "Sun",
-                Description = "The Sun is the star at the center of the Solar System and is by far the most important source of energy for life on Earth. It is a nearly perfect spherical ball of hot plasma,[12][13] with internal convective motion that generates a magnetic field via a dynamo process.",
+                Description = "The Sun is the star at the center of the Solar System and is by far the most important source of energy for life on Earth. It is a nearly perfect spherical ball of hot plasma, with internal convective motion that generates a magnetic field via a dynamo process.",
             };
 
             var earth = new CelestialBody()
