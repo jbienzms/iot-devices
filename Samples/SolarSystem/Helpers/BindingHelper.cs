@@ -7,6 +7,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 using System.Collections.Specialized;
 using Windows.UI.Xaml.Controls;
+using System.Diagnostics;
 
 namespace SolarSystem.Helpers
 {
@@ -39,25 +40,65 @@ namespace SolarSystem.Helpers
 
             private void Collection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
             {
+                Debug.WriteLine(string.Format("Collection Changing - Suspended: {0}", suspended));
                 // Suspend event handling
                 if (suspended) { return; }
                 suspended = true;
 
-                // Clear list selection
-                list.SelectedItems.Clear();
-
-                // Add items
-                foreach (object i in e.NewItems)
+                // What collection event?
+                switch (e.Action)
                 {
-                    list.SelectedItems.Add(i);
+                    case NotifyCollectionChangedAction.Add:
+                        // Add items
+                        foreach (object i in e.NewItems)
+                        {
+                            list.SelectedItems.Add(i);
+                        }
+                        break;
+
+                    case NotifyCollectionChangedAction.Remove:
+                        // Remove items
+                        foreach (object i in e.OldItems)
+                        {
+                            list.SelectedItems.Remove(i);
+                        }
+                        break;
+
+                    case NotifyCollectionChangedAction.Replace:
+                        // Remove items
+                        foreach (object i in e.OldItems)
+                        {
+                            list.SelectedItems.Remove(i);
+                        }
+
+                        // Add items
+                        foreach (object i in e.NewItems)
+                        {
+                            list.SelectedItems.Add(i);
+                        }
+                        break;
+
+                    case NotifyCollectionChangedAction.Reset:
+                        // Clear list selection
+                        list.SelectedItems.Clear();
+
+                        // Add items
+                        foreach (object i in collection)
+                        {
+                            list.SelectedItems.Add(i);
+                        }
+                        break;
                 }
+
 
                 // Resume event handling
                 suspended = false;
             }
 
-            private void List_SelectionChanged(object sender, Windows.UI.Xaml.Controls.SelectionChangedEventArgs e)
+            private void List_SelectionChanged(object sender, SelectionChangedEventArgs e)
             {
+                Debug.WriteLine(string.Format("List Changing - Suspended: {0}", suspended));
+
                 // Suspend event handling
                 if (suspended) { return; }
                 suspended = true;
@@ -85,6 +126,15 @@ namespace SolarSystem.Helpers
             {
                 if (started) { return; }
                 started = true;
+
+                // Force list to match collection by default
+                list.SelectedItems.Clear();
+
+                // Add items
+                foreach (object i in collection)
+                {
+                    list.SelectedItems.Add(i);
+                }
 
                 // Subscribe to events
                 collectionEvents.CollectionChanged += Collection_CollectionChanged;
