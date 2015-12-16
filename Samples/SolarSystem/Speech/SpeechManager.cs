@@ -1,20 +1,28 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using SolarSystem.Model;
 using SolarSystem.Speech;
 using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.Media.SpeechRecognition;
+using Windows.Storage;
+using Windows.Storage.Streams;
+using System.Xml;
 
 namespace SolarSystem.Speech
 {
     /// <summary>
     /// Manages speech recognition services for the application.
     /// </summary>
+    /// <remarks>
+    /// Awesome sample code for dynamic SRGS from <see href="http://www.robwirving.com/2014/03/07/wp8-speech-recognition-dynamically-generating-srgs-grammar-files/">Rob Irving</see>.
+    /// </remarks>
     public class SpeechManager
     {
         #region Constants
@@ -43,6 +51,73 @@ namespace SolarSystem.Speech
         }
         #endregion // Constructors
 
+        private void AddDynamicRules(XNamespace xmlns, XElement rootElement)
+        {
+            var bodyRule = new XElement(xmlns + "rule", new XAttribute("id", TAG_BODYNAME));
+            var bodyCollection = new XElement(xmlns + "one-of");
+            foreach (var body in system.Bodies)
+            {
+                bodyCollection.Add(new XElement(xmlns + "item", new XText(body.BodyName),
+                    new XElement(xmlns + "tag", new XText(string.Format("out.{0}=\"{1}\";", TAG_BODYNAME, body.BodyName)))));
+            }
+
+            // It's important to have at least one element, without this you'll get an exception when you try to use the grammar file
+            if (bodyCollection.HasElements)
+            {
+                bodyRule.Add(bodyCollection);
+            }
+
+            // Add to root rule
+            rootElement.Add(bodyRule);
+        }
+
+        private async Task<ISpeechRecognitionConstraint> LoadDynamicConstraintAsync()
+        {
+            // Get template file
+            var templateFile = await Package.Current.InstalledLocation.GetFileAsync(GRAMMAR_FILE);
+
+            // Create dynamic file
+            var dynamicFile = await ApplicationData.Current.TemporaryFolder.CreateFileAsync("DynamicGrammar.xml", CreationCollisionOption.ReplaceExisting);
+
+            // Copy from template to dynamic and add new rules
+            using (var templateStream = await templateFile.OpenReadAsync())
+            {
+                // Import grammar namespace
+                XNamespace xmlns = "http://www.w3.org/2001/06/grammar";
+
+                // Load template
+                XDocument dynamicDoc = XDocument.Load(templateStream.AsStreamForRead());
+
+                // Add dynamic rules
+                AddDynamicRules(xmlns, dynamicDoc.Root);
+
+                // Write out to temp file
+                using (var dynamicStream = await dynamicFile.OpenAsync(FileAccessMode.ReadWrite))
+                {
+                    // Customize settings to be SRGS friendly
+                    XmlWriterSettings srgsSettings = new XmlWriterSettings
+                    {
+                        Indent = true,
+                        NewLineHandling = NewLineHandling.Entitize,
+                        NewLineOnAttributes = false
+                    };
+
+                    // Create writer for dynamic file with proper settings
+                    using (var dynamicWriter = XmlWriter.Create(dynamicStream.AsStreamForWrite(), srgsSettings))
+                    {
+                        // Save dynamic to file
+                        dynamicDoc.WriteTo(dynamicWriter);
+                    }
+                }
+            }
+
+            // Load constraint from dynamic file
+            var constraint = new SpeechRecognitionGrammarFileConstraint(dynamicFile);
+
+            // Return the loaded constraint
+            return constraint;
+        }
+
         #region Overrides / Event Handlers
         private void RecognizerResultGenerated(SpeechContinuousRecognitionSession session, SpeechContinuousRecognitionResultGeneratedEventArgs args)
         {
@@ -61,7 +136,7 @@ namespace SolarSystem.Speech
             Debug.WriteLine("Body: " + bodyName);
 
             // Try to find the body
-            var body = system.Bodies.Where(b => b.BodyName.ToLower() == bodyName).FirstOrDefault();
+            var body = system.Bodies.Where(b => b.BodyName == bodyName).FirstOrDefault();
 
             // Notify
             if (ResultRecognized != null)
@@ -97,11 +172,8 @@ namespace SolarSystem.Speech
             recognizer.StateChanged += RecognizerStateChanged;
             recognizer.ContinuousRecognitionSession.ResultGenerated += RecognizerResultGenerated;
 
-            // Get file
-            var file = await Package.Current.InstalledLocation.GetFileAsync(GRAMMAR_FILE);
-
             // Load constraint
-            var constraint = new SpeechRecognitionGrammarFileConstraint(file);
+            var constraint = await LoadDynamicConstraintAsync();
 
             // Add constraint to recognizer
             recognizer.Constraints.Add(constraint);

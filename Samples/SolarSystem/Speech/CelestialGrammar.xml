@@ -22,15 +22,4 @@
       </item>
     </item>
   </rule>
-
-  <rule id="bodyName">
-    <one-of>
-      <item>
-        sun <tag> out="sun"; </tag>
-      </item>
-      <item>
-        earth <tag> out="earth"; </tag>
-      </item>
-    </one-of>
-  </rule>
 </grammar>
