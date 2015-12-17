@@ -86,8 +86,9 @@ namespace SolarSystem.VidewModels
 
             var iceFact = new CelestialFact()
             {
-                Name = "PlanetsWithIce",
-                Description = "Planets that have ice",
+                Title = "Planets with ice",
+                Contributor = "Bienz / Vasek Family",
+                Description = "Both Earth and Mars have ice but Mars contains very little ice.",
                 Bodies = new List<CelestialBody>()
                 {
                     earth,

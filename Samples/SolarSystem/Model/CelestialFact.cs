@@ -18,8 +18,17 @@ namespace SolarSystem.Model
         /// <value>
         /// The bodies that match the fact.
         /// </value>
-        [JsonProperty(Order = 2)]
+        [JsonProperty(Order = 3)]
         public List<CelestialBody> Bodies { get; set; }
+
+        /// <summary>
+        /// Gets or sets the contributor of the fact.
+        /// </summary>
+        /// <value>
+        /// The contributor of the fact.
+        /// </value>
+        [JsonProperty(Order = 1)]
+        public string Contributor { get; set; }
 
         /// <summary>
         /// Gets or sets a description of the fact.
@@ -27,16 +36,23 @@ namespace SolarSystem.Model
         /// <value>
         /// A description of the fact.
         /// </value>
-        [JsonProperty(Order = 1)]
+        /// <remarks>
+        /// The description provides additional detail text displayed on the screen.
+        /// </remarks>
+        [JsonProperty(Order = 2)]
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets a name for the fact.
+        /// Gets or sets a title for the fact.
         /// </summary>
         /// <value>
-        /// A name for the fact.
+        /// A title for the fact.
         /// </value>
+        /// <remarks>
+        /// The title is what should be spoken during speech recognition for the 
+        /// fact to be displayed.
+        /// </remarks>
         [JsonProperty(Order = 0)]
-        public string Name { get; set; }
+        public string Title { get; set; }
     }
 }
