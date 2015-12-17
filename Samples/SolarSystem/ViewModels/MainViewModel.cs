@@ -17,12 +17,12 @@ namespace SolarSystem.ViewModels
     {
         #region Member Variables
         private IoManager ioManager;
-        private ObservableCollection<CelestialBody> selectedBodies = new ObservableCollection<CelestialBody>();
+        private ObservableCollection<CelestialBody> selectedBodies;
         private SpeechManager speechManager;
         private CelestialSystem system;
         #endregion // Member Variables
 
-
+        #region Constructors
         public MainViewModel()
         {
             if (this.IsInDesignMode)
@@ -34,12 +34,15 @@ namespace SolarSystem.ViewModels
                 Initialize();
             }
         }
+        #endregion // Constructors
 
+        #region Internal Methods
         private async void Initialize()
         {
+            SelectedBodies = new ObservableCollection<CelestialBody>();
             await LoadDataAsync();
-            InitIO();
             await InitSpeechAsync();
+            InitIO();
         }
 
         private void InitIO()
@@ -51,13 +54,16 @@ namespace SolarSystem.ViewModels
             ioManager.Initialize();
 
             // Turn off pins if we're using GPIO
-            // Get all bodies that are connected to IO and select the IO pins themselves
-            var pins = (from b in system.Bodies
-                          where b.IoPin.HasValue
-                          select b.IoPin.Value).ToArray();
+            if (ioManager.IsEnabled)
+            {
+                // Get all bodies that are connected to IO and select the IO pins themselves
+                var pins = (from b in system.Bodies
+                            where b.IoPin.HasValue
+                            select b.IoPin.Value).ToArray();
 
-            // Turn off all IO pins (to deal with starting floating values).
-            ioManager.SetOff(pins);
+                // Turn off all IO pins (to deal with starting floating values).
+                ioManager.SetOff(pins);
+            }
         }
 
         private async Task InitSpeechAsync()
@@ -67,7 +73,7 @@ namespace SolarSystem.ViewModels
 
             // Subscribe to events
             speechManager.ResultRecognized += SpeechManager_ResultRecognized;
-            
+
             // Initialize
             await speechManager.InitializeAsync(system);
         }
@@ -91,6 +97,7 @@ namespace SolarSystem.ViewModels
             var earth = new CelestialBody()
             {
                 BodyName = "Earth",
+                IoPin = 26,
                 Description = "Earth is the third planet from the Sun, the densest planet in the Solar System, the largest of the Solar System's four terrestrial planets, and the only astronomical object known to harbor life.",
                 Day = new TimeSpan(24, 0, 0),
                 Orbit = 150,
@@ -134,6 +141,29 @@ namespace SolarSystem.ViewModels
             string ssjson = JsonConvert.SerializeObject(System, Formatting.Indented);
         }
 
+        private void UpdateIO()
+        {
+            // Set exclusive lights if we're using GPIO
+            if ((ioManager != null) && (ioManager.IsEnabled) && (selectedBodies != null))
+            {
+                // Get all bodies that are connected to IO and select the IO pins themselves
+                var pins = (from b in selectedBodies
+                            where b.IoPin.HasValue
+                            select b.IoPin.Value).ToArray();
+
+                // Set exclusive
+                ioManager.SetExclusive(pins);
+            }
+        }
+        #endregion // Internal Methods
+
+        #region Overrides / Event Handlers
+        private void SelectedBodies_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            // Update IO
+            UpdateIO();
+        }
+
         private void SpeechManager_ResultRecognized(SpeechManager sender, CelestialSpeechResult args)
         {
             // If one or more bodies were recognized, select them.
@@ -146,6 +176,7 @@ namespace SolarSystem.ViewModels
                 });
             }
         }
+        #endregion // Overrides / Event Handlers
 
 
         #region Public Properties
@@ -158,9 +189,31 @@ namespace SolarSystem.ViewModels
         public ObservableCollection<CelestialBody> SelectedBodies
         {
             get { return selectedBodies; }
-            set { Set(ref selectedBodies, value); }
-        }
+            set
+            {
+                // Hold onto previous value
+                var oldBodies = selectedBodies;
 
+                // Check if changing
+                if (Set(ref selectedBodies, value))
+                {
+                    // Unsubscribe?
+                    if (oldBodies != null)
+                    {
+                        oldBodies.CollectionChanged -= SelectedBodies_CollectionChanged;
+                    }
+
+                    // Subscribe?
+                    if (value != null)
+                    {
+                        value.CollectionChanged += SelectedBodies_CollectionChanged;
+                    }
+
+                    // Update IO
+                    UpdateIO();
+                }
+            }
+        }
 
         /// <summary>
         /// Gets or sets the celestial system.
