@@ -100,6 +100,7 @@
     <Compile Include="Helpers\CanvasHelper.cs" />
     <Compile Include="Converters\ImagePathConverter.cs" />
     <Compile Include="Helpers\BindingHelper.cs" />
+    <Compile Include="IO\IoManager.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -110,7 +111,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Speech\SpeechManager.cs" />
     <Compile Include="Speech\CelestialSpeechResult.cs" />
-    <Compile Include="VidewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

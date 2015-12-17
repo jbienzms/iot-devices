@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Threading;
 using Newtonsoft.Json;
+using SolarSystem.IO;
 using SolarSystem.Model;
 using SolarSystem.Speech;
 
-namespace SolarSystem.VidewModels
+namespace SolarSystem.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
         #region Member Variables
+        private IoManager ioManager;
         private ObservableCollection<CelestialBody> selectedBodies = new ObservableCollection<CelestialBody>();
         private SpeechManager speechManager;
         private CelestialSystem system;
@@ -36,18 +38,38 @@ namespace SolarSystem.VidewModels
         private async void Initialize()
         {
             await LoadDataAsync();
+            InitIO();
             await InitSpeechAsync();
+        }
+
+        private void InitIO()
+        {
+            // Create
+            ioManager = new IoManager();
+
+            // Initialize
+            ioManager.Initialize();
+
+            // Turn off pins if we're using GPIO
+            // Get all bodies that are connected to IO and select the IO pins themselves
+            var pins = (from b in system.Bodies
+                          where b.IoPin.HasValue
+                          select b.IoPin.Value).ToArray();
+
+            // Turn off all IO pins (to deal with starting floating values).
+            ioManager.SetOff(pins);
         }
 
         private async Task InitSpeechAsync()
         {
             // Create
-            speechManager = new SpeechManager(system);
+            speechManager = new SpeechManager();
 
             // Subscribe to events
             speechManager.ResultRecognized += SpeechManager_ResultRecognized;
+            
             // Initialize
-            await speechManager.InitializeAsync();
+            await speechManager.InitializeAsync(system);
         }
 
         private async Task LoadDataAsync()
@@ -62,6 +84,7 @@ namespace SolarSystem.VidewModels
             var sun = new CelestialBody()
             {
                 BodyName = "Sun",
+                IoPin = 4,
                 Description = "The Sun is the star at the center of the Solar System and is by far the most important source of energy for life on Earth. It is a nearly perfect spherical ball of hot plasma, with internal convective motion that generates a magnetic field via a dynamo process.",
             };
 

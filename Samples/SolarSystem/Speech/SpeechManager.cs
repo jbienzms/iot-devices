@@ -41,13 +41,8 @@ namespace SolarSystem.Speech
         /// <summary>
         /// Constructs a new <see cref="SpeechManager"/>.
         /// </summary>
-        /// <param name="system">
-        /// The <see cref="CelestialSystem"/> used to build voice commands and return results.
-        /// </param>
-        public SpeechManager(CelestialSystem system)
+        public SpeechManager()
         {
-            if (system == null) throw new ArgumentNullException("system");
-            this.system = system;
         }
         #endregion // Constructors
 
@@ -119,6 +114,11 @@ namespace SolarSystem.Speech
         }
 
         #region Overrides / Event Handlers
+        private void ContinuousRecognitionSession_Completed(SpeechContinuousRecognitionSession sender, SpeechContinuousRecognitionCompletedEventArgs args)
+        {
+            Debug.WriteLine("Continuous Recognition Session Completed: " + args.Status.ToString());
+        }
+
         private void RecognizerResultGenerated(SpeechContinuousRecognitionSession session, SpeechContinuousRecognitionResultGeneratedEventArgs args)
         {
             // Output debug strings
@@ -160,16 +160,30 @@ namespace SolarSystem.Speech
         /// <summary>
         /// Initializes speech recognition and begins listening.
         /// </summary>
+        /// <param name="system">
+        /// The <see cref="CelestialSystem"/> used to build voice commands and return results.
+        /// </param>
         /// <returns>
         /// A <see cref="Task"/> that yields the result of the operation.
         /// </returns>
-        public async Task<SpeechRecognitionResultStatus> InitializeAsync()
+        public async Task<SpeechRecognitionResultStatus> InitializeAsync(CelestialSystem system)
         {
+            // Validate
+            if (isInitialized) { throw new InvalidOperationException("Already initialized."); }
+            if (system == null) throw new ArgumentNullException("system");
+
+            // Store
+            this.system = system;
+
             // Create recognizer
             recognizer = new SpeechRecognizer();
 
+            // Configure to never stop listening
+            recognizer.ContinuousRecognitionSession.AutoStopSilenceTimeout = TimeSpan.MaxValue;
+
             // Subscribe to events
             recognizer.StateChanged += RecognizerStateChanged;
+            recognizer.ContinuousRecognitionSession.Completed += ContinuousRecognitionSession_Completed;
             recognizer.ContinuousRecognitionSession.ResultGenerated += RecognizerResultGenerated;
 
             // Load constraint
@@ -189,7 +203,7 @@ namespace SolarSystem.Speech
             // If successful start recognition
             if (compileResult.Status == SpeechRecognitionResultStatus.Success)
             {
-                await recognizer.ContinuousRecognitionSession.StartAsync();
+                await recognizer.ContinuousRecognitionSession.StartAsync(SpeechContinuousRecognitionMode.Default);
             }
 
             // Return the result
