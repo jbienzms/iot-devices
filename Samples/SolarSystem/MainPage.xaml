@@ -23,7 +23,7 @@
         <DataTemplate x:Key="CelestialGridItem">
             <StackPanel Width="250" Height="450" Orientation="Vertical">
                 <Image Source="{Binding Converter={StaticResource imagePathConverter}}" Width="220" Height="220" HorizontalAlignment="Center" />
-                <TextBlock Text="{Binding BodyName}" FontSize="36" FontWeight="Bold"/>
+                <TextBlock Text="{Binding Name}" FontSize="36" FontWeight="Bold"/>
                 <TextBlock Text="{Binding Description}" FontSize="16" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" />
             </StackPanel>
         </DataTemplate>
@@ -36,7 +36,7 @@
         <DataTemplate x:Key="CelestialListItem">
             <StackPanel Orientation="Horizontal">
                 <Image Source="{Binding Converter={StaticResource imagePathConverter}, ConverterParameter=thumb}" Width="80" Height="80"/>
-                <TextBlock Text="{Binding BodyName}" FontSize="16" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Name}" FontSize="16" VerticalAlignment="Center"/>
             </StackPanel>
         </DataTemplate>
 
@@ -61,7 +61,7 @@
                     <Style TargetType="ListViewItem">
                         <Setter Property="DataContext">
                             <Setter.Value>
-                                <model:CelestialBody BodyName="Neptune" Orbit="30.06896348" />
+                                <model:CelestialBody Name="Neptune" Orbit="30.06896348" />
                             </Setter.Value>
                         </Setter>
                         <Setter Property="Canvas.Left" Value="0"/>

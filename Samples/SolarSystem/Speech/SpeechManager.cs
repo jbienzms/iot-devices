@@ -52,8 +52,8 @@ namespace SolarSystem.Speech
             var bodyCollection = new XElement(xmlns + "one-of");
             foreach (var body in system.Bodies)
             {
-                bodyCollection.Add(new XElement(xmlns + "item", new XText(body.BodyName),
-                    new XElement(xmlns + "tag", new XText(string.Format("out.{0}=\"{1}\";", TAG_BODYNAME, body.BodyName)))));
+                bodyCollection.Add(new XElement(xmlns + "item", new XText(body.Name),
+                    new XElement(xmlns + "tag", new XText(string.Format("out.{0}=\"{1}\";", TAG_BODYNAME, body.Name)))));
             }
 
             // It's important to have at least one element, without this you'll get an exception when you try to use the grammar file
@@ -136,7 +136,7 @@ namespace SolarSystem.Speech
             Debug.WriteLine("Body: " + bodyName);
 
             // Try to find the body
-            var body = system.Bodies.Where(b => b.BodyName == bodyName).FirstOrDefault();
+            var body = system.Bodies.Where(b => b.Name == bodyName).FirstOrDefault();
 
             // Notify
             if (ResultRecognized != null)

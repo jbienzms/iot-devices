@@ -20,11 +20,11 @@ namespace SolarSystem
 
             if (thumb == true)
             {
-                return string.Format("Assets/Thumbs/{0}.png", body.BodyName);
+                return string.Format("Assets/Thumbs/{0}.png", body.Name);
             }
             else
             {
-                return string.Format("Assets/Images/{0}.png", body.BodyName);
+                return string.Format("Assets/Images/{0}.png", body.Name);
             }
         }
 

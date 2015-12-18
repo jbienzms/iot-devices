@@ -90,12 +90,14 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="Data\SystemData.json" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\DataManager.cs" />
     <Compile Include="Extensions\SpeechExtensions.cs" />
     <Compile Include="Helpers\CanvasHelper.cs" />
     <Compile Include="Converters\ImagePathConverter.cs" />

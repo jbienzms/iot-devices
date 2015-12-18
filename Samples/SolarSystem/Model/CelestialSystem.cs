@@ -22,21 +22,12 @@ namespace SolarSystem.Model
         public List<CelestialBody> Bodies { get; set; }
 
         /// <summary>
-        /// Gets or sets the central orbital body of the system.
-        /// </summary>
-        /// <value>
-        /// The central orbital body of the system.
-        /// </value>
-        [JsonProperty(Order = 1)]
-        public CelestialBody CentralBody { get; set; }
-
-        /// <summary>
         /// Gets or sets a collection of facts about the system.
         /// </summary>
         /// <value>
         /// Facts about the system.
         /// </value>
-        [JsonProperty(Order = 2)]
+        [JsonProperty(Order = 1)]
         public List<CelestialFact> Facts { get; set; }
     }
 }

@@ -1,0 +1,73 @@
+﻿{
+  "Bodies": [
+    {
+      "$id": "1",
+      "Name": "Sun",
+      "IoPin": 4,
+      "Orbit": 0.0,
+      "Day": "00:00:00",
+      "Year": "00:00:00",
+      "Description": "The Sun is the star at the center of the Solar System and is by far the most important source of energy for life on Earth. It is a nearly perfect spherical ball of hot plasma, with internal convective motion that generates a magnetic field via a dynamo process."
+    },
+    {
+      "$id": "2",
+      "Name": "Mercury",
+      "IoPin": null,
+      "Orbit": 58.0,
+      "Day": "58.15:00:00",
+      "Year": "88.00:00:00",
+      "Description": "Mercury is the smallest and closest to the Sun of the eight planets, with an orbital period of about 88 Earth days. Seen from Earth, it appears to move around its orbit in about 116 days, which is much faster than any other planet in the Solar System."
+    },
+    {
+      "$id": "3",
+      "Name": "Venus",
+      "IoPin": null,
+      "Orbit": 108,
+      "Day": "243.00:00:00",
+      "Year": "224.15:36:00",
+      "Description": "Venus is the second planet from the Sun, orbiting it every 224.7 Earth days. It has no natural satellite. It is named after the Roman goddess of love and beauty. After the Moon, it is the brightest natural object in the night sky."
+    },
+    {
+      "$id": "4",
+      "Name": "Earth",
+      "IoPin": 26,
+      "Orbit": 150.0,
+      "Day": "1.00:00:00",
+      "Year": "365.00:00:00",
+      "Description": "Earth is the third planet from the Sun, the densest planet in the Solar System, the largest of the Solar System's four terrestrial planets, and the only astronomical object known to harbor life."
+    },
+    {
+      "$id": "5",
+      "Name": "Mars",
+      "IoPin": null,
+      "Orbit": 230.0,
+      "Day": "1.00:43:00",
+      "Year": "687.00:00:00",
+      "Description": "Mars is the fourth planet from the Sun and the second smallest planet in the Solar System, after Mercury. Named after the Roman god of war, it is often referred to as the \"Red Planet\" because the iron oxide prevalent on its surface gives it a reddish appearance."
+    },
+    {
+      "$id": "6",
+      "Name": "Jupiter",
+      "IoPin": null,
+      "Orbit": 780.3,
+      "Day": "0.09:50:00",
+      "Year": "4332.00:00:00",
+      "Description": "Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a giant planet with a mass one-thousandth that of the Sun, but two and a half times that of all the other planets in the Solar System combined. Jupiter is a gas giant."
+    }
+  ],
+  "Facts": [
+    {
+      "Title": "Planets with ice",
+      "Contributor": "Bienz / Vasek Family",
+      "Description": "Both Earth and Mars have ice but Mars contains very little ice.",
+      "Bodies": [
+        {
+          "$ref": "4"
+        },
+        {
+          "$ref": "5"
+        }
+      ]
+    }
+  ]
+}

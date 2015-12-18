@@ -39,7 +39,7 @@ namespace SolarSystem.Model
         /// A name for the body.
         /// </value>
         [JsonProperty(Order = 0)]
-        public string BodyName { get; set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the GPIO pin number that the planet is connected to.
