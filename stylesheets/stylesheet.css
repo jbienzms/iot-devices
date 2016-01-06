@@ -90,7 +90,8 @@ header h2 {
 }
 
 .inner {
-  width: 620px;
+	width: 60%;
+  min-width: 620px;
   margin: 0 auto;
 }
 
@@ -415,4 +416,27 @@ header h1 a:hover {
 
 .authorline {
   color: #535353;
+}
+
+table {
+    display: table;
+    width: 100%;
+    overflow: auto;
+    word-break: normal;
+    word-break: keep-all;
+		margin-bottom: 20px;
+}
+
+table tr {
+    background-color: rgba(255, 255, 255, .5);
+    border-top: 1px solid #ccc;
+}
+
+table th, table td {
+    padding: 6px 13px;
+    border: 1px solid #ddd;
+}
+
+table th {
+	font-weight: bold;
 }

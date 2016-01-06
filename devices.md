@@ -75,4 +75,4 @@ This section covers support for a wide range of devices that do not require spec
 
 
 ## Something Missing? ##
-Are we missing something you need? Learn how to [build your own device library](customlib.md) on top of our Device Core. Or, head on over to our [source code](http://aka.ms/iotdevices) to see how we built the classes above. If you do add support for a missing sensor or device, please consider submitting a pull request. That way we can add your hard work to the NuGet library so that everyone can benefit. And we'll give you all the credit, of course! 
+Are we missing something you need? Learn how to [build your own device library]({{ site.baseurl }}/customlib.md) on top of our Device Core. Or, head on over to our [source code](http://aka.ms/iotdevices) to see how we built the classes above. If you do add support for a missing sensor or device, please consider submitting a pull request. That way we can add your hard work to the NuGet library so that everyone can benefit. And we'll give you all the credit, of course! 
