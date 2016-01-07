@@ -17,7 +17,7 @@ This section covers devices that have their own dedicated classes in the framewo
 
 
 ### Display ###
-**IMPORTANT**: The displays below can be coupled with [GraphicsDisplayPanel]({{ site.baseurl }}/doc/html/T_Microsoft_IoT_DeviceCore_Controls_GraphicsDisplayPanel.htm) for seamless integration with XAML UI styles and controls.
+**IMPORTANT**: Any of the displays below can be coupled with [GraphicsDisplayPanel]({{ site.baseurl }}/doc/html/T_Microsoft_IoT_DeviceCore_Controls_GraphicsDisplayPanel.htm) for seamless integration with XAML. The [IoT Core Breathalyzer](https://www.hackster.io/devices-for-windows-iot/windows-iot-core-breathalyzer-d02a45) article on Hackster.io includes videos, step-by-step instructions and full sample code for using [GraphicsDisplayPanel]({{ site.baseurl }}/doc/html/T_Microsoft_IoT_DeviceCore_Controls_GraphicsDisplayPanel.htm) in a real world project.  
 
 | Part # | Class | Manufacturer | Description | Notes |
 |:-------|:------|:-------------|:------------|:------|
