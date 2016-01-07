@@ -2,12 +2,10 @@
 title: Supported Devices
 layout: post
 ---
- 
-# Supported Devices #
-The **Microsoft.IoT.Devices** library supports hundreds of devices. Some devices are supported directly using specialized classes built specifically for a device or chipset. Others are supported through generic classes that can be used to interface with a wide range of devices. 
+The **Microsoft.IoT.Devices** library supports hundreds of devices. Some devices are supported using specialized classes built specifically for a device or chipset while others are supported through generic classes that work with a wide range of devices. The sections below list the currently supported specialized devices and their class types as well as give some examples of the types of devices that can be used with the generic classes. Keep in mind that this list is always expanding, especially through the help of community contributions. 
 
 ## Specialized ##
-This section lists the supported specialized devices and the classes in the framework which support them.
+This section covers devices that have their own dedicated classes in the framework to support them.
 
 
 ### ADC ###
@@ -30,7 +28,7 @@ This section lists the supported specialized devices and the classes in the fram
 ### Input ###
 | Part # | Class | Manufacturer | Description | Notes |
 |:-------|:------|:-------------|:------------|:------|
-| [SS944](http://www.sainsmart.com/sainsmart-joystick-module-free-10-cables-for-arduino.html) | [SS944]({{ site.baseurl }}/doc/html/T_Microsoft_IoT_Devices_Input_SS944.htm) | SainSmart | Dual axis Thumbstick with optional center Push Button. | Minimum one axis required |
+| [SS944](http://www.sainsmart.com/sainsmart-joystick-module-free-10-cables-for-arduino.html) | [SS944]({{ site.baseurl }}/doc/html/T_Microsoft_IoT_Devices_Input_SS944.htm) | SainSmart | Dual axis Thumbstick with optional center Push Button. | Minimum one axis required. *This class will be renamed to 'Thumbstick' in a future release because it is not chipset specific.* |
 
 
 ### PWM ###
@@ -42,23 +40,23 @@ This section lists the supported specialized devices and the classes in the fram
 
 
 ## Generic ##
-This section covers support for a wide range of devices that do not require specialized classes.
+This section covers the generic classes and provides examples of devices that work with them.
 
 
 ### Input ###
 | Class | Works With |
 |:------|:-----------|
-| [PushButton]({{ site.baseurl }}/doc/html/T_Microsoft_IoT_Devices_Input_PushButton.htm) | Momentary buttons that use a single GPIO pin. For example, the [Sunfounder Button Module](http://www.sunfounder.com/index.php?c=showcs&id=133&model=Button Module). This class exposes properties and events similar to a XAML Button control.|
+| [PushButton]({{ site.baseurl }}/doc/html/T_Microsoft_IoT_Devices_Input_PushButton.htm) | Momentary buttons that use a single GPIO pin. For example, the [Sunfounder Button Module](http://www.sunfounder.com/index.php?c=showcs&id=133&model=Button Module). This class exposes properties and events similar to a [XAML Button](https://msdn.microsoft.com/en-us/library/windows/apps/windows.ui.xaml.controls.button.aspx) control.|
 | [RotaryEncoder]({{ site.baseurl }}/doc/html/T_Microsoft_IoT_Devices_Input_RotaryEncoder.htm) | Rotary knobs that use one GPIO for Clock and another for Direction; optionally including a Push Button. For example the [Sunfounder Rotary Encoder](http://www.sunfounder.com/index.php?c=showcs&id=140&model=Rotary Encoder Module). |
 | [Switch]({{ site.baseurl }}/doc/html/T_Microsoft_IoT_Devices_Input_Switch.htm) | Any switch or sensor that use a single GPIO pin to indicate "on" or "off". For example, the Sunfounder [Switch Module](http://www.sunfounder.com/index.php?c=showcs&id=154&model=Switch Module), [Tilt Switch Module](http://www.sunfounder.com/index.php?c=showcs&id=126&model=Tilt Switch Module) or even [Obstacle Avoidance Module](http://www.sunfounder.com/index.php?c=showcs&id=143&model=Obstacle Avoidance Sensor Module). |
 
-**Note**: The [SS944]({{ site.baseurl }}/doc/html/T_Microsoft_IoT_Devices_Input_SS944.htm) class may be used for any dual axis thumbstick or joystick. We may rename this class to 'Thumbstick' in the future.
+**Note**: The [SS944]({{ site.baseurl }}/doc/html/T_Microsoft_IoT_Devices_Input_SS944.htm) class may be used for any single or dual axis thumbstick, with or without a pushbutton. We plan to rename this class to 'Thumbstick' in a future release.
 
 
 ### Lights ###
 | Class | Works With |
 |:------|:-----------|
-| [RgbLed]({{ site.baseurl }}/doc/html/T_Microsoft_IoT_Devices_Lights_RgbLed.htm) | Any multi-color light that be controlled by ADC. For example, the Sunfounder [RGB LED Module](http://www.sunfounder.com/index.php?c=showcs&id=136&model=RGB LED Module) or even the [Dual-Color LED Module](http://www.sunfounder.com/index.php?c=showcs&id=138&model=Dual-color LED Module). A minimum of one color channel must be used. |
+| [RgbLed]({{ site.baseurl }}/doc/html/T_Microsoft_IoT_Devices_Lights_RgbLed.htm) | Any light that be controlled by PWM. For example, the Sunfounder [RGB LED Module](http://www.sunfounder.com/index.php?c=showcs&id=136&model=RGB LED Module) or the [Dual-Color LED Module](http://www.sunfounder.com/index.php?c=showcs&id=138&model=Dual-color LED Module). Technically any single-color LED can also be used with this class since a minimum of only one color channel is required. But in this configuration color mixing will not work as expected so it's recommended to use the [BrightnessLevel]({{ site.baseurl }}/doc/html/P_Microsoft_IoT_Devices_Lights_RgbLed_BrightnessLevel.htm) property alone to adjust light levels. The [PwmLed Sample](https://github.com/jbienzms/iot-devices/tree/master/Samples/PwmLed) demonstrates how to control an RGB LED with a XAML Color Picker using this class. |
 
 
 ### PWM ###
@@ -75,4 +73,4 @@ This section covers support for a wide range of devices that do not require spec
 
 
 ## Something Missing? ##
-Are we missing something you need? Learn how to [build your own device library]({{ site.baseurl }}/customlib.md) on top of our Device Core. Or, head on over to our [source code](http://aka.ms/iotdevices) to see how we built the classes above. If you do add support for a missing sensor or device, please consider submitting a pull request. That way we can add your hard work to the NuGet library so that everyone can benefit. And we'll give you all the credit, of course! 
+Are we missing something you need? Learn how to [build your own device library]({{ site.baseurl }}/customlib.md) on top of our DeviceCore. Or, head on over to our [source code](http://aka.ms/iotdevices) to see how we built the classes above. If you do add support for a missing sensor or device, please consider submitting a pull request. That way we can add your hard work to the NuGet library so that everyone can benefit. And we'll give you all the credit, of course! 
