@@ -134,7 +134,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="SyncfusionUniversalWindows, Version=13.2.0.34">
+    <SDKReference Include="SyncfusionUniversalWindows, Version=13.3.0.7">
       <Name>Syncfusion Controls for UWP XAML</Name>
     </SDKReference>
     <SDKReference Include="WindowsIoT, Version=10.0.10240.0">
