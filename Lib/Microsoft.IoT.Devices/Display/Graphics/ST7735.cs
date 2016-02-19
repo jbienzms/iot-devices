@@ -978,7 +978,7 @@ namespace Microsoft.IoT.Devices.Display
         /// A <seealso cref="ST7735DisplayType"/> that describes the type of display. 
         /// The default is <see cref="ST7735DisplayType.R"/>.
         /// </value>
-        [DefaultValue(ST7735DisplayType.R)]
+        [DefaultValue((int) ST7735DisplayType.R)] // HACK: int cast is a workaround for WinMDExp issue - JB 2016/02/19
         public ST7735DisplayType DisplayType
         {
             get
@@ -1020,7 +1020,7 @@ namespace Microsoft.IoT.Devices.Display
         /// A <see cref="DisplayOrientations"/> that specifies the orientation. 
         /// The default is <see cref="DisplayOrientations.Portrait"/>.
         /// </value>
-        [DefaultValue(DisplayOrientations.Portrait)]
+        [DefaultValue((int) DisplayOrientations.Portrait)] // HACK: int cast is a workaround for WinMDExp issue - JB 2016/02/19
         public DisplayOrientations Orientation
         {
             get
@@ -1059,7 +1059,7 @@ namespace Microsoft.IoT.Devices.Display
         /// A <seealso cref="DisplayPixelFormat"/> that describes the pixel format. 
         /// The default is <see cref="DisplayPixelFormat.Rgb565"/>.
         /// </value>
-        [DefaultValue(DisplayPixelFormat.Rgb565)]
+        [DefaultValue((int) DisplayPixelFormat.Rgb565)] // HACK: int cast is a workaround for WinMDExp issue - JB 2016/02/19
         public DisplayPixelFormat PixelFormat
         {
             get

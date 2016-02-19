@@ -237,7 +237,7 @@ namespace Microsoft.IoT.Devices.Adc
         /// Understanding Single-Ended, Pseudo-Differential and Fully-Differential ADC Inputs
         /// </see>
         /// </remarks>
-        [DefaultValue(ProviderAdcChannelMode.SingleEnded)]
+        [DefaultValue((int) ProviderAdcChannelMode.SingleEnded)] // HACK: int cast is a workaround for WinMDExp issue - JB 2016/02/19
         public ProviderAdcChannelMode ChannelMode { get; set; }
 
         /// <summary>

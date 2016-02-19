@@ -83,7 +83,7 @@ namespace Microsoft.IoT.Devices.Input
         /// The <see cref="GpioPinValue"/> that indicates the button is pressed. 
         /// The default is <see cref="GpioPinValue.Low"/>.
         /// </value>
-        [DefaultValue(GpioPinValue.Low)]
+        [DefaultValue((int) GpioPinValue.Low)] // HACK: int cast is a workaround for WinMDExp issue - JB 2016/02/19
         public GpioPinValue PressedValue { get { return helper.PressedValue; } set { helper.PressedValue = value; } }
 
         /// <summary>

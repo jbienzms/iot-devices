@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Microsoft.IoT.DeviceHelpers</id>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <title>Device Helpers for Windows IoT</title>
     <authors>jbienzms, toolboc (pdecarlo)</authors>
     <owners>jbienzms</owners>
@@ -12,7 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>Provides additional managed helper classes that could not be included in the Core WinMD component.</summary>
     <description>Provides additional managed helper classes that could not be included in the Core WinMD component.</description>
-    <releaseNotes>First release includes exception classes, ObservableEvent and classes to help with encapsulation.</releaseNotes>
+    <releaseNotes>Added workaround for .Net Native metadata issue caused by WinMDExp. This was causing issues when submitting apps to the store.</releaseNotes>
     <copyright>Copyright © Microsoft Corporation</copyright>
     <tags>sensors devices hardware displays microsoft windows iot iot-core</tags>
     <dependencies>

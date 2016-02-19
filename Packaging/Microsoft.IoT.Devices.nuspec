@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Microsoft.IoT.Devices</id>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
     <title>Devices for Windows IoT Core</title>
     <authors>jbienzms, toolboc (pdecarlo)</authors>
     <owners>jbienzms</owners>
@@ -12,12 +12,12 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>Makes it easy to use sensors, displays, and other hardware devices on the Windows IoT Core platform.</summary>
     <description>Makes it easy to use sensors, displays, and other hardware devices on the Windows IoT Core platform.</description>
-    <releaseNotes>Added support for MCP3008.</releaseNotes>
+    <releaseNotes>Added workaround for .Net Native metadata issue caused by WinMDExp. This was causing issues when submitting apps to the store.</releaseNotes>
     <copyright>Copyright © Microsoft Corporation</copyright>
     <tags>sensors devices hardware displays microsoft windows iot iot-core</tags>
     <dependencies>
       <dependency id="Microsoft.IoT.DeviceCore" version="1.0.3" />
-      <dependency id="Microsoft.IoT.DeviceHelpers" version="1.0.3" />
+      <dependency id="Microsoft.IoT.DeviceHelpers" version="1.0.4" />
     </dependencies>
   </metadata>
   <files>

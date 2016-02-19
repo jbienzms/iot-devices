@@ -553,7 +553,7 @@ namespace Microsoft.IoT.Devices.Display
         /// <value>
         /// The address mode of the display. The default is <see cref="SSD1306AddressMode.Horizontal"/>.
         /// </value>
-        [DefaultValue(SSD1306AddressMode.Horizontal)]
+        [DefaultValue((int) SSD1306AddressMode.Horizontal)]  // HACK: int cast is a workaround for WinMDExp issue - JB 2016/02/19
         public SSD1306AddressMode AddressMode
         {
             get
@@ -691,7 +691,7 @@ namespace Microsoft.IoT.Devices.Display
         /// <value>
         /// The format of the pixels on the display.
         /// </value>
-        [DefaultValue(DisplayPixelFormat.OneBit)]
+        [DefaultValue((int) DisplayPixelFormat.OneBit)] // HACK: int cast is a workaround for WinMDExp issue - JB 2016/02/19
         public DisplayPixelFormat PixelFormat
         {
             get
