@@ -55,5 +55,41 @@ If your device has a specific part number or depends on a specific chipset, cons
 
 If the class you are creating can be used with multiple part numbers or chipsets, consider giving your class a name that describes the type of device it works with. We consider these classes to be "generic". For example, see [RotaryEncoder.cs]({{ site.repourl }}/blob/master/Lib/Microsoft.IoT.Devices/Input/RotaryEncoder/RotaryEncoder.cs).
 
-### Events and Scheduling ###
-The Universal Windows Platform was designed from the ground up to support multi-core, asynchronous programming and responsive user interfaces. Though it's possible to build "headless" applications for Windows IoT Core, many IoT applications will have user interfaces and all UWP applications need to support asynchronous programming. With this in mind, many devices - especially sensors - will deliver their data using events. 
+### Issuing Commands / Sending Data to the Device ###
+The Universal Windows Platform (UWP) was designed from the ground up to support asynchronous code, and asynchronous code helps developers create responsive user interfaces. Though it's possible to build "headless" applications for Windows IoT Core, many IoT applications will have user interfaces and all UWP libraries should leverage asynchronous code to ensure they're compatibility in a UI environment. Even if a UI is never used, asynchronous code still helps take advantage of multi-core processors when available.
+
+Though the decision of when to use synchronous code vs asynchronous code is ultimately up to the developer, the MSDN article [Keeping apps fast and fluid](http://blogs.msdn.com/b/windowsappdev/archive/2012/03/20/keeping-apps-fast-and-fluid-with-asynchrony-in-the-windows-runtime.aspx) recommends any operation which *could* take longer than 50 milliseconds should be asynchronous.
+
+Full guidance can be found in the MSDN article [asynchronous programming](https://msdn.microsoft.com/en-us/library/windows/apps/mt187335.aspx) but here are some common ways you'll define a method that executes a command or sends data to your device:
+
+    // Tell the device to do something that will take less than 50ms to complete
+    public void DoSomething() { ... }
+    
+    // Tell the device to do something that takes < 50 ms and requires parameters
+    public void DoSomething(parameter1, parameter2) { ... }
+    
+    // Tell the device to do something that may take longer than 50 ms (Class Library)
+    public Task DoSomethingAsync(...) { ... }
+    
+    // Tell the device to do something that may take longer than 50 ms (WinRT Component)
+    public IAsyncOperation DoSomethingAsync(...) { ... }
+    
+    // Do something that may take longer than 50 ms and the device returns a value (Class Library)
+    public Task<TResultDoSomethingAsync(...) { ... }
+    
+    // Do something that may take longer than 50 ms and the device returns a value (WinRT Component)
+    public IAsyncOperation<TResultDoSomethingAsync(...) { ... }
+    
+
+In short, if the operation always takes less than 50 ms to complete you can just return the result (or void). If there's any chance the request may take longer than 50 ms you should return a Task (if building a Class Library) or IAsyncOperation (if building a WinRT Component).
+
+**Note:** Task has an extension method called AsAsyncOperation which allows WinRT Component developers to use Task under the covers but return IAsyncOperation as required.
+
+**Important:** Whenever a method is made asynchronous its name should end with "Async". Not only is this a standard naming convention but it also helps consumers of your device know that they need to wait for the operation to complete using the **await** keyword.
+
+**Important:** Do not return bool (True or False) to indicate if an operation completed successfully. In the Universal Windows Platform success is inferred by the method completing or returning data. If a method is not successful it should throw an exception which the caller can catch and determine how to handle the failure.
+
+### Receiving Data / Notifications from the Device ###
+As discussed above, it's easy for a device to return data in response to a request. But what if the device is always generating data? Or what if the device needs to proactively notify application code without being queried? These scenarios are common for many types of devices, especially sensors like Accelerometers, Gyroscopes and GPS.
+
+In the Universal Windows Platform, devices can raise **events** whenever they need to notify the application or deliver data. Sometimes events happen at discrete moments in time, like the [Click]({{ site.baseurl }}/doc/html/E_Microsoft_IoT_Devices_Input_PushButton_Click.htm) event of the PushButton. Other times events happen in a continuous stream, like the ReadingChanged event of Accelerometer. When a continuous stream is desired, the device should also expose a [ReportInterval]({{ site.baseurl }}/doc/html/P_Microsoft_IoT_Devices_Sensors_AnalogSensor_ReportInterval.htm) property that lets the consuming application decide how often it wants to receive updates. Using shorter values for **ReportInterval** results in more frequent updates but at the cost of battery life and possibly at the cost of UI responsiveness on CPU constrained devices.
