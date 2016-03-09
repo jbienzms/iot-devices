@@ -173,9 +173,13 @@
     <Compile Include="Scheduling\IScheduler.cs" />
     <Compile Include="Scheduling\ScheduleOptions.cs" />
     <Compile Include="Scheduling\Scheduler.cs" />
-    <Compile Include="Sensors\AnalogSensorReading.cs" />
-    <Compile Include="Sensors\AnalogSensorReadingEventArgs.cs" />
-    <Compile Include="Sensors\IAnalogSensor.cs" />
+    <Compile Include="Sensors\Analog\AnalogSensorReading.cs" />
+    <Compile Include="Sensors\Analog\AnalogSensorReadingChangedEventArgs.cs" />
+    <Compile Include="Sensors\Analog\IAnalogSensor.cs" />
+    <Compile Include="Sensors\ISensorReading.cs" />
+    <Compile Include="Sensors\Temperature\Temperature.cs" />
+    <Compile Include="Sensors\Temperature\TemperatureReading.cs" />
+    <Compile Include="Sensors\Temperature\ITemperatureSensor.cs" />
     <Compile Include="Spi\ISpiBasedDevice.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +194,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

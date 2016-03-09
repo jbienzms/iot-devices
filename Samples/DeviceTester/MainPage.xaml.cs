@@ -218,6 +218,28 @@ namespace DeviceTester
             devices.Add(proximity);
         }
 
+        private void StartTemperature()
+        {
+            // Temperature is on controller 0 for this sample
+            var controller = adcControllers[0];
+
+            // Create
+            var tempSensor = new MCP970X()
+            {
+                ReportInterval = 500, // This demo doesn't need fast reports and it helps with responsiveness
+                AdcChannel = controller.OpenChannel(0),
+            };
+
+            // Configure as specific chip
+            tempSensor.ConfigureAs(MCP970XDevice.MCP9700A);
+
+            // Subscribe to events
+            tempSensor.ReadingChanged += Temperature_ReadingChanged;
+
+            // Add to device list
+            devices.Add(tempSensor);
+        }
+
         private void StartThumbstick()
         {
             // Thumbstick is on controller 0 for this sample
@@ -277,6 +299,7 @@ namespace DeviceTester
             StartRotary();
             StartSwitches();
             // StartAnalog();
+            // StartTemperature();
             // StartThumbstick();
 
             StartCloudReporting();
@@ -415,12 +438,20 @@ namespace DeviceTester
             Stop();
         }
 
+        private void Temperature_ReadingChanged(ITemperatureSensor sender, ITemperatureReading args)
+        {
+            // Get reading
+            var t = args.Temperature;
+
+            Debug.WriteLine($"F: {t.DegreesFahrenheit}  C: {t.DegreesCelsius}");
+        }
+
         private void Thumbstick_ReadingChanged(IThumbstick sender, ThumbstickReadingChangedEventArgs args)
         {
             // Get reading
             var r = args.Reading;
 
-            Debug.WriteLine(string.Format("X: {0}  Y: {1}  Button: {2}", r.XAxis, r.YAxis, r.IsPressed));
+            Debug.WriteLine($"X: {r.XAxis}  Y: {r.YAxis}  Button: {r.IsPressed}");
         }
     }
 }

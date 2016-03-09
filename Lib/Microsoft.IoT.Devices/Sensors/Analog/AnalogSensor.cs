@@ -38,7 +38,7 @@ namespace Microsoft.IoT.Devices.Sensors
         {
             // Create updater
             updater = new ScheduledUpdater(new ScheduleOptions(reportInterval: 100));
-            updater.SetUpdateAction(Update);
+            updater.SetUpdateAction(() => Update(true));
             updater.Starting += (s, e) => EnsureInitialized();
 
             // Create events
@@ -61,7 +61,7 @@ namespace Microsoft.IoT.Devices.Sensors
             isInitialized = true;
         }
 
-        private void Update()
+        private void Update(bool raiseEvent)
         {
             // Read X and Y values
             var val = adcChannel.ReadValue();
@@ -73,8 +73,11 @@ namespace Microsoft.IoT.Devices.Sensors
                 currentReading = new AnalogSensorReading(val, ratio);
             }
 
-            // Notify
-            readingChangedEvent.Raise(this, new AnalogSensorReadingChangedEventArgs(currentReading));
+            // Notify?
+            if (raiseEvent)
+            {
+                readingChangedEvent.Raise(this, new AnalogSensorReadingChangedEventArgs(currentReading));
+            }
         }
         #endregion // Internal Methods
 
@@ -108,8 +111,8 @@ namespace Microsoft.IoT.Devices.Sensors
             // Make sure we're initialized
             EnsureInitialized();
 
-            // Manual update
-            Update();
+            // Force update but do not raise event
+            Update(false);
 
             // Return the current reading
             return currentReading;
@@ -137,7 +140,7 @@ namespace Microsoft.IoT.Devices.Sensors
         }
 
         /// <summary>
-        /// Gets or sets the current report interval for the thumbstick.
+        /// Gets or sets the current report interval for the analog sensor.
         /// </summary>
         public uint ReportInterval
         {

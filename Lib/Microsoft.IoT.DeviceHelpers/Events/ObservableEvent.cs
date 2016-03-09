@@ -30,6 +30,7 @@ namespace Microsoft.IoT.DeviceHelpers
         #region Member Variables
         private EventRegistrationTokenTable<TypedEventHandler<TSender, TResult>> eventTable;
         private ScheduledAction firstAdded;
+        private ScheduledAction lastRemoved;
         private IEventObserver observer;
         #endregion // Member Variables
 
@@ -61,13 +62,17 @@ namespace Microsoft.IoT.DeviceHelpers
         /// <param name="firstAdded">
         /// A <see cref="ScheduledAction"/> that will be called when the first subscriber is added.
         /// </param>
-        public ObservableEvent(ScheduledAction firstAdded) : this()
+        /// <param name="lastRemoved">
+        /// A <see cref="ScheduledAction"/> that will be called when the last subscriber is removed.
+        /// </param>
+        public ObservableEvent(ScheduledAction firstAdded, ScheduledAction lastRemoved = null) : this()
         {
             // Validate
-            if (firstAdded == null) throw new ArgumentNullException("firstAddedAction");
+            if ((firstAdded == null) && (lastRemoved == null)) throw new ArgumentNullException($"{nameof(firstAdded)} and {nameof(lastRemoved)} cannot both be null");
 
             // Store
             this.firstAdded = firstAdded;
+            this.lastRemoved = lastRemoved;
         }
         #endregion // Constructors
 
@@ -92,6 +97,7 @@ namespace Microsoft.IoT.DeviceHelpers
             // If last handler, notify
             if ((!wasNull) && (eventTable.InvocationList == null))
             {
+                if (lastRemoved != null) { lastRemoved(); }
                 if (observer != null) { observer.LastRemoved(this); }
             }
         }

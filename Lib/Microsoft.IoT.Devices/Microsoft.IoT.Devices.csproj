@@ -157,7 +157,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resw</DependentUpon>
     </Compile>
-    <Compile Include="Sensors\AnalogSensor.cs" />
+    <Compile Include="Sensors\Analog\AnalogSensor.cs" />
+    <Compile Include="Sensors\Temperature\MCP970X.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Display\Text\" />

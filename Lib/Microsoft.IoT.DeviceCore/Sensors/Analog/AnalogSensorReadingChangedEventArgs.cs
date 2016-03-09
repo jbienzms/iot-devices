@@ -32,7 +32,7 @@ namespace Microsoft.IoT.DeviceCore.Sensors
         /// </param>
         public AnalogSensorReadingChangedEventArgs(AnalogSensorReading reading)
         {
-            if (reading == null) throw new ArgumentNullException("reading");
+            if (reading == null) throw new ArgumentNullException(nameof(reading));
             this.Reading = reading;
         }
 

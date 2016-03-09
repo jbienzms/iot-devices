@@ -121,8 +121,19 @@ namespace SolarSystem.Speech
 
         private void RecognizerResultGenerated(SpeechContinuousRecognitionSession session, SpeechContinuousRecognitionResultGeneratedEventArgs args)
         {
+            // Confidence
+            var conf = args.Result.Confidence;
+
+            // If too low, ignore
+            if ((conf != SpeechRecognitionConfidence.High) && (conf != SpeechRecognitionConfidence.Medium))
+            {
+                Debug.WriteLine("Speech recognition confidence too low, ignoring.");
+                return;
+            }
+
             // Output debug strings
             Debug.WriteLine(args.Result.Status);
+            Debug.WriteLine(args.Result.Confidence);
             Debug.WriteLine(args.Result.Text);
 
             int count = args.Result.SemanticInterpretation.Properties.Count;
