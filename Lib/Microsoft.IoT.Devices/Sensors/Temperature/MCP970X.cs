@@ -35,6 +35,12 @@ namespace Microsoft.IoT.Devices.Sensors
     /// <summary>
     /// A driver for the MCP970X family of temperature sensors.
     /// </summary>
+    /// <remarks>
+    /// The original core implementation for this sensor family was contributed by Dave Glover. Dave gave permission 
+    /// to incorporate code from his 
+    /// <see href="https://github.com/gloveboxes/Windows-IoT-Core-Driver-Library">IoT Core Driver Library</see>. 
+    /// Thank you Dave!
+    /// </remarks>
     public sealed class MCP970X : ITemperatureSensor, IScheduledDevice
     {
         #region Member Variables
