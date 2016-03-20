@@ -14,6 +14,7 @@ using Windows.Foundation;
 using Microsoft.IoT.DeviceCore;
 using TaskExtensions = Microsoft.IoT.DeviceHelpers.TaskExtensions;
 using Microsoft.IoT.DeviceHelpers;
+using System.Diagnostics;
 
 namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
 {
@@ -31,6 +32,9 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
     public sealed class PwmControllerProviderPCA9685 : IPwmControllerProvider, IDisposable
     {
         #region Nested Types
+        /// <summary>
+        /// PCA9685 register addresses
+        /// </summary>
         private enum Registers : byte
         {
             MODE1 = 0x00,
@@ -110,8 +114,11 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
             PRESCALE = 0xFE,
         };
 
+        /// <summary>
+        /// PCA9685 mode 1 register flags
+        /// </summary>
         [Flags]
-        public enum Mode1Flags : byte
+        private enum Mode1Flags : byte
         {                           // * denoted power-on state
             RESTART = 0x80,         // Restart: 0*: disabled, 1:eneabled
             EXTCLK = 0x40,          // clock source: 0*: internal, 1: external
@@ -123,8 +130,11 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
             ALLCALL = 0x01,         // all call address: 0: disabled, *1: enabled
         }                           // power-on state of this register is 0x11 (00010001)
 
+        /// <summary>
+        /// PCA9685 mode 2 register flags
+        /// </summary>
         [Flags]
-        public enum Mode2Flags : byte
+        private enum Mode2Flags : byte
         {                           // * denoted power-on state
             RESERVED1 = 0x80,       // Reserved *0
             RESERVED2 = 0x40,       // Reserved *0
@@ -264,12 +274,12 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
 
             await SleepControllerAsync();
 
-            // Set PRE_SCALE to default  	
+            // Set PRE_SCALE to default
             writeBuf[0] = (byte)Registers.PRESCALE;
             writeBuf[1] = DEFAULT_PRESCALE;
             primaryDevice.Write(writeBuf);
 
-            // Set ActualFrequency to default(200Hz)  	
+            // Set ActualFrequency to default(200Hz)
             actualFrequency = Math.Round((CLOCK_FREQUENCY) / (double)((preScale + 1) * PULSE_RESOLUTION));
 
             // Turn them all on - Why are we turning them all on. Seems like we should be turning them off.
@@ -331,6 +341,8 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
             // Make sure we're initialized
             TaskExtensions.UISafeWait(EnsureInitializedAsync);
 
+            //Debug.WriteLine("PwmControllerProviderPCA9685: Acquiring pin {0}", pin);
+
             lock (pinAccess)
             {
                 if (pinAccess[pin]) { throw new UnauthorizedAccessException(); }
@@ -345,6 +357,8 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
 
             // Make sure we're initialized
             TaskExtensions.UISafeWait(EnsureInitializedAsync);
+
+            //Debug.WriteLine("PwmControllerProviderPCA9685: Disabling pin {0}", pin);
 
             // Since we are using the totem-pole mode, we just need to  	
             // make sure that the pin is fully OFF.
@@ -391,6 +405,8 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
             // Make sure we're initialized
             TaskExtensions.UISafeWait(EnsureInitializedAsync);
 
+            //Debug.WriteLine("PwmControllerProviderPCA9685: Enabling pin {0}", pin);
+
             if (!pinAccess[pin])
                 throw new InvalidOperationException("Pin is not acquired");
 
@@ -413,6 +429,8 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
         public void ReleasePin(int pin)
         {
             if ((pin < 0) || (pin >= PIN_COUNT)) throw new ArgumentOutOfRangeException("pin");
+
+            //Debug.WriteLine("PwmControllerProviderPCA9685: Releasing pin {0}", pin);
 
             lock (pinAccess)
             {
@@ -456,6 +474,8 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
             if ((pin < 0) || (pin >= PIN_COUNT)) throw new ArgumentOutOfRangeException("pin");
             if ((dutyCycle < 0) || (dutyCycle > 1)) throw new ArgumentOutOfRangeException("dutyCycle");
 
+            //Debug.WriteLine("PwmControllerProviderPCA9685: Setting {0} pin duty cycle to {1}", pin, dutyCycle);
+
             // Make sure we're initialized
             TaskExtensions.UISafeWait(EnsureInitializedAsync);
 
@@ -490,9 +510,9 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
                 buffer[3] = (byte)(onRatio & 0xFF);
                 buffer[4] = (byte)((onRatio & 0x0F00) >> 8);
             }
-            // Make sure special bits are maintained
-            buffer[2] = (byte)(buffer[2] | (msb[2] & 0x10));
-            buffer[4] = (byte)(buffer[4] | (msb[4] & 0x10));
+            // Make sure special full ON and full OFF bits are maintained
+            buffer[2] = (byte)(buffer[2] | (msb[1] & 0x10));
+            buffer[4] = (byte)(buffer[4] | (msb[3] & 0x10));
             primaryDevice.Write(buffer);
         }
         #endregion // Public Methods
