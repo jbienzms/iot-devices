@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Microsoft.IoT.DeviceCore.Pwm;
+using Microsoft.IoT.Devices.Pwm;
 using Microsoft.IoT.Devices.Lights;
 using Microsoft.IoT.Devices.Pwm;
 using Windows.Devices.Gpio;
@@ -19,6 +20,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.IoT.Devices.Pwm.PwmSoft;
+using Microsoft.IoT.Devices.Pwm.PwmPCA9685;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -56,8 +59,8 @@ namespace PwmLed
             var pwmManager = new PwmProviderManager();
 
             // Add providers
-            // pwmManager.Providers.Add(new PCA9685());
-            pwmManager.Providers.Add(new SoftPwm());
+            //pwmManager.Providers.Add(new PwmProviderPCA9685());
+            pwmManager.Providers.Add(new PwmProviderSoft());
 
             // Get the well-known controller collection back
             var pwmControllers = await pwmManager.GetControllersAsync();

@@ -15,21 +15,30 @@ using Microsoft.IoT.DeviceCore;
 using TaskExtensions = Microsoft.IoT.DeviceHelpers.TaskExtensions;
 using Microsoft.IoT.DeviceHelpers;
 
-namespace Microsoft.IoT.Devices.Pwm
+namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
 {
     /// <summary>
-    /// Driver for the <see href="http://www.adafruit.com/products/815">PCA9685</see> 
-    /// 16-Channel 12-bit PWM/Servo Driver.
+    /// Initializes a new <see cref="PwmControllerProviderPCA9685"/> instance.
     /// </summary>
     /// <remarks>
     /// This class is adapted from the original C++ ms-iot sample 
     /// <see href="https://github.com/ms-iot/BusProviders/tree/develop/PWM/PwmPCA9685">here</see>.
+    /// And SimulatedProvider code <see href="https://github.com/ms-iot/BusProviders/blob/develop/SimulatedProvider/SimulatedProvider/PwmControllerProvider.cs">here</see>/>
+    /// <br/>
+    /// Driver for the <see href="http://www.adafruit.com/products/815">16-Channel 12-bit PWM/Servo</see> 
+    /// PCA9685 Driver and others.
     /// </remarks>
-    sealed public class PCA9685 : IPwmControllerProvider, IDisposable
+    public sealed class PwmControllerProviderPCA9685 : IPwmControllerProvider, IDisposable
     {
         #region Nested Types
-        private enum PinBits : byte
+        private enum Registers : byte
         {
+            MODE1 = 0x00,
+            MODE2 = 0x01,
+            SUBADR1 = 0x02,
+            SUBADR2 = 0x03,
+            SUBADR3 = 0x04,
+            ALLCALLADR = 0x05,
             PIN0_ON_L = 0x06,
             PIN0_ON_H = 0x07,
             PIN0_OFF_L = 0x08,
@@ -94,11 +103,45 @@ namespace Microsoft.IoT.Devices.Pwm
             PIN15_ON_H = 0x43,
             PIN15_OFF_L = 0x44,
             PIN15_OFF_H = 0x45,
+            ALL_LED_ON_L = 0xFA,
+            ALL_LED_ON_H = 0xFB,
+            ALL_LED_OFF_L = 0xFC,
+            ALL_LED_OFF_H = 0xFD,
+            PRESCALE = 0xFE,
         };
+
+        [Flags]
+        public enum Mode1Flags : byte
+        {                           // * denoted power-on state
+            RESTART = 0x80,         // Restart: 0*: disabled, 1:eneabled
+            EXTCLK = 0x40,          // clock source: 0*: internal, 1: external
+            AI = 0x20,              // register auto-increment: *0: disabled, 1: enabled
+            SLEEP = 0x10,           // mode: 0: normal, *1: low-power
+            SUB1 = 0x08,            // subaddress 1: *0: disabled, 1: enabled
+            SUB2 = 0x04,            // subaddress 2: *0: disabled, 1: enabled
+            SUB3 = 0x02,            // subaddress 3: *0: disabled, 1: enabled
+            ALLCALL = 0x01,         // all call address: 0: disabled, *1: enabled
+        }                           // power-on state of this register is 0x11 (00010001)
+
+        [Flags]
+        public enum Mode2Flags : byte
+        {                           // * denoted power-on state
+            RESERVED1 = 0x80,       // Reserved *0
+            RESERVED2 = 0x40,       // Reserved *0
+            RESERVED3 = 0x20,       // Reserved *0
+            INVRT = 0x10,           // When output drivers enabled, *0: not inverted, 1: inverted
+            OCH = 0x08,             // Outputs change on: *0: STOP command, 1: ACK command
+            OUTDRV = 0x04,          // Output type: 0: open drain, *1: totem pole
+            // *00: When output drivers disabled, LEDn=0
+            // 01: When output drivers disabled, LEDn=1 when OUTDRV=1, otherwise high-impedence
+            // 1x: When output drivers disabled, LEDn=high-impedence
+            OUTNE1 = 0x02,
+            OUTNE0 = 0x01,
+        }                           // power-on state of this register is 0x04 (00000100)
 
         private struct PinControlRegister
         {
-            public PinControlRegister(PinBits onLow, PinBits onHigh, PinBits offLow, PinBits offHigh)
+            public PinControlRegister(Registers onLow, Registers onHigh, Registers offLow, Registers offHigh)
             {
                 OnLow = (byte)onLow;
                 OnHigh = (byte)onHigh;
@@ -117,37 +160,31 @@ namespace Microsoft.IoT.Devices.Pwm
         private const byte DEFAULT_PRESCALE = 0x1E;
         private const int I2C_PRIMARY_ADDRESS = 0x40;
         private const int I2C_RESET_ADDRESS = 0x0;
-        private const int MAX_FREQUENCY = 1000;
-        private const int MIN_FREQUENCY = 40;
-        private const int PIN_COUNT = 16;
-        private const ushort PULSE_RESOLUTION = 4096;
-        private const byte REG_ALL_OFF_H = 0xFD;
-        private const byte REG_ALL_OFF_L = 0xFC;
-        private const byte REG_ALL_ON_L = 0xFA;
-        private const byte REG_ALL_ON_H = 0xFB;
-        private const byte REG_MODE1 = 0x0;
-        private const byte REG_MODE2 = 0x1;
-        private const byte REG_PRESCALE = 0xFE;
+        private const int I2C_ALL_CALL_ADDRESS = 0xE0;      // Default ALLCALL address for all PCA9685 on I2C bus
+        private const int MAX_FREQUENCY = 1526;
+        private const int MIN_FREQUENCY = 24;
+        private const int PIN_COUNT = 16;                   // 16 LED outputs
+        private const ushort PULSE_RESOLUTION = 4096;       // 12-bit resolution
         static private readonly byte[] RESET_COMMAND = new byte[] { 0x06 };
 
-        static private readonly PinControlRegister[] PwmPinRegs= new PinControlRegister[16]
+        static private readonly PinControlRegister[] PwmPinRegs = new PinControlRegister[16]
         {
-            new PinControlRegister(PinBits.PIN0_ON_L, PinBits.PIN0_ON_H, PinBits.PIN0_OFF_L, PinBits.PIN0_OFF_H ),
-            new PinControlRegister(PinBits.PIN1_ON_L, PinBits.PIN1_ON_H , PinBits.PIN1_OFF_L , PinBits.PIN1_OFF_H ),
-            new PinControlRegister(PinBits.PIN2_ON_L, PinBits.PIN2_ON_H , PinBits.PIN2_OFF_L , PinBits.PIN2_OFF_H ),
-            new PinControlRegister(PinBits.PIN3_ON_L, PinBits.PIN3_ON_H , PinBits.PIN3_OFF_L , PinBits.PIN3_OFF_H ),
-            new PinControlRegister(PinBits.PIN4_ON_L, PinBits.PIN4_ON_H , PinBits.PIN4_OFF_L , PinBits.PIN4_OFF_H ),
-            new PinControlRegister(PinBits.PIN5_ON_L, PinBits.PIN5_ON_H , PinBits.PIN5_OFF_L , PinBits.PIN5_OFF_H ),
-            new PinControlRegister(PinBits.PIN6_ON_L, PinBits.PIN6_ON_H, PinBits.PIN6_OFF_L, PinBits.PIN6_OFF_H ),
-            new PinControlRegister(PinBits.PIN7_ON_L, PinBits.PIN7_ON_H , PinBits.PIN7_OFF_L , PinBits.PIN7_OFF_H ),
-            new PinControlRegister(PinBits.PIN8_ON_L, PinBits.PIN8_ON_H , PinBits.PIN8_OFF_L , PinBits.PIN8_OFF_H ),
-            new PinControlRegister(PinBits.PIN9_ON_L, PinBits.PIN9_ON_H , PinBits.PIN9_OFF_L , PinBits.PIN9_OFF_H ),
-            new PinControlRegister(PinBits.PIN10_ON_L, PinBits.PIN10_ON_H , PinBits.PIN10_OFF_L , PinBits.PIN10_OFF_H ),
-            new PinControlRegister(PinBits.PIN11_ON_L, PinBits.PIN11_ON_H , PinBits.PIN11_OFF_L , PinBits.PIN11_OFF_H ),
-            new PinControlRegister(PinBits.PIN12_ON_L, PinBits.PIN12_ON_H , PinBits.PIN12_OFF_L , PinBits.PIN12_OFF_H ),
-            new PinControlRegister(PinBits.PIN13_ON_L, PinBits.PIN13_ON_H , PinBits.PIN13_OFF_L , PinBits.PIN13_OFF_H ),
-            new PinControlRegister(PinBits.PIN14_ON_L, PinBits.PIN14_ON_H , PinBits.PIN14_OFF_L , PinBits.PIN14_OFF_H ),
-            new PinControlRegister(PinBits.PIN15_ON_L, PinBits.PIN15_ON_H , PinBits.PIN15_OFF_L , PinBits.PIN15_OFF_H ),
+            new PinControlRegister(Registers.PIN0_ON_L, Registers.PIN0_ON_H, Registers.PIN0_OFF_L, Registers.PIN0_OFF_H ),
+            new PinControlRegister(Registers.PIN1_ON_L, Registers.PIN1_ON_H , Registers.PIN1_OFF_L , Registers.PIN1_OFF_H ),
+            new PinControlRegister(Registers.PIN2_ON_L, Registers.PIN2_ON_H , Registers.PIN2_OFF_L , Registers.PIN2_OFF_H ),
+            new PinControlRegister(Registers.PIN3_ON_L, Registers.PIN3_ON_H , Registers.PIN3_OFF_L , Registers.PIN3_OFF_H ),
+            new PinControlRegister(Registers.PIN4_ON_L, Registers.PIN4_ON_H , Registers.PIN4_OFF_L , Registers.PIN4_OFF_H ),
+            new PinControlRegister(Registers.PIN5_ON_L, Registers.PIN5_ON_H , Registers.PIN5_OFF_L , Registers.PIN5_OFF_H ),
+            new PinControlRegister(Registers.PIN6_ON_L, Registers.PIN6_ON_H, Registers.PIN6_OFF_L, Registers.PIN6_OFF_H ),
+            new PinControlRegister(Registers.PIN7_ON_L, Registers.PIN7_ON_H , Registers.PIN7_OFF_L , Registers.PIN7_OFF_H ),
+            new PinControlRegister(Registers.PIN8_ON_L, Registers.PIN8_ON_H , Registers.PIN8_OFF_L , Registers.PIN8_OFF_H ),
+            new PinControlRegister(Registers.PIN9_ON_L, Registers.PIN9_ON_H , Registers.PIN9_OFF_L , Registers.PIN9_OFF_H ),
+            new PinControlRegister(Registers.PIN10_ON_L, Registers.PIN10_ON_H , Registers.PIN10_OFF_L , Registers.PIN10_OFF_H ),
+            new PinControlRegister(Registers.PIN11_ON_L, Registers.PIN11_ON_H , Registers.PIN11_OFF_L , Registers.PIN11_OFF_H ),
+            new PinControlRegister(Registers.PIN12_ON_L, Registers.PIN12_ON_H , Registers.PIN12_OFF_L , Registers.PIN12_OFF_H ),
+            new PinControlRegister(Registers.PIN13_ON_L, Registers.PIN13_ON_H , Registers.PIN13_OFF_L , Registers.PIN13_OFF_H ),
+            new PinControlRegister(Registers.PIN14_ON_L, Registers.PIN14_ON_H , Registers.PIN14_OFF_L , Registers.PIN14_OFF_H ),
+            new PinControlRegister(Registers.PIN15_ON_L, Registers.PIN15_ON_H , Registers.PIN15_OFF_L , Registers.PIN15_OFF_H ),
 
         };
 
@@ -161,7 +198,19 @@ namespace Microsoft.IoT.Devices.Pwm
         private bool[] pinAccess = new bool[PIN_COUNT];
         private I2cDevice primaryDevice;
         private I2cDevice resetDevice;
+        private int i2cAddress;
         #endregion // Member Variables
+
+        #region Constructors
+        /// <summary>
+        /// Initializes a new <see cref="PwmControllerProviderPCA9685"/> instance.
+        /// </summary>
+        /// <param name="address">Optional I2C address parameter. Defaut is 0x40.</param>
+        internal PwmControllerProviderPCA9685(byte address = I2C_PRIMARY_ADDRESS)
+        {
+            this.i2cAddress = address;
+        }
+        #endregion // Constructors
 
         #region Internal Methods
         private async Task EnsureInitializedAsync()
@@ -182,7 +231,7 @@ namespace Microsoft.IoT.Devices.Pwm
             if (di == null) { throw new DeviceNotFoundException(controllerName); }
 
             // Connection settings for primary device
-            var primarySettings = new I2cConnectionSettings(I2C_PRIMARY_ADDRESS);
+            var primarySettings = new I2cConnectionSettings(this.i2cAddress);
             primarySettings.BusSpeed = I2cBusSpeed.FastMode;
             primarySettings.SharingMode = I2cSharingMode.Exclusive;
 
@@ -190,9 +239,8 @@ namespace Microsoft.IoT.Devices.Pwm
             primaryDevice = await I2cDevice.FromIdAsync(di.Id, primarySettings);
             if (primaryDevice == null) { throw new DeviceNotFoundException("PCA9685 primary device"); }
 
-
             // Connection settings for reset device
-            var resetSettings = new I2cConnectionSettings(I2C_PRIMARY_ADDRESS);
+            var resetSettings = new I2cConnectionSettings(this.i2cAddress);
             resetSettings.SlaveAddress = I2C_RESET_ADDRESS;
 
             // Get the reset device
@@ -201,7 +249,6 @@ namespace Microsoft.IoT.Devices.Pwm
 
             // Initialize the controller
             await InitializeControllerAsync();
-
 
             // Done initializing
             isInitialized = true;
@@ -218,23 +265,22 @@ namespace Microsoft.IoT.Devices.Pwm
             await SleepControllerAsync();
 
             // Set PRE_SCALE to default  	
-            writeBuf[0] = REG_PRESCALE;
+            writeBuf[0] = (byte)Registers.PRESCALE;
             writeBuf[1] = DEFAULT_PRESCALE;
             primaryDevice.Write(writeBuf);
 
             // Set ActualFrequency to default(200Hz)  	
             actualFrequency = Math.Round((CLOCK_FREQUENCY) / (double)((preScale + 1) * PULSE_RESOLUTION));
 
-
-            writeBuf[0] = REG_ALL_OFF_H;
+            // Turn them all on - Why are we turning them all on. Seems like we should be turning them off.
+            writeBuf[0] = (byte)Registers.ALL_LED_OFF_H;
             writeBuf[1] = 0;
             primaryDevice.Write(writeBuf);
-
-            writeBuf[0] = REG_ALL_ON_H;
-            writeBuf[1] = (1 << 4);
+            writeBuf[0] = (byte)Registers.ALL_LED_ON_H;
+            writeBuf[1] = (1 << 4);             // 0x10 = LED FULL ON
             primaryDevice.Write(writeBuf);
 
-            await RestartControllerAsync(0xA1);
+            await RestartControllerAsync((byte)(Mode1Flags.RESTART | Mode1Flags.AI | Mode1Flags.ALLCALL));
         }
 
         private void ResetController()
@@ -246,7 +292,7 @@ namespace Microsoft.IoT.Devices.Pwm
         {
             var writeBuf = new byte[2];
 
-            writeBuf[0] = REG_MODE1;
+            writeBuf[0] = (byte)Registers.MODE1;
             writeBuf[1] = mode1;
             primaryDevice.Write(writeBuf);
 
@@ -261,12 +307,12 @@ namespace Microsoft.IoT.Devices.Pwm
             var modeAddr = new byte[1];
 
             // Read MODE1 register  	
-            modeAddr[0] = REG_MODE1;
+            modeAddr[0] = (byte)Registers.MODE1;
             primaryDevice.WriteRead(modeAddr, mode);
 
             // Disable Oscillator  	
-            writeBuf[0] = REG_MODE1;
-            writeBuf[1] = (byte)(mode[0] | (1 << 4));
+            writeBuf[0] = (byte)Registers.MODE1;
+            writeBuf[1] = (byte)(mode[0] | (byte)Mode1Flags.SLEEP);
             primaryDevice.Write(writeBuf);
 
             // Wait for more than 500us to stabilize.  	
@@ -276,12 +322,11 @@ namespace Microsoft.IoT.Devices.Pwm
         }
         #endregion // Internal Methods
 
-
         #region Public Methods
         /// <inheritdoc/>
         public void AcquirePin(int pin)
         {
-            if ((pin < 0) || (pin > (PIN_COUNT - 1))) throw new ArgumentOutOfRangeException("pin");
+            if ((pin < 0) || (pin >= PIN_COUNT)) throw new ArgumentOutOfRangeException("pin");
 
             // Make sure we're initialized
             TaskExtensions.UISafeWait(EnsureInitializedAsync);
@@ -296,16 +341,29 @@ namespace Microsoft.IoT.Devices.Pwm
         /// <inheritdoc/>
         public void DisablePin(int pin)
         {
-            if ((pin < 0) || (pin > (PIN_COUNT - 1))) throw new ArgumentOutOfRangeException("pin");
+            if ((pin < 0) || (pin >= PIN_COUNT)) throw new ArgumentOutOfRangeException("pin");
 
             // Make sure we're initialized
             TaskExtensions.UISafeWait(EnsureInitializedAsync);
 
             // Since we are using the totem-pole mode, we just need to  	
             // make sure that the pin is fully OFF.
+
+            if (!pinAccess[pin])
+                throw new InvalidOperationException("Pin is not acquired");
+
+            // Stop PWM signal on the specified pin
+
+            // Read the OffHigh register
+            var addr = new byte[1];
+            var msb = new byte[1];
+            addr[0] = PwmPinRegs[pin].OffHigh;
+            primaryDevice.WriteRead(addr, msb);
+
+            // Make sure that bit 4 of LEDn_OFF_H is 1 (pin disabled = fully off)
             var buffer = new byte[2];
             buffer[0] = PwmPinRegs[pin].OffHigh;
-            buffer[1] = 0x1 << 4;
+            buffer[1] = (byte)(msb[0] | (0x10));
             primaryDevice.Write(buffer);
         }
 
@@ -328,29 +386,38 @@ namespace Microsoft.IoT.Devices.Pwm
         /// <inheritdoc/>
         public void EnablePin(int pin)
         {
-            if ((pin < 0) || (pin > (PIN_COUNT - 1))) throw new ArgumentOutOfRangeException("pin");
+            if ((pin < 0) || (pin >= PIN_COUNT)) throw new ArgumentOutOfRangeException("pin");
 
             // Make sure we're initialized
             TaskExtensions.UISafeWait(EnsureInitializedAsync);
 
-            //  	
-            // Since we are using the totem-pole mode, we just need to  	
-            // make sure that the pin is not fully OFF(bit 4 of LEDn_OFF_H should be zero).  	
-            // We set the OFF and ON counter to zero so that the pin is held Low.  	
-            // Subsequent calls to SetPulseParameters should set the pulse width.
-            var buffer = new byte[5];
-            buffer[0] = PwmPinRegs[pin].OnLow;
-            buffer[1] = buffer[2] = buffer[3] = buffer[4] = 0x0;
+            if (!pinAccess[pin])
+                throw new InvalidOperationException("Pin is not acquired");
+
+            // Start PWM signal on the specified pin
+
+            // Read the OffHigh register
+            var addr = new byte[1];
+            var msb = new byte[1];
+            addr[0] = PwmPinRegs[pin].OffHigh;
+            primaryDevice.WriteRead(addr, msb);
+
+            // Make sure that bit 4 of LEDn_OFF_H is 0 (pin enabled = 12-bit PWM active)
+            var buffer = new byte[2];
+            buffer[0] = PwmPinRegs[pin].OffHigh;
+            buffer[1] = (byte)(msb[0] & ~(0x1 << 4));   // Mask off bit 4
             primaryDevice.Write(buffer);
         }
 
         /// <inheritdoc/>
         public void ReleasePin(int pin)
         {
-            if ((pin < 0) || (pin > (PIN_COUNT - 1))) throw new ArgumentOutOfRangeException("pin");
+            if ((pin < 0) || (pin >= PIN_COUNT)) throw new ArgumentOutOfRangeException("pin");
 
             lock (pinAccess)
             {
+                if (!pinAccess[pin])
+                    throw new InvalidOperationException("Pin is not acquired");
                 pinAccess[pin] = false;
             }
         }
@@ -373,7 +440,7 @@ namespace Microsoft.IoT.Devices.Pwm
 
             var buffer = new byte[2];
             // Set PRE_SCALE  	
-            buffer[0] = REG_PRESCALE;
+            buffer[0] = (byte)Registers.PRESCALE;
             buffer[1] = preScale;
             primaryDevice.Write(buffer);
 
@@ -386,13 +453,23 @@ namespace Microsoft.IoT.Devices.Pwm
         /// <inheritdoc/>
         public void SetPulseParameters(int pin, double dutyCycle, bool invertPolarity)
         {
-            if ((pin < 0) || (pin > (PIN_COUNT - 1))) throw new ArgumentOutOfRangeException("pin");
+            if ((pin < 0) || (pin >= PIN_COUNT)) throw new ArgumentOutOfRangeException("pin");
+            if ((dutyCycle < 0) || (dutyCycle > 1)) throw new ArgumentOutOfRangeException("dutyCycle");
 
             // Make sure we're initialized
             TaskExtensions.UISafeWait(EnsureInitializedAsync);
 
+            if (!pinAccess[pin])
+                throw new InvalidOperationException("Pin is not acquired");
+
             var buffer = new byte[5];
             ushort onRatio = (ushort)Math.Round(dutyCycle * (PULSE_RESOLUTION - 1));
+
+            // Read the OffHigh register
+            var addr = new byte[1];
+            var msb = new byte[4];
+            addr[0] = PwmPinRegs[pin].OnLow;
+            primaryDevice.WriteRead(addr, msb);
 
             // Set the initial Address. AI flag is ON and hence  	
             // address will auto-increment after each byte.
@@ -402,20 +479,37 @@ namespace Microsoft.IoT.Devices.Pwm
             {
                 onRatio = (ushort)(PULSE_RESOLUTION - onRatio);
                 buffer[1] = (byte)(onRatio & 0xFF);
-                buffer[2] = (byte)((onRatio & 0xFF00) >> 8);
-                buffer[3] = buffer[4] = 0;
+                buffer[2] = (byte)((onRatio & 0x0F00) >> 8);
+                buffer[3] = 0;
+                buffer[4] = 0;
             }
             else
             {
-                buffer[1] = buffer[2] = 0;
+                buffer[1] = 0;
+                buffer[2] = 0;
                 buffer[3] = (byte)(onRatio & 0xFF);
-                buffer[4] = (byte)((onRatio & 0xFF00) >> 8);
+                buffer[4] = (byte)((onRatio & 0x0F00) >> 8);
             }
+            // Make sure special bits are maintained
+            buffer[2] = (byte)(buffer[2] | (msb[2] & 0x10));
+            buffer[4] = (byte)(buffer[4] | (msb[4] & 0x10));
             primaryDevice.Write(buffer);
         }
         #endregion // Public Methods
 
         #region Public Properties
+
+        /// <summary>
+        /// The I2C address of this controller
+        /// </summary>
+        public int I2CAddress
+        {
+            get
+            {
+                return this.i2cAddress;
+            }
+        }
+
         /// <inheritdoc/>
         public double ActualFrequency
         {

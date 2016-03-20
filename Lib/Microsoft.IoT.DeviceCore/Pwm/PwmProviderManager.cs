@@ -23,7 +23,7 @@ namespace Microsoft.IoT.DeviceCore.Pwm
     public sealed class PwmProviderManager : IPwmProvider, IDisposable
     {
         #region Member Variables
-        private List<IPwmControllerProvider> providers;
+        private List<IPwmProvider> providers;
         #endregion // Member Variables
 
         #region Constructors
@@ -32,7 +32,7 @@ namespace Microsoft.IoT.DeviceCore.Pwm
         /// </summary>
         public PwmProviderManager()
         {
-            providers = new List<IPwmControllerProvider>();
+            providers = new List<IPwmProvider>();
         }
         #endregion // Constructors
 
@@ -68,7 +68,7 @@ namespace Microsoft.IoT.DeviceCore.Pwm
         /// <value>
         /// The collection of providers stored in the manager.
         /// </value>
-        public IList<IPwmControllerProvider> Providers
+        public IList<IPwmProvider> Providers
         {
             get
             {
@@ -77,10 +77,15 @@ namespace Microsoft.IoT.DeviceCore.Pwm
         }
         #endregion // Public Properties
 
-        #region IPwmProvider Interface
+        #region IPwmControllerProvider Interface
         IReadOnlyList<IPwmControllerProvider> IPwmProvider.GetControllers()
         {
-            return providers;
+            var controllers = new List<IPwmControllerProvider>();
+            for (int i=0; i<providers.Count; i++)
+            {
+                controllers.AddRange(providers[i].GetControllers());
+            }
+            return controllers;
         }
         #endregion // IPwmProvider Interface
     }
