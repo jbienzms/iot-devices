@@ -360,24 +360,14 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
 
             //Debug.WriteLine("PwmControllerProviderPCA9685: Disabling pin {0}", pin);
 
-            // Since we are using the totem-pole mode, we just need to  	
-            // make sure that the pin is fully OFF.
-
             if (!pinAccess[pin])
                 throw new InvalidOperationException("Pin is not acquired");
 
-            // Stop PWM signal on the specified pin
-
-            // Read the OffHigh register
-            var addr = new byte[1];
-            var msb = new byte[1];
-            addr[0] = PwmPinRegs[pin].OffHigh;
-            primaryDevice.WriteRead(addr, msb);
-
-            // Make sure that bit 4 of LEDn_OFF_H is 1 (pin disabled = fully off)
+            // Since we are using the totem-pole mode, we just need to  	
+            // make sure that the pin is fully OFF.
             var buffer = new byte[2];
             buffer[0] = PwmPinRegs[pin].OffHigh;
-            buffer[1] = (byte)(msb[0] | (0x10));
+            buffer[1] = (byte)(0x1 << 4);
             primaryDevice.Write(buffer);
         }
 
@@ -410,18 +400,14 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
             if (!pinAccess[pin])
                 throw new InvalidOperationException("Pin is not acquired");
 
-            // Start PWM signal on the specified pin
-
-            // Read the OffHigh register
-            var addr = new byte[1];
-            var msb = new byte[1];
-            addr[0] = PwmPinRegs[pin].OffHigh;
-            primaryDevice.WriteRead(addr, msb);
-
-            // Make sure that bit 4 of LEDn_OFF_H is 0 (pin enabled = 12-bit PWM active)
-            var buffer = new byte[2];
+            //  	 
+            // Since we are using the totem-pole mode, we just need to  	 
+            // make sure that that pin is not fully OFF(bit 4 of LEDn_OFF_H should be zero).  	 
+            // We set the OFF and ON counter to zero so that the pin is held Low.  	 
+            // Subsequent calls to SetPulseParameters should set the pulse width.  	//   
+            var buffer = new byte[5];
             buffer[0] = PwmPinRegs[pin].OffHigh;
-            buffer[1] = (byte)(msb[0] & ~(0x1 << 4));   // Mask off bit 4
+            buffer[1] = buffer[2] = buffer[3] = buffer[4] = 0x0;
             primaryDevice.Write(buffer);
         }
 
@@ -443,10 +429,8 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
         /// <inheritdoc/>
         public double SetDesiredFrequency(double frequency)
         {
-            if (frequency < MIN_FREQUENCY || frequency > MAX_FREQUENCY)
-            {
-                throw new ArgumentOutOfRangeException(nameof(frequency));
-            }
+            if (frequency < MIN_FREQUENCY) frequency = MIN_FREQUENCY;
+            if (frequency > MAX_FREQUENCY) frequency = MAX_FREQUENCY;
 
             // Make sure we're initialized
             TaskExtensions.UISafeWait(EnsureInitializedAsync);
@@ -485,12 +469,6 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
             var buffer = new byte[5];
             ushort onRatio = (ushort)Math.Round(dutyCycle * (PULSE_RESOLUTION - 1));
 
-            // Read the OffHigh register
-            var addr = new byte[1];
-            var msb = new byte[4];
-            addr[0] = PwmPinRegs[pin].OnLow;
-            primaryDevice.WriteRead(addr, msb);
-
             // Set the initial Address. AI flag is ON and hence  	
             // address will auto-increment after each byte.
             buffer[0] = PwmPinRegs[pin].OnLow;
@@ -510,9 +488,6 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
                 buffer[3] = (byte)(onRatio & 0xFF);
                 buffer[4] = (byte)((onRatio & 0x0F00) >> 8);
             }
-            // Make sure special full ON and full OFF bits are maintained
-            buffer[2] = (byte)(buffer[2] | (msb[1] & 0x10));
-            buffer[4] = (byte)(buffer[4] | (msb[3] & 0x10));
             primaryDevice.Write(buffer);
         }
         #endregion // Public Methods
