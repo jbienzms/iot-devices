@@ -13,17 +13,17 @@ using Windows.Foundation;
 namespace Microsoft.IoT.DeviceCore.Adc
 {
     /// <summary>
-    /// An implementation of <see cref="IAdcProvider"/> that allows multiple ADC 
-    /// controllers to be registered as a simple collection.
+    /// Allows multiple ADC controllers from various sources to be managed as a simple 
+    /// disposable collection.
     /// </summary>
     /// <remarks>
-    /// All controllers should be added to the <see cref="Providers"/> collection 
-    /// before calling <see cref="AdcProviderManager.GetControllersAsync"/>.
+    /// All providers should be added to the <see cref="Providers"/> collection 
+    /// before calling <see cref="AdcProviderManager.GetControllersAsync">GetControllersAsync</see>.
     /// </remarks>
     public sealed class AdcProviderManager : IAdcProvider, IDisposable
     {
         #region Member Variables
-        private List<IAdcControllerProvider> providers;
+        private List<IAdcProvider> providers;
         #endregion // Member Variables
 
         #region Constructors
@@ -32,9 +32,21 @@ namespace Microsoft.IoT.DeviceCore.Adc
         /// </summary>
         public AdcProviderManager()
         {
-            providers = new List<IAdcControllerProvider>();
+            providers = new List<IAdcProvider>();
         }
         #endregion // Constructors
+
+        #region IAdcProvider Interface
+        IReadOnlyList<IAdcControllerProvider> IAdcProvider.GetControllers()
+        {
+            var controllers = new List<IAdcControllerProvider>();
+            for (int i = 0; i < providers.Count; i++)
+            {
+                controllers.AddRange(providers[i].GetControllers());
+            }
+            return controllers;
+        }
+        #endregion // IAdcProvider Interface
 
         #region Public Methods
         /// <inheritdoc/>
@@ -68,7 +80,7 @@ namespace Microsoft.IoT.DeviceCore.Adc
         /// <value>
         /// The collection of providers stored in the manager.
         /// </value>
-        public IList<IAdcControllerProvider> Providers
+        public IList<IAdcProvider> Providers
         {
             get
             {
@@ -76,12 +88,5 @@ namespace Microsoft.IoT.DeviceCore.Adc
             }
         }
         #endregion // Public Properties
-
-        #region IAdcProvider Interface
-        IReadOnlyList<IAdcControllerProvider> IAdcProvider.GetControllers()
-        {
-            return providers;
-        }
-        #endregion // IAdcProvider Interface
     }
 }

@@ -20,8 +20,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Microsoft.IoT.Devices.Pwm.PwmSoft;
-using Microsoft.IoT.Devices.Pwm.PwmPCA9685;
+using Microsoft.IoT.Devices.Pwm;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -59,8 +58,8 @@ namespace PwmLed
             var pwmManager = new PwmProviderManager();
 
             // Add providers
-            //pwmManager.Providers.Add(new PwmProviderPCA9685());
-            pwmManager.Providers.Add(new PwmProviderSoft());
+            pwmManager.Providers.Add(new SoftPwm());
+            // pwmManager.Providers.Add(new PCA9685());
 
             // Get the well-known controller collection back
             var pwmControllers = await pwmManager.GetControllersAsync();
@@ -74,22 +73,16 @@ namespace PwmLed
             // Create light sensor
             led = new RgbLed()
             {
+                // SoftPwm
                 RedPin = controller.OpenPin(4),
                 GreenPin = controller.OpenPin(5),
                 BluePin = controller.OpenPin(6),
-            };
-        }
 
-        private void ColorPick_PointerMoved(object sender, PointerRoutedEventArgs e)
-        {
-            if (e.Pointer.IsInContact)
-            {
-                var selCol = ColorPick.SelectedColor;
-                if (selCol != null)
-                {
-                    led.Color = ColorPick.SelectedColor.Color;
-                }
-            }
+                // PCA9685
+                //RedPin = controller.OpenPin(0),
+                //GreenPin = controller.OpenPin(1),
+                //BluePin = controller.OpenPin(2),
+            };
         }
 
         private void ColorPick_SelectedColorChanged(object sender, EventArgs e)

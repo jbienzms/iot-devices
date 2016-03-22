@@ -1,22 +1,28 @@
-﻿using System;
+﻿using Microsoft.IoT.DeviceCore;
+using Microsoft.IoT.DeviceCore.Pwm;
+using Microsoft.IoT.DeviceHelpers;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.IoT.DeviceCore;
 using Windows.Devices.Gpio;
+using Windows.Devices.Pwm;
 using Windows.Devices.Pwm.Provider;
-using Microsoft.IoT.DeviceHelpers;
 
-namespace Microsoft.IoT.Devices.Pwm.PwmSoft
+namespace Microsoft.IoT.Devices.Pwm
 {
     /// <summary>
-    /// Initializes a new <see cref="PwmControllerProviderSoft"/> instance.
+    /// A software based PWM.
     /// </summary>
     /// <remarks>
+    /// This class is not designed to be used directly to read data. Instead, once it 
+    /// has been created and configured it can be passed to the 
+    /// <see cref="PwmController.GetControllersAsync">GetControllersAsync</see> 
+    /// method of the <see cref="PwmController"/> class or it can be added to the 
+    /// <see cref="PwmProviderManager.Providers">Providers</see> collection in a 
+    /// <see cref="PwmProviderManager"/>.
     /// </remarks>
-    public sealed class PwmControllerProviderSoft : IPwmControllerProvider, IDisposable
+    public sealed class SoftPwm : IPwmControllerProvider, IPwmProvider, IDisposable
     {
         #region Nested Types
         private class SoftPwmPin
@@ -61,9 +67,9 @@ namespace Microsoft.IoT.Devices.Pwm.PwmSoft
 
         #region Constructors
         /// <summary>
-        /// Initializes a new <see cref="PwmControllerProviderSoft"/> instance.
+        /// Initializes a new <see cref="SoftPwm"/> instance.
         /// </summary>
-        internal PwmControllerProviderSoft()
+        public SoftPwm()
         {
             // Get GPIO
             gpioController = GpioController.GetDefault();
@@ -155,9 +161,8 @@ namespace Microsoft.IoT.Devices.Pwm.PwmSoft
         }
         #endregion // Internal Methods
 
-        #region Public Methods
-        /// <inheritdoc/>
-        public void AcquirePin(int pin)
+        #region IPwmControllerProvider Interface
+        void IPwmControllerProvider.AcquirePin(int pin)
         {
             if ((pin < 0) || (pin > (pinCount - 1))) throw new ArgumentOutOfRangeException("pin");
 
@@ -170,8 +175,7 @@ namespace Microsoft.IoT.Devices.Pwm.PwmSoft
             }
         }
 
-        /// <inheritdoc/>
-        public void DisablePin(int pin)
+        void IPwmControllerProvider.DisablePin(int pin)
         {
             if ((pin < 0) || (pin > (pinCount - 1))) throw new ArgumentOutOfRangeException("pin");
 
@@ -182,31 +186,7 @@ namespace Microsoft.IoT.Devices.Pwm.PwmSoft
             }
         }
 
-        /// <inheritdoc/>
-        public void Dispose()
-        {
-            if (updater != null)
-            {
-                updater.Dispose();
-                updater = null;
-            }
-            // Dispose each pin
-            lock(pins)
-            {
-                for (int i = pinCount - 1; i >= 0; i--)
-                {
-                    if (pins.ContainsKey(i))
-                    {
-                        pins[i].Pin.Dispose();
-                        pins.Remove(i);
-                    }
-                }
-            }
-            pins = null;
-        }
-
-        /// <inheritdoc/>
-        public void EnablePin(int pin)
+        void IPwmControllerProvider.EnablePin(int pin)
         {
             if ((pin < 0) || (pin > (pinCount - 1))) throw new ArgumentOutOfRangeException("pin");
 
@@ -220,8 +200,7 @@ namespace Microsoft.IoT.Devices.Pwm.PwmSoft
             if (!updater.IsStarted) { updater.Start(); }
         }
 
-        /// <inheritdoc/>
-        public void ReleasePin(int pin)
+        void IPwmControllerProvider.ReleasePin(int pin)
         {
             if ((pin < 0) || (pin > (pinCount - 1))) throw new ArgumentOutOfRangeException("pin");
 
@@ -233,8 +212,7 @@ namespace Microsoft.IoT.Devices.Pwm.PwmSoft
             }
         }
 
-        /// <inheritdoc/>
-        public double SetDesiredFrequency(double frequency)
+        double IPwmControllerProvider.SetDesiredFrequency(double frequency)
         {
             if (frequency < MIN_FREQUENCY || frequency > MAX_FREQUENCY)
             {
@@ -246,8 +224,7 @@ namespace Microsoft.IoT.Devices.Pwm.PwmSoft
             return actualFrequency;
         }
 
-        /// <inheritdoc/>
-        public void SetPulseParameters(int pin, double dutyCycle, bool invertPolarity)
+        void IPwmControllerProvider.SetPulseParameters(int pin, double dutyCycle, bool invertPolarity)
         {
             if ((pin < 0) || (pin > (pinCount - 1))) throw new ArgumentOutOfRangeException("pin");
             if ((dutyCycle < 0) || (dutyCycle > 1)) throw new ArgumentOutOfRangeException("dutyCycle");
@@ -259,15 +236,12 @@ namespace Microsoft.IoT.Devices.Pwm.PwmSoft
                 softPin.DutyCycle = dutyCycle;
                 softPin.InvertPolarity = invertPolarity;
             }
-            
+
             // If duty cycle isn't zero we need to make sure updates are running
             if ((dutyCycle != 0) && (!updater.IsStarted)) { updater.Start(); }
         }
-        #endregion // Public Methods
 
-        #region Public Properties
-        /// <inheritdoc/>
-        public double ActualFrequency
+        double IPwmControllerProvider.ActualFrequency
         {
             get
             {
@@ -275,8 +249,7 @@ namespace Microsoft.IoT.Devices.Pwm.PwmSoft
             }
         }
 
-        /// <inheritdoc/>
-        public double MaxFrequency
+        double IPwmControllerProvider.MaxFrequency
         {
             get
             {
@@ -284,8 +257,7 @@ namespace Microsoft.IoT.Devices.Pwm.PwmSoft
             }
         }
 
-        /// <inheritdoc/>
-        public double MinFrequency
+        double IPwmControllerProvider.MinFrequency
         {
             get
             {
@@ -293,14 +265,45 @@ namespace Microsoft.IoT.Devices.Pwm.PwmSoft
             }
         }
 
-        /// <inheritdoc/>
-        public int PinCount
+        int IPwmControllerProvider.PinCount
         {
             get
             {
                 return pinCount;
             }
         }
-        #endregion // Public Properties
+        #endregion // IPwmControllerProvider Interface
+
+        #region IPwmProvider Interface
+        IReadOnlyList<IPwmControllerProvider> IPwmProvider.GetControllers()
+        {
+            return new List<IPwmControllerProvider>() { this };
+        }
+        #endregion // IPwmProvider Interface
+
+        #region Public Methods
+        /// <inheritdoc/>
+        public void Dispose()
+        {
+            if (updater != null)
+            {
+                updater.Dispose();
+                updater = null;
+            }
+            // Dispose each pin
+            lock (pins)
+            {
+                for (int i = pinCount - 1; i >= 0; i--)
+                {
+                    if (pins.ContainsKey(i))
+                    {
+                        pins[i].Pin.Dispose();
+                        pins.Remove(i);
+                    }
+                }
+            }
+            pins = null;
+        }
+        #endregion // Public Methods
     }
 }

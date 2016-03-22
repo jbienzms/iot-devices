@@ -300,7 +300,7 @@ namespace DeviceTester
             StartSwitches();
             // StartAnalog();
             // StartTemperature();
-            // StartThumbstick();
+            StartThumbstick();
 
             StartCloudReporting();
         }

@@ -150,10 +150,8 @@
     <Compile Include="Input\Thumbstick\SS944.cs" />
     <Compile Include="Lights\RgbLed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Pwm\PwmPCA9685\PwmControllerProviderPCA9685.cs" />
-    <Compile Include="Pwm\PwmPCA9685\PwmProviderPCA9685.cs" />
-    <Compile Include="Pwm\PwmSoft\PwmControllerProviderSoft.cs" />
-    <Compile Include="Pwm\PwmSoft\PwmProviderSoft.cs" />
+    <Compile Include="Pwm\PCA9685.cs" />
+    <Compile Include="Pwm\SoftPwm.cs" />
     <Compile Include="Resources\Strings.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -13,12 +13,12 @@ using Windows.Foundation;
 namespace Microsoft.IoT.DeviceCore.Pwm
 {
     /// <summary>
-    /// An implementation of <see cref="IPwmProvider"/> that allows multiple PWM 
-    /// controllers to be registered as a simple collection.
+    /// Allows multiple PWM controllers from various sources to be managed as a simple 
+    /// disposable collection.
     /// </summary>
     /// <remarks>
-    /// All controllers should be added to the <see cref="Providers"/> collection 
-    /// before calling <see cref="PwmProviderManager.GetControllersAsync"/>.
+    /// All providers should be added to the <see cref="Providers"/> collection 
+    /// before calling <see cref="PwmProviderManager.GetControllersAsync">GetControllersAsync</see>.
     /// </remarks>
     public sealed class PwmProviderManager : IPwmProvider, IDisposable
     {
@@ -36,24 +36,36 @@ namespace Microsoft.IoT.DeviceCore.Pwm
         }
         #endregion // Constructors
 
+        #region IPwmProvider Interface
+        IReadOnlyList<IPwmControllerProvider> IPwmProvider.GetControllers()
+        {
+            var controllers = new List<IPwmControllerProvider>();
+            for (int i = 0; i < providers.Count; i++)
+            {
+                controllers.AddRange(providers[i].GetControllers());
+            }
+            return controllers;
+        }
+        #endregion // IPwmProvider Interface
+
         #region Public Methods
         /// <inheritdoc/>
         public void Dispose()
         {
             // Dispose and remove each provider
-            for (int i = Providers.Count - 1; i >= 0; i--)
+            for (int i = providers.Count - 1; i >= 0; i--)
             {
                 var provider = providers[i] as IDisposable;
                 if (provider != null) { provider.Dispose(); }
-                Providers.RemoveAt(i);
+                providers.RemoveAt(i);
             }
         }
 
         /// <summary>
-        /// Gets the <see cref="PwmController"/> instances for each controller provider.
+        /// Gets a collection of <see cref="PwmController"/> instances that represent all controllers returned by all providers.
         /// </summary>
         /// <returns>
-        /// An IAsyncOperation that yields the list of controllers.
+        /// An IAsyncOperation that yields the controllers.
         /// </returns>
         public IAsyncOperation<IReadOnlyList<PwmController>> GetControllersAsync()
         {
@@ -76,17 +88,5 @@ namespace Microsoft.IoT.DeviceCore.Pwm
             }
         }
         #endregion // Public Properties
-
-        #region IPwmControllerProvider Interface
-        IReadOnlyList<IPwmControllerProvider> IPwmProvider.GetControllers()
-        {
-            var controllers = new List<IPwmControllerProvider>();
-            for (int i=0; i<providers.Count; i++)
-            {
-                controllers.AddRange(providers[i].GetControllers());
-            }
-            return controllers;
-        }
-        #endregion // IPwmProvider Interface
     }
 }

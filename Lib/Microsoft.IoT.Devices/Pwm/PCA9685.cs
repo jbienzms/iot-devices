@@ -1,36 +1,43 @@
-﻿// Copyright (c) Microsoft. All rights reserved.
-//
+﻿using Microsoft.IoT.DeviceCore.Pwm;
+using Microsoft.IoT.DeviceHelpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.Enumeration;
 using Windows.Devices.I2c;
+using Windows.Devices.Pwm;
 using Windows.Devices.Pwm.Provider;
-using Windows.Foundation;
-using Microsoft.IoT.DeviceCore;
-using TaskExtensions = Microsoft.IoT.DeviceHelpers.TaskExtensions;
-using Microsoft.IoT.DeviceHelpers;
-using System.Diagnostics;
 
-namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
+namespace Microsoft.IoT.Devices.Pwm
 {
     /// <summary>
-    /// Initializes a new <see cref="PwmControllerProviderPCA9685"/> instance.
+    /// Driver for the <see href="http://www.adafruit.com/products/815">PCA9685 16-Channel 12-bit PWM/Servo</see> 
+    /// driver and others.
     /// </summary>
     /// <remarks>
+    /// <para>
+    /// This class is not designed to be used directly to read data. Instead, once it 
+    /// has been created and configured it can be passed to the 
+    /// <see cref="PwmController.GetControllersAsync">GetControllersAsync</see> 
+    /// method of the <see cref="PwmController"/> class or it can be added to the 
+    /// <see cref="PwmProviderManager.Providers">Providers</see> collection in a 
+    /// <see cref="PwmProviderManager"/>.
+    ///</para>
+    ///<para>
     /// This class is adapted from the original C++ ms-iot sample 
     /// <see href="https://github.com/ms-iot/BusProviders/tree/develop/PWM/PwmPCA9685">here</see>.
     /// And SimulatedProvider code <see href="https://github.com/ms-iot/BusProviders/blob/develop/SimulatedProvider/SimulatedProvider/PwmControllerProvider.cs">here</see>/>
-    /// <br/>
-    /// Driver for the <see href="http://www.adafruit.com/products/815">16-Channel 12-bit PWM/Servo</see> 
-    /// PCA9685 Driver and others.
+    /// </para>
     /// </remarks>
-    public sealed class PwmControllerProviderPCA9685 : IPwmControllerProvider, IDisposable
+    public sealed class PCA9685 : IPwmControllerProvider, IPwmProvider, IDisposable
     {
+        #region Constants
+        private const string I2C_DEFAULT_CONTROLLER_NAME = "I2C1";
+        private const int I2C_PRIMARY_ADDRESS = 0x40;
+        #endregion // Constants
+
         #region Nested Types
         /// <summary>
         /// PCA9685 register addresses
@@ -120,13 +127,13 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
         [Flags]
         private enum Mode1Flags : byte
         {                           // * denoted power-on state
-            RESTART = 0x80,         // Restart: 0*: disabled, 1:eneabled
+            RESTART = 0x80,         // Restart: 0*: disabled, 1:enabled
             EXTCLK = 0x40,          // clock source: 0*: internal, 1: external
             AI = 0x20,              // register auto-increment: *0: disabled, 1: enabled
             SLEEP = 0x10,           // mode: 0: normal, *1: low-power
-            SUB1 = 0x08,            // subaddress 1: *0: disabled, 1: enabled
-            SUB2 = 0x04,            // subaddress 2: *0: disabled, 1: enabled
-            SUB3 = 0x02,            // subaddress 3: *0: disabled, 1: enabled
+            SUB1 = 0x08,            // sub-address 1: *0: disabled, 1: enabled
+            SUB2 = 0x04,            // sub-address 2: *0: disabled, 1: enabled
+            SUB3 = 0x02,            // sub-address 3: *0: disabled, 1: enabled
             ALLCALL = 0x01,         // all call address: 0: disabled, *1: enabled
         }                           // power-on state of this register is 0x11 (00010001)
 
@@ -143,8 +150,8 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
             OCH = 0x08,             // Outputs change on: *0: STOP command, 1: ACK command
             OUTDRV = 0x04,          // Output type: 0: open drain, *1: totem pole
             // *00: When output drivers disabled, LEDn=0
-            // 01: When output drivers disabled, LEDn=1 when OUTDRV=1, otherwise high-impedence
-            // 1x: When output drivers disabled, LEDn=high-impedence
+            // 01: When output drivers disabled, LEDn=1 when OUTDRV=1, otherwise high-impedance
+            // 1x: When output drivers disabled, LEDn=high-impedance
             OUTNE1 = 0x02,
             OUTNE0 = 0x01,
         }                           // power-on state of this register is 0x04 (00000100)
@@ -168,7 +175,6 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
         #region Constants
         private const double CLOCK_FREQUENCY = 25000000;
         private const byte DEFAULT_PRESCALE = 0x1E;
-        private const int I2C_PRIMARY_ADDRESS = 0x40;
         private const int I2C_RESET_ADDRESS = 0x0;
         private const int I2C_ALL_CALL_ADDRESS = 0xE0;      // Default ALLCALL address for all PCA9685 on I2C bus
         private const int MAX_FREQUENCY = 1526;
@@ -202,25 +208,14 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
 
         #region Member Variables
         private double actualFrequency;
-        private string controllerName = "I2C1"; // The name of the I2C controller to use
+        private int address = I2C_PRIMARY_ADDRESS;
+        private string controllerName = I2C_DEFAULT_CONTROLLER_NAME;
         private bool isInitialized;
         private byte preScale = DEFAULT_PRESCALE;
         private bool[] pinAccess = new bool[PIN_COUNT];
         private I2cDevice primaryDevice;
         private I2cDevice resetDevice;
-        private int i2cAddress;
         #endregion // Member Variables
-
-        #region Constructors
-        /// <summary>
-        /// Initializes a new <see cref="PwmControllerProviderPCA9685"/> instance.
-        /// </summary>
-        /// <param name="address">Optional I2C address parameter. Defaut is 0x40.</param>
-        internal PwmControllerProviderPCA9685(byte address = I2C_PRIMARY_ADDRESS)
-        {
-            this.i2cAddress = address;
-        }
-        #endregion // Constructors
 
         #region Internal Methods
         private async Task EnsureInitializedAsync()
@@ -241,7 +236,7 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
             if (di == null) { throw new DeviceNotFoundException(controllerName); }
 
             // Connection settings for primary device
-            var primarySettings = new I2cConnectionSettings(this.i2cAddress);
+            var primarySettings = new I2cConnectionSettings(this.address);
             primarySettings.BusSpeed = I2cBusSpeed.FastMode;
             primarySettings.SharingMode = I2cSharingMode.Exclusive;
 
@@ -250,7 +245,7 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
             if (primaryDevice == null) { throw new DeviceNotFoundException("PCA9685 primary device"); }
 
             // Connection settings for reset device
-            var resetSettings = new I2cConnectionSettings(this.i2cAddress);
+            var resetSettings = new I2cConnectionSettings(this.address);
             resetSettings.SlaveAddress = I2C_RESET_ADDRESS;
 
             // Get the reset device
@@ -332,14 +327,13 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
         }
         #endregion // Internal Methods
 
-        #region Public Methods
-        /// <inheritdoc/>
-        public void AcquirePin(int pin)
+        #region IPwmControllerProvider Interface
+        void IPwmControllerProvider.AcquirePin(int pin)
         {
             if ((pin < 0) || (pin >= PIN_COUNT)) throw new ArgumentOutOfRangeException("pin");
 
             // Make sure we're initialized
-            TaskExtensions.UISafeWait(EnsureInitializedAsync);
+            DeviceHelpers.TaskExtensions.UISafeWait(EnsureInitializedAsync);
 
             //Debug.WriteLine("PwmControllerProviderPCA9685: Acquiring pin {0}", pin);
 
@@ -350,13 +344,12 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
             }
         }
 
-        /// <inheritdoc/>
-        public void DisablePin(int pin)
+        void IPwmControllerProvider.DisablePin(int pin)
         {
             if ((pin < 0) || (pin >= PIN_COUNT)) throw new ArgumentOutOfRangeException("pin");
 
             // Make sure we're initialized
-            TaskExtensions.UISafeWait(EnsureInitializedAsync);
+            DeviceHelpers.TaskExtensions.UISafeWait(EnsureInitializedAsync);
 
             //Debug.WriteLine("PwmControllerProviderPCA9685: Disabling pin {0}", pin);
 
@@ -371,29 +364,12 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
             primaryDevice.Write(buffer);
         }
 
-        /// <inheritdoc/>
-        public void Dispose()
-        {
-            if (resetDevice != null)
-            {
-                resetDevice.Dispose();
-                resetDevice = null;
-            }
-            if (primaryDevice != null)
-            {
-                primaryDevice.Dispose();
-                primaryDevice = null;
-            }
-            pinAccess = null;
-        }
-
-        /// <inheritdoc/>
-        public void EnablePin(int pin)
+        void IPwmControllerProvider.EnablePin(int pin)
         {
             if ((pin < 0) || (pin >= PIN_COUNT)) throw new ArgumentOutOfRangeException("pin");
 
             // Make sure we're initialized
-            TaskExtensions.UISafeWait(EnsureInitializedAsync);
+            DeviceHelpers.TaskExtensions.UISafeWait(EnsureInitializedAsync);
 
             //Debug.WriteLine("PwmControllerProviderPCA9685: Enabling pin {0}", pin);
 
@@ -402,7 +378,7 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
 
             //  	 
             // Since we are using the totem-pole mode, we just need to  	 
-            // make sure that that pin is not fully OFF(bit 4 of LEDn_OFF_H should be zero).  	 
+            // make sure that the pin is not fully OFF(bit 4 of LEDn_OFF_H should be zero).  	 
             // We set the OFF and ON counter to zero so that the pin is held Low.  	 
             // Subsequent calls to SetPulseParameters should set the pulse width.  	//   
             var buffer = new byte[5];
@@ -411,8 +387,7 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
             primaryDevice.Write(buffer);
         }
 
-        /// <inheritdoc/>
-        public void ReleasePin(int pin)
+        void IPwmControllerProvider.ReleasePin(int pin)
         {
             if ((pin < 0) || (pin >= PIN_COUNT)) throw new ArgumentOutOfRangeException("pin");
 
@@ -426,19 +401,18 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
             }
         }
 
-        /// <inheritdoc/>
-        public double SetDesiredFrequency(double frequency)
+        double IPwmControllerProvider.SetDesiredFrequency(double frequency)
         {
             if (frequency < MIN_FREQUENCY) frequency = MIN_FREQUENCY;
             if (frequency > MAX_FREQUENCY) frequency = MAX_FREQUENCY;
 
             // Make sure we're initialized
-            TaskExtensions.UISafeWait(EnsureInitializedAsync);
+            DeviceHelpers.TaskExtensions.UISafeWait(EnsureInitializedAsync);
 
             preScale = (byte)(Math.Round((CLOCK_FREQUENCY / (frequency * PULSE_RESOLUTION))) - 1);
             actualFrequency = CLOCK_FREQUENCY / (double)((preScale + 1) * PULSE_RESOLUTION);
 
-            byte mode1 = TaskExtensions.UISafeWait(SleepControllerAsync);
+            byte mode1 = DeviceHelpers.TaskExtensions.UISafeWait(SleepControllerAsync);
 
             var buffer = new byte[2];
             // Set PRE_SCALE  	
@@ -447,13 +421,13 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
             primaryDevice.Write(buffer);
 
             // Restart  	
-            TaskExtensions.UISafeWait(RestartControllerAsync, mode1);
+            DeviceHelpers.TaskExtensions.UISafeWait(RestartControllerAsync, mode1);
 
             return actualFrequency;
         }
 
         /// <inheritdoc/>
-        public void SetPulseParameters(int pin, double dutyCycle, bool invertPolarity)
+        void IPwmControllerProvider.SetPulseParameters(int pin, double dutyCycle, bool invertPolarity)
         {
             if ((pin < 0) || (pin >= PIN_COUNT)) throw new ArgumentOutOfRangeException("pin");
             if ((dutyCycle < 0) || (dutyCycle > 1)) throw new ArgumentOutOfRangeException("dutyCycle");
@@ -461,7 +435,7 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
             //Debug.WriteLine("PwmControllerProviderPCA9685: Setting {0} pin duty cycle to {1}", pin, dutyCycle);
 
             // Make sure we're initialized
-            TaskExtensions.UISafeWait(EnsureInitializedAsync);
+            DeviceHelpers.TaskExtensions.UISafeWait(EnsureInitializedAsync);
 
             if (!pinAccess[pin])
                 throw new InvalidOperationException("Pin is not acquired");
@@ -490,27 +464,83 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
             }
             primaryDevice.Write(buffer);
         }
-        #endregion // Public Methods
 
-        #region Public Properties
-
-        /// <summary>
-        /// The I2C address of this controller
-        /// </summary>
-        public int I2CAddress
-        {
-            get
-            {
-                return this.i2cAddress;
-            }
-        }
-
-        /// <inheritdoc/>
-        public double ActualFrequency
+        double IPwmControllerProvider.ActualFrequency
         {
             get
             {
                 return actualFrequency;
+            }
+        }
+
+        double IPwmControllerProvider.MaxFrequency
+        {
+            get
+            {
+                return MAX_FREQUENCY;
+            }
+        }
+
+        double IPwmControllerProvider.MinFrequency
+        {
+            get
+            {
+                return MIN_FREQUENCY;
+            }
+        }
+
+        int IPwmControllerProvider.PinCount
+        {
+            get
+            {
+                return PIN_COUNT;
+            }
+        }
+        #endregion // IPwmControllerProvider Interface
+
+        #region IPwmProvider Interface
+        IReadOnlyList<IPwmControllerProvider> IPwmProvider.GetControllers()
+        {
+            return new List<IPwmControllerProvider>() { this };
+        }
+        #endregion // IPwmProvider Interface
+
+        #region Public Methods
+        /// <inheritdoc/>
+        public void Dispose()
+        {
+            if (resetDevice != null)
+            {
+                resetDevice.Dispose();
+                resetDevice = null;
+            }
+            if (primaryDevice != null)
+            {
+                primaryDevice.Dispose();
+                primaryDevice = null;
+            }
+            pinAccess = null;
+        }
+        #endregion // Public Methods
+
+        #region Public Properties
+        /// <summary>
+        /// Gets or sets the I2C address of the controller.
+        /// </summary>
+        /// <value>
+        /// The I2C address of the controller. The default is 0x40.
+        /// </value>
+        [DefaultValue(I2C_PRIMARY_ADDRESS)]
+        public int Address
+        {
+            get
+            {
+                return address;
+            }
+            set
+            {
+                if (isInitialized) { throw new IoChangeException(); }
+                address = value;
             }
         }
 
@@ -520,7 +550,7 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
         /// <value>
         /// The name of the I2C controller to use. The default is "I2C1".
         /// </value>
-        [DefaultValue("I2C1")]
+        [DefaultValue(I2C_DEFAULT_CONTROLLER_NAME)]
         public string ControllerName
         {
             get
@@ -531,33 +561,6 @@ namespace Microsoft.IoT.Devices.Pwm.PwmPCA9685
             {
                 if (isInitialized) { throw new IoChangeException(); }
                 controllerName = value;
-            }
-        }
-
-        /// <inheritdoc/>
-        public double MaxFrequency
-        {
-            get
-            {
-                return MAX_FREQUENCY;
-            }
-        }
-
-        /// <inheritdoc/>
-        public double MinFrequency
-        {
-            get
-            {
-                return MIN_FREQUENCY;
-            }
-        }
-
-        /// <inheritdoc/>
-        public int PinCount
-        {
-            get
-            {
-                return PIN_COUNT;
             }
         }
         #endregion // Public Properties

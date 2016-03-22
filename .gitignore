@@ -152,6 +152,8 @@ publish/
 #!**/packages/repositories.config
 # VSIX Packages OK
 !**/VisualStudio/VSFeatureEngine/Packages/*
+# Lock files
+**/project.lock.json
 
 # Windows Azure Build Output
 csx/

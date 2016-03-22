@@ -11,6 +11,8 @@ using Windows.Devices.Enumeration;
 using Windows.Devices.Gpio;
 using Windows.Devices.Spi;
 using Microsoft.IoT.DeviceHelpers;
+using Windows.Devices.Adc;
+using Microsoft.IoT.DeviceCore.Adc;
 
 namespace Microsoft.IoT.Devices.Adc
 {
@@ -18,31 +20,31 @@ namespace Microsoft.IoT.Devices.Adc
     /// Driver for the <see href="http://www.microchip.com/wwwproducts/Devices.aspx?product=MCP3208">MCP3208</see> 
     /// 12-bit A/D converter.
     /// </summary>
-    public sealed class MCP3208 : IAdcControllerProvider, IDisposable
+    /// <remarks>
+    /// This class is not designed to be used directly to read data. Instead, once it 
+    /// has been created and configured it can be passed to the 
+    /// <see cref="AdcController.GetControllersAsync">GetControllersAsync</see> 
+    /// method of the <see cref="AdcController"/> class or it can be added to the 
+    /// <see cref="AdcProviderManager.Providers">Providers</see> collection in a 
+    /// <see cref="AdcProviderManager"/>.
+    /// </remarks>
+    public sealed class MCP3208 : IAdcControllerProvider, IAdcProvider, IDisposable
     {
         #region Constants
+        private const int CHANNEL_COUNT = 8;
         private const byte COMMAND_SINGLE = 0x06;
         private const byte COMMAND_DIFF = 0x04;
+
         // static private readonly byte[] CONFIG_BUFFER = new byte[3] { 0x06, 0x00, 0x00 }; // 00000110 channel configuration data for the MCP3208
         #endregion // Constants
 
         #region Member Variables
+        private ProviderAdcChannelMode channelMode = ProviderAdcChannelMode.SingleEnded;
         private int chipSelectLine = 0;         // The chip select line used on the SPI controller
         private string controllerName = "SPI0"; // The name of the SPI controller to use
         private bool isInitialized;
         private SpiDevice spiDevice;            // The SPI device the display is connected to
         #endregion // Member Variables
-
-        #region Constructors
-        /// <summary>
-        /// Initializes a new <see cref="MCP3208"/> instance.
-        /// </summary>
-        public MCP3208()
-        {
-            // Set Defaults
-            ChannelMode = ProviderAdcChannelMode.SingleEnded;
-        }
-        #endregion // Constructors
 
         #region Internal Methods
         private async Task EnsureInitializedAsync()
@@ -79,21 +81,19 @@ namespace Microsoft.IoT.Devices.Adc
         }
         #endregion // Internal Methods
 
-        #region Public Methods
-        /// <inheritdoc/>
-        public void AcquireChannel(int channel)
+        #region IAdcControllerProvider Interface
+        void IAdcControllerProvider.AcquireChannel(int channel)
         {
             // Validate
-            if ((channel < 0) || (channel > ChannelCount)) throw new ArgumentOutOfRangeException("channel");
+            if ((channel < 0) || (channel > CHANNEL_COUNT)) throw new ArgumentOutOfRangeException("channel");
 
             // This devices does not operate in exclusive mode, so we'll just ignore
         }
 
-        /// <inheritdoc/>
-        public int ReadValue(int channelNumber)
+        int IAdcControllerProvider.ReadValue(int channelNumber)
         {
             // Validate
-            if ((channelNumber < 0) || (channelNumber > ChannelCount)) throw new ArgumentOutOfRangeException("channelNumber");
+            if ((channelNumber < 0) || (channelNumber > CHANNEL_COUNT)) throw new ArgumentOutOfRangeException("channelNumber");
 
             // Make sure we're initialized
             EnsureInitializedAsync().Wait();
@@ -111,7 +111,7 @@ namespace Microsoft.IoT.Devices.Adc
             // S / D represents single mode or differential mode ADC calculation:  1 for single, 0 for differential
             // D2, D1, D0 represent the channel select.
             UInt16 command;
-            if (ChannelMode == ProviderAdcChannelMode.Differential)
+            if (channelMode == ProviderAdcChannelMode.Differential)
             {
                 command = (UInt16)(COMMAND_DIFF << 8 | channelNumber << 6);
             }
@@ -135,28 +135,15 @@ namespace Microsoft.IoT.Devices.Adc
             return result;
         }
 
-        /// <inheritdoc/>
-        public void ReleaseChannel(int channel)
+        void IAdcControllerProvider.ReleaseChannel(int channel)
         {
             // Validate
-            if ((channel < 0) || (channel > ChannelCount)) throw new ArgumentOutOfRangeException("channel");
+            if ((channel < 0) || (channel > CHANNEL_COUNT)) throw new ArgumentOutOfRangeException("channel");
 
             // This devices does not operate in exclusive mode, so we'll just ignore
         }
 
-        /// <inheritdoc/>
-        public void Dispose()
-        {
-            if (spiDevice != null)
-            {
-                spiDevice.Dispose();
-                spiDevice = null;
-            }
-            isInitialized = false;
-        }
-
-        /// <inheritdoc/>
-        public bool IsChannelModeSupported(ProviderAdcChannelMode channelMode)
+        bool IAdcControllerProvider.IsChannelModeSupported(ProviderAdcChannelMode channelMode)
         {
             // All modes currently supported, but in case another mode is added later.
             switch (channelMode)
@@ -168,8 +155,71 @@ namespace Microsoft.IoT.Devices.Adc
                     return false;
             }
         }
-        #endregion // Public Methods
 
+        int IAdcControllerProvider.ChannelCount
+        {
+            get
+            {
+                return CHANNEL_COUNT;
+            }
+        }
+
+        ProviderAdcChannelMode IAdcControllerProvider.ChannelMode
+        {
+            get
+            {
+                return channelMode;
+            }
+            set
+            {
+                channelMode = value;
+            }
+        }
+
+        int IAdcControllerProvider.MaxValue
+        {
+            get
+            {
+                return 4095;
+            }
+        }
+
+        int IAdcControllerProvider.MinValue
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        int IAdcControllerProvider.ResolutionInBits
+        {
+            get
+            {
+                return 12;
+            }
+        }
+        #endregion // IAdcControllerProvider Interface
+
+        #region IAdcProvider Interface
+        IReadOnlyList<IAdcControllerProvider> IAdcProvider.GetControllers()
+        {
+            return new List<IAdcControllerProvider>() { this };
+        }
+        #endregion // IAdcProvider Interface
+
+        #region Public Methods
+        /// <inheritdoc/>
+        public void Dispose()
+        {
+            if (spiDevice != null)
+            {
+                spiDevice.Dispose();
+                spiDevice = null;
+            }
+            isInitialized = false;
+        }
+        #endregion // Public Methods
 
         #region Public Properties
         /// <summary>
@@ -192,31 +242,6 @@ namespace Microsoft.IoT.Devices.Adc
             }
         }
 
-        /// <inheritdoc/>
-        public int ChannelCount
-        {
-            get
-            {
-                return 8;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the reading mode of the ADC.
-        /// </summary>
-        /// <value>
-        /// A <see cref="ProviderAdcChannelMode"/> that represents the reading mode of the ADC. 
-        /// The default is <see cref="ProviderAdcChannelMode.SingleEnded"/>.
-        /// </value>
-        /// <remarks>
-        /// For more information see 
-        /// <see href="http://www.maximintegrated.com/en/app-notes/index.mvp/id/1108">
-        /// Understanding Single-Ended, Pseudo-Differential and Fully-Differential ADC Inputs
-        /// </see>
-        /// </remarks>
-        [DefaultValue((int)ProviderAdcChannelMode.SingleEnded)] // HACK: int cast is a workaround for WinMDExp issue - JB 2016/02/19
-        public ProviderAdcChannelMode ChannelMode { get; set; }
-
         /// <summary>
         /// Gets or sets the name of the SPIO controller to use.
         /// </summary>
@@ -234,33 +259,6 @@ namespace Microsoft.IoT.Devices.Adc
             {
                 if (isInitialized) { throw new IoChangeException(); }
                 controllerName = value;
-            }
-        }
-
-        /// <inheritdoc/>
-        public int MaxValue
-        {
-            get
-            {
-                return 4095;
-            }
-        }
-
-        /// <inheritdoc/>
-        public int MinValue
-        {
-            get
-            {
-                return 0;
-            }
-        }
-
-        /// <inheritdoc/>
-        public int ResolutionInBits
-        {
-            get
-            {
-                return 12;
             }
         }
         #endregion // Public Properties

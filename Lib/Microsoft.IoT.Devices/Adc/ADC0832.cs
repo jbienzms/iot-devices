@@ -2,12 +2,10 @@
 //
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Windows.Devices.Adc;
 using Windows.Devices.Adc.Provider;
 using Windows.Devices.Gpio;
+using Microsoft.IoT.DeviceCore.Adc;
 using Microsoft.IoT.DeviceHelpers;
 
 namespace Microsoft.IoT.Devices.Adc
@@ -16,25 +14,27 @@ namespace Microsoft.IoT.Devices.Adc
     /// Driver for the <see href="http://www.ti.com/product/adc0832-n">ADC0832</see> 
     /// 8-bit A/D converter.
     /// </summary>
-    public sealed class ADC0832 : IAdcControllerProvider, IDisposable
+    /// <remarks>
+    /// This class is not designed to be used directly to read data. Instead, once it 
+    /// has been created and configured it can be passed to the 
+    /// <see cref="AdcController.GetControllersAsync">GetControllersAsync</see> 
+    /// method of the <see cref="AdcController"/> class or it can be added to the 
+    /// <see cref="AdcProviderManager.Providers">Providers</see> collection in a 
+    /// <see cref="AdcProviderManager"/>.
+    /// </remarks>
+    public sealed class ADC0832 : IAdcControllerProvider, IAdcProvider, IDisposable
     {
+        #region Constants
+        private const int CHANNEL_COUNT = 2;
+        #endregion // Constants
+
         #region Member Variables
+        private ProviderAdcChannelMode channelMode = ProviderAdcChannelMode.SingleEnded;
         private GpioPin chipSelectPin;
         private GpioPin clockPin;
         private GpioPin dataPin;
         private bool isInitialized;
         #endregion // Member Variables
-
-        #region Constructors
-        /// <summary>
-        /// Initializes a new <see cref="ADC0832"/> instance.
-        /// </summary>
-        public ADC0832()
-        {
-            // Set Defaults
-            ChannelMode = ProviderAdcChannelMode.SingleEnded;
-        }
-        #endregion // Constructors
 
         #region Internal Methods
         private void EnsureInitialized()
@@ -48,21 +48,32 @@ namespace Microsoft.IoT.Devices.Adc
         }
         #endregion // Internal Methods
 
-        #region Public Methods
-        /// <inheritdoc/>
-        public void AcquireChannel(int channel)
+        #region IAdcControllerProvider Interface
+        void IAdcControllerProvider.AcquireChannel(int channel)
         {
             // Validate
-            if ((channel < 0) || (channel > ChannelCount)) throw new ArgumentOutOfRangeException("channel");
+            if ((channel < 0) || (channel > CHANNEL_COUNT)) throw new ArgumentOutOfRangeException("channel");
 
             // This devices does not operate in exclusive mode, so we'll just ignore
         }
 
-        /// <inheritdoc/>
-        public int ReadValue(int channelNumber)
+        bool IAdcControllerProvider.IsChannelModeSupported(ProviderAdcChannelMode channelMode)
+        {
+            // All modes currently supported, but in case another mode is added later.
+            switch (channelMode)
+            {
+                case ProviderAdcChannelMode.Differential:
+                case ProviderAdcChannelMode.SingleEnded:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        int IAdcControllerProvider.ReadValue(int channelNumber)
         {
             // Validate
-            if ((channelNumber < 0) || (channelNumber > ChannelCount)) throw new ArgumentOutOfRangeException("channelNumber");
+            if ((channelNumber < 0) || (channelNumber > CHANNEL_COUNT)) throw new ArgumentOutOfRangeException("channelNumber");
 
             // Make sure we're initialized
             EnsureInitialized();
@@ -97,7 +108,7 @@ namespace Microsoft.IoT.Devices.Adc
 
             // Clock Pulse and Set MUX Mode - 0 = Differential, 1 = Single-Ended
             clockPin.Write(GpioPinValue.Low);
-            if (ChannelMode == ProviderAdcChannelMode.SingleEnded)
+            if (channelMode == ProviderAdcChannelMode.SingleEnded)
             {
                 dataPin.Write(GpioPinValue.High); // await Task.Delay(1); // 2 microseconds
             }
@@ -150,15 +161,67 @@ namespace Microsoft.IoT.Devices.Adc
             return (dat1 == dat2) ? dat1 : 0;
         }
 
-        /// <inheritdoc/>
-        public void ReleaseChannel(int channel)
+        void IAdcControllerProvider.ReleaseChannel(int channel)
         {
             // Validate
-            if ((channel < 0) || (channel > ChannelCount)) throw new ArgumentOutOfRangeException("channel");
+            if ((channel < 0) || (channel > CHANNEL_COUNT)) throw new ArgumentOutOfRangeException("channel");
 
             // This devices does not operate in exclusive mode, so we'll just ignore
         }
 
+        int IAdcControllerProvider.ChannelCount
+        {
+            get
+            {
+                return CHANNEL_COUNT;
+            }
+        }
+
+        ProviderAdcChannelMode IAdcControllerProvider.ChannelMode
+        {
+            get
+            {
+                return channelMode;
+            }
+            set
+            {
+                channelMode = value;
+            }
+        }
+
+        int IAdcControllerProvider.MaxValue
+        {
+            get
+            {
+                return 255;
+            }
+        }
+
+        int IAdcControllerProvider.MinValue
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
+        int IAdcControllerProvider.ResolutionInBits
+        {
+            get
+            {
+                return 8;
+            }
+        }
+        #endregion // IAdcControllerProvider Interface
+
+        #region IAdcProvider Interface
+        IReadOnlyList<IAdcControllerProvider> IAdcProvider.GetControllers()
+        {
+            return new List<IAdcControllerProvider>() { this };
+        }
+        #endregion // IAdcProvider Interface
+
+        #region Public Methods
         /// <inheritdoc/>
         public void Dispose()
         {
@@ -178,20 +241,6 @@ namespace Microsoft.IoT.Devices.Adc
                 dataPin = null;
             }
             isInitialized = false;
-        }
-
-        /// <inheritdoc/>
-        public bool IsChannelModeSupported(ProviderAdcChannelMode channelMode)
-        {
-            // All modes currently supported, but in case another mode is added later.
-            switch (channelMode)
-            {
-                case ProviderAdcChannelMode.Differential:
-                case ProviderAdcChannelMode.SingleEnded:
-                    return true;
-                default:
-                    return false;
-            }
         }
         #endregion // Public Methods
 
@@ -214,31 +263,6 @@ namespace Microsoft.IoT.Devices.Adc
                 chipSelectPin = value;
             }
         }
-
-        /// <inheritdoc/>
-        public int ChannelCount
-        {
-            get
-            {
-                return 2;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the reading mode of the ADC.
-        /// </summary>
-        /// <value>
-        /// A <see cref="ProviderAdcChannelMode"/> that represents the reading mode of the ADC. 
-        /// The default is <see cref="ProviderAdcChannelMode.SingleEnded"/>.
-        /// </value>
-        /// <remarks>
-        /// For more information see 
-        /// <see href="http://www.maximintegrated.com/en/app-notes/index.mvp/id/1108">
-        /// Understanding Single-Ended, Pseudo-Differential and Fully-Differential ADC Inputs
-        /// </see>
-        /// </remarks>
-        [DefaultValue((int) ProviderAdcChannelMode.SingleEnded)] // HACK: int cast is a workaround for WinMDExp issue - JB 2016/02/19
-        public ProviderAdcChannelMode ChannelMode { get; set; }
 
         /// <summary>
         /// Gets or sets the clock pin.
@@ -275,33 +299,6 @@ namespace Microsoft.IoT.Devices.Adc
             {
                 if (isInitialized) { throw new IoChangeException(); }
                 dataPin = value;
-            }
-        }
-
-        /// <inheritdoc/>
-        public int MaxValue
-        {
-            get
-            {
-                return 255;
-            }
-        }
-
-        /// <inheritdoc/>
-        public int MinValue
-        {
-            get
-            {
-                return 0;
-            }
-        }
-
-        /// <inheritdoc/>
-        public int ResolutionInBits
-        {
-            get
-            {
-                return 8;
             }
         }
         #endregion // Public Properties
