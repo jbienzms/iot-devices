@@ -9,19 +9,14 @@ using Windows.Devices.Gpio;
 using Windows.Devices.Pwm.Provider;
 using Microsoft.IoT.DeviceHelpers;
 
-namespace Microsoft.IoT.Devices.Pwm
+namespace Microsoft.IoT.Devices.Pwm.PwmSoft
 {
     /// <summary>
-    /// A software-based <see cref="IPwmControllerProvider"/> that uses CPU timing to generate PWM 
-    /// signals on regular GPIO pins.
+    /// Initializes a new <see cref="PwmControllerProviderSoft"/> instance.
     /// </summary>
     /// <remarks>
-    /// The number of pins reported as available by <see cref="SoftPwm"/> is the same number of 
-    /// pins reported as available by <see cref="GpioController.PinCount"/>. Therefore, developers 
-    /// should be careful not to open <see cref="SoftPwm"/> pins that are already allocated for 
-    /// other GPIO devices.
     /// </remarks>
-    sealed public class SoftPwm : IPwmControllerProvider, IDisposable
+    public sealed class PwmControllerProviderSoft : IPwmControllerProvider, IDisposable
     {
         #region Nested Types
         private class SoftPwmPin
@@ -66,9 +61,9 @@ namespace Microsoft.IoT.Devices.Pwm
 
         #region Constructors
         /// <summary>
-        /// Initializes a new <see cref="SoftPwm"/> instance.
+        /// Initializes a new <see cref="PwmControllerProviderSoft"/> instance.
         /// </summary>
-        public SoftPwm()
+        internal PwmControllerProviderSoft()
         {
             // Get GPIO
             gpioController = GpioController.GetDefault();
@@ -255,6 +250,7 @@ namespace Microsoft.IoT.Devices.Pwm
         public void SetPulseParameters(int pin, double dutyCycle, bool invertPolarity)
         {
             if ((pin < 0) || (pin > (pinCount - 1))) throw new ArgumentOutOfRangeException("pin");
+            if ((dutyCycle < 0) || (dutyCycle > 1)) throw new ArgumentOutOfRangeException("dutyCycle");
 
             lock (pins)
             {
