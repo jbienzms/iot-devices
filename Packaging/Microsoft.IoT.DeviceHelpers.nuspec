@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Microsoft.IoT.DeviceHelpers</id>
-    <version>1.0.4</version>
+    <version>1.0.7</version>
     <title>Device Helpers for Windows IoT</title>
     <authors>jbienzms, toolboc (pdecarlo)</authors>
     <owners>jbienzms</owners>
@@ -16,6 +16,7 @@
     <copyright>Copyright © Microsoft Corporation</copyright>
     <tags>sensors devices hardware displays microsoft windows iot iot-core</tags>
     <dependencies>
+      <dependency id="Microsoft.IoT.DeviceCore" version="1.0.7" />
     </dependencies>
   </metadata>
   <files>

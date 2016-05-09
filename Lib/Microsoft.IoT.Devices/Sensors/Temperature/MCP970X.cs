@@ -6,6 +6,7 @@ using Microsoft.IoT.DeviceHelpers;
 using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using UnitsNet;
 using Windows.Devices.Adc;
 using Windows.Foundation;
 

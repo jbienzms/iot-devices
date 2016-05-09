@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 //
 using System;
+using UnitsNet;
 
 namespace Microsoft.IoT.DeviceCore.Sensors
 {

@@ -177,7 +177,6 @@
     <Compile Include="Sensors\Analog\AnalogSensorReadingChangedEventArgs.cs" />
     <Compile Include="Sensors\Analog\IAnalogSensor.cs" />
     <Compile Include="Sensors\ISensorReading.cs" />
-    <Compile Include="Sensors\Temperature\Temperature.cs" />
     <Compile Include="Sensors\Temperature\TemperatureReading.cs" />
     <Compile Include="Sensors\Temperature\ITemperatureSensor.cs" />
     <Compile Include="Spi\ISpiBasedDevice.cs" />
