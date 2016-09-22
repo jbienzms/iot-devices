@@ -35,6 +35,7 @@ namespace Microsoft.IoT.DeviceCore.Sensors
         /// </param>
         public TemperatureReading(Temperature temperature, DateTimeOffset timestamp)
         {
+            this.Temperature = temperature;
             this.Timestamp = timestamp;
         }
 
