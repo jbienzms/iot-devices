@@ -30,29 +30,36 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.IoT.DeviceCore/1.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
-        },
-        "runtime": {
-          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
-        }
-      },
-      "Microsoft.IoT.DeviceHelpers/1.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
-        }
-      },
-      "Microsoft.IoT.Devices/1.0.3": {
+      "Microsoft.IoT.DeviceCore/1.0.8": {
         "type": "package",
         "dependencies": {
-          "Microsoft.IoT.DeviceCore": "1.0.3",
-          "Microsoft.IoT.DeviceHelpers": "1.0.3"
+          "UnitsNet.WindowsRuntimeComponent": "3.51.0"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
+        }
+      },
+      "Microsoft.IoT.DeviceHelpers/1.0.8": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IoT.DeviceCore": "1.0.8"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
+        }
+      },
+      "Microsoft.IoT.Devices/1.0.8": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IoT.DeviceCore": "1.0.8",
+          "Microsoft.IoT.DeviceHelpers": "1.0.8",
+          "UnitsNet.WindowsRuntimeComponent": "3.51.0"
         },
         "compile": {
           "lib/uap10.0/Microsoft.IoT.Devices.winmd": {}
@@ -1915,6 +1922,15 @@
             "rid": "win8-aot"
           }
         }
+      },
+      "UnitsNet.WindowsRuntimeComponent/3.51.0": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/UnitsNet.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UnitsNet.winmd": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-arm": {
@@ -1945,29 +1961,36 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.IoT.DeviceCore/1.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
-        },
-        "runtime": {
-          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
-        }
-      },
-      "Microsoft.IoT.DeviceHelpers/1.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
-        }
-      },
-      "Microsoft.IoT.Devices/1.0.3": {
+      "Microsoft.IoT.DeviceCore/1.0.8": {
         "type": "package",
         "dependencies": {
-          "Microsoft.IoT.DeviceCore": "1.0.3",
-          "Microsoft.IoT.DeviceHelpers": "1.0.3"
+          "UnitsNet.WindowsRuntimeComponent": "3.51.0"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
+        }
+      },
+      "Microsoft.IoT.DeviceHelpers/1.0.8": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IoT.DeviceCore": "1.0.8"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
+        }
+      },
+      "Microsoft.IoT.Devices/1.0.8": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IoT.DeviceCore": "1.0.8",
+          "Microsoft.IoT.DeviceHelpers": "1.0.8",
+          "UnitsNet.WindowsRuntimeComponent": "3.51.0"
         },
         "compile": {
           "lib/uap10.0/Microsoft.IoT.Devices.winmd": {}
@@ -3687,6 +3710,15 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "UnitsNet.WindowsRuntimeComponent/3.51.0": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/UnitsNet.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UnitsNet.winmd": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
@@ -3717,29 +3749,36 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.IoT.DeviceCore/1.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
-        },
-        "runtime": {
-          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
-        }
-      },
-      "Microsoft.IoT.DeviceHelpers/1.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
-        }
-      },
-      "Microsoft.IoT.Devices/1.0.3": {
+      "Microsoft.IoT.DeviceCore/1.0.8": {
         "type": "package",
         "dependencies": {
-          "Microsoft.IoT.DeviceCore": "1.0.3",
-          "Microsoft.IoT.DeviceHelpers": "1.0.3"
+          "UnitsNet.WindowsRuntimeComponent": "3.51.0"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
+        }
+      },
+      "Microsoft.IoT.DeviceHelpers/1.0.8": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IoT.DeviceCore": "1.0.8"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
+        }
+      },
+      "Microsoft.IoT.Devices/1.0.8": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IoT.DeviceCore": "1.0.8",
+          "Microsoft.IoT.DeviceHelpers": "1.0.8",
+          "UnitsNet.WindowsRuntimeComponent": "3.51.0"
         },
         "compile": {
           "lib/uap10.0/Microsoft.IoT.Devices.winmd": {}
@@ -5422,6 +5461,15 @@
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "UnitsNet.WindowsRuntimeComponent/3.51.0": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/UnitsNet.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UnitsNet.winmd": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-x64": {
@@ -5452,29 +5500,36 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.IoT.DeviceCore/1.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
-        },
-        "runtime": {
-          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
-        }
-      },
-      "Microsoft.IoT.DeviceHelpers/1.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
-        }
-      },
-      "Microsoft.IoT.Devices/1.0.3": {
+      "Microsoft.IoT.DeviceCore/1.0.8": {
         "type": "package",
         "dependencies": {
-          "Microsoft.IoT.DeviceCore": "1.0.3",
-          "Microsoft.IoT.DeviceHelpers": "1.0.3"
+          "UnitsNet.WindowsRuntimeComponent": "3.51.0"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
+        }
+      },
+      "Microsoft.IoT.DeviceHelpers/1.0.8": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IoT.DeviceCore": "1.0.8"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
+        }
+      },
+      "Microsoft.IoT.Devices/1.0.8": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IoT.DeviceCore": "1.0.8",
+          "Microsoft.IoT.DeviceHelpers": "1.0.8",
+          "UnitsNet.WindowsRuntimeComponent": "3.51.0"
         },
         "compile": {
           "lib/uap10.0/Microsoft.IoT.Devices.winmd": {}
@@ -7201,6 +7256,15 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "UnitsNet.WindowsRuntimeComponent/3.51.0": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/UnitsNet.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UnitsNet.winmd": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
@@ -7231,29 +7295,36 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.IoT.DeviceCore/1.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
-        },
-        "runtime": {
-          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
-        }
-      },
-      "Microsoft.IoT.DeviceHelpers/1.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
-        }
-      },
-      "Microsoft.IoT.Devices/1.0.3": {
+      "Microsoft.IoT.DeviceCore/1.0.8": {
         "type": "package",
         "dependencies": {
-          "Microsoft.IoT.DeviceCore": "1.0.3",
-          "Microsoft.IoT.DeviceHelpers": "1.0.3"
+          "UnitsNet.WindowsRuntimeComponent": "3.51.0"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
+        }
+      },
+      "Microsoft.IoT.DeviceHelpers/1.0.8": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IoT.DeviceCore": "1.0.8"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
+        }
+      },
+      "Microsoft.IoT.Devices/1.0.8": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IoT.DeviceCore": "1.0.8",
+          "Microsoft.IoT.DeviceHelpers": "1.0.8",
+          "UnitsNet.WindowsRuntimeComponent": "3.51.0"
         },
         "compile": {
           "lib/uap10.0/Microsoft.IoT.Devices.winmd": {}
@@ -8936,6 +9007,15 @@
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "UnitsNet.WindowsRuntimeComponent/3.51.0": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/UnitsNet.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UnitsNet.winmd": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-x86": {
@@ -8966,29 +9046,36 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.IoT.DeviceCore/1.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
-        },
-        "runtime": {
-          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
-        }
-      },
-      "Microsoft.IoT.DeviceHelpers/1.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
-        }
-      },
-      "Microsoft.IoT.Devices/1.0.3": {
+      "Microsoft.IoT.DeviceCore/1.0.8": {
         "type": "package",
         "dependencies": {
-          "Microsoft.IoT.DeviceCore": "1.0.3",
-          "Microsoft.IoT.DeviceHelpers": "1.0.3"
+          "UnitsNet.WindowsRuntimeComponent": "3.51.0"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
+        }
+      },
+      "Microsoft.IoT.DeviceHelpers/1.0.8": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IoT.DeviceCore": "1.0.8"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
+        }
+      },
+      "Microsoft.IoT.Devices/1.0.8": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IoT.DeviceCore": "1.0.8",
+          "Microsoft.IoT.DeviceHelpers": "1.0.8",
+          "UnitsNet.WindowsRuntimeComponent": "3.51.0"
         },
         "compile": {
           "lib/uap10.0/Microsoft.IoT.Devices.winmd": {}
@@ -10715,6 +10802,15 @@
         "runtime": {
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "UnitsNet.WindowsRuntimeComponent/3.51.0": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/UnitsNet.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UnitsNet.winmd": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
@@ -10745,29 +10841,36 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.IoT.DeviceCore/1.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
-        },
-        "runtime": {
-          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
-        }
-      },
-      "Microsoft.IoT.DeviceHelpers/1.0.3": {
-        "type": "package",
-        "compile": {
-          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
-        },
-        "runtime": {
-          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
-        }
-      },
-      "Microsoft.IoT.Devices/1.0.3": {
+      "Microsoft.IoT.DeviceCore/1.0.8": {
         "type": "package",
         "dependencies": {
-          "Microsoft.IoT.DeviceCore": "1.0.3",
-          "Microsoft.IoT.DeviceHelpers": "1.0.3"
+          "UnitsNet.WindowsRuntimeComponent": "3.51.0"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd": {}
+        }
+      },
+      "Microsoft.IoT.DeviceHelpers/1.0.8": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IoT.DeviceCore": "1.0.8"
+        },
+        "compile": {
+          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll": {}
+        }
+      },
+      "Microsoft.IoT.Devices/1.0.8": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IoT.DeviceCore": "1.0.8",
+          "Microsoft.IoT.DeviceHelpers": "1.0.8",
+          "UnitsNet.WindowsRuntimeComponent": "3.51.0"
         },
         "compile": {
           "lib/uap10.0/Microsoft.IoT.Devices.winmd": {}
@@ -12450,6 +12553,15 @@
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
+      },
+      "UnitsNet.WindowsRuntimeComponent/3.51.0": {
+        "type": "package",
+        "compile": {
+          "lib/uap10.0/UnitsNet.winmd": {}
+        },
+        "runtime": {
+          "lib/uap10.0/UnitsNet.winmd": {}
+        }
       }
     }
   },
@@ -12495,47 +12607,43 @@
         "ref/xamarinmac20/_._"
       ]
     },
-    "Microsoft.IoT.DeviceCore/1.0.3": {
-      "sha512": "CVa2TcS6B4n4qVi4mtqAmgqYj2NRugJqhHKo1YzayGw5VgpqWLRJOm0HDUFROGTX3pcsSPE9jAQGoU2ugumzVw==",
-      "type": "Package",
+    "Microsoft.IoT.DeviceCore/1.0.8": {
+      "sha512": "0DKf8XC4JO1dsZ8i7vY7Kljd6/wcWqVB4E2h8yABiN965iImt9gbanMtCMJYjyUyevT9qEf0x4EuLJLjqRLIaA==",
+      "type": "package",
       "files": [
+        "Microsoft.IoT.DeviceCore.1.0.8.nupkg.sha512",
         "Microsoft.IoT.DeviceCore.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
-        "build/Microsoft.IoT.DeviceCore.targets",
+        "lib/uap10.0/Microsoft.IoT.DeviceCore.XML",
         "lib/uap10.0/Microsoft.IoT.DeviceCore.pdb",
         "lib/uap10.0/Microsoft.IoT.DeviceCore.pri",
         "lib/uap10.0/Microsoft.IoT.DeviceCore.winmd",
         "lib/uap10.0/Microsoft.IoT.DeviceCore/Microsoft.IoT.DeviceCore.xr.xml",
-        "lib/uap10.0/Microsoft.IoT.DeviceCore/Themes/Generic.xaml",
-        "package/services/metadata/core-properties/a1904a5e4891437abbde4acfc08a0253.psmdcp"
+        "lib/uap10.0/Microsoft.IoT.DeviceCore/Themes/Generic.xaml"
       ]
     },
-    "Microsoft.IoT.DeviceHelpers/1.0.3": {
-      "sha512": "HO1eeEa/dvl2XIuFDxC43jr4UO6eS75nDAfkaC9oBnsUewLLkmRVfoGSK3u6NHmPxeO1TjrNi8k2vz+Bd7unoQ==",
-      "type": "Package",
+    "Microsoft.IoT.DeviceHelpers/1.0.8": {
+      "sha512": "UIZBxpeEGxzSbPn5Ig6I7svqc40OpdA/e6yH05oHN7IWrAN6fesXFjqtndrFoh+TfIJJFvJ++EPALi1twKAcfg==",
+      "type": "package",
       "files": [
+        "Microsoft.IoT.DeviceHelpers.1.0.8.nupkg.sha512",
         "Microsoft.IoT.DeviceHelpers.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
+        "lib/uap10.0/Microsoft.IoT.DeviceHelpers.XML",
         "lib/uap10.0/Microsoft.IoT.DeviceHelpers.dll",
         "lib/uap10.0/Microsoft.IoT.DeviceHelpers.pdb",
         "lib/uap10.0/Microsoft.IoT.DeviceHelpers.pri",
-        "lib/uap10.0/Microsoft.IoT.DeviceHelpers/Properties/Microsoft.IoT.DeviceHelpers.rd.xml",
-        "package/services/metadata/core-properties/2dd85fa1b47d4d2dacfd448020eeedef.psmdcp"
+        "lib/uap10.0/Microsoft.IoT.DeviceHelpers/Properties/Microsoft.IoT.DeviceHelpers.rd.xml"
       ]
     },
-    "Microsoft.IoT.Devices/1.0.3": {
-      "sha512": "VkJR0vXB5abT6FGrG45PrKxAL6fWtySOu/FsODbizjzRaf+zDehzDp1/ne3jMy2ww+n7+i3duBTKJhC/Pmz96w==",
-      "type": "Package",
+    "Microsoft.IoT.Devices/1.0.8": {
+      "sha512": "TmAeCsKT5aA1N4L3eovp+O9iNoWMFb+Rth6VUvuwk5YAgrBICUlWQjMdm9w9GmXf2xbo4NdH4Wiw+oY9eG8MJQ==",
+      "type": "package",
       "files": [
+        "Microsoft.IoT.Devices.1.0.8.nupkg.sha512",
         "Microsoft.IoT.Devices.nuspec",
-        "[Content_Types].xml",
-        "_rels/.rels",
+        "lib/uap10.0/Microsoft.IoT.Devices.XML",
         "lib/uap10.0/Microsoft.IoT.Devices.pdb",
         "lib/uap10.0/Microsoft.IoT.Devices.pri",
-        "lib/uap10.0/Microsoft.IoT.Devices.winmd",
-        "package/services/metadata/core-properties/09fb0ffaf01c4ed0a3e9c42283faccc5.psmdcp"
+        "lib/uap10.0/Microsoft.IoT.Devices.winmd"
       ]
     },
     "Microsoft.NETCore/5.0.0": {
@@ -15844,11 +15952,21 @@
         "runtime.json",
         "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll"
       ]
+    },
+    "UnitsNet.WindowsRuntimeComponent/3.51.0": {
+      "sha512": "DdSt3T1jCrlRfvUq9m1EzYmJEj+yCbfcSzPvbzACjgtU6iUvT3dfEmD8uVafTZavL5+A3F5OKSkIjsIqynUr5A==",
+      "type": "package",
+      "files": [
+        "UnitsNet.WindowsRuntimeComponent.3.51.0.nupkg.sha512",
+        "UnitsNet.WindowsRuntimeComponent.nuspec",
+        "lib/uap10.0/UnitsNet.pri",
+        "lib/uap10.0/UnitsNet.winmd"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "": [
-      "Microsoft.IoT.Devices >= 1.0.3",
+      "Microsoft.IoT.Devices >= 1.0.8",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0"
     ],
     "UAP,Version=v10.0": []

@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "Microsoft.IoT.Devices": "1.0.4",
+    "Microsoft.IoT.Devices": "1.0.8",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "MvvmLight": "5.2.0",
     "Newtonsoft.Json": "7.0.1"
