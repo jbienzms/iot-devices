@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Microsoft.IoT.DeviceHelpers</id>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
     <title>Device Helpers for Windows IoT</title>
     <authors>jbienzms, toolboc (pdecarlo)</authors>
     <owners>jbienzms</owners>
@@ -12,11 +12,11 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>Provides additional managed helper classes that could not be included in the Core WinMD component.</summary>
     <description>Provides additional managed helper classes that could not be included in the Core WinMD component.</description>
-    <releaseNotes>Added workaround for .Net Native metadata issue caused by WinMDExp. This was causing issues when submitting apps to the store.</releaseNotes>
+    <releaseNotes>This release resolves an error that caused DevicesLowLevelContract to get imported twice. It also updates the library to target Anniversary Update.</releaseNotes>
     <copyright>Copyright © Microsoft Corporation</copyright>
     <tags>sensors devices hardware displays microsoft windows iot iot-core</tags>
     <dependencies>
-      <dependency id="Microsoft.IoT.DeviceCore" version="1.0.7" />
+      <dependency id="Microsoft.IoT.DeviceCore" version="1.0.8" />
     </dependencies>
   </metadata>
   <files>

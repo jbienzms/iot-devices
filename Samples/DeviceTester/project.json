@@ -2,7 +2,7 @@
   "dependencies": {
     "Microsoft.IoT.Connections.Azure": "0.7.5.13",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-    "UnitsNet.WindowsRuntimeComponent": "3.33.0"
+    "UnitsNet.WindowsRuntimeComponent": "3.51.0"
   },
   "frameworks": {
     "uap10.0": {}

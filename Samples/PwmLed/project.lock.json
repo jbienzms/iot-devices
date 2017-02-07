@@ -1796,7 +1796,7 @@
           }
         }
       },
-      "UnitsNet.WindowsRuntimeComponent/3.33.0": {
+      "UnitsNet.WindowsRuntimeComponent/3.51.0": {
         "compile": {
           "lib/uap10.0/UnitsNet.winmd": {}
         },
@@ -3452,7 +3452,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "UnitsNet.WindowsRuntimeComponent/3.33.0": {
+      "UnitsNet.WindowsRuntimeComponent/3.51.0": {
         "compile": {
           "lib/uap10.0/UnitsNet.winmd": {}
         },
@@ -5072,7 +5072,7 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "UnitsNet.WindowsRuntimeComponent/3.33.0": {
+      "UnitsNet.WindowsRuntimeComponent/3.51.0": {
         "compile": {
           "lib/uap10.0/UnitsNet.winmd": {}
         },
@@ -6734,7 +6734,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "UnitsNet.WindowsRuntimeComponent/3.33.0": {
+      "UnitsNet.WindowsRuntimeComponent/3.51.0": {
         "compile": {
           "lib/uap10.0/UnitsNet.winmd": {}
         },
@@ -8354,7 +8354,7 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "UnitsNet.WindowsRuntimeComponent/3.33.0": {
+      "UnitsNet.WindowsRuntimeComponent/3.51.0": {
         "compile": {
           "lib/uap10.0/UnitsNet.winmd": {}
         },
@@ -10016,7 +10016,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "UnitsNet.WindowsRuntimeComponent/3.33.0": {
+      "UnitsNet.WindowsRuntimeComponent/3.51.0": {
         "compile": {
           "lib/uap10.0/UnitsNet.winmd": {}
         },
@@ -11636,7 +11636,7 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "UnitsNet.WindowsRuntimeComponent/3.33.0": {
+      "UnitsNet.WindowsRuntimeComponent/3.51.0": {
         "compile": {
           "lib/uap10.0/UnitsNet.winmd": {}
         },
@@ -15010,11 +15010,11 @@
         "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll"
       ]
     },
-    "UnitsNet.WindowsRuntimeComponent/3.33.0": {
-      "sha512": "RkgO5v5CfFo+X4vWipLRHXPmgxKw+w3l9JbfkbdQXVgbPve9brH6xJz5yPNVxFNwTb5YhqC+OSoiEClHTN2Law==",
+    "UnitsNet.WindowsRuntimeComponent/3.51.0": {
+      "sha512": "DdSt3T1jCrlRfvUq9m1EzYmJEj+yCbfcSzPvbzACjgtU6iUvT3dfEmD8uVafTZavL5+A3F5OKSkIjsIqynUr5A==",
       "type": "package",
       "files": [
-        "UnitsNet.WindowsRuntimeComponent.3.33.0.nupkg.sha512",
+        "UnitsNet.WindowsRuntimeComponent.3.51.0.nupkg.sha512",
         "UnitsNet.WindowsRuntimeComponent.nuspec",
         "lib/uap10.0/UnitsNet.pri",
         "lib/uap10.0/UnitsNet.winmd"

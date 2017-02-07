@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Microsoft.IoT.Devices</id>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
     <title>Devices for Windows IoT Core</title>
     <authors>jbienzms, toolboc (pdecarlo)</authors>
     <owners>jbienzms</owners>
@@ -12,13 +12,13 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>Makes it easy to use sensors, displays, and other hardware devices on the Windows IoT Core platform.</summary>
     <description>Makes it easy to use sensors, displays, and other hardware devices on the Windows IoT Core platform.</description>
-    <releaseNotes>This release takes a dependency on the Windows Runtime Component version of UnitsNet. This allows us to support a wide range of units of measure for sensor data as well as support conversions between those units of measure.</releaseNotes>
+    <releaseNotes>This release resolves an error that caused DevicesLowLevelContract to get imported twice. It also updates the library to target Anniversary Update.</releaseNotes>
     <copyright>Copyright © Microsoft Corporation</copyright>
     <tags>sensors devices hardware displays microsoft windows iot iot-core</tags>
     <dependencies>
-      <dependency id="Microsoft.IoT.DeviceCore" version="1.0.7" />
-      <dependency id="Microsoft.IoT.DeviceHelpers" version="1.0.7" />
-      <dependency id="UnitsNet.WindowsRuntimeComponent" version="3.33.0" />
+      <dependency id="Microsoft.IoT.DeviceCore" version="1.0.8" />
+      <dependency id="Microsoft.IoT.DeviceHelpers" version="1.0.8" />
+      <dependency id="UnitsNet.WindowsRuntimeComponent" version="3.51.0" />
     </dependencies>
   </metadata>
   <files>
